@@ -2,7 +2,7 @@
 import { Suspense, useEffect, useState } from "react";
 import Hero from "@/components/Hero";
 import AboutDevhost from "@/components/AboutDevhost";
-import Counter from "@/components/Counter";
+// import Counter from "@/components/Counter";
 import TimelineSection from "@/components/Timeline";
 import AboutHackathon from "@/components/AboutHackathon";
 import Footer from "@/components/Footer";
@@ -12,7 +12,7 @@ import Events from "@/components/Events";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import SponsorsLogo from "@/components/Sponsors";
 import SpeakersInfo from "@/components/SpeakersInfo";
-import Final from "@/components/Final";
+// import Final from "@/components/Final";
 
 export default function Home() {
   const [ready, setReady] = useState(false);

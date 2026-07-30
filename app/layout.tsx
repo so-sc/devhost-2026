@@ -86,8 +86,8 @@ export default function RootLayout({
         className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} antialiased`}
       >
         <ReactLenis root />
-            {children}
-            <Toaster position="top-center" />
+        {children}
+        <Toaster position="top-center" />
       </body>
     </html>
   );

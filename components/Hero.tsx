@@ -2,14 +2,14 @@
 import React, { Fragment } from "react";
 import Logo from "./animated/Logo";
 import DecryptText from "./animated/TextAnimation";
-import { User } from "lucide-react";
+// import { User } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { ClippedButton } from "./ClippedButton";
+// import { useRouter } from "next/navigation";
+// import { ClippedButton } from "./ClippedButton";
 import CallToAction from "./CallToAction";
 
 export default function Hero() {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <Fragment>

@@ -9,7 +9,7 @@ import DecryptText from "./animated/TextAnimation";
 import { useRouter } from "next/navigation";
 import { ClippedButton } from "./ClippedButton";
 import { events } from "@/assets/data/events";
-import { eventDetails } from "@/assets/data/eventPayment";
+// import { eventDetails } from "@/assets/data/eventPayment";
 import { Download } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);

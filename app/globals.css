@@ -91,7 +91,7 @@
   --card-foreground: oklch(0.984 0.003 247.858);
   --popover: oklch(20.841% 0.04169 266.371);
   --popover-foreground: oklch(98.415% 0.00352 248.585);
-  --primary: #F6CC60;
+  --primary: #f6cc60;
   --primary-foreground: oklch(0.208 0.042 265.755);
   --secondary: oklch(75.646% 0.01235 264.547);
   --secondary-foreground: oklch(0.984 0.003 247.858);
@@ -160,7 +160,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.9) inset !important;
-  -webkit-text-fill-color: #F6CC60 !important;
+  -webkit-text-fill-color: #f6cc60 !important;
   transition: background-color 5000s ease-in-out 0s;
-  caret-color: #F6CC60;
+  caret-color: #f6cc60;
 }
