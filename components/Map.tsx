@@ -46,8 +46,8 @@ const Map = () => {
         {/* Left: Text content */}
         <div className="space-y-6 text-center md:text-left lg:col-span-2">
           <h2 className="flex items-center justify-center gap-3 text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl xl:justify-start">
-            <MapPin className="h-8 w-8 animate-bounce text-[#a3ff12] md:h-12 md:w-12" />
-            <span className="font-orbitron text-[#a3ff12] uppercase drop-shadow-[0_0_10px_#a3ff12aa]">
+            <MapPin className="h-8 w-8 animate-bounce text-[#F6CC60] md:h-12 md:w-12" />
+            <span className="font-orbitron text-[#F6CC60] uppercase drop-shadow-[0_0_10px_#F6CC60]">
               Location
             </span>
           </h2>
@@ -65,7 +65,7 @@ const Map = () => {
         {/* Right: Map */}
         <div className="relative w-full lg:col-span-3">
           <div
-            className="group relative skew-y-0 transform bg-[#a3ff12] transition-all duration-500 ease-in-out hover:skew-y-0 md:-skew-y-2"
+            className="group relative skew-y-0 transform bg-[#F6CC60] transition-all duration-500 ease-in-out hover:skew-y-0 md:-skew-y-2"
             style={{
               clipPath:
                 "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
@@ -87,7 +87,7 @@ const Map = () => {
               ></iframe>
 
               {/* Overlay gradient */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#a3ff12]/15 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#F6CC60]/15 to-transparent" />
             </div>
           </div>
         </div>

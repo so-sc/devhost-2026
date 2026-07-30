@@ -148,7 +148,7 @@ export default function FAQ() {
                     <div className="bg-primary absolute top-0 left-0 h-full w-1 origin-top scale-y-0 transform shadow-[0_0_10px_#a3ff12] transition-transform duration-300 group-hover:scale-y-100"></div>
 
                     {/* Content */}
-                    <AccordionTrigger className="relative px-8 py-6 text-left text-base font-medium text-white transition-all duration-300 group-hover:pl-12 group-hover:text-[#a3ff12] md:text-lg">
+                    <AccordionTrigger className="relative px-8 py-6 text-left text-base font-medium text-white transition-all duration-300 group-hover:pl-12 group-hover:text-[#F6CC60] md:text-lg">
                       <span className="relative z-10 font-mono">
                         {faq.question}
                       </span>
@@ -156,7 +156,7 @@ export default function FAQ() {
 
                     <AccordionContent className="relative px-8 pb-6 text-sm leading-relaxed text-gray-300">
                       {/* More visible divider line */}
-                      <div className="mb-6 h-0.5 w-full bg-gradient-to-r from-[#a3ff12] via-[#a3ff1260] to-[#a3ff12] shadow-[0_0_5px_#a3ff1240]"></div>
+                      <div className="mb-6 h-0.5 w-full bg-gradient-to-r from-[#F6CC60] via-[#a3ff1260] to-[#F6CC60] shadow-[0_0_5px_#a3ff1240]"></div>
 
                       <div
                         className="border border-[#a3ff1220] bg-black/50 p-4 font-mono text-sm leading-relaxed text-gray-200"

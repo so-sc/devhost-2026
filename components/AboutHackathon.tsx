@@ -277,7 +277,7 @@ export default function Home() {
             {/* H (placeholder where images overlay from outside) */}
             <div
               ref={kRef}
-              className="relative text-9xl leading-none font-black tracking-tight text-[#a3ff12] opacity-0 select-none"
+              className="relative text-9xl leading-none font-black tracking-tight text-[#F6CC60] opacity-0 select-none"
             >
               H
             </div>

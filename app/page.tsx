@@ -10,15 +10,12 @@ import FAQ from "@/components/Faq";
 import Map from "@/components/Map";
 import Events from "@/components/Events";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { useAuth } from "@/context/AuthContext";
 import SponsorsLogo from "@/components/Sponsors";
 import SpeakersInfo from "@/components/SpeakersInfo";
 import Final from "@/components/Final";
 
 export default function Home() {
   const [ready, setReady] = useState(false);
-
-  const { loginLoading } = useAuth();
 
   useEffect(() => {
     const handleLoaded = () => setReady(true);
@@ -43,20 +40,10 @@ export default function Home() {
 
   return (
     <div className="relative">
-      {loginLoading && (
-        <div className="fixed z-50 flex h-screen w-screen items-center justify-center bg-black">
-          <div className="text-center">
-            <div className="border-primary mx-auto h-12 w-12 animate-spin rounded-full border-b-2"></div>
-            <p className="font-orbitron text-primary mt-4 uppercase">
-              Logging in...
-            </p>
-          </div>
-        </div>
-      )}
       <Suspense fallback={<LoadingSpinner />}>
         <Hero />
         {/* <Counter /> */}
-        <Final />
+        {/* <Final /> */}
         <SponsorsLogo />
         <AboutDevhost />
         <div className="relative h-[30vh]">

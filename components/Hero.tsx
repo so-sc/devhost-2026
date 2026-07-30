@@ -5,32 +5,11 @@ import DecryptText from "./animated/TextAnimation";
 import { User } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
-import { exchangeIdTokenForSession } from "@/firebase/auth";
 import { ClippedButton } from "./ClippedButton";
 import CallToAction from "./CallToAction";
 
 export default function Hero() {
   const router = useRouter();
-  const { user, signInWithGoogle } = useAuth();
-
-  const handleGoogleLogin = async () => {
-    if (user) {
-      try {
-        const idToken = await user.getIdToken();
-        await exchangeIdTokenForSession(idToken);
-        router.push("/profile");
-      } catch (error) {
-        console.error("Session creation failed:", error);
-      }
-    } else {
-      try {
-        await signInWithGoogle();
-      } catch (error) {
-        console.error("Sign in failed:", error);
-      }
-    }
-  };
 
   return (
     <Fragment>
@@ -50,7 +29,7 @@ export default function Hero() {
                 />
               </div>
             </div>
-            <p className="font-orbitron py-1 text-center text-xs tracking-wide text-[#c3ff49]">
+            <p className="font-orbitron py-1 text-center text-xs tracking-wide text-[#F6CC60]">
               Presents
             </p>
           </div>
@@ -98,9 +77,9 @@ export default function Hero() {
         </div>
 
         {/* UI Corner Brackets */}
-        <div className="absolute top-5 left-5 h-10 w-10 border-t-2 border-l-2 border-[#c3ff49]/50" />
-        <div className="absolute top-5 right-5 h-10 w-10 border-t-2 border-r-2 border-[#c3ff49]/50" />
-        <div className="absolute bottom-5 left-5 z-10 h-10 w-10 border-b-2 border-l-2 border-[#c3ff49]/50" />
+        <div className="absolute top-5 left-5 h-10 w-10 border-t-2 border-l-2 border-[#F6CC60]/50" />
+        <div className="absolute top-5 right-5 h-10 w-10 border-t-2 border-r-2 border-[#F6CC60]/50" />
+        <div className="absolute bottom-5 left-5 z-10 h-10 w-10 border-b-2 border-l-2 border-[#F6CC60]/50" />
 
         {/* Floating Dock (Top Right) */}
         {/* <div className="font-orbitron absolute top-6 right-4 z-20 flex gap-4 md:top-10 md:right-10">

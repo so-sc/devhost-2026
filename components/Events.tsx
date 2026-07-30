@@ -155,7 +155,7 @@ export default function Events() {
 
                 <div className="mt-3 flex flex-1 flex-col justify-between px-2 py-4 pl-0 sm:mt-0 sm:pl-4">
                   <div>
-                    <h2 className="font-orbitron mb-4 text-lg font-bold text-[#b4ff39] lg:text-xl">
+                    <h2 className="font-orbitron mb-4 text-lg font-bold text-[#F6CC60] lg:text-xl">
                       &gt; {event.title}
                     </h2>
                     <p className="mb-1 text-sm text-white/90 italic">
@@ -166,38 +166,38 @@ export default function Events() {
                     </p>
                     <div className="space-y-0.5 text-xs text-white/80 lg:text-sm">
                       <p>
-                        <span className="mr-1 font-semibold text-[#b4ff39]">
+                        <span className="mr-1 font-semibold text-[#F6CC60]">
                           Date:
                         </span>
                         {event.date}
                       </p>
                       <p>
-                        <span className="mr-1 font-semibold text-[#b4ff39]">
+                        <span className="mr-1 font-semibold text-[#F6CC60]">
                           Time:
                         </span>
                         {event.time}
                       </p>
                       <p>
-                        <span className="mr-1 font-semibold text-[#b4ff39]">
+                        <span className="mr-1 font-semibold text-[#F6CC60]">
                           Organizer:
                         </span>
                         {event.organizer}
                       </p>
                       <p>
-                        <span className="mr-1 font-semibold text-[#b4ff39]">
+                        <span className="mr-1 font-semibold text-[#F6CC60]">
                           Contact:
                         </span>
                         {event.contact}
                       </p>
                       {/* {!noRegister && (
                         <p className="flex items-baseline gap-2">
-                          <span className="mr-1 font-semibold text-[#b4ff39]">
+                          <span className="mr-1 font-semibold text-[#F6CC60]">
                             Amount:
                           </span>
                           <span className="text-sm text-gray-400 line-through">
                             ₹{eventDetails[event.id].amount + 50}
                           </span>
-                          <span className="font-semibold text-[#b4ff39]">
+                          <span className="font-semibold text-[#F6CC60]">
                             ₹{eventDetails[event.id].amount}
                           </span>
                           / team
