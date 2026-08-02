@@ -144,7 +144,7 @@ export default function Events() {
         {"// DEVHOST"}
       </div>
       <div className="font-orbitron absolute top-6 right-6 text-sm font-bold text-[#C8A24C]/80">
-        2025
+        2026
       </div>
 
       {/* Heading */}
@@ -172,7 +172,8 @@ export default function Events() {
             className="font-orbitron h-8 text-base tracking-wider text-[#C8A24C]/80 md:text-xl"
           />
         </div>
-        <div className="mt-6 flex flex-col items-center">
+        {/* Rulebook button */}
+        {/* <div className="mt-6 flex flex-col items-center">
           <a href="/brochure/devhost_event_rulebook.pdf" download>
             <ClippedButton
               innerBg="bg-[#1B1A18]"
@@ -185,7 +186,7 @@ export default function Events() {
               </span>
             </ClippedButton>
           </a>
-        </div>
+        </div> */}
       </div>
       <div
         className="pointer-events-none absolute top-[340px] left-1/2 -z-0 h-[700px] w-[1100px] -translate-x-1/2 rounded-full blur-[160px]"
@@ -228,7 +229,7 @@ export default function Events() {
                 }}
               >
                 <div
-                  className="relative aspect-square w-full overflow-hidden border border-[#C8A24C]/40 shadow-inner sm:aspect-[4/5] sm:w-1/2"
+                  className="md:mb-2 relative aspect-square w-full overflow-hidden border border-[#C8A24C]/40 shadow-inner sm:aspect-[4/5] sm:w-1/2"
                   style={{
                     clipPath:
                       "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
@@ -248,7 +249,8 @@ export default function Events() {
                     <h2
                       className={`${dalek.className} font-orbitron mb-5 text-xl font-bold tracking-wide text-[#F6CC60] lg:text-2xl`}
                     >
-                      &gt; {event.title}
+                      {/* &gt;  */}
+                      {event.title}
                     </h2>
                     <p className="mb-1 text-sm text-white/90 italic">
                       {event.tagline}
@@ -256,8 +258,7 @@ export default function Events() {
                     <p className="mb-2 text-xs text-white/70 lg:text-sm">
                       {event.description}
                     </p>
-                    <div className="my-5 h-px w-full bg-gradient-to-r from-transparent via-[#C8A24C]/50 to-transparent"></div>
-                    <div className="space-y-0.5 text-xs text-white/80 lg:text-sm">
+                    <div className="space-y-0.5 pt-4 text-xs text-white/80 lg:text-sm">
                       <p>
                         <span className="mr-1 font-semibold text-[#F6CC60]">
                           Date:

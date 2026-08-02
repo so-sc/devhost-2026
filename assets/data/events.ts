@@ -5,7 +5,7 @@ export const events = [
     tagline: "Battle it out in BGMI",
     description:
       "Compete with the best teams in a high stakes BGMI tournament.",
-    date: "7 Nov",
+    date: "12 Nov",
     time: "9:00 AM onwards",
     organizer: "Yishith",
     contact: "+91 9964057549",
@@ -17,7 +17,7 @@ export const events = [
     tagline: "Crack the code. Capture the flag.",
     description:
       "Test your cybersecurity skills in a capture-the-flag challenge.",
-    date: "7 Nov",
+    date: "12 Nov",
     time: "11:00 - 12:30",
     organizer: "Koshin",
     contact: "+91 7899715941",
@@ -29,7 +29,7 @@ export const events = [
     tagline: "Pitch. Persuade. Prevail.",
     description:
       "Pitch your tech solution and prove its power to change the game.",
-    date: "7 Nov",
+    date: "12 Nov",
     time: "11:00 - 12:30",
     organizer: "Varsha",
     contact: "+91 7022709062",
@@ -42,7 +42,7 @@ export const events = [
     tagline: "Compete. Solve. Dominate.",
     description:
       "Take part in a competitive programming battle to showcase your problem solving skills.",
-    date: "7 Nov",
+    date: "12 Nov",
     time: "3:00 - 5:00",
     organizer: "Sthuthi",
     contact: "+91 7795009031",

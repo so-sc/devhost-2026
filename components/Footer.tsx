@@ -103,12 +103,12 @@ const Footer = () => {
 
               <div className="mt-5 w-40 border-t border-[#C8A24C]/40"></div>
               <p className="pt-4">
-                Name: Manas S<br />
-                Phone: +91 96208 55052
+                Name: Soniya Kolvekar<br />
+                Phone: +91 86189 50479
               </p>
               <p className="pt-2">
-                Name: Vivek N <br />
-                Phone: +91 81698 38688
+                Name: Nivas M <br />
+                Phone: +91 93530 48159
               </p>
             </div>
           </div>
@@ -120,7 +120,7 @@ const Footer = () => {
                 Follow us
               </h2>
               <ul className="flex flex-col gap-4 font-medium text-gray-300">
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="https://github.com/so-sc"
                     target="_blank"
@@ -143,7 +143,7 @@ const Footer = () => {
                     </span>
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="https://www.instagram.com/sosc.sahyadri"
                     target="_blank"
@@ -166,7 +166,7 @@ const Footer = () => {
                     </span>
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="https://www.linkedin.com/company/sosc-sahyadri"
                     target="_blank"
@@ -190,7 +190,7 @@ const Footer = () => {
                   </Link>
                 </li>
 
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="https://www.youtube.com/channel/UCk8nlSMwUT-jhEtamMF-V-w"
                     target="_blank"
@@ -213,7 +213,7 @@ const Footer = () => {
                     </span>
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="https://discord.gg/KJbBUjrY"
                     target="_blank"
@@ -242,7 +242,7 @@ const Footer = () => {
                 Others
               </h2>
               <ul className="flex flex-col gap-4 font-medium text-gray-300">
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="https://www.sosc.org.in"
                     target="_blank"
@@ -251,7 +251,7 @@ const Footer = () => {
                     Website
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="https://www.sosc.org.in/guidelines"
                     target="_blank"
@@ -260,7 +260,7 @@ const Footer = () => {
                     Community Guidelines
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="https://github.com/so-sc/code-of-conduct"
                     target="_blank"
@@ -269,7 +269,7 @@ const Footer = () => {
                     Code of Conduct
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="/policies/about-us"
                     target="_blank"
@@ -278,7 +278,7 @@ const Footer = () => {
                     About Us
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="/policies/terms"
                     target="_blank"
@@ -287,7 +287,7 @@ const Footer = () => {
                     Terms & Conditions
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="/policies/privacy-policy"
                     target="_blank"
@@ -296,7 +296,7 @@ const Footer = () => {
                     Privacy Policy
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="/policies/refund-cancellation"
                     target="_blank"
@@ -305,7 +305,7 @@ const Footer = () => {
                     Refund & Cancellation
                   </Link>
                 </li>
-                <li className="border-b border-[#C8A24C]/20 py-1">
+                <li className="py-1">
                   <Link
                     href="/policies/shipping-delivery"
                     target="_blank"
@@ -318,7 +318,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-10 border-t border-[#C8A24C]/20 pt-6" />
+        <div className="mt-10 pt-6" />
         <div className="flex items-center justify-center">
           <span className="text-sm text-gray-400">
             SOSC © {new Date().getFullYear()} All Rights Reserved.

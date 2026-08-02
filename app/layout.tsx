@@ -37,34 +37,34 @@ const monospace = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "DevHost 2025",
-    template: `%s - DevHost 2025`,
+    default: "DevHost 2026",
+    template: `%s - DevHost 2026`,
   },
   description: "Connecting Minds, Crafting Progress.",
   keywords: [
     "sosc",
     "Sahyadri Open Source Community",
     "sosc devhost",
-    "devhost 2025",
+    "devhost 2026",
     "DevHost",
     "Devhost",
-    "Devhost 2025",
-    "DevHost 2025",
+    "Devhost 2026",
+    "DevHost 2026",
   ],
   creator: "so-sc",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://devhost.sosc.org.in/",
-    title: "DevHost 2025",
+    title: "DevHost 2026",
     description: "Connecting Minds, Crafting Progress.",
-    siteName: "DevHost 2025",
+    siteName: "DevHost 2026",
     images: [
       {
         url: "https://devhost.sosc.org.in/og.png",
         width: 1200,
         height: 630,
-        alt: "DevHost 2025",
+        alt: "DevHost 2026",
       },
     ],
   },
