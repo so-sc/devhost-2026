@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="absolute top-0 h-12 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
 
       <div className="absolute bottom-0 left-0 h-70 w-70 overflow-hidden">
-        <img
+        <Image
           src="/footer-background/Greek-ring-h.svg"
           alt=""
           className="absolute w-[420px] opacity-5"
@@ -103,7 +103,8 @@ const Footer = () => {
 
               <div className="mt-5 w-40 border-t border-[#C8A24C]/40"></div>
               <p className="pt-4">
-                Name: Soniya Kolvekar<br />
+                Name: Soniya Kolvekar
+                <br />
                 Phone: +91 86189 50479
               </p>
               <p className="pt-2">

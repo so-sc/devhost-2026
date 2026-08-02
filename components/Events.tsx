@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DecryptText from "./animated/TextAnimation";
-import { ClippedButton } from "./ClippedButton";
+// import { ClippedButton } from "./ClippedButton";
 import { events } from "@/assets/data/events";
 import localFont from "next/font/local";
 
@@ -229,7 +229,7 @@ export default function Events() {
                 }}
               >
                 <div
-                  className="md:mb-2 relative aspect-square w-full overflow-hidden border border-[#C8A24C]/40 shadow-inner sm:aspect-[4/5] sm:w-1/2"
+                  className="relative aspect-square w-full overflow-hidden border border-[#C8A24C]/40 shadow-inner sm:aspect-[4/5] sm:w-1/2 md:mb-2"
                   style={{
                     clipPath:
                       "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
