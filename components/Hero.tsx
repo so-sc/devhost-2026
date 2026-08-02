@@ -28,32 +28,31 @@ export default function Hero() {
                   sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, 320px"
                 /> */}
                 <div className="flex items-center justify-center gap-6">
-              <div className="relative h-16 w-16 sm:h-20 sm:w-20">
-                <Image
-                  src="/synergia_logo.svg"
-                  alt="Synergia"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="relative h-16 w-16 sm:h-20 sm:w-20">
-                <Image
-                  src="/sosc_logo.svg"
-                  alt="SOSC"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="relative h-16 w-16 overflow-hidden rounded-md sm:h-20 sm:w-20">
-                <Image
-                  src="/sahyadri_logo.jpeg"
-                  alt="Sahyadri"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
-
+                  <div className="relative h-16 w-16 sm:h-20 sm:w-20">
+                    <Image
+                      src="/synergia_logo.svg"
+                      alt="Synergia"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="relative h-16 w-16 sm:h-20 sm:w-20">
+                    <Image
+                      src="/sosc_logo.svg"
+                      alt="SOSC"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="relative h-16 w-16 overflow-hidden rounded-md sm:h-20 sm:w-20">
+                    <Image
+                      src="/sahyadri_logo.jpeg"
+                      alt="Sahyadri"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
             <p className="font-orbitron py-1 text-center text-xs tracking-wide text-[#F6CC60]">
