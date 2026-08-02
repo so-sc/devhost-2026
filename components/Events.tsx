@@ -5,20 +5,46 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DecryptText from "./animated/TextAnimation";
-//import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ClippedButton } from "./ClippedButton";
 import { events } from "@/assets/data/events";
-// import { eventDetails } from "@/assets/data/eventPayment";
-import { Download } from "lucide-react";
+import localFont from "next/font/local";
+
+export const dalek = localFont({
+  src: "../public/fonts/DalekPinpointBold.ttf",
+});
 
 gsap.registerPlugin(ScrollTrigger);
+
+const CornerBorder = ({ className = "" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 42 42"
+    className={className}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2 18V8a6 6 0 0 1 6-6h10"
+      stroke="#C8A24C"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+    />
+
+    <path
+      d="M2 28V22H8V16H14"
+      stroke="#C8A24C"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+
+    <circle cx="8" cy="8" r="1.8" fill="#C8A24C" />
+  </svg>
+);
 
 export default function Events() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
-  const router = useRouter();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -58,11 +84,6 @@ export default function Events() {
     return () => ctx.revert();
   }, []);
 
-  function onCardClick(eventId: number) {
-    router.push(`/events/${eventId}`);
-    // router.push(`/register`);
-  }
-
   return (
     <div
       ref={sectionRef}
@@ -71,22 +92,74 @@ export default function Events() {
       {/* Static Green Background */}
       <div
         ref={bgRef}
-        className="bg-opacity-5 bg-primary absolute inset-0 z-0"
+        className="absolute inset-0 z-0"
         style={{
           clipPath: "polygon(0% 0%, 100% 0%, 100% 92%, 85% 100%, -5% 100%)",
+
+          background: `
+    radial-gradient(circle at top,
+      rgba(200,162,76,0.06),
+      transparent 45%),
+    radial-gradient(circle at bottom,
+      rgba(255,255,255,0.02),
+      transparent 65%),
+    linear-gradient(
+      180deg,
+      #1a1a1a 0%,
+      #121212 50%,
+      #0b0b0b 100%
+    )
+  `,
         }}
       />
 
-      <div className="font-orbitron absolute top-6 left-6 text-sm font-bold text-black opacity-80">
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(circle, transparent 45%, rgba(0,0,0,.55) 100%)",
+        }}
+      />
+
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(45,45,45,0.65) 0%, rgba(22,22,22,0.95) 55%, #0d0d0d 100%)",
+        }}
+      />
+
+      {/* Optional marble texture later
+
+<Image
+    src="/textures/marble.webp"
+    alt=""
+    fill
+    className="object-cover opacity-[0.05] pointer-events-none"
+/>
+
+*/}
+
+      <div className="font-orbitron absolute top-6 left-6 text-sm font-bold text-[#C8A24C]/80">
         {"// DEVHOST"}
       </div>
-      <div className="font-orbitron absolute top-6 right-6 text-sm font-bold text-black opacity-80">
+      <div className="font-orbitron absolute top-6 right-6 text-sm font-bold text-[#C8A24C]/80">
         2025
       </div>
 
       {/* Heading */}
       <div className="relative z-10 mb-8 px-4 text-center">
-        <h1 className="font-orbitron mb-6 text-center text-4xl font-bold text-black sm:text-7xl">
+        <div
+          className="absolute inset-0 -z-10 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(200,162,76,.08), transparent 70%)",
+            textShadow: "0 2px 6px rgba(0,0,0,.55),0 8px 20px rgba(0,0,0,.35)",
+          }}
+        />
+        <h1
+          className={`${dalek.className} mb-6 text-center text-4xl font-bold tracking-wide text-[#C8A24C] sm:text-7xl`}
+        >
           DEVHOST EVENTS
         </h1>
         <div className="mt-4 px-4 text-lg sm:text-xl">
@@ -96,49 +169,66 @@ export default function Events() {
             trailSize={6}
             flickerIntervalMs={50}
             revealDelayMs={100}
-            className="font-orbitron h-8 text-base tracking-wider text-black md:text-xl"
+            className="font-orbitron h-8 text-base tracking-wider text-[#C8A24C]/80 md:text-xl"
           />
         </div>
-        <div className="mt-4 flex w-full items-center justify-center">
+        <div className="mt-6 flex flex-col items-center">
           <a href="/brochure/devhost_event_rulebook.pdf" download>
             <ClippedButton
-              innerBg="bg-black"
-              outerBg="bg-black"
-              textColor="text-white"
+              innerBg="bg-[#1B1A18]"
+              outerBg="bg-[#C8A24C]"
+              textColor="text-[#F5E4B2]"
+              className="border border-[#C8A24C]/70 shadow-[0_0_12px_rgba(200,162,76,0.15)] transition-all duration-300 hover:border-[#F6CC60] hover:shadow-[0_0_22px_rgba(200,162,76,0.28)]"
             >
-              <Download size={20} />
-              <span className="font-default text-xs">Event Rulebook</span>
+              <span className={`${dalek.className} text-xs tracking-wider`}>
+                EVENT RULEBOOK
+              </span>
             </ClippedButton>
           </a>
         </div>
       </div>
+      <div
+        className="pointer-events-none absolute top-[340px] left-1/2 -z-0 h-[700px] w-[1100px] -translate-x-1/2 rounded-full blur-[160px]"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(200,162,76,.06), transparent 70%)",
+        }}
+      />
 
       {/* Event cards */}
       <div className="relative z-10 grid w-full max-w-[1200px] grid-cols-1 gap-8 px-4 lg:grid-cols-2">
         {events.map((event, idx) => {
-          const noRegister = [6, 7, 8, 9].includes(event.id);
           return (
             <div
               key={event.id}
               ref={(el) => {
                 if (el) cardsRef.current[idx] = el;
               }}
-              className="relative mx-auto w-full overflow-hidden"
+              className="relative mx-auto w-full overflow-hidden border border-[#C8A24C]/60 shadow-[0_0_12px_rgba(200,162,76,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#E2B756] hover:shadow-[0_18px_35px_rgba(200,162,76,0.18)]"
               style={{
                 clipPath:
                   "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
               }}
             >
+              <CornerBorder className="absolute top-2 right-2 z-20 h-8 w-8 rotate-90" />
+              <CornerBorder className="absolute right-1 bottom-1 z-20 h-8 w-8 rotate-180" />
+              <CornerBorder className="absolute bottom-1 left-1 z-20 h-8 w-8 -rotate-90" />
+
               <div
                 className="relative z-10 m-[2px] flex h-full flex-col p-4 sm:flex-row"
                 style={{
                   clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                  backgroundColor: "#101810",
+                    "polygon(20px 0%,100% 0%,100% calc(100% - 12px),calc(100% - 12px) 100%,0% 100%,0% 12px)",
+
+                  background:
+                    "linear-gradient(145deg,#353330 0%,#2b2927 45%,#1d1b1a 100%)",
+
+                  boxShadow:
+                    "inset 0 0 0 1px rgba(255,255,255,.03), inset 0 20px 45px rgba(255,255,255,.03), 0 0 25px rgba(0,0,0,.45)",
                 }}
               >
                 <div
-                  className="relative aspect-square w-full overflow-hidden sm:aspect-[4/5] sm:w-1/2"
+                  className="relative aspect-square w-full overflow-hidden border border-[#C8A24C]/40 shadow-inner sm:aspect-[4/5] sm:w-1/2"
                   style={{
                     clipPath:
                       "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
@@ -149,13 +239,15 @@ export default function Events() {
                     alt={event.title}
                     width={500}
                     height={500}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                 </div>
 
-                <div className="mt-3 flex flex-1 flex-col justify-between px-2 py-4 pl-0 sm:mt-0 sm:pl-4">
+                <div className="mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
                   <div>
-                    <h2 className="font-orbitron mb-4 text-lg font-bold text-[#F6CC60] lg:text-xl">
+                    <h2
+                      className={`${dalek.className} font-orbitron mb-5 text-xl font-bold tracking-wide text-[#F6CC60] lg:text-2xl`}
+                    >
                       &gt; {event.title}
                     </h2>
                     <p className="mb-1 text-sm text-white/90 italic">
@@ -164,6 +256,7 @@ export default function Events() {
                     <p className="mb-2 text-xs text-white/70 lg:text-sm">
                       {event.description}
                     </p>
+                    <div className="my-5 h-px w-full bg-gradient-to-r from-transparent via-[#C8A24C]/50 to-transparent"></div>
                     <div className="space-y-0.5 text-xs text-white/80 lg:text-sm">
                       <p>
                         <span className="mr-1 font-semibold text-[#F6CC60]">
@@ -189,36 +282,8 @@ export default function Events() {
                         </span>
                         {event.contact}
                       </p>
-                      {/* {!noRegister && (
-                        <p className="flex items-baseline gap-2">
-                          <span className="mr-1 font-semibold text-[#F6CC60]">
-                            Amount:
-                          </span>
-                          <span className="text-sm text-gray-400 line-through">
-                            ₹{eventDetails[event.id].amount + 50}
-                          </span>
-                          <span className="font-semibold text-[#F6CC60]">
-                            ₹{eventDetails[event.id].amount}
-                          </span>
-                          / team
-                        </p>
-                      )} */}
                     </div>
                   </div>
-
-                  {!noRegister && (
-                    <div className="mt-6 flex justify-start">
-                      <ClippedButton
-                        innerBg="bg-primary"
-                        textColor="text-black"
-                        className="font-orbitron flex w-full items-center justify-center gap-2 px-6 py-2 text-center text-xs font-bold tracking-wider uppercase"
-                        onClick={() => onCardClick(event.id)}
-                        disabled
-                      >
-                        Register
-                      </ClippedButton>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>

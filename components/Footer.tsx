@@ -1,6 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import localFont from "next/font/local";
+
+export const dalek = localFont({
+  src: "../public/fonts/DalekPinpointBold.ttf",
+});
 
 const Footer = () => {
   return (
@@ -77,7 +82,9 @@ const Footer = () => {
                 </defs>
               </svg>
               <Link href="/" className="flex w-fit items-center pt-5">
-                <span className="self-center text-2xl font-semibold text-white transition-colors duration-200 hover:text-gray-300">
+                <span
+                  className={`${dalek.className} self-center text-2xl tracking-wide text-white transition-colors duration-200 hover:text-gray-300`}
+                >
                   Sahyadri Open Source Community
                 </span>
               </Link>
@@ -107,7 +114,9 @@ const Footer = () => {
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6">
             <div>
-              <h2 className="font-trajan mb-6 text-lg font-bold tracking-wider text-[#C8A24C] uppercase">
+              <h2
+                className={`${dalek.className} font-trajan mb-6 text-lg font-bold tracking-wider text-[#C8A24C] uppercase`}
+              >
                 Follow us
               </h2>
               <ul className="flex flex-col gap-4 font-medium text-gray-300">
@@ -227,7 +236,9 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-lg font-bold tracking-wider text-[#C8A24C] uppercase">
+              <h2
+                className={`${dalek.className} mb-6 text-lg font-bold tracking-wider text-[#C8A24C] uppercase`}
+              >
                 Others
               </h2>
               <ul className="flex flex-col gap-4 font-medium text-gray-300">
