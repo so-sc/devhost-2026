@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Cinzel } from "next/font/google";
 import "./globals.css";
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-cinzel",
+});
 import ReactLenis from "lenis/react";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -34,7 +40,11 @@ const monospace = localFont({
   variable: "--font-monospace",
   preload: true,
 });
-
+const dalek = localFont({
+  src: "../assets/fonts/DalekPinpointBold.ttf",
+  variable: "--font-dalek",
+  weight: "700",
+});
 export const metadata: Metadata = {
   title: {
     default: "DevHost 2025",
@@ -83,7 +93,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} antialiased`}
+        className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} ${dalek.variable} antialiased`}
       >
         <ReactLenis root />
         {children}
