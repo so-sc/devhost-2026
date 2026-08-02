@@ -22,7 +22,7 @@ export default function CallToAction() {
           texts={[thanks]}
           velocity={80}
           delay={1600}
-          className="font-orbitron text-sm tracking-widest uppercase opacity-80 sm:text-lg"
+          className="text-sm tracking-widest uppercase opacity-80 sm:text-lg"
         />
       </div>
       {/* <div className="mx-auto flex w-fit gap-2">

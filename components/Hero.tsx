@@ -18,15 +18,42 @@ export default function Hero() {
           {/* Logo header */}
           <div className="-mt-24 flex w-full max-w-[250px] flex-col pb-1 sm:max-w-[300px] md:max-w-[400px]">
             <div className="flex items-center justify-center">
-              <div className="relative h-[50px] w-full max-w-[200px] sm:max-w-[240px] md:max-w-[320px]">
-                <Image
+              <div className="relative h-[90px] w-full max-w-[200px] sm:max-w-[240px] md:max-w-[320px]">
+                {/* <Image
                   priority
                   src="/logo_group.png"
                   className="object-contain"
                   alt="logo"
                   fill
                   sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, 320px"
+                /> */}
+                <div className="flex items-center justify-center gap-6">
+              <div className="relative h-16 w-16 sm:h-20 sm:w-20">
+                <Image
+                  src="/synergia_logo.svg"
+                  alt="Synergia"
+                  fill
+                  className="object-contain"
                 />
+              </div>
+              <div className="relative h-16 w-16 sm:h-20 sm:w-20">
+                <Image
+                  src="/sosc_logo.svg"
+                  alt="SOSC"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="relative h-16 w-16 overflow-hidden rounded-md sm:h-20 sm:w-20">
+                <Image
+                  src="/sahyadri_logo.jpeg"
+                  alt="Sahyadri"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+
               </div>
             </div>
             <p className="font-orbitron py-1 text-center text-xs tracking-wide text-[#F6CC60]">
