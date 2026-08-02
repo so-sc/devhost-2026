@@ -17,6 +17,8 @@ const Footer = () => {
         <Image
           src="/footer-background/Greek-ring-h.svg"
           alt=""
+          width={600}
+          height={600}
           className="absolute w-[420px] opacity-5"
         />
       </div>
