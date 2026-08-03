@@ -13,7 +13,7 @@ export default function SpeakersInfo() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage: "url('/images/parchment-texture.jpg')",
-          backgroundSize: "cover",
+          backgroundSize: "100% 100%",
           backgroundPosition: "center",
           opacity: 0.6,
           mixBlendMode: "soft-light",
