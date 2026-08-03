@@ -73,7 +73,7 @@ export default function AboutDevhost() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] px-4 py-12 text-white sm:px-6 lg:px-8"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white lg:px-8"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -131,11 +131,11 @@ export default function AboutDevhost() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto w-[80%] max-w-[700px] sm:w-full">
+      <div className="relative z-10 mx-auto w-[80%]">
         <div className="relative mb-4 text-center sm:mb-6">
           <h2
             ref={titleRef}
-            className="font-dalek mb-2 text-2xl font-extrabold tracking-[0.12em] uppercase sm:text-3xl md:text-4xl lg:text-[2.4rem]"
+            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
           >
             <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               {devhostData.title}
@@ -144,7 +144,7 @@ export default function AboutDevhost() {
 
           <h3
             ref={captionRef}
-            className="font-cinzel text-[11px] tracking-[0.10em] text-[#F6CC60]/90 uppercase sm:text-xs sm:tracking-[0.14em] md:text-sm"
+            className="font-trajan text-lg tracking-[0.10em] text-[#F6CC60]/90 sm:tracking-[0.14em] md:text-2xl"
           >
             {devhostData.caption}
           </h3>
@@ -152,11 +152,11 @@ export default function AboutDevhost() {
 
         <div
           ref={aboutRef}
-          className="relative mx-auto mt-2 flex w-[80%] max-w-[620px] flex-col items-center sm:w-full"
+          className="relative mx-auto flex flex-col items-center pt-4 sm:w-full sm:max-w-[80%] sm:pt-8"
         >
-          <div className="relative z-10 w-full text-center">
+          <div className="relative z-10 w-full text-justify">
             <p
-              className="font-cinzel text-xs leading-relaxed tracking-[0.02em] break-words text-[#E6C46D] sm:text-sm sm:leading-[1.75] sm:tracking-[0.03em] md:text-[15px]"
+              className="font-trajan text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{
                 textShadow:
                   "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",

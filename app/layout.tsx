@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Cinzel } from "next/font/google";
 import "./globals.css";
-
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  variable: "--font-cinzel",
-});
 import ReactLenis from "lenis/react";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -45,6 +39,22 @@ const dalek = localFont({
   variable: "--font-dalek",
   weight: "700",
 });
+const norse = localFont({
+  src: "../assets/fonts/Norse.otf",
+  variable: "--font-norse",
+  preload: true,
+});
+const norseBold = localFont({
+  src: "../assets/fonts/NorseBold.otf",
+  variable: "--font-norse-bold",
+  preload: true,
+});
+const trajan = localFont({
+  src: "../assets/fonts/Trajan Bold.ttf",
+  variable: "--font-trajan",
+  preload: true,
+});
+
 export const metadata: Metadata = {
   title: {
     default: "DevHost 2025",
@@ -93,7 +103,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} ${dalek.variable} antialiased`}
+        className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} ${dalek.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
       >
         <ReactLenis root />
         {children}

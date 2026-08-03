@@ -46,9 +46,11 @@
   --font-orbitron: var(--font-orbitron);
   --font-delagothic: var(--font-delagothic);
   --font-monospace: var(--font-monospace);
-  --font-cinzel: var(--font-cinzel);
-  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
-  --font-dalek: var(--font-dalek);
+  --font-norse: var(--font-norse);
+  --font-norse-bold: var(--font-norse-bold);
+  --font-trajan: var(--font-trajan) /* --font-cinzel: var(--font-cinzel); */
+    --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+  /* --font-dalek: var(--font-dalek); */
 }
 
 :root {
