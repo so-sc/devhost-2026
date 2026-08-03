@@ -30,7 +30,7 @@ export default function SpeakersInfo() {
               Call for Speakers
             </span>
           </h2>
-          <h3 className="font-trajan text-lg tracking-[0.10em] text-[#F6CC60]/90 sm:tracking-[0.14em] md:text-2xl">
+          <h3 className="font-norse text-lg tracking-[0.10em] text-[#C8A24C]/80 font-semibold sm:tracking-[0.14em] md:text-2xl">
             Grace the Mythic Stage of DevHost 2026
           </h3>
         </div>

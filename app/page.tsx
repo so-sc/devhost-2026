@@ -45,16 +45,16 @@ export default function Home() {
         <Hero />
         {/* <Counter /> */}
         {/* <Final /> */}
-        <SponsorsLogo />
+        {/* <SponsorsLogo /> */}
         <AboutDevhost />
-        <div className="relative h-[30vh]">
+        {/* <div className="relative h-[30vh]">
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
-        </div>
-        <AboutHackathon />
-        <TimelineSection />
-        <CallForSpeakers />
+        </div> */}
+        {/* <AboutHackathon />
+        <TimelineSection /> */}
         {/* <SpeakersInfo /> */}
         <Events />
+        <CallForSpeakers />
         <FAQ />
         <Map />
         <Footer />
