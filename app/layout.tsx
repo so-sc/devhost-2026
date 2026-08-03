@@ -34,6 +34,26 @@ const monospace = localFont({
   variable: "--font-monospace",
   preload: true,
 });
+const dalek = localFont({
+  src: "../assets/fonts/DalekPinpointBold.ttf",
+  variable: "--font-dalek",
+  weight: "700",
+});
+const norse = localFont({
+  src: "../assets/fonts/Norse.otf",
+  variable: "--font-norse",
+  preload: true,
+});
+const norseBold = localFont({
+  src: "../assets/fonts/NorseBold.otf",
+  variable: "--font-norse-bold",
+  preload: true,
+});
+const trajan = localFont({
+  src: "../assets/fonts/Trajan Bold.ttf",
+  variable: "--font-trajan",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: {
@@ -83,7 +103,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} antialiased`}
+        className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} ${dalek.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
       >
         <ReactLenis root />
         {children}
