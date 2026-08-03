@@ -48,8 +48,8 @@
   --font-monospace: var(--font-monospace);
   --font-norse: var(--font-norse);
   --font-norse-bold: var(--font-norse-bold);
-  --font-trajan: var(--font-trajan) --animate-spotlight: spotlight 2s ease 0.75s
-    1 forwards;
+  --font-trajan: var(--font-trajan);
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 }
 
 :root {
