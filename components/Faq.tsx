@@ -51,7 +51,6 @@ const faqData = [
   },
 ];
 
-
 const GreekCorner = ({ className = "" }: { className?: string }) => (
   <svg
     viewBox="0 0 42 42"
@@ -112,7 +111,6 @@ export default function FAQ() {
       ref={sectionRef}
       className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] py-24 text-white md:px-8"
     >
-   
       <div
         className="absolute inset-0"
         style={{
@@ -138,8 +136,6 @@ export default function FAQ() {
         }}
       />
 
-     
-
       <div className="relative z-10 mx-auto w-full max-w-4xl">
         {/* Title */}
         <div className="relative mb-16 text-center">
@@ -156,15 +152,13 @@ export default function FAQ() {
             className="font-norse text-primary h-8 text-base tracking-wider text-[#F6CC60]/80 md:text-xl"
           />
 
-         
           <div className="mx-auto mt-6 flex max-w-sm items-center gap-4">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#F6CC60] to-transparent" />
             <div className="h-3 w-3 rotate-45 border border-[#F6CC60]" />
-            <div className="h-px flex-1 " />
+            <div className="h-px flex-1" />
           </div>
         </div>
 
-      
         <div ref={itemsRef}>
           <Accordion type="single" collapsible className="space-y-5">
             {faqData.map((faq, index) => (
@@ -174,11 +168,9 @@ export default function FAQ() {
                 data-faq-item
                 className="group relative border-0 bg-transparent"
               >
-                <div className="relative rounded-xl border border-[#6C5730] bg-[#23201A]/40 shadow-[0_20px_60px_rgba(0,0,0,.55)] backdrop-blur-md transition-all duration-300 group-hover:border-[#F6CC60] ">
-                 
+                <div className="relative rounded-xl border border-[#6C5730] bg-[#23201A]/40 shadow-[0_20px_60px_rgba(0,0,0,.55)] backdrop-blur-md transition-all duration-300 group-hover:border-[#F6CC60]">
                   <div className="absolute top-0 left-0 h-full w-1 origin-top scale-y-0 transform transition-transform duration-300 group-hover:scale-y-100" />
 
-                 
                   <GreekCorner className="absolute top-1 right-1 z-20 h-7 w-7 rotate-90" />
                   <GreekCorner className="absolute right-1 bottom-1 z-20 h-7 w-7 rotate-180" />
                   <GreekCorner className="absolute bottom-1 left-1 z-20 h-7 w-7 -rotate-90" />
