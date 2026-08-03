@@ -1,114 +1,340 @@
 "use client";
-import React, { Fragment } from "react";
-import Logo from "./animated/Logo";
-import DecryptText from "./animated/TextAnimation";
-// import { User } from "lucide-react";
+
+import React from "react";
 import Image from "next/image";
-// import { useRouter } from "next/navigation";
-// import { ClippedButton } from "./ClippedButton";
-import CallToAction from "./CallToAction";
+import { motion } from "framer-motion";
+import DecryptText from "./animated/TextAnimation";
 
 export default function Hero() {
-  // const router = useRouter();
 
-  return (
-    <Fragment>
-      <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden text-zinc-300">
-        <div className="flex flex-col items-center">
-          {/* Logo header */}
-          <div className="-mt-24 flex w-full max-w-[250px] flex-col pb-1 sm:max-w-[300px] md:max-w-[400px]">
-            <div className="flex items-center justify-center">
-              <div className="relative h-[50px] w-full max-w-[200px] sm:max-w-[240px] md:max-w-[320px]">
-                <Image
-                  priority
-                  src="/logo_group.png"
-                  className="object-contain"
-                  alt="logo"
-                  fill
-                  sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, 320px"
-                />
-              </div>
-            </div>
-            <p className="font-orbitron py-1 text-center text-xs tracking-wide text-[#F6CC60]">
-              Presents
-            </p>
-          </div>
+return (
 
-          {/* Logo wrapper with fixed max-width */}
-          <div className="relative z-10 w-fit">
-            <div className="relative h-auto max-w-[250px] sm:max-w-[300px] md:max-w-[400px]">
-              <Logo className="h-auto max-w-[250px] sm:max-w-[300px] md:max-w-[400px]" />
-            </div>
-          </div>
-        </div>
+<div className="
+relative
+h-screen
+w-full
+overflow-hidden
+bg-black
+text-zinc-200
+flex
+items-center
+justify-center
+">
 
-        <CallToAction />
 
-        {/* Cyberpunk side boot logs (left) */}
-        <div className="font-orbitron absolute top-10 left-10 text-xs tracking-wider text-zinc-600 sm:text-sm">
-          <DecryptText
-            text="> INIT SEQUENCE v2.4"
-            startDelayMs={200}
-            trailSize={6}
-            flickerIntervalMs={40}
-            revealDelayMs={80}
-          />
-          <DecryptText
-            text="> LOADING MODULES..."
-            startDelayMs={800}
-            trailSize={6}
-            flickerIntervalMs={50}
-            revealDelayMs={90}
-          />
-          <DecryptText
-            text="> ACCESS GRANTED"
-            startDelayMs={1600}
-            trailSize={6}
-            flickerIntervalMs={60}
-            revealDelayMs={100}
-          />
-          <DecryptText
-            text="> CONTINUE..."
-            startDelayMs={2400}
-            trailSize={6}
-            flickerIntervalMs={60}
-            revealDelayMs={100}
-          />
-        </div>
+{/* Background Glow */}
 
-        {/* UI Corner Brackets */}
-        <div className="absolute top-5 left-5 h-10 w-10 border-t-2 border-l-2 border-[#F6CC60]/50" />
-        <div className="absolute top-5 right-5 h-10 w-10 border-t-2 border-r-2 border-[#F6CC60]/50" />
-        <div className="absolute bottom-5 left-5 z-10 h-10 w-10 border-b-2 border-l-2 border-[#F6CC60]/50" />
+<div
+className="
+absolute
+inset-0
+bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15),transparent_45%)]
+"
+/>
 
-        {/* Floating Dock (Top Right) */}
-        {/* <div className="font-orbitron absolute top-6 right-4 z-20 flex gap-4 md:top-10 md:right-10">
-          <ClippedButton
-            innerBg="bg-primary"
-            textColor="text-black"
-            className="relative flex items-center gap-2 px-5 py-2 text-xs font-bold tracking-widest uppercase"
-            onClick={handleGoogleLogin}
-          >
-            <User size={14} /> <span className="hidden sm:block">Profile</span>
-          </ClippedButton>
-        </div> */}
-        {/* Scroll Hint */}
-        <div className="font-orbitron text-primary absolute right-5 bottom-5 z-10 flex items-center">
-          <span className="mr-2 text-3xl">[</span>
-          <DecryptText
-            text="Scroll to Explore"
-            className="text-sm sm:text-lg"
-            startDelayMs={200}
-            trailSize={4}
-            flickerIntervalMs={50}
-            revealDelayMs={120}
-          />
-          <span className="ml-2 text-3xl">]</span>
-        </div>
 
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 h-12 w-full bg-gradient-to-t from-black/95 via-black/80 to-transparent" />
-      </div>
-    </Fragment>
-  );
+
+{/* Greek Halo */}
+
+<motion.div
+
+animate={{
+rotate:360
+}}
+
+transition={{
+duration:80,
+repeat:Infinity,
+ease:"linear"
+}}
+
+className="
+absolute
+top-20
+h-[600px]
+w-[600px]
+rounded-full
+border
+border-[#D4AF37]/50
+shadow-[0_0_100px_rgba(212,175,55,0.3)]
+"
+
+/>
+
+
+
+
+{/* Statue */}
+
+<motion.div
+
+initial={{
+opacity:0,
+y:80
+}}
+
+animate={{
+opacity:1,
+y:0
+}}
+
+transition={{
+duration:2
+}}
+
+className="
+absolute
+bottom-0
+z-10
+h-[85vh]
+w-[500px]
+"
+
+>
+
+
+<Image
+
+src="/greek-statue.png"
+
+alt="Greek Statue"
+
+fill
+
+className="
+object-contain
+"
+
+/>
+
+</motion.div>
+
+
+
+
+
+{/* Main Content */}
+
+<div
+className="
+relative
+z-20
+flex
+flex-col
+items-center
+text-center
+"
+>
+
+
+<p
+className="
+font-serif
+tracking-[8px]
+text-[#D4AF37]
+text-sm
+"
+>
+
+SAHYADRI PRESENTS
+
+</p>
+
+
+
+<h1
+className="
+mt-5
+font-serif
+text-7xl
+md:text-9xl
+tracking-[15px]
+bg-gradient-to-b
+from-yellow-200
+via-yellow-500
+to-yellow-800
+text-transparent
+bg-clip-text
+"
+>
+
+DEVHOST
+
+</h1>
+
+
+<h2
+className="
+font-serif
+text-5xl
+tracking-[10px]
+text-white
+"
+>
+
+2026
+
+</h2>
+
+
+
+
+<p
+className="
+mt-8
+tracking-[5px]
+text-gray-400
+"
+>
+
+HACKATHON • CONFERENCE • TECH TALKS
+
+</p>
+
+
+<button
+className="
+mt-10
+border
+border-[#D4AF37]
+px-10
+py-3
+tracking-widest
+text-[#D4AF37]
+hover:bg-[#D4AF37]
+hover:text-black
+transition
+"
+>
+
+ENTER THE ARENA
+
+</button>
+
+
+</div>
+
+
+
+
+
+{/* Left Ancient Text */}
+
+<div
+className="
+absolute
+left-10
+top-32
+z-30
+text-xs
+tracking-[5px]
+text-[#D4AF37]/70
+"
+>
+
+
+<DecryptText
+
+text="DISCIPLINE TODAY"
+
+startDelayMs={300}
+
+/>
+
+
+<DecryptText
+
+text="CREATES TOMORROW"
+
+startDelayMs={900}
+
+/>
+
+
+<DecryptText
+
+text="INNOVATION AWAKENS"
+
+startDelayMs={1500}
+
+/>
+
+
+</div>
+
+
+
+
+
+{/* Greek Borders */}
+
+<div
+className="
+absolute
+left-5
+top-5
+h-16
+w-16
+border-l
+border-t
+border-[#D4AF37]
+"
+/>
+
+
+<div
+className="
+absolute
+right-5
+top-5
+h-16
+w-16
+border-r
+border-t
+border-[#D4AF37]
+"
+/>
+
+
+
+{/* Scroll */}
+
+<div
+className="
+absolute
+bottom-10
+right-10
+font-serif
+text-[#D4AF37]
+tracking-widest
+"
+>
+
+[ SCROLL TO EXPLORE ]
+
+</div>
+
+
+
+{/* Fog */}
+
+<div
+className="
+absolute
+bottom-0
+h-48
+w-full
+bg-gradient-to-t
+from-black
+to-transparent
+z-20
+"
+/>
+
+
+
+</div>
+
+)
+
 }
