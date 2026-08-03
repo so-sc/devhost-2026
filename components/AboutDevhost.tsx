@@ -144,7 +144,7 @@ export default function AboutDevhost() {
 
           <h3
             ref={captionRef}
-            className="font-norse text-lg tracking-[0.10em] text-[#C8A24C]/80 font-semibold sm:tracking-[0.14em] md:text-2xl"
+            className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
           >
             {devhostData.caption}
           </h3>

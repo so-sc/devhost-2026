@@ -157,13 +157,11 @@ export default function Events() {
             textShadow: "0 2px 6px rgba(0,0,0,.55),0 8px 20px rgba(0,0,0,.35)",
           }}
         />
-        <h2
-            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] md:text-8xl"
-          >
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
-              DEVHOST EVENTS
-            </span>
-          </h2>
+        <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] md:text-8xl">
+          <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+            DEVHOST EVENTS
+          </span>
+        </h2>
         <div className="mt-4 px-4 text-lg sm:text-xl">
           <DecryptText
             text="> Build, Compete, and Leave Your Mark"
@@ -171,7 +169,7 @@ export default function Events() {
             trailSize={6}
             flickerIntervalMs={50}
             revealDelayMs={100}
-            className="font-norse text-lg h-8 tracking-wider text-[#C8A24C]/80 md:text-2xl"
+            className="font-norse h-8 text-lg tracking-wider text-[#C8A24C]/80 md:text-2xl"
           />
         </div>
         {/* Rulebook button */}
@@ -246,7 +244,7 @@ export default function Events() {
                   />
                 </div>
 
-                <div className="mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4 font-trajan">
+                <div className="font-trajan mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
                   <div>
                     <h2
                       className={`font-norse mb-5 text-2xl font-bold tracking-wide text-[#F6CC60] lg:text-3xl`}
@@ -254,7 +252,7 @@ export default function Events() {
                       {/* &gt;  */}
                       {event.title}
                     </h2>
-                    <p className="mb-1 text-md text-white/90 italic">
+                    <p className="text-md mb-1 text-white/90 italic">
                       {event.tagline}
                     </p>
                     <p className="mb-2 text-sm text-white/70 lg:text-sm">

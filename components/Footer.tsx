@@ -85,7 +85,7 @@ const Footer = () => {
               </svg>
               <Link href="/" className="flex w-fit items-center pt-5">
                 <span
-                  className={`font-norse font-bold self-center text-2xl tracking-wide text-white transition-colors duration-200 hover:text-gray-300`}
+                  className={`font-norse self-center text-2xl font-bold tracking-wide text-white transition-colors duration-200 hover:text-gray-300`}
                 >
                   Sahyadri Open Source Community
                 </span>
