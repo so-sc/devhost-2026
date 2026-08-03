@@ -1,18 +1,44 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import localFont from "next/font/local";
+
+export const dalek = localFont({
+  src: "../public/fonts/DalekPinpointBold.ttf",
+});
 
 const Footer = () => {
   return (
-    <footer className="relative bg-black py-6">
+    <footer className="relative bg-[url('/footer-background/background.webp')] bg-cover bg-center bg-no-repeat py-6">
+      <div className="absolute inset-0 bg-black/35"></div>
       <div className="absolute top-0 h-12 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
 
-      <div className="mx-auto w-full max-w-screen-xl p-8 py-6 lg:py-8">
+      <div className="absolute bottom-0 left-0 h-70 w-70 overflow-hidden">
+        <Image
+          src="/footer-background/Greek-ring-h.svg"
+          alt=""
+          width={600}
+          height={600}
+          className="absolute w-[420px] opacity-5"
+        />
+      </div>
+
+      <Image
+        src="/footer-background/temple.webp"
+        alt=""
+        width={600}
+        height={600}
+        className="pointer-events-none absolute right-0 bottom-0 w-[600px] opacity-15 select-none"
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-screen-xl p-8 py-6 lg:py-8">
         <div className="py-5 md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <div className="pb-5">
+            <div className="pb-7">
               <svg
-                width="67.248604"
-                height="18.71397"
+                className="h-auto w-32 drop-shadow-[0_0_6px_rgba(200,162,76,0.25)]"
+                width="120"
+                height="34"
                 viewBox="0 0 67.248604 18.71397"
                 fill="none"
                 version="1.1"
@@ -25,22 +51,22 @@ const Footer = () => {
                 >
                   <path
                     d="m 27.0765,64.4165 c 0.0034,0.7355 -0.1434,1.4638 -0.4313,2.1406 -0.275,0.6564 -0.6704,1.2554 -1.1659,1.7662 -0.4992,0.5079 -1.0912,0.9154 -1.7438,1.2005 -0.6739,0.2987 -1.4035,0.4513 -2.1406,0.4476 h -8.0088 c -0.24,0.0035 -0.4782,-0.042 -0.7,-0.1337 -0.2218,-0.0916 -0.4225,-0.2275 -0.5901,-0.3994 -0.17,-0.1672 -0.305,-0.3666 -0.3971,-0.5865 -0.0922,-0.2199 -0.1396,-0.4559 -0.1396,-0.6944 0,-0.2384 0.0474,-0.4745 0.1396,-0.6944 0.0921,-0.2199 0.2271,-0.4193 0.3971,-0.5865 0.1676,-0.1718 0.3683,-0.3077 0.5901,-0.3994 0.2218,-0.0916 0.46,-0.1371 0.7,-0.1337 h 7.9498 c 0.252,0.003 0.5018,-0.0461 0.7339,-0.1441 0.2322,-0.098 0.4416,-0.2429 0.6151,-0.4256 0.1818,-0.1762 0.3257,-0.3876 0.4229,-0.6213 0.0973,-0.2337 0.1459,-0.4848 0.1428,-0.7379 0.0049,-0.2576 -0.0427,-0.5135 -0.1399,-0.7521 -0.0973,-0.2386 -0.2422,-0.4549 -0.4258,-0.6356 -0.1735,-0.1827 -0.3829,-0.3276 -0.6151,-0.4256 -0.2321,-0.098 -0.4819,-0.1471 -0.7339,-0.1442 h -3.7786 c -0.7472,0.0052 -1.4875,-0.143 -2.1751,-0.4354 -1.335,-0.5616 -2.397,-1.6236 -2.9586,-2.9586 -0.2873,-0.6895 -0.4352,-1.4291 -0.4352,-2.1761 0,-0.747 0.1479,-1.4866 0.4352,-2.1762 0.2795,-0.661 0.6837,-1.262 1.1904,-1.7703 0.5067,-0.5055 1.1019,-0.9138 1.756,-1.2045 0.6799,-0.3024 1.4167,-0.4557 2.1609,-0.4497 h 3.689 c 0.24,-0.0033 0.4781,0.0422 0.6999,0.1339 0.2217,0.0916 0.4226,0.2274 0.5901,0.3992 0.1703,0.1671 0.3055,0.3664 0.3978,0.5863 0.0923,0.2199 0.1399,0.4561 0.1399,0.6946 0,0.2385 -0.0476,0.4746 -0.1399,0.6945 -0.0923,0.22 -0.2275,0.4193 -0.3978,0.5864 -0.167,0.1732 -0.3674,0.3106 -0.5892,0.404 -0.2218,0.0934 -0.4602,0.1408 -0.7008,0.1392 h -3.7073 c -0.5066,0.0128 -0.9877,0.2249 -1.3389,0.5901 -0.3544,0.3707 -0.5521,0.8637 -0.5521,1.3765 0,0.5128 0.1977,1.0059 0.5521,1.3766 0.1741,0.1861 0.3856,0.3333 0.6205,0.4322 0.2349,0.0989 0.488,0.1471 0.7428,0.1416 h 3.7724 c 0.7486,-0.0048 1.4898,0.1485 2.1752,0.4496 0.6593,0.2872 1.2596,0.6942 1.7702,1.2006 0.5065,0.506 0.9106,1.105 1.1904,1.7641 0.2897,0.6833 0.4365,1.4187 0.4313,2.1609 z"
-                    fill="#F6CC60"
+                    fill="#C8A24C"
                     id="path2"
                   />
                   <path
                     d="m 36.5934,51.4654 c 2.0873,-0.3432 4.2293,0.0308 6.0769,1.061 1.8475,1.0302 3.2916,2.6558 4.0969,4.6119 0.8332,2.0637 0.9053,4.3565 0.2035,6.4685 -0.3145,0.9293 -0.7695,1.8049 -1.3491,2.5964 -0.9308,1.2629 -2.1692,2.2666 -3.5975,2.9158 -1.4134,0.6631 -2.9711,0.9598 -4.5293,0.8628 C 36.6835,69.9243 35.8835,69.7587 35.1161,69.4894 33.5895,68.957 32.2225,68.047 31.1422,66.8442 30.5987,66.242 30.14,65.5683 29.7789,64.8419 c -0.347,-0.7118 -0.6053,-1.4635 -0.7691,-2.2382 -0.1643,-0.7671 -0.228,-1.5524 -0.1892,-2.3359 0.0387,-0.7865 0.1698,-1.5658 0.3906,-2.3217 0.2219,-0.7621 0.5493,-1.4895 0.9727,-2.1609 0.1435,-0.2645 0.3082,-0.5169 0.4924,-0.7549 h 0.0285 c 0.7004,-0.9512 1.5881,-1.7489 2.6085,-2.344 1.0135,-0.5958 2.1237,-1.0091 3.2801,-1.2209 z m 6.267,12.4467 c 0.8127,-1.1909 1.1543,-2.6412 0.9584,-4.0696 -0.098,-0.662 -0.3144,-1.3009 -0.6389,-1.8862 -0.3825,-0.6908 -0.8944,-1.3015 -1.5078,-1.7987 -0.6108,-0.4982 -1.3245,-0.8547 -2.0897,-1.0439 -0.7548,-0.2125 -1.5463,-0.2617 -2.3216,-0.1444 -0.7843,0.1131 -1.5359,0.3905 -2.2057,0.8139 -0.8644,0.5528 -1.5666,1.3252 -2.0348,2.2382 -0.4796,0.9092 -0.7006,1.9325 -0.6389,2.9586 0.033,0.7901 0.2415,1.5631 0.6104,2.2626 0.0963,0.1737 0.1879,0.3527 0.2747,0.5372 0.0885,0.1863 0.1905,0.3658 0.3052,0.5372 -0.1736,-0.2903 -0.3377,-0.5901 -0.4924,-0.8994 0.3099,0.5613 0.7124,1.0662 1.1904,1.4935 0.4843,0.4352 1.0335,0.7922 1.6278,1.0581 0.614,0.2698 1.2731,0.4223 1.9432,0.4497 0.6692,0.0307 1.3383,-0.0625 1.9737,-0.2747 0.6155,-0.1917 1.194,-0.4861 1.7112,-0.8709 0.5148,-0.3804 0.9649,-0.8415 1.3328,-1.3653 z"
-                    fill="#F6CC60"
+                    fill="#C8A24C"
                     id="path4"
                   />
                   <path
                     d="m 63.1674,64.4165 c 2e-4,0.7362 -0.1501,1.4646 -0.4416,2.1406 -0.2749,0.6564 -0.6703,1.2554 -1.1659,1.7662 -0.4991,0.5079 -1.0911,0.9155 -1.7438,1.2005 -0.6739,0.2987 -1.4034,0.4513 -2.1405,0.4476 h -7.9987 c -0.24,0.0035 -0.4781,-0.042 -0.6999,-0.1337 -0.2218,-0.0916 -0.4226,-0.2275 -0.5901,-0.3994 -0.17,-0.1672 -0.305,-0.3666 -0.3972,-0.5865 -0.0921,-0.2199 -0.1396,-0.4559 -0.1396,-0.6944 0,-0.2384 0.0475,-0.4745 0.1396,-0.6944 0.0922,-0.2199 0.2272,-0.4193 0.3972,-0.5865 0.1675,-0.1718 0.3683,-0.3077 0.5901,-0.3994 0.2218,-0.0916 0.4599,-0.1371 0.6999,-0.1337 h 7.9498 c 0.252,0.003 0.5018,-0.0461 0.734,-0.1441 0.2321,-0.098 0.4415,-0.2429 0.6151,-0.4256 0.1817,-0.1762 0.3256,-0.3876 0.4229,-0.6213 0.0972,-0.2337 0.1458,-0.4848 0.1427,-0.7379 0.005,-0.2576 -0.0427,-0.5135 -0.1399,-0.7521 -0.0973,-0.2386 -0.2421,-0.4549 -0.4257,-0.6356 -0.1736,-0.1827 -0.383,-0.3276 -0.6151,-0.4256 -0.2322,-0.098 -0.482,-0.1471 -0.734,-0.1442 H 53.8543 C 53.1071,62.4622 52.3668,62.314 51.6791,62.0216 50.3442,61.46 49.2822,60.398 48.7205,59.063 c -0.2872,-0.6895 -0.4351,-1.4291 -0.4351,-2.1761 0,-0.747 0.1479,-1.4866 0.4351,-2.1762 0.2795,-0.661 0.6837,-1.262 1.1904,-1.7703 0.5067,-0.5055 1.1019,-0.9138 1.756,-1.2045 0.68,-0.3024 1.4168,-0.4557 2.1609,-0.4497 h 3.685 c 0.2399,-0.0033 0.478,0.0422 0.6998,0.1339 0.2218,0.0916 0.4226,0.2274 0.5902,0.3992 0.1702,0.1671 0.3055,0.3664 0.3978,0.5863 0.0923,0.2199 0.1398,0.4561 0.1398,0.6946 0,0.2385 -0.0475,0.4746 -0.1398,0.6945 -0.0923,0.22 -0.2276,0.4193 -0.3978,0.5864 -0.1686,0.1721 -0.3704,0.3081 -0.5933,0.3997 -0.2228,0.0917 -0.4619,0.1371 -0.7028,0.1334 h -3.7033 c -0.5066,0.0128 -0.9877,0.2248 -1.3389,0.59 -0.3543,0.3707 -0.5521,0.8638 -0.5521,1.3766 0,0.5128 0.1978,1.0058 0.5521,1.3765 0.1742,0.1861 0.3856,0.3334 0.6205,0.4322 0.2349,0.0989 0.488,0.1471 0.7428,0.1416 h 3.7725 c 0.7486,-0.0047 1.4898,0.1485 2.1751,0.4497 0.6594,0.2871 1.2596,0.6942 1.7703,1.2005 0.5032,0.5082 0.9039,1.1085 1.1801,1.7682 0.2941,0.6845 0.4444,1.4221 0.4416,2.167 z"
-                    fill="#F6CC60"
+                    fill="#C8A24C"
                     id="path6"
                   />
                   <path
                     d="m 78.4848,66.9112 c 0.1691,0.1691 0.3024,0.3704 0.3923,0.592 0.0898,0.2216 0.1342,0.459 0.1306,0.6981 0.0022,0.2368 -0.0428,0.4717 -0.1325,0.6909 -0.0896,0.2192 -0.222,0.4183 -0.3895,0.5858 -0.1674,0.1675 -0.3666,0.2999 -0.5858,0.3895 C 77.6807,69.9571 77.4458,70.0022 77.209,70 h -2.1487 c -1.2423,0.0067 -2.4723,-0.2455 -3.6117,-0.7407 -1.1061,-0.4758 -2.1131,-1.1549 -2.9687,-2.0022 -0.8532,-0.8498 -1.5374,-1.8537 -2.0165,-2.9585 -0.4919,-1.1455 -0.7456,-2.3792 -0.7456,-3.6259 0,-1.2468 0.2537,-2.4804 0.7456,-3.626 0.479,-1.1048 1.1633,-2.1087 2.0165,-2.9585 0.8547,-0.8509 1.8618,-1.5335 2.9687,-2.0124 1.1394,-0.4951 2.3694,-0.7474 3.6117,-0.7406 h 2.1467 c 0.2368,-0.0022 0.4717,0.0428 0.6909,0.1324 0.2192,0.0897 0.4183,0.2221 0.5858,0.3895 0.1675,0.1675 0.2999,0.3667 0.3895,0.5859 0.0896,0.2192 0.1347,0.4541 0.1325,0.6909 0.0037,0.2391 -0.0407,0.4765 -0.1305,0.6981 -0.0898,0.2216 -0.2233,0.4229 -0.3924,0.5919 -0.1635,0.1735 -0.3615,0.3109 -0.5812,0.4034 -0.2197,0.0925 -0.4563,0.1381 -0.6946,0.1338 h -2.1467 c -0.7632,-0.0059 -1.5192,0.1472 -2.2199,0.4497 -0.674,0.2925 -1.2886,0.7063 -1.813,1.2208 -0.5258,0.5178 -0.9447,1.1338 -1.2331,1.813 -0.2999,0.6965 -0.453,1.4474 -0.4496,2.2057 -0.0034,0.7527 0.1438,1.4984 0.4328,2.1934 0.2889,0.695 0.7139,1.3253 1.2499,1.8537 0.5241,0.515 1.1387,0.9288 1.813,1.2209 0.7005,0.3029 1.4567,0.4561 2.2199,0.4497 h 2.1467 c 0.2391,-0.0037 0.4763,0.0428 0.6964,0.1363 0.2201,0.0936 0.4181,0.2322 0.5814,0.4069 z"
-                    fill="#F6CC60"
+                    fill="#C8A24C"
                     id="path8"
                   />
                 </g>
@@ -58,45 +84,53 @@ const Footer = () => {
                 </defs>
               </svg>
               <Link href="/" className="flex w-fit items-center pt-5">
-                <span className="self-center text-xl font-semibold whitespace-nowrap text-white transition-colors duration-200 hover:text-gray-300">
+                <span
+                  className={`${dalek.className} self-center text-2xl tracking-wide text-white transition-colors duration-200 hover:text-gray-300`}
+                >
                   Sahyadri Open Source Community
                 </span>
               </Link>
-              <p className="pt-2 text-white">
-                Sahyadri College of Engineering and Management, Adyar, Mangalore
-                - 575007 IN
+              <p className="pt-3 leading-7 text-gray-300">
+                Sahyadri College of Engineering and Management,
+                <br />
+                Adyar, Mangalore - 575007 IN
               </p>
               <Link
                 target="_blank"
-                className="underlined_link pt-2 text-gray-300 transition-colors duration-200 hover:text-white"
+                className="underlined_link mt-3 inline-block text-[#D8D8D8] transition-all duration-300 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
                 href="mailto:sosc@sahyadri.edu.in"
               >
                 sosc@sahyadri.edu.in
               </Link>
+
+              <div className="mt-5 w-40 border-t border-[#C8A24C]/40"></div>
               <p className="pt-4">
-                Name: Manas S<br />
-                Phone: +91 96208 55052
+                Name: Soniya Kolvekar
+                <br />
+                Phone: +91 86189 50479
               </p>
               <p className="pt-2">
-                Name: Vivek N <br />
-                Phone: +91 81698 38688
+                Name: Nivas M <br />
+                Phone: +91 93530 48159
               </p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6">
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase">
+              <h2
+                className={`${dalek.className} font-trajan mb-6 text-lg font-bold tracking-wider text-[#C8A24C] uppercase`}
+              >
                 Follow us
               </h2>
               <ul className="flex flex-col gap-4 font-medium text-gray-300">
-                <li>
+                <li className="py-1">
                   <Link
                     href="https://github.com/so-sc"
                     target="_blank"
-                    className="group flex items-center gap-2 transition-colors duration-200"
+                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
                   >
                     <svg
-                      className="h-5 w-5"
+                      className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -107,19 +141,19 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="underlined_link group-hover:text-[#F6CC60] group-hover:drop-shadow-[0_0_5px_#F6CC60]">
+                    <span className="underlined_link transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]">
                       GitHub
                     </span>
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="https://www.instagram.com/sosc.sahyadri"
                     target="_blank"
-                    className="group flex items-center gap-2 transition-colors duration-200"
+                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
                   >
                     <svg
-                      className="h-5 w-5"
+                      className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -130,19 +164,19 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="underlined_link group-hover:text-[#F6CC60] group-hover:drop-shadow-[0_0_5px_#F6CC60]">
+                    <span className="underlined_link transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]">
                       Instagram
                     </span>
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="https://www.linkedin.com/company/sosc-sahyadri"
                     target="_blank"
-                    className="group flex items-center gap-2 transition-colors duration-200"
+                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
                   >
                     <svg
-                      className="h-5 w-5"
+                      className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -153,20 +187,20 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="underlined_link group-hover:text-[#F6CC60] group-hover:drop-shadow-[0_0_5px_#F6CC60]">
+                    <span className="underlined_link transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]">
                       LinkedIn
                     </span>
                   </Link>
                 </li>
 
-                <li>
+                <li className="py-1">
                   <Link
                     href="https://www.youtube.com/channel/UCk8nlSMwUT-jhEtamMF-V-w"
                     target="_blank"
-                    className="group flex items-center gap-2 transition-colors duration-200"
+                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
                   >
                     <svg
-                      className="h-5 w-5"
+                      className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -177,19 +211,19 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="underlined_link group-hover:text-[#F6CC60] group-hover:drop-shadow-[0_0_5px_#F6CC60]">
+                    <span className="underlined_link transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]">
                       YouTube
                     </span>
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="https://discord.gg/KJbBUjrY"
                     target="_blank"
-                    className="group flex items-center gap-2 transition-colors duration-200"
+                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
                   >
                     <svg
-                      className="h-5 w-5"
+                      className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
                       viewBox="0 0 71 55"
                       fill="currentColor"
                       xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +231,7 @@ const Footer = () => {
                     >
                       <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.3979C45.5603 0.3803 45.468 0.4226 45.4204 0.5096C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0586 26.1881 1.6353 25.5639 0.5096C25.5164 0.4226 25.424 0.3803 25.3316 0.3979C20.2588 1.2916 15.4061 2.8214 10.8808 4.8978C10.8381 4.9155 10.7975 4.9436 10.7693 4.9816C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5476 18.3042 54.5138 18.3638 54.4378C19.7295 52.5721 20.9469 50.6066 21.9907 48.5383C22.0523 48.4172 21.9939 48.2735 21.8676 48.2253C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1896 45.504 16.1781 45.2993 16.3123 45.2048C16.679 44.9436 17.0457 44.6694 17.3983 44.388C17.4648 44.3321 17.5591 44.3201 17.6399 44.3581C29.2558 49.9725 41.8354 49.9725 53.3175 44.3581C53.3983 44.3161 53.4926 44.3281 53.5591 44.384C53.9117 44.6654 54.2784 44.9436 54.6451 45.2048C54.7793 45.2993 54.7699 45.504 54.6303 45.5858C52.8616 46.6192 51.0229 47.4931 49.0919 48.2212C48.9656 48.2695 48.9109 48.4172 48.9725 48.5383C50.0384 50.6035 51.2559 52.5689 52.5962 54.4346C52.6527 54.5138 52.752 54.5476 52.8444 54.5195C58.6461 52.7249 64.5288 50.0174 70.6017 45.5576C70.655 45.5182 70.6885 45.4562 70.6941 45.3914C72.1747 30.0791 68.2147 16.7757 60.1968 4.9816C60.1714 4.9436 60.1309 4.9155 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2536 30.1066 30.1693C30.1066 34.1136 27.2801 37.3253 23.7259 37.3253ZM47.1707 37.3253C43.6723 37.3253 40.7898 34.1136 40.7898 30.1693C40.7898 26.225 43.6165 23.0133 47.1707 23.0133C50.7528 23.0133 53.6074 26.2536 53.5514 30.1693C53.5514 34.1136 50.7528 37.3253 47.1707 37.3253Z" />
                     </svg>
-                    <span className="underlined_link group-hover:text-[#F6CC60] group-hover:drop-shadow-[0_0_5px_#F6CC60]">
+                    <span className="underlined_link transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]">
                       Discord
                     </span>
                   </Link>
@@ -205,78 +239,80 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase">
+              <h2
+                className={`${dalek.className} mb-6 text-lg font-bold tracking-wider text-[#C8A24C] uppercase`}
+              >
                 Others
               </h2>
               <ul className="flex flex-col gap-4 font-medium text-gray-300">
-                <li>
+                <li className="py-1">
                   <Link
                     href="https://www.sosc.org.in"
                     target="_blank"
-                    className="underlined_link transition-colors duration-200 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Website
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="https://www.sosc.org.in/guidelines"
                     target="_blank"
-                    className="underlined_link transition-colors duration-200 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Community Guidelines
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="https://github.com/so-sc/code-of-conduct"
                     target="_blank"
-                    className="underlined_link transition-colors duration-200 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Code of Conduct
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="/policies/about-us"
                     target="_blank"
-                    className="underlined_link transition-colors duration-200 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     About Us
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="/policies/terms"
                     target="_blank"
-                    className="underlined_link transition-colors duration-200 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Terms & Conditions
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="/policies/privacy-policy"
                     target="_blank"
-                    className="underlined_link transition-colors duration-200 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Privacy Policy
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="/policies/refund-cancellation"
                     target="_blank"
-                    className="underlined_link transition-colors duration-200 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Refund & Cancellation
                   </Link>
                 </li>
-                <li>
+                <li className="py-1">
                   <Link
                     href="/policies/shipping-delivery"
                     target="_blank"
-                    className="underlined_link transition-colors duration-200 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Shipping & Delivery
                   </Link>
@@ -285,9 +321,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="my-6 sm:mx-auto lg:my-8" />
+        <div className="mt-10 pt-6" />
         <div className="flex items-center justify-center">
-          <span className="text-sm text-gray-300 sm:text-center">
+          <span className="text-sm text-gray-400">
             SOSC © {new Date().getFullYear()} All Rights Reserved.
           </span>
         </div>
