@@ -45,7 +45,7 @@ const norse = localFont({
   preload: true,
 });
 const norseBold = localFont({
-  src: "../assets/fonts/NorseBold.otf",
+  src: "../assets/fonts/Norsebold.otf",
   variable: "--font-norse-bold",
   preload: true,
 });
