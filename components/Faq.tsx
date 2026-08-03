@@ -51,23 +51,30 @@ const faqData = [
   },
 ];
 
-const CyberpunkBorder = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="relative">
-      <svg
-        className="absolute inset-0 z-0 h-full w-full"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
-        <polygon
-          points="0,0 95,0 100,5 100,100 5,100 0,95"
-          className="stroke-[var(--border-color, #a3ff1240)] group-hover:stroke-[var(--hover-border-color, #a3ff12)] fill-none stroke-2 transition-all duration-300"
-        />
-      </svg>
-      {children}
-    </div>
-  );
-};
+
+const GreekCorner = ({ className = "" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 42 42"
+    className={className}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2 18V8a6 6 0 0 1 6-6h10"
+      stroke="#F6CC60"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+    />
+    <path
+      d="M2 28V22H8V16H14"
+      stroke="#F6CC60"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle cx="8" cy="8" r="1.8" fill="#F6CC60" />
+  </svg>
+);
 
 export default function FAQ() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -103,38 +110,63 @@ export default function FAQ() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-black py-24 text-white md:px-8"
+      className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] py-24 text-white md:px-8"
     >
-      {/* Enhanced cyberpunk grid background */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(#a3ff1208_1px,transparent_1px),linear-gradient(90deg,#a3ff1208_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"></div>
+   
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(circle at top, rgba(246,204,96,0.06), transparent 45%),
+            radial-gradient(circle at bottom, rgba(255,255,255,0.02), transparent 70%),
+            linear-gradient(180deg,#191919 0%,#121212 55%,#090909 100%)
+          `,
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-70"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(45,45,45,.65) 0%, rgba(18,18,18,.92) 60%, #090909 100%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-40"
+        style={{
+          background:
+            "radial-gradient(circle, transparent 40%, rgba(0,0,0,.65) 100%)",
+        }}
+      />
 
-      {/* Diagonal scanning lines */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-0 left-0 h-full w-full animate-pulse bg-[linear-gradient(45deg,transparent_48%,#a3ff1205_49%,#a3ff1205_51%,transparent_52%)] bg-[size:20px_20px]"></div>
-      </div>
+     
 
-      <div className="absolute bottom-0 h-48 w-full bg-gradient-to-t from-black/95 via-black/80 to-transparent" />
-      <div className="absolute top-0 h-48 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
-
-      <div className="relative mx-auto w-full max-w-4xl">
-        {/* Cyberpunk Title with enhanced styling */}
+      <div className="relative z-10 mx-auto w-full max-w-4xl">
+        {/* Title */}
         <div className="relative mb-16 text-center">
-          <h2 className="font-orbitron relative mb-6 inline-block text-5xl font-bold md:text-7xl">
+          <h2 className="font-norse-bold mb-6 inline-block text-5xl text-[#F6CC60] uppercase md:text-7xl">
             FAQ
           </h2>
+
           <DecryptText
             text="> Answers to Common Questions"
             startDelayMs={200}
             trailSize={6}
             flickerIntervalMs={50}
             revealDelayMs={100}
-            className="font-orbitron text-primary h-8 text-base tracking-wider md:text-xl"
+            className="font-norse text-primary h-8 text-base tracking-wider text-[#F6CC60]/80 md:text-xl"
           />
+
+         
+          <div className="mx-auto mt-6 flex max-w-sm items-center gap-4">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#F6CC60] to-transparent" />
+            <div className="h-3 w-3 rotate-45 border border-[#F6CC60]" />
+            <div className="h-px flex-1 " />
+          </div>
         </div>
 
-        {/* Enhanced FAQ Accordion with cyberpunk styling */}
+      
         <div ref={itemsRef}>
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-5">
             {faqData.map((faq, index) => (
               <AccordionItem
                 key={index}
@@ -142,34 +174,35 @@ export default function FAQ() {
                 data-faq-item
                 className="group relative border-0 bg-transparent"
               >
-                <CyberpunkBorder>
-                  <div className="relative bg-black/95 backdrop-blur-sm transition-all duration-300 group-hover:shadow-[0_0_20px_#a3ff1230]">
-                    {/* Side accent bar */}
-                    <div className="bg-primary absolute top-0 left-0 h-full w-1 origin-top scale-y-0 transform shadow-[0_0_10px_#a3ff12] transition-transform duration-300 group-hover:scale-y-100"></div>
+                <div className="relative rounded-xl border border-[#6C5730] bg-[#23201A]/40 shadow-[0_20px_60px_rgba(0,0,0,.55)] backdrop-blur-md transition-all duration-300 group-hover:border-[#F6CC60] ">
+                 
+                  <div className="absolute top-0 left-0 h-full w-1 origin-top scale-y-0 transform transition-transform duration-300 group-hover:scale-y-100" />
 
-                    {/* Content */}
-                    <AccordionTrigger className="relative px-8 py-6 text-left text-base font-medium text-white transition-all duration-300 group-hover:pl-12 group-hover:text-[#F6CC60] md:text-lg">
-                      <span className="relative z-10 font-mono">
-                        {faq.question}
-                      </span>
-                    </AccordionTrigger>
+                 
+                  <GreekCorner className="absolute top-1 right-1 z-20 h-7 w-7 rotate-90" />
+                  <GreekCorner className="absolute right-1 bottom-1 z-20 h-7 w-7 rotate-180" />
+                  <GreekCorner className="absolute bottom-1 left-1 z-20 h-7 w-7 -rotate-90" />
 
-                    <AccordionContent className="relative px-8 pb-6 text-sm leading-relaxed text-gray-300">
-                      {/* More visible divider line */}
-                      <div className="mb-6 h-0.5 w-full bg-gradient-to-r from-[#F6CC60] via-[#a3ff1260] to-[#F6CC60] shadow-[0_0_5px_#a3ff1240]"></div>
+                  {/* Content */}
+                  <AccordionTrigger className="font-trajan relative px-8 py-6 text-left text-base font-medium text-zinc-200 transition-all duration-300 group-hover:pl-12 group-hover:text-[#F6CC60] md:text-lg">
+                    <span className="relative z-10">{faq.question}</span>
+                  </AccordionTrigger>
 
-                      <div
-                        className="border border-[#a3ff1220] bg-black/50 p-4 font-mono text-sm leading-relaxed text-gray-200"
-                        style={{
-                          clipPath:
-                            "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-                        }}
-                      >
-                        {faq.answer}
-                      </div>
-                    </AccordionContent>
-                  </div>
-                </CyberpunkBorder>
+                  <AccordionContent className="font-trajan relative px-8 pb-6 text-sm leading-relaxed text-zinc-300">
+                    {/* Divider line */}
+                    <div className="mb-6 h-px w-full bg-gradient-to-r from-[#F6CC60] via-[#C89D47]/60 to-[#F6CC60] shadow-[0_0_5px_rgba(246,204,96,.25)]" />
+
+                    <div
+                      className="border border-[#6C5730] bg-[#181818]/70 p-4 text-sm leading-relaxed text-zinc-300 backdrop-blur-md"
+                      style={{
+                        clipPath:
+                          "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                      }}
+                    >
+                      {faq.answer}
+                    </div>
+                  </AccordionContent>
+                </div>
               </AccordionItem>
             ))}
           </Accordion>
