@@ -3,12 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ReactLenis from "lenis/react";
 import { Toaster } from "@/components/ui/sonner";
-import { Cinzel } from "next/font/google";
-
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  variable: "--font-cinzel",
-});
 
 const amiga = localFont({
   src: "../assets/fonts/amiga4ever.woff2",
@@ -109,7 +103,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${monospace.variable} ${cinzel.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} ${dalek.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
+        className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} ${dalek.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
       >
         <ReactLenis root />
         {children}
