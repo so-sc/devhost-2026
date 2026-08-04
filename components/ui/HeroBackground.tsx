@@ -4,7 +4,7 @@ export default function HeroBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden bg-black">
       {/* Main SVG Background */}
-      <div className="absolute inset-0 bg-[url('/greek-bg.svg')] bg-cover bg-center opacity-50 mix-blend-screen" />
+      <div className="absolute inset-0 bg-[url('/greek-bg.png')] bg-cover bg-center opacity-50 mix-blend-screen" />
 
       {/* Dark overlay to blend into black */}
       <div className="absolute inset-0 bg-black/60" />

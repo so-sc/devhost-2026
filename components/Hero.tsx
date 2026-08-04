@@ -66,26 +66,17 @@ export default function Hero() {
               <p className="font-norse-bold text-[15px] tracking-[3px] text-white/80 sm:text-sm md:text-lg md:tracking-[6px]">
                 Organizers
               </p>
-              <div className="flex items-center justify-center gap-3 sm:gap-4">
-                <div className="relative h-16 w-16 sm:h-14 sm:w-14">
+              <div className="flex items-center justify-center gap-3 sm:gap-6">
+                <div className="relative h-8 w-8 sm:h-10 sm:w-10">
                   <Image
-                    src="/sahyadri_logo.jpeg"
+                    src="/sahyadri-logo.png"
                     alt="Sahyadri College of Engineering & Management"
                     fill
                     className="object-contain"
                     sizes="(max-width: 640px) 24px, 32px"
                   />
                 </div>
-                <div className="relative h-16 w-16 sm:h-14 sm:w-14">
-                  <Image
-                    src="/sosc_logo.svg"
-                    alt="Sahyadri Open Source Community"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 640px) 24px, 32px"
-                  />
-                </div>
-                <div className="relative h-16 w-16 sm:h-14 sm:w-14">
+                <div className="relative h-16 w-16 sm:h-18 sm:w-18">
                   <Image
                     src="/synergia_logo.svg"
                     alt="Synergia"
@@ -94,6 +85,16 @@ export default function Hero() {
                     sizes="(max-width: 640px) 24px, 32px"
                   />
                 </div>
+                <div className="relative h-10 w-10 sm:h-12 sm:w-12">
+                  <Image
+                    src="/sosc_logo.svg"
+                    alt="Sahyadri Open Source Community"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 24px, 32px"
+                  />
+                </div>
+                
               </div>
             </div>
 
@@ -110,7 +111,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <h2 className="font-norse-bold pb-8 text-3xl tracking-[6px] text-white sm:text-3xl sm:tracking-[10px] md:text-5xl">
+            <h2 className="font-norse-bold pb-4 sm:pb-8 text-3xl tracking-[6px] text-white sm:text-3xl sm:tracking-[10px] md:text-5xl">
               <DecryptText
                 text="2026"
                 trigger={titleRevealed}
@@ -125,7 +126,7 @@ export default function Hero() {
               />
             </h2>
 
-            <p className="font-norse-bold text-md tracking-[6px] text-white sm:text-xl sm:tracking-[10px] md:text-2xl">
+            <p className="font-norse-bold text-sm tracking-[6px] text-white sm:text-xl sm:tracking-[10px] md:text-2xl">
               <DecryptText
                 text="Where mortal minds break the limits of divinity."
                 trigger={titleRevealed}
