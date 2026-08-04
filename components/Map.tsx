@@ -65,15 +65,6 @@ const Map = () => {
         }}
       />
 
-      {/* Gold Glow */}
-      <div
-        className="pointer-events-none absolute top-1/2 left-1/2 h-[700px] w-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[180px]"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(246,204,96,.08), transparent 70%)",
-        }}
-      />
-
       {/* Main Content */}
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 py-16 lg:grid-cols-5">
         {/* Left */}
@@ -103,10 +94,9 @@ const Map = () => {
         {/* Right */}
         <div className="relative lg:col-span-3">
           {/* Outer Glow */}
-          <div className="absolute -inset-5 rounded-xl bg-[#F6CC60]/10 blur-3xl" />
 
           {/* Frame */}
-          <div className="relative rounded-xl border border-[#6C5730] bg-[#23201A]/40 p-4 shadow-[0_20px_80px_rgba(0,0,0,.55)] backdrop-blur-md">
+          <div className="relative rounded-xl border border-[#312b20] bg-[#23201A]/40 p-4 shadow-[0_20px_80px_rgba(0,0,0,.55)] backdrop-blur-md">
             {/* Gold Accent */}
             <div className="absolute top-0 right-8 left-8 h-px bg-gradient-to-r from-transparent via-[#F6CC60] to-transparent" />
             <div className="absolute right-8 bottom-0 left-8 h-px bg-gradient-to-r from-transparent via-[#F6CC60] to-transparent" />
@@ -118,7 +108,7 @@ const Map = () => {
                 loading="lazy"
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
-                className="h-[500px] w-full border-0"
+                className="h-[480px] w-full border-0"
               />
             </div>
           </div>
