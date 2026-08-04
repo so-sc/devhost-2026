@@ -94,7 +94,6 @@ export default function Hero() {
                     sizes="(max-width: 640px) 24px, 32px"
                   />
                 </div>
-                
               </div>
             </div>
 
@@ -111,7 +110,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <h2 className="font-norse-bold pb-4 sm:pb-8 text-3xl tracking-[6px] text-white sm:text-3xl sm:tracking-[10px] md:text-5xl">
+            <h2 className="font-norse-bold pb-4 text-3xl tracking-[6px] text-white sm:pb-8 sm:text-3xl sm:tracking-[10px] md:text-5xl">
               <DecryptText
                 text="2026"
                 trigger={titleRevealed}
