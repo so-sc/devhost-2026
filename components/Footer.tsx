@@ -324,7 +324,7 @@ const Footer = () => {
         <div className="mt-10 pt-6" />
         <div className="flex items-center justify-center">
           <span className="text-sm text-gray-400">
-            SOSC © {new Date().getFullYear()} All Rights Reserved.
+            SOSC © 2026 All Rights Reserved.
           </span>
         </div>
       </div>
