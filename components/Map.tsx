@@ -103,7 +103,7 @@ const Map = () => {
 </h3>
 
        <p
-  className="font-trajan max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75 "
+  className="max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75 "
   style={{
     textShadow:
       "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",

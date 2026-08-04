@@ -156,7 +156,7 @@ export default function FAQ() {
                       <div className="h-8 w-px bg-[#F6CC60]/25" />
 
                       {/* Question */}
-                      <h3 className="font-trajan text-base text-zinc-200 transition-all duration-300 md:text-lg">
+                      <h3 className="text-base text-zinc-200 transition-all duration-300 md:text-lg">
                         {faq.question}
                       </h3>
                     </div>
@@ -167,7 +167,7 @@ export default function FAQ() {
                   {/* thin divider */}
                   <div className="mb-6 h-px bg-gradient-to-r from-[#F6CC60]/70 via-[#F6CC60]/20 to-transparent" />
 
-                  <p className="font-trajan max-w-3xl leading-8 text-zinc-400">
+                  <p className="max-w-3xl leading-8 text-zinc-400">
                     {faq.answer}
                   </p>
                 </AccordionContent>
