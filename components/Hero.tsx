@@ -55,17 +55,17 @@ export default function Hero() {
           <img
             src="/ornament.svg"
             alt=""
-            className="h-24 shrink-0 scale-x-[-1] opacity-40 md:h-40"
+            className="h-24 shrink-0 scale-x-[-1] opacity-80 md:h-40"
           />
 
           <div className="text-center">
             {/* Organizer logos — appears with the title, after circle transition */}
             <div className="mb-2 flex flex-col items-center gap-1">
-              <p className="font-norse-bold text-[10px] tracking-[3px] text-white/70 sm:text-xs">
+              <p className="font-norse-bold text-[30px] tracking-[3px] text-white/70 sm:text-sm md:text-lg md:tracking-[6px]">
                 Organizers
               </p>
               <div className="flex items-center justify-center gap-3 sm:gap-4">
-                <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+                <div className="relative h-16 w-16 sm:h-14 sm:w-14">
                   <Image
                     src="/sahyadri_logo.jpeg"
                     alt="Sahyadri College of Engineering & Management"
@@ -74,7 +74,7 @@ export default function Hero() {
                     sizes="(max-width: 640px) 24px, 32px"
                   />
                 </div>
-                <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+                <div className="relative h-16 w-16 sm:h-14 sm:w-14">
                   <Image
                     src="/sosc_logo.svg"
                     alt="Sahyadri Open Source Community"
@@ -83,7 +83,7 @@ export default function Hero() {
                     sizes="(max-width: 640px) 24px, 32px"
                   />
                 </div>
-                <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+                <div className="relative h-16 w-16 sm:h-14 sm:w-14">
                   <Image
                     src="/synergia_logo.svg"
                     alt="Synergia"
@@ -95,7 +95,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <h1 className="font-norse-bold text-5xl tracking-[6px] sm:text-6xl sm:tracking-[10px] md:text-9xl md:tracking-[20px]">
+            <h1 className="font-norse-bold text-6xl tracking-[6px] sm:text-7xl sm:tracking-[10px] md:text-[10rem] md:tracking-[20px]">
               <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
                 <DecryptText
                   text="DEVHOST"
@@ -108,7 +108,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <h2 className="font-norse-bold text-2xl tracking-[6px] text-white sm:text-3xl sm:tracking-[10px] md:text-4xl">
+            <h2 className="font-norse-bold text-3xl tracking-[6px] text-white sm:text-4xl sm:tracking-[10px] md:text-5xl">
               <DecryptText
                 text="2026"
                 trigger={titleRevealed}
@@ -139,7 +139,7 @@ export default function Hero() {
           <img
             src="/ornament.svg"
             alt=""
-            className="h-24 shrink-0 opacity-40 md:h-40"
+            className="h-24 shrink-0 opacity-80 md:h-40"
           />
         </motion.div>
       </div>
