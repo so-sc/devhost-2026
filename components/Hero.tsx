@@ -63,7 +63,7 @@ export default function Hero() {
           <div className="text-center">
             {/* Organizer logos — appears with the title, after circle transition */}
             <div className="mb-2 flex flex-col items-center gap-1">
-              <p className="font-norse-bold text-[30px] tracking-[3px] text-white/70 sm:text-sm md:text-lg md:tracking-[6px]">
+              <p className="font-norse-bold text-[25px] tracking-[3px] text-white/80 sm:text-sm md:text-lg md:tracking-[6px]">
                 Organizers
               </p>
               <div className="flex items-center justify-center gap-3 sm:gap-4">
@@ -110,7 +110,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <h2 className="font-norse-bold text-3xl tracking-[6px] text-white sm:text-4xl sm:tracking-[10px] md:text-5xl">
+            <h2 className="font-norse-bold text-3xl tracking-[6px] text-white sm:text-3xl sm:tracking-[10px] md:text-5xl pb-8">
               <DecryptText
                 text="2026"
                 trigger={titleRevealed}
@@ -125,7 +125,7 @@ export default function Hero() {
               />
             </h2>
 
-            <p className="font-norse-bold text-lg tracking-[6px] text-white sm:text-xl sm:tracking-[10px] md:text-2xl">
+            <p className="font-norse-bold text-md tracking-[6px] text-white sm:text-xl sm:tracking-[10px] md:text-2xl">
               <DecryptText
                 text="Where mortal minds break the limits of divinity."
                 trigger={titleRevealed}
