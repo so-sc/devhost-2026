@@ -1,340 +1,148 @@
 "use client";
-
-import React from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import HeroBackground from "./ui/HeroBackground";
+import Sword from "./sword";
 import DecryptText from "./animated/TextAnimation";
+import Image from "next/image";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 
 export default function Hero() {
-
-return (
-
-<div className="
-relative
-h-screen
-w-full
-overflow-hidden
-bg-black
-text-zinc-200
-flex
-items-center
-justify-center
-">
-
-
-{/* Background Glow */}
-
-<div
-className="
-absolute
-inset-0
-bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15),transparent_45%)]
-"
-/>
-
-
-
-{/* Greek Halo */}
-
-<motion.div
-
-animate={{
-rotate:360
-}}
-
-transition={{
-duration:80,
-repeat:Infinity,
-ease:"linear"
-}}
-
-className="
-absolute
-top-20
-h-[600px]
-w-[600px]
-rounded-full
-border
-border-[#D4AF37]/50
-shadow-[0_0_100px_rgba(212,175,55,0.3)]
-"
-
-/>
-
-
-
-
-{/* Statue */}
-
-<motion.div
-
-initial={{
-opacity:0,
-y:80
-}}
-
-animate={{
-opacity:1,
-y:0
-}}
-
-transition={{
-duration:2
-}}
-
-className="
-absolute
-bottom-0
-z-10
-h-[85vh]
-w-[500px]
-"
-
->
-
-
-<Image
-
-src="/greek-statue.png"
-
-alt="Greek Statue"
-
-fill
-
-className="
-object-contain
-"
-
-/>
-
-</motion.div>
-
-
-
-
-
-{/* Main Content */}
-
-<div
-className="
-relative
-z-20
-flex
-flex-col
-items-center
-text-center
-"
->
-
-
-<p
-className="
-font-serif
-tracking-[8px]
-text-[#D4AF37]
-text-sm
-"
->
-
-SAHYADRI PRESENTS
-
-</p>
-
-
-
-<h1
-className="
-mt-5
-font-serif
-text-7xl
-md:text-9xl
-tracking-[15px]
-bg-gradient-to-b
-from-yellow-200
-via-yellow-500
-to-yellow-800
-text-transparent
-bg-clip-text
-"
->
-
-DEVHOST
-
-</h1>
-
-
-<h2
-className="
-font-serif
-text-5xl
-tracking-[10px]
-text-white
-"
->
-
-2026
-
-</h2>
-
-
-
-
-<p
-className="
-mt-8
-tracking-[5px]
-text-gray-400
-"
->
-
-HACKATHON • CONFERENCE • TECH TALKS
-
-</p>
-
-
-<button
-className="
-mt-10
-border
-border-[#D4AF37]
-px-10
-py-3
-tracking-widest
-text-[#D4AF37]
-hover:bg-[#D4AF37]
-hover:text-black
-transition
-"
->
-
-ENTER THE ARENA
-
-</button>
-
-
-</div>
-
-
-
-
-
-{/* Left Ancient Text */}
-
-<div
-className="
-absolute
-left-10
-top-32
-z-30
-text-xs
-tracking-[5px]
-text-[#D4AF37]/70
-"
->
-
-
-<DecryptText
-
-text="DISCIPLINE TODAY"
-
-startDelayMs={300}
-
-/>
-
-
-<DecryptText
-
-text="CREATES TOMORROW"
-
-startDelayMs={900}
-
-/>
-
-
-<DecryptText
-
-text="INNOVATION AWAKENS"
-
-startDelayMs={1500}
-
-/>
-
-
-</div>
-
-
-
-
-
-{/* Greek Borders */}
-
-<div
-className="
-absolute
-left-5
-top-5
-h-16
-w-16
-border-l
-border-t
-border-[#D4AF37]
-"
-/>
-
-
-<div
-className="
-absolute
-right-5
-top-5
-h-16
-w-16
-border-r
-border-t
-border-[#D4AF37]
-"
-/>
-
-
-
-{/* Scroll */}
-
-<div
-className="
-absolute
-bottom-10
-right-10
-font-serif
-text-[#D4AF37]
-tracking-widest
-"
->
-
-[ SCROLL TO EXPLORE ]
-
-</div>
-
-
-
-{/* Fog */}
-
-<div
-className="
-absolute
-bottom-0
-h-48
-w-full
-bg-gradient-to-t
-from-black
-to-transparent
-z-20
-"
-/>
-
-
-
-</div>
-
-)
-
+  const targetRef = useRef(null);
+
+  // Scope scroll tracking to this section only, not the whole page
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end end"],
+  });
+
+  const swordY = useTransform(scrollYProgress, [0, 0.5], [0, -500]);
+  const circleScale = useTransform(scrollYProgress, [0.3, 0.8], [0, 20]);
+  const titleOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1]);
+
+  // Fire the decrypt animation every time the title scrolls into view
+  const [titleRevealed, setTitleRevealed] = useState(false);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setTitleRevealed(latest >= 0.85);
+  });
+
+  return (
+    <div ref={targetRef} className="relative h-[200vh] w-full bg-black">
+      {/* Sticky viewport — pins visuals in place while scroll drives the animation */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {/* Background */}
+        <HeroBackground />
+
+        {/* Sword */}
+        <Sword y={swordY} />
+
+        {/* Iris/vignette circle */}
+        <motion.div
+          style={{ scale: circleScale }}
+          className="absolute top-1/2 left-1/2 z-30 h-[100px] w-[100px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black"
+        />
+
+        {/* Title */}
+        <motion.div
+          style={{ opacity: titleOpacity }}
+          className="absolute top-1/2 left-1/2 z-40 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-4 md:gap-10"
+        >
+          {/* Left ornament — mirrored */}
+          <img
+            src="/ornament.svg"
+            alt=""
+            className="h-24 shrink-0 scale-x-[-1] opacity-40 md:h-40"
+          />
+
+          <div className="text-center">
+            {/* Organizer logos — appears with the title, after circle transition */}
+            <div className="mb-2 flex flex-col items-center gap-1">
+              <p className="font-norse-bold text-[10px] tracking-[3px] text-white/70 sm:text-xs">
+                Organizers
+              </p>
+              <div className="flex items-center justify-center gap-3 sm:gap-4">
+                <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+                  <Image
+                    src="/sahyadri_logo.jpeg"
+                    alt="Sahyadri College of Engineering & Management"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 24px, 32px"
+                  />
+                </div>
+                <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+                  <Image
+                    src="/sosc_logo.svg"
+                    alt="Sahyadri Open Source Community"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 24px, 32px"
+                  />
+                </div>
+<div className="relative h-14 w-14 sm:h-12 sm:w-12">
+                  <Image
+                    src="/synergia_logo.svg"
+                    alt="Synergia"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 24px, 32px"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <h1 className="font-norse-bold text-5xl tracking-[6px] sm:text-6xl sm:tracking-[10px] md:text-9xl md:tracking-[20px]">
+              <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+                <DecryptText
+                  text="DEVHOST"
+                  trigger={titleRevealed}
+                  className="inline-block"
+                  revealDelayMs={100}
+                  trailSize={4}
+                  startDelayMs={0}
+                />
+              </span>
+            </h1>
+
+            <h2 className="font-norse-bold text-2xl tracking-[6px] text-white sm:text-3xl sm:tracking-[10px] md:text-4xl">
+              <DecryptText
+                text="2026"
+                trigger={titleRevealed}
+                className="inline-block"
+                style={{
+                  textShadow:
+                    "0 1px 1px rgba(0,0,0,.7), 0 0 12px rgba(246,204,96,.08)",
+                }}
+                revealDelayMs={90}
+                trailSize={3}
+                startDelayMs={600}
+              />
+            </h2>
+
+            <p className="font-norse-bold text-lg tracking-[6px] text-white sm:text-xl sm:tracking-[10px] md:text-2xl">
+              <DecryptText
+                text="Where mortal minds break the limits of divinity."
+                trigger={titleRevealed}
+                className="inline-block"
+                revealDelayMs={40}
+                trailSize={8}
+                startDelayMs={1000}
+              />
+            </p>
+          </div>
+
+          {/* Right ornament */}
+          <img
+            src="/ornament.svg"
+            alt=""
+            className="h-24 shrink-0 opacity-40 md:h-40"
+          />
+        </motion.div>
+      </div>
+    </div>
+  );
 }
