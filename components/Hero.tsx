@@ -52,38 +52,31 @@ export default function Hero() {
           className="absolute top-1/2 left-1/2 z-40 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-4 md:gap-10"
         >
           {/* Left ornament — mirrored */}
-          <img
+          <Image
             src="/ornament.svg"
             alt=""
-            className="h-24 shrink-0 scale-x-[-1] opacity-40 md:h-40"
+            width={100}
+            height={100}
+            className="h-24 shrink-0 scale-x-[-1] opacity-80 md:h-40"
           />
 
           <div className="text-center">
             {/* Organizer logos — appears with the title, after circle transition */}
             <div className="mb-2 flex flex-col items-center gap-1">
-              <p className="font-norse-bold text-[10px] tracking-[3px] text-white/70 sm:text-xs">
+              <p className="font-norse-bold text-[15px] tracking-[3px] text-white/80 sm:text-sm md:text-lg md:tracking-[6px]">
                 Organizers
               </p>
-              <div className="flex items-center justify-center gap-3 sm:gap-4">
-                <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+              <div className="flex items-center justify-center gap-3 sm:gap-6">
+                <div className="relative h-8 w-8 sm:h-10 sm:w-10">
                   <Image
-                    src="/sahyadri_logo.jpeg"
+                    src="/sahyadri-logo.png"
                     alt="Sahyadri College of Engineering & Management"
                     fill
                     className="object-contain"
                     sizes="(max-width: 640px) 24px, 32px"
                   />
                 </div>
-                <div className="relative h-14 w-14 sm:h-12 sm:w-12">
-                  <Image
-                    src="/sosc_logo.svg"
-                    alt="Sahyadri Open Source Community"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 640px) 24px, 32px"
-                  />
-                </div>
-                <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+                <div className="relative h-16 w-16 sm:h-18 sm:w-18">
                   <Image
                     src="/synergia_logo.svg"
                     alt="Synergia"
@@ -92,10 +85,20 @@ export default function Hero() {
                     sizes="(max-width: 640px) 24px, 32px"
                   />
                 </div>
+                <div className="relative h-10 w-10 sm:h-12 sm:w-12">
+                  <Image
+                    src="/sosc_logo.svg"
+                    alt="Sahyadri Open Source Community"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 24px, 32px"
+                  />
+                </div>
+                
               </div>
             </div>
 
-            <h1 className="font-norse-bold text-5xl tracking-[6px] sm:text-6xl sm:tracking-[10px] md:text-9xl md:tracking-[20px]">
+            <h1 className="font-norse-bold text-6xl tracking-[6px] sm:text-7xl sm:tracking-[10px] md:text-[10rem] md:tracking-[20px]">
               <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
                 <DecryptText
                   text="DEVHOST"
@@ -108,7 +111,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <h2 className="font-norse-bold text-2xl tracking-[6px] text-white sm:text-3xl sm:tracking-[10px] md:text-4xl">
+            <h2 className="font-norse-bold pb-4 sm:pb-8 text-3xl tracking-[6px] text-white sm:text-3xl sm:tracking-[10px] md:text-5xl">
               <DecryptText
                 text="2026"
                 trigger={titleRevealed}
@@ -123,7 +126,7 @@ export default function Hero() {
               />
             </h2>
 
-            <p className="font-norse-bold text-lg tracking-[6px] text-white sm:text-xl sm:tracking-[10px] md:text-2xl">
+            <p className="font-norse-bold text-sm tracking-[6px] text-white sm:text-xl sm:tracking-[10px] md:text-2xl">
               <DecryptText
                 text="Where mortal minds break the limits of divinity."
                 trigger={titleRevealed}
@@ -136,10 +139,12 @@ export default function Hero() {
           </div>
 
           {/* Right ornament */}
-          <img
+          <Image
             src="/ornament.svg"
             alt=""
-            className="h-24 shrink-0 opacity-40 md:h-40"
+            width={100}
+            height={100}
+            className="h-24 shrink-0 opacity-80 md:h-40"
           />
         </motion.div>
       </div>
