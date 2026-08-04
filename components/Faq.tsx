@@ -109,30 +109,26 @@ export default function FAQ() {
         }}
       />
 
-     
-
-     
-
       <div className="relative z-10 mx-auto w-full max-w-5xl">
         {/* Heading */}
 
         <div className="mb-16 text-center">
-      <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
-  <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
-    FAQ
-  </span>
-</h2>
+          <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
+            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+              FAQ
+            </span>
+          </h2>
 
-      <h3 className="mt-4">
-  <DecryptText
-    text="Answers to Common Questions"
-    startDelayMs={200}
-    trailSize={6}
-    flickerIntervalMs={50}
-    revealDelayMs={100}
-    className="font-norse text-lg tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
-  />
-</h3>
+          <h3 className="mt-4">
+            <DecryptText
+              text="Answers to Common Questions"
+              startDelayMs={200}
+              trailSize={6}
+              flickerIntervalMs={50}
+              revealDelayMs={100}
+              className="font-norse text-lg tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
+            />
+          </h3>
         </div>
 
         <div ref={itemsRef}>
