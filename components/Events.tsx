@@ -244,7 +244,7 @@ export default function Events() {
                   />
                 </div>
 
-                <div className="font-cinzel mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
+                <div className="mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
                   <div>
                     <h2
                       className={`font-norse mb-5 text-2xl font-bold tracking-wide text-[#F6CC60] lg:text-3xl`}

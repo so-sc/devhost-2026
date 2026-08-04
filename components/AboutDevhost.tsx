@@ -156,7 +156,7 @@ export default function AboutDevhost() {
         >
           <div className="relative z-10 w-full text-justify">
             <p
-              className="font-cinzel text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              className="text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{
                 textShadow:
                   "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",
