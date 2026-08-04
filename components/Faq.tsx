@@ -25,8 +25,7 @@ const faqData = [
       "Yes, each team member needs to register individually and pay the registration fee separately to secure their spot in the hackathon.",
   },
   {
-    question:
-      "Can I participate as an individual or do I need a team?",
+    question: "Can I participate as an individual or do I need a team?",
     answer:
       "You can participate both as an individual or as part of a team. Teams can have 2-4 members maximum.",
   },
@@ -36,8 +35,7 @@ const faqData = [
       "No, all team members must be from the same college or university. Cross-college teams are not allowed.",
   },
   {
-    question:
-      "Will there be mentors or workshops during the hackathon?",
+    question: "Will there be mentors or workshops during the hackathon?",
     answer:
       "Yes, we will have experienced mentors available throughout the event and conduct workshops on various technologies and development practices.",
   },
@@ -111,13 +109,7 @@ export default function FAQ() {
         }}
       />
 
-      <div
-        className="absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(circle, transparent 40%, rgba(0,0,0,.65) 100%)",
-        }}
-      />
+     
 
      
 
@@ -125,18 +117,22 @@ export default function FAQ() {
         {/* Heading */}
 
         <div className="mb-16 text-center">
-          <h2 className="font-norse-bold text-6xl text-[#F6CC60] uppercase md:text-7xl">
-            FAQ
-          </h2>
+      <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
+  <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+    FAQ
+  </span>
+</h2>
 
-          <DecryptText
-            text="> Answers to Common Questions"
-            startDelayMs={200}
-            trailSize={6}
-            flickerIntervalMs={50}
-            revealDelayMs={100}
-            className="font-norse mt-4 text-lg tracking-wider text-[#E5D4A2]/70 md:text-xl"
-          />
+      <h3 className="mt-4">
+  <DecryptText
+    text="Answers to Common Questions"
+    startDelayMs={200}
+    trailSize={6}
+    flickerIntervalMs={50}
+    revealDelayMs={100}
+    className="font-norse text-lg tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
+  />
+</h3>
         </div>
 
         <div ref={itemsRef}>
