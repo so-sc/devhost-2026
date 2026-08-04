@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="relative bg-[url('/footer-background/background.webp')] bg-cover bg-center bg-no-repeat py-6">
       <div className="absolute inset-0 bg-black/80"></div>
-      <div className="absolute top-0 h-12 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
+      <div className="absolute top-0 h-12 w-full bg-gradient-to-b from-[#0c0901] via-black/20 to-transparent" />
 
       <div className="absolute bottom-0 left-0 h-70 w-70 overflow-hidden">
         <Image

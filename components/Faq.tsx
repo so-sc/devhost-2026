@@ -126,12 +126,12 @@ export default function FAQ() {
               trailSize={6}
               flickerIntervalMs={50}
               revealDelayMs={100}
-              className="font-norse text-lg tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
+              className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
             />
           </h3>
         </div>
 
-        <div ref={itemsRef}>
+        <div className="px-4" ref={itemsRef}>
           <Accordion type="single" collapsible className="space-y-5">
             {faqData.map((faq, index) => (
               <AccordionItem
