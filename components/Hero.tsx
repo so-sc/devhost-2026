@@ -83,7 +83,7 @@ export default function Hero() {
                     sizes="(max-width: 640px) 24px, 32px"
                   />
                 </div>
-<div className="relative h-14 w-14 sm:h-12 sm:w-12">
+                <div className="relative h-14 w-14 sm:h-12 sm:w-12">
                   <Image
                     src="/synergia_logo.svg"
                     alt="Synergia"

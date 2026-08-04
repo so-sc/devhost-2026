@@ -23,7 +23,7 @@ const randChar = () =>
 
 export default function DecryptText({
   text,
-  trigger=true,
+  trigger = true,
   className = "",
   flickerIntervalMs = 50,
   revealDelayMs = 90,
@@ -170,7 +170,7 @@ export default function DecryptText({
   ]);
 
   return (
-    <motion.span className={className} >
+    <motion.span className={className}>
       {displayText.split("").map((ch, i) => (
         <span
           key={i}
