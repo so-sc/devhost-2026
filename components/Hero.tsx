@@ -52,9 +52,11 @@ export default function Hero() {
           className="absolute top-1/2 left-1/2 z-40 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-4 md:gap-10"
         >
           {/* Left ornament — mirrored */}
-          <img
+          <Image
             src="/ornament.svg"
             alt=""
+            width={100}
+            height={100}
             className="h-24 shrink-0 scale-x-[-1] opacity-80 md:h-40"
           />
 
@@ -136,9 +138,11 @@ export default function Hero() {
           </div>
 
           {/* Right ornament */}
-          <img
+          <Image
             src="/ornament.svg"
             alt=""
+            width={100}
+            height={100}
             className="h-24 shrink-0 opacity-80 md:h-40"
           />
         </motion.div>
