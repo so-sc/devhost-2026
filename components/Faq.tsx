@@ -31,8 +31,7 @@ const faqData = [
       "You can participate both as an individual or as part of a team. Teams can have 2-4 members maximum.",
   },
   {
-    question:
-      "Can students from different colleges be in the same team?",
+    question: "Can students from different colleges be in the same team?",
     answer:
       "No, all team members must be from the same college or university. Cross-college teams are not allowed.",
   },
@@ -43,14 +42,12 @@ const faqData = [
       "Yes, we will have experienced mentors available throughout the event and conduct workshops on various technologies and development practices.",
   },
   {
-    question:
-      "What resources will be provided during the hackathon?",
+    question: "What resources will be provided during the hackathon?",
     answer:
       "We provide WiFi, power outlets, meals, snacks and technical support throughout the event.",
   },
   {
-    question:
-      "How can I stay informed about event updates and announcements?",
+    question: "How can I stay informed about event updates and announcements?",
     answer:
       "Follow our social media channels, join our Discord server, and check your registered email regularly for all updates and announcements.",
   },
@@ -122,16 +119,13 @@ export default function FAQ() {
         }}
       />
 
-      {/* Gold Glow */}
-  
+     
 
       <div className="relative z-10 mx-auto w-full max-w-5xl">
-
         {/* Heading */}
 
         <div className="mb-16 text-center">
-
-          <h2 className="font-norse-bold text-6xl uppercase text-[#F6CC60] md:text-7xl">
+          <h2 className="font-norse-bold text-6xl text-[#F6CC60] uppercase md:text-7xl">
             FAQ
           </h2>
 
@@ -141,66 +135,51 @@ export default function FAQ() {
             trailSize={6}
             flickerIntervalMs={50}
             revealDelayMs={100}
-            className="mt-4 font-norse text-lg tracking-wider text-[#E5D4A2]/70 md:text-xl"
+            className="font-norse mt-4 text-lg tracking-wider text-[#E5D4A2]/70 md:text-xl"
           />
-
         </div>
 
-  <div ref={itemsRef}>
-  <Accordion type="single" collapsible className="space-y-5">
-    {faqData.map((faq, index) => (
-      <AccordionItem
-        key={index}
-        value={`item-${index}`}
-        data-faq-item
-        className="overflow-hidden rounded-xl border border-[#5A4A2B] bg-[#1B1A18]/60 backdrop-blur-md transition-all duration-300  hover:bg-[#23211D]/70"
-      >
-        <AccordionTrigger className="group px-8 py-6 text-left no-underline hover:no-underline">
-          <div className="flex w-full items-center justify-between">
+        <div ref={itemsRef}>
+          <Accordion type="single" collapsible className="space-y-5">
+            {faqData.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                data-faq-item
+                className="overflow-hidden rounded-xl border border-[#5A4A2B] bg-[#1B1A18]/60 backdrop-blur-md transition-all duration-300 hover:bg-[#23211D]/70"
+              >
+                <AccordionTrigger className="group px-8 py-6 text-left no-underline hover:no-underline">
+                  <div className="flex w-full items-center justify-between">
+                    <div className="flex items-center gap-5">
+                      {/* Number */}
+                      <span className="font-norse-bold text-2xl leading-none text-[#F6CC60]/80 md:text-2xl">
+                        {["Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ"][index]}
+                      </span>
 
-            <div className="flex items-center gap-5">
+                      {/* Divider */}
+                      <div className="h-8 w-px bg-[#F6CC60]/25" />
 
-              {/* Number */}
-                   <span className="font-norse-bold text-2xl leading-none text-[#F6CC60]/80 md:text-2xl">
-        {[
-          "Ⅰ",
-          "Ⅱ",
-          "Ⅲ",
-          "Ⅳ",
-          "Ⅴ",
-          "Ⅵ",
-          "Ⅶ",
-        ][index]}
-      </span>
+                      {/* Question */}
+                      <h3 className="font-trajan text-base text-zinc-200 transition-all duration-300 md:text-lg">
+                        {faq.question}
+                      </h3>
+                    </div>
+                  </div>
+                </AccordionTrigger>
 
-              {/* Divider */}
-              <div className="h-8 w-px bg-[#F6CC60]/25" />
+                <AccordionContent className="px-8 pb-7">
+                  {/* thin divider */}
+                  <div className="mb-6 h-px bg-gradient-to-r from-[#F6CC60]/70 via-[#F6CC60]/20 to-transparent" />
 
-              {/* Question */}
-              <h3 className="font-trajan text-base text-zinc-200 transition-all duration-300  md:text-lg">
-                {faq.question}
-              </h3>
-
-            </div>
-
-          </div>
-        </AccordionTrigger>
-
-        <AccordionContent className="px-8 pb-7">
-
-          {/* thin divider */}
-          <div className="mb-6 h-px bg-gradient-to-r from-[#F6CC60]/70 via-[#F6CC60]/20 to-transparent" />
-
-          <p className="font-trajan max-w-3xl leading-8 text-zinc-400">
-            {faq.answer}
-          </p>
-
-        </AccordionContent>
-      </AccordionItem>
-    ))}
-  </Accordion>
-</div>
-</div>
+                  <p className="font-trajan max-w-3xl leading-8 text-zinc-400">
+                    {faq.answer}
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </div>
     </section>
   );
 }
