@@ -5,22 +5,25 @@ import { useEffect, useRef, useState } from "react";
 
 interface DecryptTextProps {
   text: string;
+  trigger?: boolean;
   className?: string;
-  flickerIntervalMs?: number; // how fast random chars change
-  revealDelayMs?: number; // how often we advance the trail
-  trailSize?: number; // how many encrypted chars visible at once
-  revealBatch?: number; // how many chars decrypt per advance
-  startDelayMs?: number; // 🔥 delay before animation starts
+  style?: React.CSSProperties;
+  flickerIntervalMs?: number;
+  revealDelayMs?: number;
+  trailSize?: number;
+  revealBatch?: number;
+  startDelayMs?: number;
 }
 
 const DEFAULT_CHARSET =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}<>/?|";
+  "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω·⟐⚔ϟϡ";
 
 const randChar = () =>
   DEFAULT_CHARSET[Math.floor(Math.random() * DEFAULT_CHARSET.length)];
 
 export default function DecryptText({
   text,
+  trigger = true,
   className = "",
   flickerIntervalMs = 50,
   revealDelayMs = 90,
@@ -28,24 +31,40 @@ export default function DecryptText({
   revealBatch = 2,
   startDelayMs = 0,
 }: DecryptTextProps) {
-  const [displayText, setDisplayText] = useState("".padEnd(text.length, " ")); // start blank
-  const [inView, setInView] = useState(false);
+  const [displayText, setDisplayText] = useState("".padEnd(text.length, " "));
+  const [charStates, setCharStates] = useState<
+    ("hidden" | "active" | "revealed")[]
+  >(Array(text.length).fill("hidden"));
 
   const revealedRef = useRef<boolean[]>([]);
   const activeRef = useRef<boolean[]>([]);
   const activeQueueRef = useRef<number[]>([]);
-  const headRef = useRef<number>(0); // next index to activate
+  const headRef = useRef<number>(0);
 
   const flickerRef = useRef<number | null>(null);
   const advanceRef = useRef<number | null>(null);
   const startTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!trigger) {
+      if (flickerRef.current) {
+        clearInterval(flickerRef.current);
+        flickerRef.current = null;
+      }
+      if (advanceRef.current) {
+        clearInterval(advanceRef.current);
+        advanceRef.current = null;
+      }
+      if (startTimeoutRef.current) {
+        clearTimeout(startTimeoutRef.current);
+        startTimeoutRef.current = null;
+      }
+      setDisplayText("".padEnd(text.length, " "));
+      setCharStates(Array(text.length).fill("hidden"));
+      return;
+    }
 
-    // delay before starting animation
     startTimeoutRef.current = window.setTimeout(() => {
-      // init state for this run
       revealedRef.current = Array.from(
         { length: text.length },
         (_, i) => text[i] === " ",
@@ -55,8 +74,19 @@ export default function DecryptText({
       headRef.current = 0;
       setDisplayText("".padEnd(text.length, " "));
 
+      const syncCharStates = () => {
+        setCharStates(
+          Array.from({ length: text.length }, (_, i) =>
+            revealedRef.current[i]
+              ? "revealed"
+              : activeRef.current[i]
+                ? "active"
+                : "hidden",
+          ),
+        );
+      };
+
       const activateNext = () => {
-        // keep up to `trailSize` active flickering chars (skip spaces)
         while (
           activeQueueRef.current.length < trailSize &&
           headRef.current < text.length
@@ -87,8 +117,8 @@ export default function DecryptText({
           headRef.current >= text.length &&
           activeQueueRef.current.length === 0
         ) {
-          // ✅ Force final render to the actual text
           setDisplayText(text);
+          syncCharStates();
 
           if (flickerRef.current) {
             clearInterval(flickerRef.current);
@@ -101,7 +131,6 @@ export default function DecryptText({
         }
       };
 
-      // continuous flicker render
       flickerRef.current = window.setInterval(() => {
         setDisplayText(() =>
           text
@@ -117,10 +146,10 @@ export default function DecryptText({
         );
       }, flickerIntervalMs);
 
-      // smooth advancing trail (no batch pauses)
       advanceRef.current = window.setInterval(() => {
         activateNext();
         revealSome();
+        syncCharStates();
         maybeFinish();
       }, revealDelayMs);
     }, startDelayMs);
@@ -131,7 +160,7 @@ export default function DecryptText({
       if (advanceRef.current) clearInterval(advanceRef.current);
     };
   }, [
-    inView,
+    trigger,
     text,
     flickerIntervalMs,
     revealDelayMs,
@@ -141,17 +170,27 @@ export default function DecryptText({
   ]);
 
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 1 }}
-      whileInView={{
-        opacity: 1,
-        transition: { duration: 0.6, ease: "easeOut" },
-      }}
-      viewport={{ once: true }}
-      onViewportEnter={() => setInView(true)}
-    >
-      {displayText}
-    </motion.div>
+    <motion.span className={className}>
+      {displayText.split("").map((ch, i) => (
+        <span
+          key={i}
+          className="transition-colors duration-150"
+          style={{
+            color:
+              charStates[i] === "active"
+                ? "#D4AF37"
+                : charStates[i] === "revealed"
+                  ? "inherit"
+                  : "transparent",
+            textShadow:
+              charStates[i] === "active"
+                ? "0 0 8px rgba(212,175,55,0.9)"
+                : "none",
+          }}
+        >
+          {ch}
+        </span>
+      ))}
+    </motion.span>
   );
 }

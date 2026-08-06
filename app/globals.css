@@ -46,6 +46,10 @@
   --font-orbitron: var(--font-orbitron);
   --font-delagothic: var(--font-delagothic);
   --font-monospace: var(--font-monospace);
+  --font-norse: var(--font-norse);
+  --font-norse-bold: var(--font-norse-bold);
+  --font-trajan: var(--font-trajan);
+  --font-cinzel: var(--font-cinzel);
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 }
 
@@ -140,6 +144,10 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  .font-caesar {
+    font-family: "Caesar Dressing", var(--font-cinzel), serif;
   }
 }
 

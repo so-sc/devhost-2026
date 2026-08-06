@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { Download } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ClippedButton } from "./ClippedButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,31 +12,18 @@ export default function AboutDevhost() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const captionRef = useRef<HTMLHeadingElement>(null);
-  const aboutRef = useRef<HTMLParagraphElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const backgroundRef = useRef<HTMLDivElement>(null);
 
-  interface DevhostData {
-    title: string;
-    caption: string;
-    about: string;
-    logoSrc: string;
-  }
-
-  const devhostData: DevhostData = {
-    title: "About Devhost",
-    caption: "Expertise Redefined, Experience Reimagined.",
+  const devhostData = {
+    title: "About DevHost",
+    caption: "Where Ancient Wisdom Meets Future Code",
     about:
       "Devhost, the flagship event is a remarkable tech convergence by Sahyadri Open Source Community (SOSC), is set to be an exhilarating experience with an exciting mix of technical and non-technical events. It seeks to equip participants with knowledge and skills, while encouraging curiosity and fostering innovation. With a variety of tech and non-tech battles and events featuring dev talks and workshops led by industry experts, it creates opportunities for both personal development and self-exploration. Join the 36-hour live hack event to bring your ideas to fruition, with challenges designed for every level of experience.",
-    logoSrc: "temp.jpg",
   };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      // initial state
       gsap.set(
         [
           titleRef.current,
@@ -44,104 +31,39 @@ export default function AboutDevhost() {
           aboutRef.current,
           buttonsRef.current,
         ],
-        {
-          opacity: 0,
-          y: 30,
-        },
+        { opacity: 0, y: 30 },
       );
 
-      gsap.set(contentRef.current, { opacity: 0 });
-
-      gsap.set(backgroundRef.current, {
-        scaleY: 0,
-        transformOrigin: "top center",
-      });
-
-      // responsive clipPath setup
-      mm.add("(max-width: 640px)", () => {
-        gsap.set(backgroundRef.current, {
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", // rectangle for sm
-        });
-      });
-
-      mm.add("(min-width: 641px)", () => {
-        gsap.set(backgroundRef.current, {
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%)", // angled for md+
-        });
-      });
-
-      // timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 100%",
-          end: "top 20%",
-          scrub: 1,
+          start: "top 75%",
+          end: "bottom 80%",
           toggleActions: "play none none reverse",
         },
       });
 
-      tl.to(
-        contentRef.current,
-        {
-          opacity: 1,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        0,
-      )
-        .to(
-          titleRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.3,
-            ease: "power2.out",
-          },
-          0.1,
-        )
+      tl.to(titleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power3.out",
+      })
         .to(
           captionRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.3,
-            ease: "power2.out",
-          },
-          0.2,
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+          "-=0.3",
         )
         .to(
           aboutRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.3,
-            ease: "power2.out",
-          },
-          0.3,
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+          "-=0.15",
         )
         .to(
           buttonsRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.3,
-            ease: "back.out(1.2)",
-          },
-          0.4,
-        )
-        .to(
-          backgroundRef.current,
-          {
-            scaleY: 1,
-            duration: 0.6,
-            ease: "power2.out",
-          },
-          0.2,
+          { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.2)" },
+          "-=0.15",
         );
-
-      // cleanup only once
-      return () => mm.revert();
     }, sectionRef);
 
     return () => ctx.revert();
@@ -150,78 +72,116 @@ export default function AboutDevhost() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black"
+      id="about"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white lg:px-8"
     >
-      {/* <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,#a3ff12_1px,transparent_1px)] [background-size:40px_40px] opacity-30" /> */}
-      {/* <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" /> */}
-
       <div
-        ref={backgroundRef}
-        className="bg-opacity-5 bg-primary absolute inset-0"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "url('/images/parchment-texture.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.6,
+          mixBlendMode: "soft-light",
+        }}
       />
-      {/* <div className="absolute bottom-5 left-5 z-20 h-10 w-10 border-b-2 border-l-2 border-black" /> */}
 
-      <div className="font-orbitron absolute top-6 left-6 text-sm font-bold text-black opacity-80">
-        {"// DEVHOST"}
-      </div>
-      <div className="font-orbitron absolute top-6 right-6 text-sm font-bold text-black opacity-80">
-        2025
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.07),transparent_65%)]" />
+
+      <div className="pointer-events-none absolute top-10 right-0 z-[1] hidden w-[280px] lg:block xl:w-[380px]">
+        <Image
+          src="/images/about-temple.png"
+          alt=""
+          width={1100}
+          height={1100}
+          className="h-auto w-full object-contain opacity-[0.12] select-none"
+          style={{ objectPosition: "top right" }}
+        />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-12">
-        <div
-          ref={contentRef}
-          className="relative flex min-h-[600px] flex-col justify-center p-8 md:p-16"
-        >
-          <div className="mb-12 text-center">
-            <h1
-              ref={titleRef}
-              className="font-orbitron mb-2 text-4xl font-bold tracking-wider text-black uppercase md:text-7xl"
-            >
+      <div className="pointer-events-none absolute top-[-30px] left-1/2 z-[1] hidden w-[180px] -translate-x-1/2 sm:block md:w-[240px]">
+        <Image
+          src="/images/sun-graphic.svg"
+          alt=""
+          width={400}
+          height={400}
+          className="h-auto w-full object-contain opacity-[0.12] select-none"
+        />
+      </div>
+
+      <div className="pointer-events-none absolute bottom-0 left-0 z-[1] hidden w-[220px] lg:block xl:w-[260px]">
+        <Image
+          src="/images/mythic_spartan_shield.webp"
+          alt=""
+          width={600}
+          height={800}
+          className="h-auto w-full object-contain opacity-[0.18] select-none"
+          style={{ objectPosition: "bottom left" }}
+        />
+      </div>
+
+      <div className="pointer-events-none absolute bottom-0 left-0 z-[1] block w-[120px] sm:w-[150px] lg:hidden">
+        <Image
+          src="/images/mythic_spartan_shield.webp"
+          alt=""
+          width={600}
+          height={800}
+          className="h-auto w-full object-contain opacity-[0.10] select-none"
+          style={{ objectPosition: "bottom left" }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto w-[80%]">
+        <div className="relative mb-4 text-center sm:mb-6">
+          <h2
+            ref={titleRef}
+            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
+          >
+            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               {devhostData.title}
-            </h1>
+            </span>
+          </h2>
 
-            <h2
-              ref={captionRef}
-              className="font-orbitron text-lg tracking-wider text-black/80 md:text-2xl"
+          <h3
+            ref={captionRef}
+            className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
+          >
+            {devhostData.caption}
+          </h3>
+        </div>
+
+        <div
+          ref={aboutRef}
+          className="relative mx-auto flex flex-col items-center pt-4 sm:w-full sm:max-w-[80%] sm:pt-8"
+        >
+          <div className="relative z-10 w-full text-justify">
+            <p
+              className="text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              style={{
+                textShadow:
+                  "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",
+              }}
             >
-              &gt; {devhostData.caption}
-            </h2>
+              {devhostData.about}
+            </p>
           </div>
+        </div>
 
-          <p
-            ref={aboutRef}
-            className="mx-auto mb-12 max-w-5xl text-justify leading-relaxed font-medium text-black/90 md:text-lg"
+        <div
+          ref={buttonsRef}
+          className="mt-6 flex w-full flex-col items-center gap-3 sm:mt-8"
+        >
+          <a
+            href="/brochure/devhost_2025.pdf"
+            download
+            className="group font-dalek inline-flex items-center justify-center gap-2.5 rounded-sm border border-[#C9963E] bg-gradient-to-b from-[#1C1A17] via-[#121212] to-[#080808] px-6 py-3 text-xs font-bold tracking-[0.12em] text-[#F6CC60] uppercase shadow-[0_0_16px_rgba(246,204,96,0.08),inset_0_0_0_1px_rgba(246,204,96,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#F6CC60] hover:text-[#FFF3C1] hover:shadow-[0_0_24px_rgba(246,204,96,0.25)] active:scale-[0.98] sm:px-8 sm:py-3 sm:text-sm sm:tracking-[0.14em]"
           >
-            {devhostData.about}
-          </p>
-
-          <div
-            ref={buttonsRef}
-            className="font-orbitron flex flex-wrap justify-center gap-4"
-          >
-            {/* <a href="/brochure/Event Rulebook - Devhost.pdf" download>
-              <ClippedButton
-                innerBg="bg-black"
-                outerBg="bg-black"
-                textColor="text-white"
-              >
-                <Download size={20} />
-                <span className="font-default text-xs">Event Rulebook</span>
-              </ClippedButton>
-            </a> */}
-
-            <a href="/brochure/devhost_2025.pdf" download>
-              <ClippedButton
-                innerBg="bg-black"
-                outerBg="bg-black"
-                textColor="text-white"
-              >
-                <Download size={20} />
-                <span className="font-default text-xs">DevHost Brochure</span>
-              </ClippedButton>
-            </a>
-          </div>
+            <Download
+              size={18}
+              className="transition-transform duration-300 group-hover:-translate-y-0.5"
+            />
+            <span>DevHost Brochure</span>
+          </a>
         </div>
       </div>
     </section>

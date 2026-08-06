@@ -3,15 +3,16 @@ import { Suspense, useEffect, useState } from "react";
 import Hero from "@/components/Hero";
 import AboutDevhost from "@/components/AboutDevhost";
 // import Counter from "@/components/Counter";
-import TimelineSection from "@/components/Timeline";
-import AboutHackathon from "@/components/AboutHackathon";
+// import TimelineSection from "@/components/Timeline";
+// import AboutHackathon from "@/components/AboutHackathon";
 import Footer from "@/components/Footer";
 import FAQ from "@/components/Faq";
 import Map from "@/components/Map";
 import Events from "@/components/Events";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import SponsorsLogo from "@/components/Sponsors";
-import SpeakersInfo from "@/components/SpeakersInfo";
+// import SponsorsLogo from "@/components/Sponsors";
+import CallForSpeakers from "@/components/CallForSpeakers";
+// import SpeakersInfo from "@/components/SpeakersInfo";
 // import Final from "@/components/Final";
 
 export default function Home() {
@@ -44,15 +45,16 @@ export default function Home() {
         <Hero />
         {/* <Counter /> */}
         {/* <Final /> */}
-        <SponsorsLogo />
+        {/* <SponsorsLogo /> */}
         <AboutDevhost />
-        <div className="relative h-[30vh]">
+        {/* <div className="relative h-[30vh]">
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
-        </div>
-        <AboutHackathon />
-        <TimelineSection />
-        <SpeakersInfo />
+        </div> */}
+        {/* <AboutHackathon />
+        <TimelineSection /> */}
+        {/* <SpeakersInfo /> */}
         <Events />
+        <CallForSpeakers />
         <FAQ />
         <Map />
         <Footer />
