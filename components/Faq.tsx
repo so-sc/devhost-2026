@@ -163,7 +163,7 @@ export default function FAQ() {
                   {/* thin divider */}
                   <div className="mb-6 h-px bg-gradient-to-r from-[#F6CC60]/70 via-[#F6CC60]/20 to-transparent" />
 
-                  <p className="max-w-3xl leading-8 text-zinc-400">
+                  <p className="max-w-3xl leading-9 text-zinc-300">
                     {faq.answer}
                   </p>
                 </AccordionContent>
