@@ -85,7 +85,7 @@ export default function FAQ() {
   }, []);
 
   return (
-  <section className="relative w-full overflow-visible px-4 py-16 pb-28 sm:px-6 sm:py-20 sm:pb-32">
+    <section className="relative w-full overflow-visible px-4 py-16 pb-28 sm:px-6 sm:py-20 sm:pb-32">
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -135,7 +135,7 @@ export default function FAQ() {
                 key={index}
                 value={`item-${index}`}
                 data-faq-item
-               className="relative overflow-hidden rounded-xl border border-[#5A4A2B] bg-[#1B1A18]/60 backdrop-blur-md transition-all duration-300 hover:bg-[#23211D]/70 last:border-b last:border-[#5A4A2B]"
+                className="relative overflow-hidden rounded-xl border border-[#5A4A2B] bg-[#1B1A18]/60 backdrop-blur-md transition-all duration-300 last:border-b last:border-[#5A4A2B] hover:bg-[#23211D]/70"
               >
                 <AccordionTrigger className="group px-8 py-6 text-left no-underline hover:no-underline">
                   <div className="flex w-full items-center justify-between">
@@ -160,7 +160,7 @@ export default function FAQ() {
                   {/* thin divider */}
                   <div className="mb-6 h-px bg-gradient-to-r from-[#F6CC60]/70 via-[#F6CC60]/20 to-transparent" />
 
-                  <p className="max-w-3xl leading-9 text-zinc-300">
+                  <p className="max-w-3xl text-base text-zinc-300 md:text-lg">
                     {faq.answer}
                   </p>
                 </AccordionContent>

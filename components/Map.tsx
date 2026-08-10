@@ -37,13 +37,13 @@ const Map = () => {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] px-4 text-white sm:px-6">
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] text-white">
       {/* Background */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage: "url('/images/parchment-texture.jpg')",
-          backgroundSize: "cover",
+          backgroundSize: "100% 100%",
           backgroundPosition: "center",
           opacity: 0.6,
           mixBlendMode: "soft-light",
@@ -57,7 +57,7 @@ const Map = () => {
       <div className="pointer-events-none absolute inset-0 bg-black/35" />
 
       {/* Main Content */}
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 sm:px-10 lg:grid-cols-5 lg:px-14 xl:px-20">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-8 py-16 lg:grid-cols-5">
         {/* LEFT — TEXT */}
         <div className="space-y-6 lg:col-span-2">
           <h2 className="font-norse-bold text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
@@ -71,7 +71,7 @@ const Map = () => {
           </h3>
 
           <p
-            className="max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75"
+            className="max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75 sm:text-lg"
             style={{
               textShadow:
                 "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",
@@ -106,8 +106,8 @@ const Map = () => {
 
               {/* Click to view */}
               <div className="absolute top-5 left-1/2 -translate-x-1/2">
-                <div className="border border-[#F6CC60]/70 bg-black/70 px-6 py-2 backdrop-blur-sm transition-all duration-300 group-hover:border-[#F6CC60]">
-                  <span className="font-norse text-sm tracking-[0.2em] text-[#F6CC60] uppercase">
+                <div className="border border-[#F6CC60]/70 bg-black/70 px-2 py-1 backdrop-blur-sm transition-all duration-300 group-hover:border-[#F6CC60] sm:px-6 sm:py-2">
+                  <span className="font-norse text-xs tracking-[1px] text-[#F6CC60] uppercase sm:text-sm sm:tracking-[0.2em]">
                     Click to View Location
                   </span>
                 </div>
