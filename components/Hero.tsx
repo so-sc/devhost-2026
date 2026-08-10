@@ -8,7 +8,7 @@ function Pillar({ side }: { side: "left" | "right" }) {
         side === "left"
           ? "left-0 -translate-x-1/2 sm:translate-x-0"
           : "right-0 translate-x-1/2 sm:translate-x-0"
-      } w-[150px] xs:w-[170px] sm:w-[190px] md:w-[240px]`}
+      } xs:w-[170px] w-[150px] sm:w-[190px] md:w-[240px]`}
     >
       <Image
         src="/pillar.png"
@@ -71,12 +71,12 @@ export default function Hero() {
       </div>
 
       {/* Presents */}
-      <p className="-translate-y-3 relative z-10 text-sm font-norse-bold tracking-[3px] text-white/70 sm:text-base">
+      <p className="font-norse-bold relative z-10 -translate-y-3 text-sm tracking-[3px] text-white/70 sm:text-base">
         presents
       </p>
 
       {/* Main logo */}
-      <div className="relative z-10 -translate-y-7 h-40 w-40 sm:h-60 sm:w-60 md:h-100 md:w-100">
+      <div className="relative z-10 h-40 w-40 -translate-y-7 sm:h-60 sm:w-60 md:h-100 md:w-100">
         <Image
           src="/DVHST.png"
           alt="DevHost 2026"
@@ -87,7 +87,7 @@ export default function Hero() {
       </div>
 
       {/* Tagline */}
-      <p className="relative -translate-y-12 sm:-translate-y-20 md:-translate-y-28 text-center text-sm font-norse-bold tracking-[2px] text-white sm:text-base sm:tracking-[4px] md:text-lg">
+      <p className="font-norse-bold relative -translate-y-12 text-center text-sm tracking-[2px] text-white sm:-translate-y-20 sm:text-base sm:tracking-[4px] md:-translate-y-28 md:text-lg">
         immortal minds build mortal ideas
       </p>
     </div>
