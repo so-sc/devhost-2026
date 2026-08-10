@@ -82,8 +82,8 @@ export default function FAQ() {
         yoyo: true,
         ease: "sine.inOut",
       });
-gsap.utils.toArray<HTMLElement>(".faq-divider").forEach((divider) => {
-          gsap.from(divider, {
+      gsap.utils.toArray<HTMLElement>(".faq-divider").forEach((divider) => {
+        gsap.from(divider, {
           scaleX: 0,
           transformOrigin: "left center",
           duration: 0.6,
