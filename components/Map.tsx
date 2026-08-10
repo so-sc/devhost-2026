@@ -1,13 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 const Map = () => {
-  const topCut1 = useRef<HTMLDivElement>(null);
-  const topCut2 = useRef<HTMLDivElement>(null);
-  const bottomCut1 = useRef<HTMLDivElement>(null);
-  const bottomCut2 = useRef<HTMLDivElement>(null);
+  const topCut1 = useRef(null);
+  const topCut2 = useRef(null);
+  const bottomCut1 = useRef(null);
+  const bottomCut2 = useRef(null);
 
   useEffect(() => {
     const animateCut = (
@@ -36,57 +37,28 @@ const Map = () => {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] px-4 text-white sm:px-6">
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] text-white">
       {/* Background */}
-
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage: "url('/images/parchment-texture.jpg')",
-          backgroundSize: "cover",
+          backgroundSize: "100% 100%",
           backgroundPosition: "center",
           opacity: 0.6,
           mixBlendMode: "soft-light",
         }}
       />
 
+      {/* Gold glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.07),transparent_65%)]" />
 
-      <div className="pointer-events-none absolute top-10 right-0 z-[1] hidden w-[280px] lg:block xl:w-[380px]">
-        <img
-          src="/images/about-temple.png"
-          alt=""
-          className="h-auto w-full object-contain opacity-[0.12] select-none"
-        />
-      </div>
-
-      <div className="pointer-events-none absolute top-[-30px] left-1/2 z-[1] hidden w-[180px] -translate-x-1/2 sm:block md:w-[240px]">
-        <img
-          src="/images/sun-graphic.svg"
-          alt=""
-          className="h-auto w-full object-contain opacity-[0.12] select-none"
-        />
-      </div>
-
-      <div className="pointer-events-none absolute bottom-0 left-0 z-[1] hidden w-[220px] lg:block xl:w-[260px]">
-        <img
-          src="/images/mythic_spartan_shield.webp"
-          alt=""
-          className="h-auto w-full object-contain opacity-[0.18] select-none"
-        />
-      </div>
-
-      <div className="pointer-events-none absolute bottom-0 left-0 z-[1] block w-[120px] sm:w-[150px] lg:hidden">
-        <img
-          src="/images/mythic_spartan_shield.webp"
-          alt=""
-          className="h-auto w-full object-contain opacity-[0.10] select-none"
-        />
-      </div>
+      {/* Dark overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-black/35" />
 
       {/* Main Content */}
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 py-16 lg:grid-cols-5">
-        {/* Left */}
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-8 py-16 lg:grid-cols-5">
+        {/* LEFT — TEXT */}
         <div className="space-y-6 lg:col-span-2">
           <h2 className="font-norse-bold text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
             <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
@@ -99,7 +71,7 @@ const Map = () => {
           </h3>
 
           <p
-            className="max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75"
+            className="max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75 sm:text-lg"
             style={{
               textShadow:
                 "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",
@@ -109,25 +81,39 @@ const Map = () => {
             passion fuels lasting memories.
           </p>
         </div>
-        {/* Right */}
-        <div className="relative lg:col-span-3">
-          {/* Frame */}
-          <div className="relative rounded-xl border border-[#312b20] bg-[#23201A]/40 p-4 shadow-[0_20px_80px_rgba(0,0,0,.55)] backdrop-blur-md">
-            {/* Gold Accent */}
-            <div className="absolute top-0 right-8 left-8 h-px bg-gradient-to-r from-transparent via-[#F6CC60] to-transparent" />
-            <div className="absolute right-8 bottom-0 left-8 h-px bg-gradient-to-r from-transparent via-[#F6CC60] to-transparent" />
 
-            {/* Inner Border */}
-            <div className="overflow-hidden rounded-lg border border-[#C89D47]/40">
-              <iframe
-                src="https://maps.google.com/maps?q=Sahyadri%20College%20of%20Engineering%20and%20Management&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-[480px] w-full border-0"
+        {/* RIGHT — LOCATION IMAGE */}
+        <div className="relative lg:col-span-3 lg:flex lg:justify-center">
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Sahyadri+College+of+Engineering+and+Management"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block w-full lg:w-[88%]"
+          >
+            <div className="relative overflow-hidden rounded-sm">
+              {/* Location image */}
+              <Image
+                src="/images/map.png"
+                alt="Sahyadri College of Engineering and Management"
+                width={1500}
+                height={1000}
+                className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                priority
               />
+
+              {/* Dark overlay */}
+              <div className="absolute inset-0 bg-black/10 transition-all duration-300 group-hover:bg-black/25" />
+
+              {/* Click to view */}
+              <div className="absolute top-5 left-1/2 -translate-x-1/2">
+                <div className="border border-[#F6CC60]/70 bg-black/70 px-2 py-1 backdrop-blur-sm transition-all duration-300 group-hover:border-[#F6CC60] sm:px-6 sm:py-2">
+                  <span className="font-norse text-xs tracking-[1px] text-[#F6CC60] uppercase sm:text-sm sm:tracking-[0.2em]">
+                    Click to View Location
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
