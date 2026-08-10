@@ -1,68 +1,55 @@
 "use client";
 
-import { ReactNode, isValidElement, cloneElement, ReactElement } from "react";
+import { ReactNode, isValidElement, cloneElement, CSSProperties } from "react";
 import clsx from "clsx";
-import { ClippedCard } from "./ClippedCard";
 
 type ClippedButtonProps = {
   children: ReactNode;
   onClick?: () => void;
   disabled?: boolean;
-  innerBg?: string;
-  outerBg?: string;
-  textColor?: string;
   type?: "button" | "submit";
   className?: string;
   asChild?: boolean;
+};
+
+type ChildProps = {
+  className?: string;
+  style?: CSSProperties;
 };
 
 export function ClippedButton({
   children,
   onClick,
   disabled,
-  innerBg = "bg-primary",
-  outerBg = "bg-transparent",
-  textColor = "text-black",
   type = "button",
   className = "",
   asChild = false,
 }: ClippedButtonProps) {
-  if (asChild && isValidElement(children)) {
-    const child = children as ReactElement<{ className?: string }>;
-    return (
-      <ClippedCard
-        className={`flex-1 ${className}`}
-        innerBg={innerBg}
-        outerBg={outerBg}
-      >
-        {cloneElement(child, {
-          className: clsx(
-            child.props.className,
-            "w-full px-5 py-2 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2",
-            textColor,
-          ),
-        })}
-      </ClippedCard>
-    );
+  const sharedClasses = clsx(
+    "inline-flex items-center justify-center gap-2",
+    "rounded-md border px-6 py-2.5 text-xs font-bold tracking-widest uppercase",
+    "bg-black border-[#F6CC60] text-[#F6CC60]",
+    "shadow-[0_0_10px_rgba(246,204,96,0.35)]",
+    "transition-all hover:brightness-110 hover:shadow-[0_0_16px_rgba(246,204,96,0.5)]",
+    "disabled:cursor-not-allowed disabled:opacity-50",
+    className,
+  );
+
+  if (asChild && isValidElement<ChildProps>(children)) {
+    const child = children;
+    return cloneElement(child, {
+      className: clsx(child.props.className, sharedClasses),
+    });
   }
 
   return (
-    <ClippedCard
-      className={`font-orbitron flex-1 hover:brightness-95 ${className}`}
-      innerBg={innerBg}
-      outerBg={outerBg}
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={clsx(sharedClasses, "cursor-pointer")}
     >
-      <button
-        type={type}
-        onClick={onClick}
-        disabled={disabled}
-        className={clsx(
-          "z-10 flex w-full cursor-pointer items-center justify-center gap-2 px-5 py-2 text-xs font-bold tracking-widest uppercase disabled:opacity-50",
-          textColor,
-        )}
-      >
-        {children}
-      </button>
-    </ClippedCard>
+      {children}
+    </button>
   );
 }

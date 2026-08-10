@@ -353,11 +353,7 @@ export default function Home() {
 
             <div>
               <a href="/brochure/devhack_rulebook.pdf" download>
-                <ClippedButton
-                  innerBg="bg-black"
-                  outerBg="bg-primary"
-                  textColor="text-primary"
-                >
+                <ClippedButton className="px-5 py-2">
                   <p className="flex items-center gap-2 whitespace-pre">
                     <Download size={14} />
                     Rulebook

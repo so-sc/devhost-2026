@@ -1,11 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Calendar,
+  Clock,
+} from "lucide-react";
 import Image from "next/image";
-import { ClippedButton } from "@/components/ClippedButton";
-import DecryptText from "@/components/animated/TextAnimation";
 import { useRouter } from "next/navigation";
+import { ClippedButton } from "@/components/ClippedButton";
 
 const speakers = [
   {
@@ -81,7 +86,7 @@ const speakers = [
     id: 7,
     name: "Raghu Anand",
     title: "Head of Technology L&D / Training @ EG/AS",
-    bio: "Raghu Anand, Lead Technical Instructor at EG A/S, is an experienced tech educator specializing in software engineering, cloud, ML, and DevOps. A former learning leader at AlmaBetter, Apisero, and Edureka, he’s guided thousands of developers through innovative, industry-aligned training and mentorship.",
+    bio: "Raghu Anand, Lead Technical Instructor at EG A/S, is an experienced tech educator specializing in software engineering, cloud, ML, and DevOps. A former learning leader at AlmaBetter, Apisero, and Edureka, he's guided thousands of developers through innovative, industry-aligned training and mentorship.",
     img: "/speakers/RaghuAnand.jpg",
     link: "https://www.linkedin.com/in/raghuanand16",
     presence: {
@@ -105,127 +110,193 @@ const speakers = [
 
 export default function SpeakerPage() {
   const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
   const router = useRouter();
 
-  const next = () => setIndex((prev) => (prev + 1) % speakers.length);
-  const prev = () =>
-    setIndex((prev) => (prev - 1 + speakers.length) % speakers.length);
+  const goTo = (nextIndex: number) => {
+    if (nextIndex === index) return;
+    setVisible(false);
+    window.setTimeout(() => {
+      setIndex(nextIndex);
+      setVisible(true);
+    }, 220);
+  };
+
+  const next = () => goTo((index + 1) % speakers.length);
+  const prev = () => goTo((index - 1 + speakers.length) % speakers.length);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [index]);
+
+  const speaker = speakers[index];
+  const [datePart, timePart] = speaker.presence.time.split(",");
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-black text-white">
-      {/* Subtle grid background */}
-      <div className="pointer-events-none fixed inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(#a3ff12 2px, transparent 1px),
-              linear-gradient(90deg, #a3ff12 2px, transparent 1px)
-            `,
-            backgroundSize: "80px 80px",
-            backgroundPosition: "center",
-          }}
-        ></div>
-      </div>
+    <div className="relative min-h-screen w-full overflow-hidden bg-[#050403] text-white">
+      {/* Parchment texture, matching the landing section */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "url('/images/parchment-texture.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.8,
+          mixBlendMode: "soft-light",
+        }}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.06),transparent_65%)]" />
 
-      {/* Back Button */}
-      <div className="absolute top-3 left-3 z-20 md:top-8 md:left-8">
-        <ClippedButton onClick={() => router.push("/")}>Back</ClippedButton>
-      </div>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.06),transparent_65%)]" />
 
-      {/* Main Section */}
-      <div className="relative flex h-[80%] w-full flex-col items-center justify-center px-4 sm:px-6 md:px-12">
+      <div
+        className="pointer-events-none absolute -top-20 right-[-60px] z-0 hidden h-[600px] w-[760px] opacity-[0.23] md:block"
+        style={{
+          backgroundImage: "url('/images/about-temple.png')",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "top right",
+          filter: "grayscale(100%) contrast(0.8)",
+          maskImage:
+            "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.75) 55%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.75) 55%, transparent 100%)",
+        }}
+      />
+      {/* <div className="absolute top-5 left-5 z-10 h-10 w-10 border-t-2 border-l-2 border-[#F6CC60]/50" />
+      <div className="absolute top-5 right-5 z-10 h-10 w-10 border-t-2 border-r-2 border-[#F6CC60]/50" />
+      <div className="absolute bottom-5 left-5 z-10 h-10 w-10 border-b-2 border-l-2 border-[#F6CC60]/50" />
+      <div className="absolute right-5 bottom-5 z-10 h-10 w-10 border-r-2 border-b-2 border-[#F6CC60]/50" /> */}
+
+      {/* 2. BACK — small, standalone, top-left. No header bar, no border box. */}
+      <button
+        onClick={() => router.push("/")}
+        className="text-s absolute top-5 left-5 z-30 flex items-center gap-2 tracking-[0.2em] text-[#F6CC60]/80 uppercase transition-colors hover:text-[#F6CC60] focus-visible:ring-1 focus-visible:ring-[#F6CC60] focus-visible:outline-none md:top-8 md:left-8"
+      >
+        <ChevronLeft size={14} />
+        Back
+      </button>
+
+      {/* Main content */}
+      <div className="relative z-10 mx-auto flex w-[90%] max-w-6xl flex-col-reverse items-center gap-10 pt-40 pb-8 md:min-h-[75vh] md:flex-row md:items-center md:justify-between md:gap-16 md:pt-16 md:pb-0">
+        {/* Text column */}
         <div
-          key={speakers[index].id}
-          className="relative mt-10 flex w-full max-w-4xl flex-col items-center justify-center space-y-4 md:mt-0 md:flex-row md:space-y-0 md:space-x-8"
+          className={`flex-1 text-center transition-all duration-300 ease-out md:translate-y-10 md:text-left ${
+            visible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+          }`}
         >
-          {/* Speaker Image */}
-          <div className="border-primary relative h-48 w-48 flex-shrink-0 overflow-hidden rounded-full border-2 bg-[#101810] sm:h-60 sm:w-60 md:h-80 md:w-80">
-            <Image
-              src={speakers[index].img}
-              alt={speakers[index].name}
-              className="h-full w-full object-cover"
-              height={320}
-              width={320}
-              draggable={false}
-            />
+          <span className="font-norse text-s tracking-[0.35em] text-[#F6CC60] uppercase">
+            {speaker.presence.place}
+          </span>
+
+          <h1 className="font-norse-bold mt-3 text-4xl leading-[1.05] font-extrabold tracking-[0.02em] uppercase sm:text-5xl md:text-6xl">
+            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.25)]">
+              {speaker.name}
+            </span>
+          </h1>
+
+          <p className="font-norse text-s mt-2 tracking-[0.3em] text-zinc-400 uppercase md:text-sm">
+            {speaker.title}
+          </p>
+          <p
+            className="mt-6 max-w-xl text-center text-sm leading-relaxed tracking-[0.02em] text-white/80 sm:text-base sm:leading-[1.75] sm:tracking-[0.03em] md:text-left"
+            style={{
+              textShadow:
+                "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",
+            }}
+          >
+            {speaker.bio}
+          </p>
+
+          <div className="mt-8 flex flex-col items-center gap-3 text-xs text-zinc-400 sm:flex-row sm:gap-6 md:justify-start">
+            <span className="flex items-center gap-2">
+              <Calendar size={14} className="text-[#F6CC60]" />
+              {datePart}
+            </span>
+            <span className="flex items-center gap-2">
+              <Clock size={14} className="text-[#F6CC60]" />
+              {timePart?.trim()}
+            </span>
           </div>
 
-          {/* Speaker Details */}
-          <div className="mt-4 flex-1 space-y-3 text-center md:mt-0 md:text-left">
-            <h2 className="text-primary font-orbitron text-xl font-bold sm:text-2xl md:text-4xl">
-              {speakers[index].name}
-            </h2>
-            <DecryptText
-              text={`> ${speakers[index].title}`}
-              className="font-orbitron mt-1 h-6 text-xs text-zinc-400 sm:text-sm md:text-lg"
+          <div className="mt-8 flex justify-center md:justify-start">
+            <ClippedButton
+              onClick={() => window.open(speaker.link, "_blank")}
+              className="px-6 py-3 text-sm"
+            >
+              View Profile <ExternalLink size={14} />
+            </ClippedButton>
+          </div>
+        </div>
+
+        {/* Portrait medallion */}
+        <div
+          className={`relative flex flex-shrink-0 translate-y-10 items-center justify-center transition-all duration-300 ease-out ${
+            visible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          }`}
+        >
+          <div className="relative h-64 w-64 sm:h-80 sm:w-80 md:h-[26rem] md:w-[26rem]">
+            {/* dark contrast buffer directly behind the ring, on top of the temple */}
+            <div
+              className="absolute inset-[2%] rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(5,4,3,0.75) 55%, rgba(5,4,3,0) 78%)",
+              }}
             />
-            <p className="text-[12px] leading-relaxed text-zinc-500 sm:text-sm md:text-base">
-              {speakers[index].bio}
-            </p>
 
-            <div className="border-primary/70 mt-2 border-t"></div>
+            {/* Slow-turning gold seal ring */}
+            <svg
+              viewBox="0 0 100 100"
+              className="absolute inset-0 h-full w-full animate-[spin_50s_linear_infinite] motion-reduce:animate-none"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="47"
+                fill="none"
+                stroke="#F6CC60"
+                strokeOpacity="0.35"
+                strokeWidth="0.6"
+                strokeDasharray="2 4"
+              />
+            </svg>
 
-            {/* Presence Info */}
-            <div className="mt-3 flex flex-col items-center justify-center md:items-start">
-              <span className="font-dystopian text-2xl uppercase sm:text-3xl">
-                {speakers[index].presence.place}
-              </span>
-              <span className="text-primary font-orbitron mt-1 text-base sm:text-lg">
-                {speakers[index].presence.time.split(",")[0]}
-              </span>
-              <span className="font-orbitron text-[10px] text-gray-400 sm:text-sm">
-                {speakers[index].presence.time.split(",")[1]?.trim()}
-              </span>
+            {/* Portrait — strongest element on the right */}
+            <div className="absolute inset-[6%] overflow-hidden rounded-full border-2 border-[#F6CC60]/70 bg-[#101007] shadow-[0_10px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(246,204,96,0.12)]">
+              <Image
+                src={speaker.img}
+                alt={speaker.name}
+                fill
+                className="object-cover"
+                draggable={false}
+              />
             </div>
           </div>
         </div>
-
-        {/* Navigation Buttons */}
-        <button
-          onClick={prev}
-          className="bg-primary absolute top-1/2 left-2 -translate-y-1/2 rounded-full p-1 shadow-md transition-transform hover:scale-110 sm:p-2"
-        >
-          <ChevronLeft className="text-black" size={18} />
-        </button>
-        <button
-          onClick={next}
-          className="bg-primary absolute top-1/2 right-2 -translate-y-1/2 rounded-full p-1 shadow-md transition-transform hover:scale-110 sm:p-2"
-        >
-          <ChevronRight className="text-black" size={18} />
-        </button>
       </div>
 
-      {/* Navigation Dots */}
-      <div className="absolute bottom-20 left-1/2 flex -translate-x-1/2 space-x-1 sm:space-x-2">
-        {speakers.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`h-2 w-2 rounded-full transition-colors ${
-              i === index ? "bg-primary" : "bg-zinc-600"
-            }`}
-          />
-        ))}
-      </div>
+      {/* Side navigation */}
+      <button
+        onClick={prev}
+        aria-label="Previous speaker"
+        className="absolute top-1/2 left-4 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#F6CC60]/45 bg-[#050403]/40 text-[#F6CC60]/80 backdrop-blur-sm transition-all duration-200 hover:border-[#F6CC60] hover:bg-[#F6CC60]/10 hover:text-[#F6CC60] focus-visible:ring-1 focus-visible:ring-[#F6CC60] focus-visible:outline-none md:left-8 md:h-12 md:w-12"
+      >
+        <ChevronLeft size={20} strokeWidth={1.5} />
+      </button>
 
-      {/* Bottom Info Bar */}
-      <div className="border-primary/50 font-orbitron absolute bottom-0 z-10 flex w-full flex-row items-center justify-between border-t bg-black px-6 py-4">
-        <div className="text-left">
-          <h2 className="text-base font-bold text-white">
-            {speakers[index].name}
-          </h2>
-          <p className="text-primary text-xs">{speakers[index].title}</p>
-        </div>
-        <div>
-          <ClippedButton
-            onClick={() => window.open(speakers[index].link, "_blank")}
-          >
-            <span className="hidden sm:block">Profile</span>
-            <ExternalLink size={16} />
-          </ClippedButton>
-        </div>
-      </div>
+      <button
+        onClick={next}
+        aria-label="Next speaker"
+        className="absolute top-1/2 right-4 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#F6CC60]/45 bg-[#050403]/40 text-[#F6CC60]/80 backdrop-blur-sm transition-all duration-200 hover:border-[#F6CC60] hover:bg-[#F6CC60]/10 hover:text-[#F6CC60] focus-visible:ring-1 focus-visible:ring-[#F6CC60] focus-visible:outline-none md:right-8 md:h-12 md:w-12"
+      >
+        <ChevronRight size={20} strokeWidth={1.5} />
+      </button>
     </div>
   );
 }

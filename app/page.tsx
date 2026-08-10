@@ -12,7 +12,7 @@ import Events from "@/components/Events";
 import LoadingSpinner from "@/components/LoadingSpinner";
 // import SponsorsLogo from "@/components/Sponsors";
 import CallForSpeakers from "@/components/CallForSpeakers";
-// import SpeakersInfo from "@/components/SpeakersInfo";
+//import SpeakersInfo from "@/components/SpeakersInfo";
 // import Final from "@/components/Final";
 
 export default function Home() {
@@ -52,7 +52,7 @@ export default function Home() {
         </div> */}
         {/* <AboutHackathon />
         <TimelineSection /> */}
-        {/* <SpeakersInfo /> */}
+        {/*<SpeakersInfo /> */}
         <Events />
         <CallForSpeakers />
         <FAQ />
