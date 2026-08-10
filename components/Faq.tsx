@@ -54,9 +54,46 @@ const faqData = [
 export default function FAQ() {
   const sectionRef = useRef<HTMLElement>(null);
   const itemsRef = useRef<HTMLDivElement>(null);
-
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const titleGlowRef = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     const ctx = gsap.context(() => {
+      gsap.set(titleRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      gsap.to(titleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+      });
+      gsap.to(titleGlowRef.current, {
+        filter: "drop-shadow(0 0 18px rgba(246,204,96,.65))",
+        scale: 1.01,
+        duration: 2.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+gsap.utils.toArray<HTMLElement>(".faq-divider").forEach((divider) => {
+          gsap.from(divider, {
+          scaleX: 0,
+          transformOrigin: "left center",
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: divider,
+            start: "top 90%",
+          },
+        });
+      });
       if (itemsRef.current) {
         const items = itemsRef.current.querySelectorAll("[data-faq-item]");
 
@@ -113,8 +150,14 @@ export default function FAQ() {
         {/* Heading */}
 
         <div className="mb-16 text-center">
-          <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+          <h2
+            ref={titleRef}
+            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
+          >
+            <span
+              ref={titleGlowRef}
+              className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]"
+            >
               FAQ
             </span>
           </h2>
@@ -138,7 +181,7 @@ export default function FAQ() {
                 key={index}
                 value={`item-${index}`}
                 data-faq-item
-                className="overflow-hidden rounded-xl border border-[#5A4A2B] bg-[#1B1A18]/60 backdrop-blur-md transition-all duration-300 hover:bg-[#23211D]/70"
+                className="overflow-hidden rounded-xl border border-[#5A4A2B] bg-[#1B1A18]/60 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#23211D]/70 hover:shadow-[0_10px_30px_rgba(246,204,96,0.12)]"
               >
                 <AccordionTrigger className="group px-8 py-6 text-left no-underline hover:no-underline">
                   <div className="flex w-full items-center justify-between">
@@ -159,9 +202,9 @@ export default function FAQ() {
                   </div>
                 </AccordionTrigger>
 
-                <AccordionContent className="px-8 pb-7">
+                <AccordionContent className="overflow-hidden px-8 pb-7">
                   {/* thin divider */}
-                  <div className="mb-6 h-px bg-gradient-to-r from-[#F6CC60]/70 via-[#F6CC60]/20 to-transparent" />
+                  <div className="faq-divider mb-6 h-px bg-gradient-to-r from-[#F6CC60]/70 via-[#F6CC60]/20 to-transparent" />
 
                   <p className="max-w-3xl leading-8 text-zinc-400">
                     {faq.answer}

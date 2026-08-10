@@ -2,37 +2,91 @@
 
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import SplitType from "split-type";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 const Map = () => {
-  const topCut1 = useRef<HTMLDivElement>(null);
-  const topCut2 = useRef<HTMLDivElement>(null);
-  const bottomCut1 = useRef<HTMLDivElement>(null);
-  const bottomCut2 = useRef<HTMLDivElement>(null);
-
+  const frameRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const titleGlowRef = useRef(null);
+  const paragraphRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
-    const animateCut = (
-      el: HTMLDivElement | null,
-      y: number,
-      duration: number,
-      skew: number,
-    ) => {
-      if (!el) return;
+    let split: SplitType | null = null;
+    const ctx = gsap.context(() => {
+      split = new SplitType(paragraphRef.current!, {
+        types: "lines",
+      });
 
-      gsap.to(el, {
-        y,
-        skewY: skew,
-        opacity: 0.15,
-        duration,
+      split.lines?.forEach((line) => {
+        line.style.overflow = "hidden";
+      });
+
+      gsap.set(split.lines, {
+        opacity: 0,
+        y: 20,
+      });
+      gsap.to(split.lines, {
+        opacity: 1,
+        y: 0,
+        stagger: 0.12,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: paragraphRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+      gsap.from(frameRef.current, {
+        opacity: 0,
+        y: 100,
+        scale: 0.94,
+        rotationX: 8,
+        transformPerspective: 1000,
+        duration: 1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: frameRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+      });
+      gsap.from(mapRef.current, {
+        clipPath: "inset(0 50% 0 50%)",
+        duration: 1.3,
+        delay: 25,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: mapRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+      });
+      gsap.from(titleRef.current, {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+      gsap.to(titleGlowRef.current, {
+        filter: "drop-shadow(0 0 20px rgba(246,204,96,.6))",
+        scale: 1.01,
+        duration: 2.5,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut",
       });
+    });
+    return () => {
+      split?.revert();
+      ctx.revert();
     };
-
-    animateCut(topCut1.current, 6, 5, 3);
-    animateCut(topCut2.current, -6, 6, -3);
-    animateCut(bottomCut1.current, -6, 5, -3);
-    animateCut(bottomCut2.current, 6, 6, 3);
   }, []);
 
   return (
@@ -88,8 +142,14 @@ const Map = () => {
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 py-16 lg:grid-cols-5">
         {/* Left */}
         <div className="space-y-6 lg:col-span-2">
-          <h2 className="font-norse-bold text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+          <h2
+            ref={titleRef}
+            className="font-norse-bold text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
+          >
+            <span
+              ref={titleGlowRef}
+              className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]"
+            >
               Location
             </span>
           </h2>
@@ -99,6 +159,7 @@ const Map = () => {
           </h3>
 
           <p
+            ref={paragraphRef}
             className="max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75"
             style={{
               textShadow:
@@ -112,13 +173,19 @@ const Map = () => {
         {/* Right */}
         <div className="relative lg:col-span-3">
           {/* Frame */}
-          <div className="relative rounded-xl border border-[#312b20] bg-[#23201A]/40 p-4 shadow-[0_20px_80px_rgba(0,0,0,.55)] backdrop-blur-md">
+          <div
+            ref={frameRef}
+            className="relative rounded-xl border border-[#312b20] bg-[#23201A]/40 p-4 shadow-[0_20px_80px_rgba(0,0,0,.55)] backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-[#F6CC60]/60 hover:shadow-[0_25px_80px_rgba(246,204,96,0.12)]"
+          >
             {/* Gold Accent */}
             <div className="absolute top-0 right-8 left-8 h-px bg-gradient-to-r from-transparent via-[#F6CC60] to-transparent" />
             <div className="absolute right-8 bottom-0 left-8 h-px bg-gradient-to-r from-transparent via-[#F6CC60] to-transparent" />
 
             {/* Inner Border */}
-            <div className="overflow-hidden rounded-lg border border-[#C89D47]/40">
+            <div
+              ref={mapRef}
+              className="overflow-hidden rounded-lg border border-[#C89D47]/40"
+            >
               <iframe
                 src="https://maps.google.com/maps?q=Sahyadri%20College%20of%20Engineering%20and%20Management&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 loading="lazy"

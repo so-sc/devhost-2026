@@ -1,20 +1,58 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import localFont from "next/font/local";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 export const dalek = localFont({
   src: "../public/fonts/DalekPinpointBold.ttf",
 });
 
 const Footer = () => {
+  const templeRef = useRef<HTMLImageElement>(null);
+  const ringRef = useRef<HTMLImageElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(templeRef.current, {
+        y: -12,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(ringRef.current, {
+        rotate: 360,
+        duration: 80,
+        repeat: -1,
+        ease: "none",
+      });
+
+      gsap.from(footerRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 85%",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
   return (
     <footer className="relative bg-[url('/footer-background/background.webp')] bg-cover bg-center bg-no-repeat py-6">
       <div className="absolute inset-0 bg-black/80"></div>
       <div className="absolute top-0 h-12 w-full bg-gradient-to-b from-[#0c0901] via-black/20 to-transparent" />
 
-      <div className="absolute bottom-0 left-0 h-70 w-70 overflow-hidden">
+      <div className="absolute bottom-0 left-0 hidden h-70 w-70 overflow-hidden md:block">
         <Image
+          ref={ringRef}
           src="/footer-background/Greek-ring-h.svg"
           alt=""
           width={600}
@@ -24,6 +62,7 @@ const Footer = () => {
       </div>
 
       <Image
+        ref={templeRef}
         src="/footer-background/temple.webp"
         alt=""
         width={600}
@@ -31,7 +70,10 @@ const Footer = () => {
         className="pointer-events-none absolute right-0 bottom-0 w-[600px] opacity-15 select-none"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-screen-xl p-8 py-6 lg:py-8">
+      <div
+        ref={footerRef}
+        className="relative z-10 mx-auto w-full max-w-screen-xl p-8 py-6 lg:py-8"
+      >
         <div className="py-5 md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <div className="pb-7">

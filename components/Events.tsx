@@ -45,22 +45,69 @@ export default function Events() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
-
+  const headingRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animate cards only
+      gsap.fromTo(
+        bgRef.current,
+        {
+          y: 280,
+          scale: 0.96,
+          opacity: 0,
+          clipPath: "polygon(0% 100%,100% 100%,100% 100%,0% 100%)",
+        },
+        {
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          clipPath: "polygon(0% 0%,100% 0%,100% 92%,85% 100%,-5% 100%)",
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 95%",
+            end: "top 35%",
+            scrub: 1.2,
+          },
+        },
+      );
+      gsap.from(headingRef.current, {
+        y: 120,
+        opacity: 0,
+        duration: 1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+      gsap.set(cardsRef.current, {
+        y: 60,
+        opacity: 0,
+      });
+
       cardsRef.current.forEach((card) => {
         gsap.to(card, {
           y: 0,
+          opacity: 1,
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
             trigger: card,
-            start: "top 85%",
+            start: "top 75%",
             end: "top 60%",
             toggleActions: "play none none none",
           },
         });
+      });
+      gsap.to(bgRef.current, {
+        scale: 1.015,
+        duration: 8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
       });
 
       // Responsive clip-path for green background
@@ -148,7 +195,7 @@ export default function Events() {
       </div>
 
       {/* Heading */}
-      <div className="relative z-10 mb-8 px-4 text-center">
+      <div ref={headingRef} className="relative z-10 mb-8 px-4 text-center">
         <div
           className="absolute inset-0 -z-10 blur-3xl"
           style={{
@@ -197,7 +244,10 @@ export default function Events() {
       />
 
       {/* Event cards */}
-      <div className="relative z-10 grid w-full max-w-[1200px] grid-cols-1 gap-8 px-4 lg:grid-cols-2">
+      <div
+        ref={panelRef}
+        className="relative z-10 grid w-full max-w-[1200px] grid-cols-1 gap-8 px-4 lg:grid-cols-2"
+      >
         {events.map((event, idx) => {
           return (
             <div
