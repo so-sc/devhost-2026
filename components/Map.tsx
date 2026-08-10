@@ -58,7 +58,6 @@ const Map = () => {
 
       {/* Main Content */}
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 sm:px-10 lg:grid-cols-5 lg:px-14 xl:px-20">
-        
         {/* LEFT — TEXT */}
         <div className="space-y-6 lg:col-span-2">
           <h2 className="font-norse-bold text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
@@ -92,7 +91,6 @@ const Map = () => {
             className="group block w-full lg:w-[88%]"
           >
             <div className="relative overflow-hidden rounded-sm">
-              
               {/* Location image */}
               <Image
                 src="/images/map.png"
@@ -114,11 +112,9 @@ const Map = () => {
                   </span>
                 </div>
               </div>
-
             </div>
           </a>
         </div>
-
       </div>
     </section>
   );
