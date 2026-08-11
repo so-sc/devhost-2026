@@ -85,7 +85,7 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-visible px-4 py-16 pb-28 sm:px-6 sm:py-20 sm:pb-32">
+    <section className="relative w-full overflow-visible px-4 py-16 pb-28 sm:px-6 sm:py-32">
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -128,7 +128,7 @@ export default function FAQ() {
           </h3>
         </div>
 
-        <div className="px-4 pb-8" ref={itemsRef}>
+        <div className="font-poppins px-4 pb-8" ref={itemsRef}>
           <Accordion type="single" collapsible className="space-y-5">
             {faqData.map((faq, index) => (
               <AccordionItem

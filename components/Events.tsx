@@ -87,7 +87,7 @@ export default function Events() {
   return (
     <div
       ref={sectionRef}
-      className="relative flex flex-col items-center overflow-hidden bg-black py-20 md:pb-[20vh]"
+      className="relative flex flex-col items-center overflow-hidden bg-black py-20 md:py-30"
     >
       {/* Static Green Background */}
       <div
@@ -140,13 +140,6 @@ export default function Events() {
 
 */}
 
-      <div className="font-orbitron absolute top-6 left-6 text-sm font-bold text-[#C8A24C]/80">
-        {"// DEVHOST"}
-      </div>
-      <div className="font-orbitron absolute top-6 right-6 text-sm font-bold text-[#C8A24C]/80">
-        2026
-      </div>
-
       {/* Heading */}
       <div className="relative z-10 mb-8 px-4 text-center">
         <div
@@ -164,7 +157,7 @@ export default function Events() {
         </h2>
         <div className="mt-4 px-4 text-lg sm:text-xl">
           <DecryptText
-            text="> Build, Compete, and Leave Your Mark"
+            text="Build, Compete, and Leave Your Mark"
             startDelayMs={200}
             trailSize={6}
             flickerIntervalMs={50}
@@ -244,7 +237,7 @@ export default function Events() {
                   />
                 </div>
 
-                <div className="mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
+                <div className="font-poppins mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
                   <div>
                     <h2
                       className={`font-norse mb-5 text-2xl font-bold tracking-wide text-[#F6CC60] lg:text-3xl`}

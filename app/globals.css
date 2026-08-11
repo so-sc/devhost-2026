@@ -50,6 +50,7 @@
   --font-norse-bold: var(--font-norse-bold);
   --font-trajan: var(--font-trajan);
   --font-cinzel: var(--font-cinzel);
+  --font-poppins: var(--font-poppins);
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 }
 

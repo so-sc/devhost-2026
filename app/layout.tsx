@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ReactLenis from "lenis/react";
 import { Toaster } from "@/components/ui/sonner";
+import { Poppins } from "next/font/google";
 
 const amiga = localFont({
   src: "../assets/fonts/amiga4ever.woff2",
@@ -54,6 +55,13 @@ const trajan = localFont({
   variable: "--font-trajan",
   preload: true,
 });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: {
@@ -103,7 +111,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} ${dalek.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
+        className={`${poppins.variable} ${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} ${dalek.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
       >
         <ReactLenis root />
         {children}

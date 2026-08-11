@@ -66,12 +66,12 @@ const Map = () => {
             </span>
           </h2>
 
-          <h3 className="font-norse text-lg tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-xl">
             Sahyadri College of Engineering &amp; Management
           </h3>
 
           <p
-            className="max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75 sm:text-lg"
+            className="font-poppins max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75 sm:text-lg"
             style={{
               textShadow:
                 "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",
@@ -88,7 +88,7 @@ const Map = () => {
             href="https://www.google.com/maps/search/?api=1&query=Sahyadri+College+of+Engineering+and+Management"
             target="_blank"
             rel="noopener noreferrer"
-            className="group block w-full lg:w-[88%]"
+            className="group block w-full sm:w-[75%]"
           >
             <div className="relative overflow-hidden rounded-sm">
               {/* Location image */}
