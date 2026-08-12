@@ -9,7 +9,7 @@ export const dalek = localFont({
 
 const Footer = () => {
   return (
-    <footer className="font-poppins relative bg-[url('/footer-background/background.webp')] bg-cover bg-center bg-no-repeat py-6">
+    <footer className="font-poppins relative bg-[url('/footer-background/background.webp')] bg-cover bg-center bg-no-repeat px-4 py-6 sm:px-24">
       <div className="absolute inset-0 bg-black/80"></div>
       <div className="absolute top-0 h-12 w-full bg-gradient-to-b from-[#0c0901] via-black/20 to-transparent" />
 
@@ -31,7 +31,7 @@ const Footer = () => {
         className="pointer-events-none absolute right-0 bottom-0 w-[600px] opacity-15 select-none"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-screen-xl p-8 py-6 lg:py-8">
+      <div className="relative z-10 mx-auto w-full py-6 lg:py-8">
         <div className="py-5 md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <div className="pb-7">

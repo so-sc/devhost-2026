@@ -53,8 +53,8 @@ export default function Home() {
         {/* <AboutHackathon />
         <TimelineSection /> */}
         {/* <SpeakersInfo /> */}
-        <Events />
         <CallForSpeakers />
+        <Events />
         <FAQ />
         <Map />
         <Footer />
