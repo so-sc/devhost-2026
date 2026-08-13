@@ -9,10 +9,6 @@ import DecryptText from "./animated/TextAnimation";
 import { events } from "@/assets/data/events";
 import localFont from "next/font/local";
 
-export const dalek = localFont({
-  src: "../public/fonts/DalekPinpointBold.ttf",
-});
-
 gsap.registerPlugin(ScrollTrigger);
 
 const CornerBorder = ({ className = "" }: { className?: string }) => (

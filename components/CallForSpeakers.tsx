@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Mic } from "lucide-react";
+import SpeakerCarousel from "./SpeakerCarousel";
 
 export default function SpeakersInfo() {
   return (
@@ -10,18 +11,39 @@ export default function SpeakersInfo() {
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white lg:px-8"
     >
       <div
-        className="pointer-events-none absolute inset-0"
+        className=""
         style={{
-          backgroundImage: "url('/images/parchment-texture.jpg')",
-          backgroundSize: "100% 100%",
-          backgroundPosition: "center",
-          opacity: 0.6,
-          mixBlendMode: "soft-light",
-          filter: "brightness(0.92) saturate(0.85)",
+          background: `
+    radial-gradient(circle at top,
+      rgba(200,162,76,0.06),
+      transparent 45%),
+    radial-gradient(circle at bottom,
+      rgba(255,255,255,0.02),
+      transparent 65%),
+    linear-gradient(
+      180deg,
+      #1a1a1a 0%,
+      #121212 50%,
+      #0b0b0b 100%
+    )
+  `,
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(circle, transparent 45%, rgba(0,0,0,.55) 100%)",
         }}
       />
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.07),transparent_65%)]" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(45,45,45,0.65) 0%, rgba(22,22,22,0.95) 55%, #0d0d0d 100%)",
+        }}
+      />
 
       <div className="relative z-10 mx-auto w-[80%]">
         <div className="relative mb-4 text-center sm:mb-6">
@@ -62,7 +84,7 @@ export default function SpeakersInfo() {
           />
         </div>
 
-        <div className="relative mx-auto flex flex-col items-center pt-4 sm:w-full sm:max-w-[80%] sm:pt-8">
+        <div className="relative mx-auto flex flex-col items-center pt-4 sm:w-full sm:max-w-[90%] sm:pt-8">
           <div className="relative z-10 w-full text-justify">
             <p
               className="font-poppins text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
@@ -79,6 +101,8 @@ export default function SpeakersInfo() {
             </p>
           </div>
         </div>
+
+        <SpeakerCarousel />
 
         <div className="mt-6 flex w-full flex-col items-center gap-3 sm:mt-8">
           <a
