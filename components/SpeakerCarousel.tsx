@@ -104,7 +104,7 @@ export default function SpeakerCarousel() {
   }, []);
 
   return (
-    <div className="relative mt-8 w-full overflow-hidden py-10 sm:mt-10">
+    <div className="relative mx-auto mt-8 w-full overflow-hidden pb-4 sm:mt-10 sm:max-w-[90%] sm:py-10">
       <h2 className="font-norse mt-6 text-center text-2xl font-extrabold tracking-wider text-[#C8A24C] uppercase sm:mt-8 sm:text-3xl">
         Past Speakers
       </h2>
@@ -123,7 +123,7 @@ export default function SpeakerCarousel() {
         {/* Moving track */}
         <div
           ref={trackRef}
-          className="flex w-max gap-8 px-8 sm:gap-10 sm:px-10 lg:gap-14"
+          className="flex w-max gap-12 px-8 sm:gap-10 sm:px-10 lg:gap-14"
         >
           {displaySpeakers.map((speaker, index) => (
             <a
@@ -134,8 +134,9 @@ export default function SpeakerCarousel() {
               className="group flex w-32 flex-none flex-col items-center py-4 text-center sm:w-36"
             >
               {/* Circle photo */}
-              <div className="relative aspect-square w-28 overflow-hidden rounded-full border border-[#C8A24C]/50 bg-[#151412] p-1 shadow-[0_0_18px_rgba(200,162,76,0.08)] transition-all duration-500 group-hover:scale-105 group-hover:border-[#F6CC60] group-hover:shadow-[0_0_25px_rgba(246,204,96,0.2)] sm:w-32">
-                <div className="relative h-full w-full overflow-hidden rounded-full">
+              <div className="relative flex h-32 w-32 items-center justify-center sm:h-48 sm:w-48">
+                {/* Photo */}
+                <div className="relative h-24 w-24 overflow-hidden rounded-full bg-[#151412] sm:h-32 sm:w-32">
                   <Image
                     src={speaker.img}
                     alt={speaker.name}
@@ -146,15 +147,23 @@ export default function SpeakerCarousel() {
 
                   <div className="pointer-events-none absolute inset-0 rounded-full bg-[#F6CC60]/5 transition-opacity duration-300 group-hover:opacity-0" />
                 </div>
-              </div>
 
+                {/* Gold frame */}
+                <Image
+                  src="/gold-frame-greek.png"
+                  alt=""
+                  width={170}
+                  height={170}
+                  className="pointer-events-none absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 object-contain"
+                />
+              </div>
               {/* Name */}
               <h3 className="font-norse mt-4 line-clamp-2 min-h-10 text-base leading-tight tracking-wide text-[#F6CC60] transition-colors duration-300 group-hover:text-[#FFF5D0] sm:text-lg">
                 {speaker.name}
               </h3>
 
               {/* Divider */}
-              <div className="mt-2 h-px w-8 bg-[#C8A24C]/60 transition-all duration-300 group-hover:w-14 group-hover:bg-[#F6CC60]" />
+              <div className="h-px w-8 bg-[#C8A24C]/60 transition-all duration-300 group-hover:w-14 group-hover:bg-[#F6CC60] sm:mt-2" />
 
               {/* Designation */}
               <p className="font-poppins mt-2 line-clamp-3 min-h-12 text-xs leading-relaxed text-white/60 transition-colors duration-300 group-hover:text-white/80">

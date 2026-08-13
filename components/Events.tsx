@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DecryptText from "./animated/TextAnimation";
 // import { ClippedButton } from "./ClippedButton";
 import { events } from "@/assets/data/events";
-import localFont from "next/font/local";
 
 gsap.registerPlugin(ScrollTrigger);
 

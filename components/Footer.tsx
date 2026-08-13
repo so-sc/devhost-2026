@@ -1,6 +1,8 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 import localFont from "next/font/local";
 
 export const dalek = localFont({
@@ -8,30 +10,69 @@ export const dalek = localFont({
 });
 
 const Footer = () => {
+  const templeRef = useRef<HTMLImageElement>(null);
+  const ringRef = useRef<HTMLImageElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(templeRef.current, {
+        y: -12,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(ringRef.current, {
+        rotate: 360,
+        duration: 80,
+        repeat: -1,
+        ease: "none",
+      });
+
+      gsap.from(footerRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 85%",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
   return (
     <footer className="font-poppins relative overflow-hidden bg-[url('/footer-background/background.webp')] bg-cover bg-center bg-no-repeat px-4 py-6 sm:px-24">
       <div className="absolute inset-0 bg-black/80"></div>
       <div className="absolute top-0 h-12 w-full bg-gradient-to-b from-[#0c0901] via-black/20 to-transparent" />
 
-      <div className="absolute bottom-0 left-0 h-70 w-70 overflow-hidden">
+      <div className="absolute bottom-0 left-0 h-90 w-90 overflow-hidden">
         <Image
-          src="/footer-background/Greek-ring-h.svg"
+          ref={ringRef}
+          src="/footer-background/Greek-ring-h.png"
           alt=""
           width={600}
           height={600}
-          className="absolute w-[420px] opacity-5"
+          className="absolute top-[130px] left-[-130px] w-[620px] opacity-10"
         />
       </div>
 
       <Image
+        ref={templeRef}
         src="/footer-background/temple.webp"
         alt=""
         width={600}
         height={600}
-        className="pointer-events-none absolute right-0 bottom-0 w-[600px] opacity-15 select-none"
+        className="pointer-events-none absolute right-0 bottom-0 hidden w-[600px] opacity-15 select-none sm:block"
       />
 
-      <div className="relative z-10 mx-auto w-full py-6 lg:py-8">
+      <div
+        ref={footerRef}
+        className="relative z-10 mx-auto w-full py-6 lg:py-8"
+      >
         <div className="py-5 md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <div className="pb-7">

@@ -1,14 +1,135 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Mic } from "lucide-react";
 import SpeakerCarousel from "./SpeakerCarousel";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import SplitType from "split-type";
 
+gsap.registerPlugin(ScrollTrigger);
 export default function SpeakersInfo() {
+  const sectionRef = useRef<HTMLElement>(null);
+  // const titleRef = useRef<HTMLHeadingElement>(null);
+  // const titleGlowRef = useRef<HTMLSpanElement>(null);
+  // const captionRef = useRef<HTMLHeadingElement>(null);
+  // const paragraphRef = useRef<HTMLParagraphElement>(null);
+  // const buttonRef = useRef<HTMLAnchorElement>(null);
+  const ornamentDesktopRef = useRef<HTMLDivElement>(null);
+  const ornamentMobileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // let split: SplitType | null = null;
+
+    const ctx = gsap.context(() => {
+      // split = new SplitType(paragraphRef.current!, {
+      //   types: "lines",
+      // });
+
+      // split.lines?.forEach((line) => {
+      //   line.style.overflow = "hidden";
+      // });
+
+      // gsap.set([titleRef.current, captionRef.current, buttonRef.current], {
+      //   opacity: 0,
+      //   y: 40,
+      // });
+
+      // if (split?.lines) {
+      //   gsap.set(split.lines, {
+      //     opacity: 0,
+      //     y: 20,
+      //   });
+      // }
+
+      // const tl = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: sectionRef.current,
+      //     start: "top 75%",
+      //     toggleActions: "play none none reverse",
+      //   },
+      // });
+
+      // tl.to(titleRef.current, {
+      //   opacity: 1,
+      //   y: 0,
+      //   duration: 0.6,
+      //   ease: "power3.out",
+      // })
+      //   .to(
+      //     captionRef.current,
+      //     {
+      //       opacity: 1,
+      //       y: 0,
+      //       duration: 0.4,
+      //       ease: "power2.out",
+      //     },
+      //     "-=0.3",
+      //   )
+      //   .add(() => {
+      //     if (split?.lines) {
+      //       gsap.to(split.lines, {
+      //         opacity: 1,
+      //         y: 0,
+      //         stagger: 0.12,
+      //         duration: 0.6,
+      //         ease: "power2.out",
+      //       });
+      //     }
+      //   })
+      //   .to(
+      //     buttonRef.current,
+      //     {
+      //       opacity: 1,
+      //       y: 0,
+      //       duration: 0.4,
+      //       ease: "back.out(1.3)",
+      //     },
+      //     "-=0.1",
+      //   );
+
+      // gsap.to(titleGlowRef.current, {
+      //   filter: "drop-shadow(0 0 18px rgba(246,204,96,0.6))",
+      //   scale: 1.01,
+      //   duration: 2.5,
+      //   repeat: -1,
+      //   yoyo: true,
+      //   ease: "sine.inOut",
+      // });
+
+      [ornamentDesktopRef.current, ornamentMobileRef.current].forEach(
+        (ornament) => {
+          if (!ornament) return;
+
+          gsap.to(ornament, {
+            rotate: 360,
+            duration: 20,
+            repeat: -1,
+            ease: "none",
+          });
+
+          gsap.to(ornament, {
+            scale: 1.06,
+            duration: 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
+        },
+      );
+    }, sectionRef);
+    return () => {
+      // split?.revert();
+      ctx.revert();
+    };
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="speakers"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white lg:px-8"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white sm:py-26 lg:px-8"
     >
       <div
         className=""
@@ -58,7 +179,8 @@ export default function SpeakersInfo() {
         </div>
 
         <div
-          className="pointer-events-none absolute top-6 left-1/2 z-0 hidden -translate-x-1/2 lg:block"
+          ref={ornamentDesktopRef}
+          className="pointer-events-none absolute top-8 left-1/2 z-0 hidden -translate-x-1/2 lg:block"
           style={{ width: "clamp(180px, 24vw, 420px)" }}
         >
           <Image
@@ -71,15 +193,16 @@ export default function SpeakersInfo() {
           />
         </div>
         <div
-          className="pointer-events-none absolute top-4 left-1/2 z-0 block -translate-x-1/2 lg:hidden"
-          style={{ width: "clamp(110px, 38vw, 180px)" }}
+          ref={ornamentMobileRef}
+          className="pointer-events-none absolute top-56 left-1/2 z-0 block -translate-x-1/2 lg:hidden"
+          style={{ width: "clamp(180px, 55vw, 300px)" }}
         >
           <Image
             src="/images/speakers_ornament.jpg"
             alt=""
             width={600}
             height={600}
-            className="h-auto w-full object-contain opacity-[0.03] mix-blend-screen select-none"
+            className="h-auto w-full object-contain opacity-[0.08] mix-blend-screen select-none"
             style={{ objectPosition: "center top" }}
           />
         </div>
