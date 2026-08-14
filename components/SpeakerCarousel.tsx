@@ -104,7 +104,7 @@ export default function SpeakerCarousel() {
   }, []);
 
   return (
-    <div className="relative mx-auto mt-8 w-full overflow-hidden pb-4 sm:mt-10 sm:max-w-[90%] sm:py-10">
+    <div className="relative mx-auto mt-8 w-full overflow-hidden pb-4 sm:mt-10 sm:max-w-[80%] sm:py-10">
       <h2 className="font-norse mt-6 text-center text-2xl font-extrabold tracking-wider text-[#C8A24C] uppercase sm:mt-8 sm:text-3xl">
         Past Speakers
       </h2>
@@ -166,7 +166,7 @@ export default function SpeakerCarousel() {
               <div className="h-px w-8 bg-[#C8A24C]/60 transition-all duration-300 group-hover:w-14 group-hover:bg-[#F6CC60] sm:mt-2" />
 
               {/* Designation */}
-              <p className="font-poppins mt-2 line-clamp-3 min-h-12 text-xs leading-relaxed text-white/60 transition-colors duration-300 group-hover:text-white/80">
+              <p className="font-lora mt-2 line-clamp-3 min-h-12 text-xs leading-relaxed text-white/60 transition-colors duration-300 group-hover:text-white/80">
                 {speaker.title}
               </p>
             </a>

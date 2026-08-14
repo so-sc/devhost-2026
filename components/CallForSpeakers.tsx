@@ -104,17 +104,9 @@ export default function SpeakersInfo() {
 
           gsap.to(ornament, {
             rotate: 360,
-            duration: 20,
+            duration: 180,
             repeat: -1,
             ease: "none",
-          });
-
-          gsap.to(ornament, {
-            scale: 1.06,
-            duration: 5,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
           });
         },
       );
@@ -129,7 +121,7 @@ export default function SpeakersInfo() {
     <section
       ref={sectionRef}
       id="speakers"
-      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white sm:py-26 lg:px-8"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white sm:py-26 lg:py-34 lg:px-8"
     >
       <div
         className=""
@@ -184,11 +176,11 @@ export default function SpeakersInfo() {
           style={{ width: "clamp(180px, 24vw, 420px)" }}
         >
           <Image
-            src="/images/speakers_ornament.jpg"
+            src="/images/speakers_ornament.png"
             alt=""
             width={600}
             height={600}
-            className="h-auto w-full object-contain opacity-[0.08] mix-blend-screen select-none"
+            className="h-auto w-full opacity-[0.08] select-none"
             style={{ objectPosition: "center top" }}
           />
         </div>
@@ -198,7 +190,7 @@ export default function SpeakersInfo() {
           style={{ width: "clamp(180px, 55vw, 300px)" }}
         >
           <Image
-            src="/images/speakers_ornament.jpg"
+            src="/images/speakers_ornament.png"
             alt=""
             width={600}
             height={600}
@@ -207,10 +199,10 @@ export default function SpeakersInfo() {
           />
         </div>
 
-        <div className="relative mx-auto flex flex-col items-center pt-4 sm:w-full sm:max-w-[90%] sm:pt-8">
+        <div className="relative mx-auto flex flex-col items-center pt-4 sm:w-full sm:max-w-[80%] sm:pt-8">
           <div className="relative z-10 w-full text-justify">
             <p
-              className="font-poppins text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              className="font-lora text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{
                 textShadow:
                   "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",

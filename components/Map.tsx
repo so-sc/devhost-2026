@@ -71,7 +71,7 @@ const Map = () => {
           </h3>
 
           <p
-            className="font-poppins text-base leading-[1.75] tracking-[0.03em] text-white/75 sm:text-lg"
+            className="font-lora text-base leading-[1.75] tracking-[0.03em] text-white/75 sm:text-lg"
             style={{
               textShadow:
                 "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",

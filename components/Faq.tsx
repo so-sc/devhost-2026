@@ -128,7 +128,7 @@ export default function FAQ() {
           </h3>
         </div>
 
-        <div className="font-poppins px-4 pb-8" ref={itemsRef}>
+        <div className="font-lora px-4 pb-8" ref={itemsRef}>
           <Accordion type="single" collapsible className="space-y-5">
             {faqData.map((faq, index) => (
               <AccordionItem
