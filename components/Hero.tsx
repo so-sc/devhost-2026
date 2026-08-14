@@ -1,25 +1,8 @@
 "use client";
 import Image from "next/image";
+import CloudLayer from "./CloudFlayer";
 
-function Pillar({ side }: { side: "left" | "right" }) {
-  return (
-    <div
-      className={`pointer-events-none absolute top-0 z-0 h-full opacity-70 ${
-        side === "left"
-          ? "left-0 -translate-x-1/2 sm:translate-x-0"
-          : "right-0 translate-x-1/2 sm:translate-x-0"
-      } w-[150px] xs:w-[170px] sm:w-[190px] md:w-[240px]`}
-    >
-      <Image
-        src="/pillar.svg"
-        alt=""
-        fill
-        className={`object-cover ${side === "right" ? "scale-x-[-1]" : ""}`}
-        priority
-      />
-    </div>
-  );
-}
+
 
 export default function Hero() {
   return (
@@ -27,17 +10,14 @@ export default function Hero() {
       {/* Background overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/bg-greek.svg"
+          src="/greek_bg.svg"
           alt=""
           fill
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <CloudLayer />
       </div>
-
-      <Pillar side="left" />
-      <Pillar side="right" />
 
       {/* Organizer logos */}
       <div className="relative z-10 flex items-center justify-center gap-4 sm:gap-6">
@@ -71,12 +51,12 @@ export default function Hero() {
       </div>
 
       {/* Presents */}
-      <p className="relative z-10 text-sm font-norse-bold tracking-[6px] text-white/70 sm:text-base sm:tracking-[10px]">
+      <p className="font-norse-bold relative z-10 text-sm tracking-[6px] text-white/70 sm:text-base sm:tracking-[10px]">
         presents
       </p>
 
       {/* Main logo */}
-      <div className="relative z-10 -translate-y-7 h-40 w-40 sm:h-60 sm:w-60 md:h-72 md:w-72">
+      <div className="relative z-10 h-40 w-40 -translate-y-7 sm:h-60 sm:w-60 md:h-72 md:w-72">
         <Image
           src="/DVHST.svg"
           alt="DevHost 2026"
@@ -87,7 +67,7 @@ export default function Hero() {
       </div>
 
       {/* Tagline */}
-      <p className="relative -translate-y-7 text-center text-sm font-norse-bold tracking-[3px] text-white sm:text-base sm:tracking-[4px] md:text-lg">
+      <p className="font-norse-bold relative -translate-y-7 text-center text-sm tracking-[3px] text-white sm:text-base sm:tracking-[4px] md:text-lg">
         immortal minds build mortal ideas
       </p>
     </div>
