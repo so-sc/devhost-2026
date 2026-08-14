@@ -2,8 +2,6 @@
 import Image from "next/image";
 import CloudLayer from "./CloudFlayer";
 
-
-
 export default function Hero() {
   return (
     <div className="relative flex h-dvh w-full flex-col items-center justify-center gap-4 overflow-hidden bg-black px-6">
