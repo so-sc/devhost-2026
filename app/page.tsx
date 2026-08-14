@@ -3,7 +3,7 @@ import { Suspense, useEffect, useState } from "react";
 import Hero from "@/components/Hero";
 import AboutDevhost from "@/components/AboutDevhost";
 // import Counter from "@/components/Counter";
-// import TimelineSection from "@/components/Timeline";
+import TimelineSection from "@/components/Timeline";
 // import AboutHackathon from "@/components/AboutHackathon";
 import Footer from "@/components/Footer";
 import FAQ from "@/components/Faq";
@@ -50,9 +50,9 @@ export default function Home() {
         {/* <div className="relative h-[30vh]">
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
         </div> */}
-        {/* <AboutHackathon />
-        <TimelineSection /> */}
+        {/* <AboutHackathon /> */}
         {/* <SpeakersInfo /> */}
+        <TimelineSection />
         <Events />
         <CallForSpeakers />
         <FAQ />
@@ -61,7 +61,7 @@ export default function Home() {
       </Suspense>
 
       {/* Background grid */}
-      <div className="pointer-events-none fixed inset-0 -z-10 opacity-10">
+      {/*<div className="pointer-events-none fixed inset-0 -z-10 opacity-10">
         <div
           className="absolute inset-0"
           style={{
@@ -73,7 +73,7 @@ export default function Home() {
             backgroundPosition: "center",
           }}
         ></div>
-      </div>
+      </div>*/}
     </div>
   );
 }
