@@ -18,21 +18,55 @@ import { motion } from "framer-motion";
  */
 
 type Cloud = {
-  top: string;       // vertical position, e.g. "20%"
-  width: number;      // px
-  height: number;      // px
-  duration: number;    // seconds for one full pass
-  delay: number;        // stagger start
+  top: string; // vertical position, e.g. "20%"
+  width: number; // px
+  height: number; // px
+  duration: number; // seconds for one full pass
+  delay: number; // stagger start
   opacity: number;
-  blur: number;         // px
-  reverse?: boolean;    // right-to-left instead of left-to-right
+  blur: number; // px
+  reverse?: boolean; // right-to-left instead of left-to-right
 };
 
 const clouds: Cloud[] = [
-  { top: "18%", width: 420, height: 140, duration: 42, delay: 0, opacity: 0.25, blur: 30 },
-  { top: "32%", width: 320, height: 110, duration: 55, delay: 6, opacity: 0.18, blur: 24, reverse: true },
-  { top: "12%", width: 260, height: 90, duration: 34, delay: 3, opacity: 0.2, blur: 20 },
-  { top: "45%", width: 500, height: 160, duration: 60, delay: 10, opacity: 0.15, blur: 36, reverse: true },
+  {
+    top: "18%",
+    width: 420,
+    height: 140,
+    duration: 42,
+    delay: 0,
+    opacity: 0.25,
+    blur: 30,
+  },
+  {
+    top: "32%",
+    width: 320,
+    height: 110,
+    duration: 55,
+    delay: 6,
+    opacity: 0.18,
+    blur: 24,
+    reverse: true,
+  },
+  {
+    top: "12%",
+    width: 260,
+    height: 90,
+    duration: 34,
+    delay: 3,
+    opacity: 0.2,
+    blur: 20,
+  },
+  {
+    top: "45%",
+    width: 500,
+    height: 160,
+    duration: 60,
+    delay: 10,
+    opacity: 0.15,
+    blur: 36,
+    reverse: true,
+  },
 ];
 
 export default function CloudLayer() {
