@@ -46,7 +46,7 @@ const Footer = () => {
   }, []);
   return (
     <footer className="font-lora relative bg-[url('/footer-background/background.webp')] bg-cover bg-center bg-no-repeat px-4 py-6 sm:px-24">
-      <div className="absolute z-10 left-0 -top-4 h-12 w-full bg-gradient-to-b from-transparent via-[#0c0901] to-transparent" />
+      <div className="absolute -top-4 left-0 z-10 h-12 w-full bg-gradient-to-b from-transparent via-[#0c0901] to-transparent" />
 
       <div className="absolute inset-0 bg-black/80"></div>
       <div className="absolute bottom-0 left-0 h-90 w-90 overflow-hidden">

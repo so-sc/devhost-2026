@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Download } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import DevHostButton from "./DevHostButton";
+// import DevHostButton from "./DevHostButton";
 // import SplitType from "split-type";
 
 gsap.registerPlugin(ScrollTrigger);

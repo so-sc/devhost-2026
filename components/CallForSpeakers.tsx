@@ -121,7 +121,7 @@ export default function SpeakersInfo() {
     <section
       ref={sectionRef}
       id="speakers"
-      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white sm:py-26 lg:py-34 lg:px-8"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white sm:py-26 lg:px-8 lg:py-34"
     >
       <div
         className=""
