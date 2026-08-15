@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Download } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import DevHostButton from "./DevHostButton";
+import Button from "./Button";
 // import SplitType from "split-type";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -185,7 +185,7 @@ export default function AboutDevhost() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white sm:py-26 lg:px-8"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-18 text-white sm:py-26 lg:px-8"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -297,19 +297,20 @@ export default function AboutDevhost() {
 
         <div
           ref={buttonsRef}
-          className="mt-6 flex w-full flex-col items-center gap-3 sm:mt-8"
+          className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12"
         >
-          <a
-            href="/brochure/devhost_2025.pdf"
-            download
-            className="group font-dalek inline-flex items-center justify-center gap-2.5 rounded-sm border border-[#C9963E] bg-gradient-to-b from-[#1C1A17] via-[#121212] to-[#080808] px-6 py-3 text-xs font-bold tracking-[0.12em] text-[#F6CC60] uppercase shadow-[0_0_16px_rgba(246,204,96,0.08),inset_0_0_0_1px_rgba(246,204,96,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#F6CC60] hover:text-[#FFF3C1] hover:shadow-[0_0_24px_rgba(246,204,96,0.25)] active:scale-[0.98] sm:px-8 sm:py-3 sm:text-sm sm:tracking-[0.14em]"
+          <Button
+            onClick={() => {
+              const link = document.createElement("a");
+              link.href = "/brochure/devhost_2025.pdf";
+              link.download = "DevHost_2025_Brochure.pdf";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
           >
-            <Download
-              size={18}
-              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
-            />
-            <span>DevHost Brochure</span>
-          </a>
+            DevHost Brochure
+          </Button>
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Button from "./Button";
 
 const titleSponsor = {
   src: "/sponsors/title-sponsor.png",
@@ -132,7 +133,7 @@ export default function SponsorsLogo() {
   return (
     <section
       id="sponsors"
-      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-16 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-18 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
     >
       {/* Section background */}
       <div
@@ -183,35 +184,15 @@ export default function SponsorsLogo() {
           {/* Co-Sponsor 2 */}
           <SponsorCard sponsor={coSponsors[1]} />
         </div>{" "}
-        <div className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-8">
-          <a
-            href="mailto:sosc@sahyadri.edu.in"
-            className="group font-dalek inline-flex items-center justify-center gap-2.5 rounded-sm border border-[#C9963E] bg-gradient-to-b from-[#1C1A17] via-[#121212] to-[#080808] px-6 py-3 text-xs font-bold tracking-[0.12em] text-[#F6CC60] uppercase shadow-[0_0_16px_rgba(246,204,96,0.08),inset_0_0_0_1px_rgba(246,204,96,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#F6CC60] hover:text-[#FFF3C1] hover:shadow-[0_0_24px_rgba(246,204,96,0.25)] active:scale-[0.98] sm:px-8 sm:py-3 sm:text-sm sm:tracking-[0.14em]"
+        <div className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12">
+          <Button
+            onClick={() => {
+              window.location.href = "mailto:sosc@sahyadri.edu.in";
+            }}
           >
-            <span>Sponsor Devhost</span>
-          </a>
+            Sponsor DevHost
+          </Button>
         </div>
-      </div>
-
-      {/* Bottom brick row */}
-      <div className="pointer-events-none absolute bottom-4 left-0 z-20 flex h-10 w-full gap-2 overflow-hidden pb-10">
-        {Array.from({ length: 30 }).map((_, i) => (
-          <div
-            key={i}
-            className="relative h-10 min-w-[70px] flex-1 overflow-hidden"
-          >
-            <Image
-              src="/sponsors/brick.jpg"
-              alt=""
-              fill
-              sizes="70px"
-              className="object-cover"
-            />
-
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/90" />
-          </div>
-        ))}
       </div>
     </section>
   );

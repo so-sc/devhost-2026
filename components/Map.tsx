@@ -37,7 +37,7 @@ const Map = () => {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] px-4 text-white sm:px-24">
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] px-4 py-8 text-white sm:px-24">
       {/* Background */}
       <div
         className="pointer-events-none absolute inset-0"

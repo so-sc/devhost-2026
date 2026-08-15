@@ -85,7 +85,7 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-visible px-4 py-16 pb-28 sm:px-6 sm:py-32">
+    <section className="relative w-full overflow-visible px-4 py-18 sm:px-6 sm:py-32">
       {/* Background */}
       <div
         className="absolute inset-0"

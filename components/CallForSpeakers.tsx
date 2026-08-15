@@ -6,7 +6,7 @@ import { Mic } from "lucide-react";
 import SpeakerCarousel from "./SpeakerCarousel";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import SplitType from "split-type";
+import Button from "./Button";
 
 gsap.registerPlugin(ScrollTrigger);
 export default function SpeakersInfo() {
@@ -121,7 +121,7 @@ export default function SpeakersInfo() {
     <section
       ref={sectionRef}
       id="speakers"
-      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white sm:py-26 lg:px-8 lg:py-34"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-18 text-white sm:py-26 lg:px-8 lg:py-34"
     >
       <div
         className=""
@@ -219,19 +219,19 @@ export default function SpeakersInfo() {
 
         <SpeakerCarousel />
 
-        <div className="mt-6 flex w-full flex-col items-center gap-3 sm:mt-8">
-          <a
-            href="/brochure/devhost_2025.pdf"
-            download
-            className="group font-dalek inline-flex items-center justify-center gap-2.5 rounded-sm border border-[#C9963E] bg-gradient-to-b from-[#1C1A17] via-[#121212] to-[#080808] px-6 py-3 text-xs font-bold tracking-[0.12em] text-[#F6CC60] uppercase shadow-[0_0_16px_rgba(246,204,96,0.08),inset_0_0_0_1px_rgba(246,204,96,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#F6CC60] hover:text-[#FFF3C1] hover:shadow-[0_0_24px_rgba(246,204,96,0.25)] active:scale-[0.98] sm:px-8 sm:py-3 sm:text-sm sm:tracking-[0.14em]"
+        <div className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12">
+          <Button
+            onClick={() => {
+              const link = document.createElement("a");
+              link.href = "/brochure/devhost_2025.pdf";
+              link.download = "DevHost_2025_Brochure.pdf";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
           >
-            {" "}
-            <Mic
-              size={18}
-              className="transition-transform duration-300 group-hover:-translate-y-0.5"
-            />
-            <span>Apply as a Speaker</span>
-          </a>
+            Submit Proposal
+          </Button>
         </div>
       </div>
     </section>
