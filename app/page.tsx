@@ -10,7 +10,7 @@ import FAQ from "@/components/Faq";
 import Map from "@/components/Map";
 import Events from "@/components/Events";
 import LoadingSpinner from "@/components/LoadingSpinner";
-// import SponsorsLogo from "@/components/Sponsors";
+import SponsorsLogo from "@/components/Sponsors";
 import CallForSpeakers from "@/components/CallForSpeakers";
 // import SpeakersInfo from "@/components/SpeakersInfo";
 // import Final from "@/components/Final";
@@ -45,7 +45,6 @@ export default function Home() {
         <Hero />
         {/* <Counter /> */}
         {/* <Final /> */}
-        {/* <SponsorsLogo /> */}
         <AboutDevhost />
         {/* <div className="relative h-[30vh]">
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
@@ -53,27 +52,13 @@ export default function Home() {
         {/* <AboutHackathon />
         <TimelineSection /> */}
         {/* <SpeakersInfo /> */}
-        <Events />
         <CallForSpeakers />
+        <SponsorsLogo />
+        <Events />
         <FAQ />
         <Map />
         <Footer />
       </Suspense>
-
-      {/* Background grid */}
-      <div className="pointer-events-none fixed inset-0 -z-10 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(#a3ff12 2px, transparent 1px),
-              linear-gradient(90deg, #a3ff12 2px, transparent 1px)
-            `,
-            backgroundSize: "80px 80px",
-            backgroundPosition: "center",
-          }}
-        ></div>
-      </div>
     </div>
   );
 }

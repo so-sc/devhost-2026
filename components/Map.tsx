@@ -37,7 +37,7 @@ const Map = () => {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] text-white">
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] px-4 py-8 text-white sm:px-24">
       {/* Background */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -57,7 +57,7 @@ const Map = () => {
       <div className="pointer-events-none absolute inset-0 bg-black/35" />
 
       {/* Main Content */}
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-8 py-16 lg:grid-cols-5">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 py-16 text-center sm:text-left lg:grid-cols-5">
         {/* LEFT — TEXT */}
         <div className="space-y-6 lg:col-span-2">
           <h2 className="font-norse-bold text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
@@ -71,7 +71,7 @@ const Map = () => {
           </h3>
 
           <p
-            className="font-poppins max-w-md text-base leading-[1.75] tracking-[0.03em] text-white/75 sm:text-lg"
+            className="font-lora text-base leading-[1.75] tracking-[0.03em] text-white/75 sm:text-lg"
             style={{
               textShadow:
                 "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",
@@ -83,7 +83,7 @@ const Map = () => {
         </div>
 
         {/* RIGHT — LOCATION IMAGE */}
-        <div className="relative lg:col-span-3 lg:flex lg:justify-center">
+        <div className="relative lg:col-span-3 lg:flex lg:justify-end">
           <a
             href="https://www.google.com/maps/search/?api=1&query=Sahyadri+College+of+Engineering+and+Management"
             target="_blank"

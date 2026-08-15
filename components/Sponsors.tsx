@@ -1,142 +1,198 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import Button from "./Button";
 
 const titleSponsor = {
-  src: "/sponsors/EG.png",
+  src: "/sponsors/title-sponsor.png",
   alt: "Title Sponsor",
   href: "https://egsoftware.com/global/about-us",
 };
 
-// const coSponsor = {
-//   src: "/sponsors/EG.png",
-//   alt: "Co-Sponsor",
-//   href: "https://eg.com",
-// };
+const coSponsors = [
+  {
+    src: "/sponsors/co-sponsor.png",
+    alt: "Co-Sponsor",
+    href: "#",
+  },
+  {
+    src: "/sponsors/co-sponsor.png",
+    alt: "Co-Sponsor",
+    href: "#",
+  },
+];
 
-// const goodwillSponsor = {
-//   src: "/sponsors/Wizdom.png",
-//   alt: "Goodwill Sponsor",
-//   href: "https://www.wizx.org/",
-// };
-
-// const otherSponsors = [
-//   { src: "/sponsors/EG.png", alt: "Company 1", href: "https://company1.com" },
-//   { src: "/sponsors/EG.png", alt: "Company 2", href: "https://company2.com" },
-// ];
-
-export default function SponsorsLogo() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const sponsorsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.set([titleRef.current, sponsorsRef.current], { opacity: 0, y: 30 });
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-            end: "top 40%",
-            scrub: 1,
-          },
-        })
-        .to(titleRef.current, { opacity: 1, y: 0, duration: 0.4 })
-        .to(sponsorsRef.current, { opacity: 1, y: 0, duration: 0.5 }, 0.2);
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+function SponsorCard({
+  sponsor,
+  isTitle = false,
+}: {
+  sponsor: {
+    src: string;
+    alt: string;
+    href: string;
+  };
+  isTitle?: boolean;
+}) {
   return (
-    <section
-      ref={sectionRef}
-      className="relative flex items-center justify-center overflow-hidden py-28"
+    <a
+      href={sponsor.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group relative ${
+        isTitle ? "w-[280px] sm:w-[340px]" : "w-[230px] sm:w-[260px]"
+      }`}
     >
-      <div className="absolute top-5 left-5 z-10 h-10 w-10 border-t-2 border-l-2 border-[#F6CC60]/50" />
-      <div className="absolute top-5 right-5 z-10 h-10 w-10 border-t-2 border-r-2 border-[#F6CC60]/50" />
-      <div className="absolute bottom-5 left-5 z-10 h-10 w-10 border-b-2 border-l-2 border-[#F6CC60]/50" />
-      <div className="absolute right-5 bottom-5 z-10 h-10 w-10 border-r-2 border-b-2 border-[#F6CC60]/50" />
-      <div className="absolute top-0 h-12 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
+      {/* Outer glow */}
+      <div className="absolute -inset-3 rounded-md bg-[#C9963E]/10 opacity-0 blur-xl transition duration-700 group-hover:opacity-100" />
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
-        <h2
-          ref={titleRef}
-          className="font-orbitron text-primary shadow-primary mb-12 px-1 pb-2 text-center text-2xl font-semibold tracking-widest uppercase sm:text-3xl md:text-5xl"
-        >
-          SPONSORS
-        </h2>
-
-        {/* Main sponsors */}
+      {/* Gold frame */}
+      <div className="relative rounded-md border border-[#C9963E]/60 p-[2px] shadow-[0_0_20px_rgba(201,150,62,0.08)] transition-all duration-500 group-hover:border-[#F6CC60] group-hover:shadow-[0_0_30px_rgba(246,204,96,0.18)]">
+        {/* Marble plaque */}
         <div
-          ref={sponsorsRef}
-          className="flex flex-col items-center gap-12 md:flex-row md:justify-center"
+          className={`relative flex ${
+            isTitle ? "h-[150px] sm:h-[165px]" : "h-[125px] sm:h-[140px]"
+          } w-full items-center justify-center overflow-hidden rounded-[3px] border border-[#C9963E]/20 bg-[#11100e]`}
         >
-          {/* Title Sponsor */}
-          <div className="flex flex-col items-center gap-3">
-            <a
-              href={titleSponsor.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative h-[170px] w-[360px]"
-            >
-              <Image
-                src={titleSponsor.src}
-                alt={titleSponsor.alt}
-                fill
-                style={{ objectFit: "contain" }}
-              />
-            </a>
-            <p className="font-orbitron text-primary text-base uppercase">
-              Title Sponsor
-            </p>
+          {/* Marble base */}
+          <div
+            className="absolute inset-0 opacity-80"
+            style={{
+              backgroundImage: `
+                radial-gradient(
+                  ellipse at 20% 20%,
+                  rgba(255,255,255,0.07) 0%,
+                  transparent 35%
+                ),
+                radial-gradient(
+                  ellipse at 80% 70%,
+                  rgba(201,150,62,0.06) 0%,
+                  transparent 40%
+                ),
+                linear-gradient(
+                  135deg,
+                  #181715 0%,
+                  #0b0a09 35%,
+                  #171614 55%,
+                  #090807 100%
+                )
+              `,
+            }}
+          />
+
+          {/* Marble veins */}
+          <div
+            className="pointer-events-none absolute inset-[-30%] opacity-20"
+            style={{
+              backgroundImage: `
+                linear-gradient(
+                  125deg,
+                  transparent 25%,
+                  rgba(255,255,255,0.12) 26%,
+                  transparent 27%,
+                  transparent 48%,
+                  rgba(255,255,255,0.08) 49%,
+                  transparent 50%,
+                  transparent 72%,
+                  rgba(201,150,62,0.08) 73%,
+                  transparent 74%
+                )
+              `,
+              transform: "rotate(-8deg) scale(1.3)",
+            }}
+          />
+
+          {/* Center highlight */}
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07),transparent_60%)]" />
+
+          {/* Sponsor logo */}
+          {/* <div className="relative z-10 h-[115px] w-[230px] sm:h-[130px] sm:w-[270px]"> 
+          <Image 
+          src={titleSponsor.src} 
+          alt={titleSponsor.alt} 
+          fill sizes="270px" 
+          className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] transition-transform duration-500 group-hover:scale-[1.03]" /> 
+          */}
+          <div className="relative z-10 h-full w-full">
+            <Image
+              src={sponsor.src}
+              alt={sponsor.alt}
+              fill
+              className="drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] transition-transform duration-500 group-hover:scale-[1.03]"
+            />
           </div>
 
-          {/* Goodwill Sponsor */}
-          {/* <div className="flex flex-col items-center gap-3">
-            <a
-              href={goodwillSponsor.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative h-[170px] w-[360px]"
-            >
-              <Image
-                src={goodwillSponsor.src}
-                alt={goodwillSponsor.alt}
-                fill
-                style={{ objectFit: "contain" }}
-              />
-            </a>
-            <p className="font-orbitron text-primary text-base uppercase">
-              Goodwill Sponsor
-            </p>
-          </div> */}
+          {/* Shine */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </div>
+      </div>
+    </a>
+  );
+}
 
-        {/* <div
-          className="flex items-center justify-center text-3xl md:text-4xl"
-          style={{ height: "120px", position: "relative", overflow: "hidden" }}
-        >
-          <div className="absolute top-0 left-0 z-10 h-full w-12 bg-gradient-to-r from-black to-transparent" />
-          <LogoLoop
-            logos={otherSponsors}
-            speed={55}
-            direction="left"
-            logoHeight={90}
-            gap={120}
-            pauseOnHover
-            scaleOnHover
-            ariaLabel="Other sponsors"
-          />
-          <div className="absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-black to-transparent" />
-        </div> */}
+export default function SponsorsLogo() {
+  return (
+    <section
+      id="sponsors"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-18 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
+    >
+      {/* Section background */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "url('/images/parchment-sponsor.jpg')",
+          backgroundSize: "100% 100%",
+          backgroundPosition: "center",
+          opacity: 0.6,
+          mixBlendMode: "soft-light",
+        }}
+      />
+
+      {/* Dark overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.07),transparent_65%)]" />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6">
+        {/* Small ornament */}
+        <div className="mb-2 opacity-70">
+          <div className="relative h-14 w-14">
+            <Image
+              src="/images/sponsor-ornament.png"
+              alt=""
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
+        <div className="relative mb-4 text-center sm:mb-6">
+          <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
+            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+              sponsors
+            </span>
+          </h2>
+
+          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+            powering devhost 2026
+          </h3>
+        </div>
+        {/* Sponsor */}
+        <div className="mt-12 grid w-full grid-cols-1 items-center justify-items-center gap-10 md:grid-cols-3 md:gap-6 lg:gap-10">
+          {/* Co-Sponsor 1 */}
+          <SponsorCard sponsor={coSponsors[0]} />
+
+          {/* Title Sponsor */}
+          <SponsorCard sponsor={titleSponsor} isTitle />
+
+          {/* Co-Sponsor 2 */}
+          <SponsorCard sponsor={coSponsors[1]} />
+        </div>{" "}
+        <div className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12">
+          <Button
+            onClick={() => {
+              window.location.href = "mailto:sosc@sahyadri.edu.in";
+            }}
+          >
+            Sponsor DevHost
+          </Button>
+        </div>
       </div>
     </section>
   );
