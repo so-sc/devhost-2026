@@ -60,20 +60,6 @@ export default function Home() {
         <Footer />
       </Suspense>
 
-      {/* Background grid */}
-      <div className="pointer-events-none fixed inset-0 -z-10 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(#a3ff12 2px, transparent 1px),
-              linear-gradient(90deg, #a3ff12 2px, transparent 1px)
-            `,
-            backgroundSize: "80px 80px",
-            backgroundPosition: "center",
-          }}
-        ></div>
-      </div>
     </div>
   );
 }
