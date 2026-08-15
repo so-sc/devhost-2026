@@ -66,70 +66,138 @@ function GreekLetters() {
   const letters = [
     { char: "Α", x: 5, y: 12, size: 64, opacity: 0.08, rotate: -15, delay: 0 },
     { char: "Ω", x: 88, y: 8, size: 80, opacity: 0.07, rotate: 10, delay: 1.8 },
-    { char: "Δ", x: 78, y: 55, size: 56, opacity: 0.06, rotate: -8, delay: 3.2 },
+    {
+      char: "Δ",
+      x: 78,
+      y: 55,
+      size: 56,
+      opacity: 0.06,
+      rotate: -8,
+      delay: 3.2,
+    },
     { char: "Σ", x: 3, y: 60, size: 72, opacity: 0.08, rotate: 12, delay: 0.9 },
-    { char: "Θ", x: 15, y: 82, size: 50, opacity: 0.07, rotate: -5, delay: 4.1 },
-    { char: "Λ", x: 82, y: 80, size: 60, opacity: 0.06, rotate: 18, delay: 2.5 },
-    { char: "Φ", x: 48, y: 6, size: 52, opacity: 0.05, rotate: -20, delay: 5.3 },
+    {
+      char: "Θ",
+      x: 15,
+      y: 82,
+      size: 50,
+      opacity: 0.07,
+      rotate: -5,
+      delay: 4.1,
+    },
+    {
+      char: "Λ",
+      x: 82,
+      y: 80,
+      size: 60,
+      opacity: 0.06,
+      rotate: 18,
+      delay: 2.5,
+    },
+    {
+      char: "Φ",
+      x: 48,
+      y: 6,
+      size: 52,
+      opacity: 0.05,
+      rotate: -20,
+      delay: 5.3,
+    },
     { char: "Ψ", x: 92, y: 38, size: 66, opacity: 0.06, rotate: 8, delay: 1.2 },
-    { char: "Ξ", x: 2, y: 35, size: 48, opacity: 0.07, rotate: -10, delay: 3.7 },
+    {
+      char: "Ξ",
+      x: 2,
+      y: 35,
+      size: 48,
+      opacity: 0.07,
+      rotate: -10,
+      delay: 3.7,
+    },
     { char: "Π", x: 60, y: 88, size: 70, opacity: 0.06, rotate: 5, delay: 0.4 },
-    { char: "Γ", x: 30, y: 75, size: 44, opacity: 0.05, rotate: -18, delay: 6.1 },
-    { char: "Β", x: 70, y: 18, size: 58, opacity: 0.06, rotate: 14, delay: 2.0 },
-    { char: "Μ", x: 22, y: 20, size: 46, opacity: 0.05, rotate: -6, delay: 4.8 },
-    { char: "Ρ", x: 55, y: 70, size: 54, opacity: 0.06, rotate: 22, delay: 1.5 },
+    {
+      char: "Γ",
+      x: 30,
+      y: 75,
+      size: 44,
+      opacity: 0.05,
+      rotate: -18,
+      delay: 6.1,
+    },
+    {
+      char: "Β",
+      x: 70,
+      y: 18,
+      size: 58,
+      opacity: 0.06,
+      rotate: 14,
+      delay: 2.0,
+    },
+    {
+      char: "Μ",
+      x: 22,
+      y: 20,
+      size: 46,
+      opacity: 0.05,
+      rotate: -6,
+      delay: 4.8,
+    },
+    {
+      char: "Ρ",
+      x: 55,
+      y: 70,
+      size: 54,
+      opacity: 0.06,
+      rotate: 22,
+      delay: 1.5,
+    },
   ];
 
-useEffect(() => {
-  if (!lettersRef.current) return;
+  useEffect(() => {
+    if (!lettersRef.current) return;
 
-  const ctx = gsap.context(() => {
-    const container = lettersRef.current;
-    if (!container) return;
+    const ctx = gsap.context(() => {
+      const container = lettersRef.current;
+      if (!container) return;
 
-    const section = container.parentElement;
-    if (!section) return;
+      const section = container.parentElement;
+      if (!section) return;
 
-    const letterElements =
-      gsap.utils.toArray<HTMLElement>(".greek-letter");
+      const letterElements = gsap.utils.toArray<HTMLElement>(".greek-letter");
 
-    letterElements.forEach((letter, i) => {
-      // Random horizontal resting position
-      const finalX = gsap.utils.random(-40, 40);
+      letterElements.forEach((letter) => {
+        // Random horizontal resting position
+        const finalX = gsap.utils.random(-40, 40);
 
-      // Calculate a Y position near the bottom of THIS section
-      const sectionHeight = section.offsetHeight;
-      const letterHeight = letter.offsetHeight;
+        // Calculate a Y position near the bottom of THIS section
+        const sectionHeight = section.offsetHeight;
+        const letterHeight = letter.offsetHeight;
 
-      const finalY =
-        sectionHeight -
-        letterHeight -
-        gsap.utils.random(10, 40);
+        const finalY = sectionHeight - letterHeight - gsap.utils.random(10, 40);
 
-      const finalRotation = gsap.utils.random(-100, 100);
-      const finalScale = gsap.utils.random(0.7, 1.15);
+        const finalRotation = gsap.utils.random(-100, 100);
+        const finalScale = gsap.utils.random(0.7, 1.15);
 
-      gsap.to(letter, {
-        x: finalX,
-        y: finalY,
-        rotation: finalRotation,
-        scale: finalScale,
-        opacity: 0.16,
+        gsap.to(letter, {
+          x: finalX,
+          y: finalY,
+          rotation: finalRotation,
+          scale: finalScale,
+          opacity: 0.16,
 
-        ease: "power3.in",
+          ease: "power3.in",
 
-        scrollTrigger: {
-          trigger: section,
-          start: "top 90%",
-          end: "bottom top",
-          scrub: 1.4,
-        },
+          scrollTrigger: {
+            trigger: section,
+            start: "top 90%",
+            end: "bottom top",
+            scrub: 1.4,
+          },
+        });
       });
-    });
-  }, lettersRef);
+    }, lettersRef);
 
-  return () => ctx.revert();
-}, []);
+    return () => ctx.revert();
+  }, []);
   return (
     <div
       ref={lettersRef}
@@ -151,9 +219,7 @@ useEffect(() => {
             lineHeight: 1,
             userSelect: "none",
 
-            animation: `letter-glow ${
-              4 + i * 0.35
-            }s ease-in-out infinite`,
+            animation: `letter-glow ${4 + i * 0.35}s ease-in-out infinite`,
             animationDelay: `${l.delay}s`,
           }}
         >
@@ -195,9 +261,29 @@ function Particles() {
 
 function FlyingGlyphs() {
   const glyphs = [
-    "Α", "Ω", "Δ", "Λ", "Σ", "Φ", "Ψ", "Θ",
-    "Ι", "Κ", "Μ", "Ν", "Ξ", "Π", "Ρ", "Τ",
-    "ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᛏ", "ᚺ",
+    "Α",
+    "Ω",
+    "Δ",
+    "Λ",
+    "Σ",
+    "Φ",
+    "Ψ",
+    "Θ",
+    "Ι",
+    "Κ",
+    "Μ",
+    "Ν",
+    "Ξ",
+    "Π",
+    "Ρ",
+    "Τ",
+    "ᚠ",
+    "ᚢ",
+    "ᚦ",
+    "ᚨ",
+    "ᚱ",
+    "ᛏ",
+    "ᚺ",
   ];
 
   const rand = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -209,15 +295,23 @@ function FlyingGlyphs() {
     left: rand(5, 90),
     size: rand(8, 18),
     baseOpacity: rand(0.25, 0.5),
-    dx1: rand(-18, 18), dy1: rand(-14, 14), r1: rand(-90, 90),
-    dx2: rand(-22, 22), dy2: rand(-16, 16), r2: rand(-90, 90),
-    dx3: rand(-18, 18), dy3: rand(-14, 14), r3: rand(-90, 90),
-    dx4: rand(-10, 10), dy4: rand(-8, 8), r4: rand(-90, 90),
-    duration: rand(45, 75),       // was rand(14, 26) — much slower drift
-    delay: rand(-60, 0),          // widen so they don't all sync up
-    buzzDuration: rand(1.5, 3),   // was rand(0.15, 0.4) — slow, lazy twitch
+    dx1: rand(-18, 18),
+    dy1: rand(-14, 14),
+    r1: rand(-90, 90),
+    dx2: rand(-22, 22),
+    dy2: rand(-16, 16),
+    r2: rand(-90, 90),
+    dx3: rand(-18, 18),
+    dy3: rand(-14, 14),
+    r3: rand(-90, 90),
+    dx4: rand(-10, 10),
+    dy4: rand(-8, 8),
+    r4: rand(-90, 90),
+    duration: rand(45, 75), // was rand(14, 26) — much slower drift
+    delay: rand(-60, 0), // widen so they don't all sync up
+    buzzDuration: rand(1.5, 3), // was rand(0.15, 0.4) — slow, lazy twitch
     buzzDelay: rand(0, 3),
-    bx: rand(2, 5),               // slightly smaller jitter distance too
+    bx: rand(2, 5), // slightly smaller jitter distance too
     by: rand(2, 5),
   }));
 
@@ -233,10 +327,18 @@ function FlyingGlyphs() {
               left: `${p.left}%`,
               animationDuration: `${p.duration}s`,
               animationDelay: `${p.delay}s`,
-              "--dx1": `${p.dx1}vw`, "--dy1": `${p.dy1}vh`, "--r1": `${p.r1}deg`,
-              "--dx2": `${p.dx2}vw`, "--dy2": `${p.dy2}vh`, "--r2": `${p.r2}deg`,
-              "--dx3": `${p.dx3}vw`, "--dy3": `${p.dy3}vh`, "--r3": `${p.r3}deg`,
-              "--dx4": `${p.dx4}vw`, "--dy4": `${p.dy4}vh`, "--r4": `${p.r4}deg`,
+              "--dx1": `${p.dx1}vw`,
+              "--dy1": `${p.dy1}vh`,
+              "--r1": `${p.r1}deg`,
+              "--dx2": `${p.dx2}vw`,
+              "--dy2": `${p.dy2}vh`,
+              "--r2": `${p.r2}deg`,
+              "--dx3": `${p.dx3}vw`,
+              "--dy3": `${p.dy3}vh`,
+              "--r3": `${p.r3}deg`,
+              "--dx4": `${p.dx4}vw`,
+              "--dy4": `${p.dy4}vh`,
+              "--r4": `${p.r4}deg`,
               "--base-opacity": p.baseOpacity,
             } as React.CSSProperties
           }
@@ -392,74 +494,86 @@ export default function App() {
         }
 
         // Flying glyphs animation
-@keyframes flying-wander {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    opacity: 0;
-  }
-  8% {
-    opacity: var(--base-opacity);
-  }
-  25% {
-    transform: translate3d(var(--dx1), var(--dy1), 0) rotate(var(--r1));
-  }
-  50% {
-    transform: translate3d(var(--dx2), var(--dy2), 0) rotate(var(--r2));
-  }
-  75% {
-    transform: translate3d(var(--dx3), var(--dy3), 0) rotate(var(--r3));
-  }
-  92% {
-    opacity: var(--base-opacity);
-  }
-  100% {
-    transform: translate3d(var(--dx4), var(--dy4), 0) rotate(var(--r4));
-    opacity: 0;
-  }
-}
+        @keyframes flying-wander {
+          0% {
+            transform: translate3d(0, 0, 0) rotate(0deg);
+            opacity: 0;
+          }
+          8% {
+            opacity: var(--base-opacity);
+          }
+          25% {
+            transform: translate3d(var(--dx1), var(--dy1), 0) rotate(var(--r1));
+          }
+          50% {
+            transform: translate3d(var(--dx2), var(--dy2), 0) rotate(var(--r2));
+          }
+          75% {
+            transform: translate3d(var(--dx3), var(--dy3), 0) rotate(var(--r3));
+          }
+          92% {
+            opacity: var(--base-opacity);
+          }
+          100% {
+            transform: translate3d(var(--dx4), var(--dy4), 0) rotate(var(--r4));
+            opacity: 0;
+          }
+        }
 
-@keyframes flying-buzz {
-  0%   { transform: translate(0, 0); }
-  20%  { transform: translate(var(--bx), calc(var(--by) * -1)); }
-  40%  { transform: translate(calc(var(--bx) * -0.6), var(--by)); }
-  60%  { transform: translate(var(--bx), var(--by)); }
-  80%  { transform: translate(calc(var(--bx) * -1), calc(var(--by) * -0.5)); }
-  100% { transform: translate(0, 0); }
-}
+        @keyframes flying-buzz {
+          0% {
+            transform: translate(0, 0);
+          }
+          20% {
+            transform: translate(var(--bx), calc(var(--by) * -1));
+          }
+          40% {
+            transform: translate(calc(var(--bx) * -0.6), var(--by));
+          }
+          60% {
+            transform: translate(var(--bx), var(--by));
+          }
+          80% {
+            transform: translate(calc(var(--bx) * -1), calc(var(--by) * -0.5));
+          }
+          100% {
+            transform: translate(0, 0);
+          }
+        }
 
-.flying-glyph-wrap {
-  animation-name: flying-wander;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  will-change: transform, opacity;
-}
+        .flying-glyph-wrap {
+          animation-name: flying-wander;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+          will-change: transform, opacity;
+        }
 
-.flying-glyph-buzz {
-  display: inline-block;
-  animation-name: flying-buzz;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  color: #ffd975;
-  font-weight: 400;
-  line-height: 1;
-  text-shadow:
-    0 0 4px rgba(255, 217, 117, 0.8),
-    0 0 10px rgba(232, 194, 80, 0.55),
-    0 0 18px rgba(196, 154, 42, 0.35);
-  will-change: transform;
-}      
+        .flying-glyph-buzz {
+          display: inline-block;
+          animation-name: flying-buzz;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+          color: #ffd975;
+          font-weight: 400;
+          line-height: 1;
+          text-shadow:
+            0 0 4px rgba(255, 217, 117, 0.8),
+            0 0 10px rgba(232, 194, 80, 0.55),
+            0 0 18px rgba(196, 154, 42, 0.35);
+          will-change: transform;
+        }
       `}</style>
-<div
-  className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden"
-  style={{
-    background:
-      "radial-gradient(ellipse at 50% 60%, #131008 0%, #0a0900 40%, #080808 100%)",
-  }}
->
-  {/* IMAGES — behind overlay */}
+      <div
+        className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 60%, #131008 0%, #0a0900 40%, #080808 100%)",
+        }}
+      >
+        {/* IMAGES — behind overlay */}
 
-  {/* Archer - bottom right */}
-  {/* <div className="absolute right-0 bottom-0 z-0 w-32 hidden sm:block sm:w-48 md:w-56 lg:w-72 xl:w-80">
+        {/* Archer - bottom right */}
+        {/* <div className="absolute right-0 bottom-0 z-0 w-32 hidden sm:block sm:w-48 md:w-56 lg:w-72 xl:w-80">
     <Image
       src="/archer.png"
       alt=""
@@ -470,8 +584,8 @@ export default function App() {
      <div className="absolute inset-0 bg-[#080808]/50" />
   </div> */}
 
-  {/* Target - top left */}
-  {/* <div className="absolute top-0 left-0 hidden sm:block z-0 w-32 sm:w-48 md:w-56 lg:w-72 xl:w-80">
+        {/* Target - top left */}
+        {/* <div className="absolute top-0 left-0 hidden sm:block z-0 w-32 sm:w-48 md:w-56 lg:w-72 xl:w-80">
     <Image
       src="/target.png"
       alt=""
@@ -481,16 +595,16 @@ export default function App() {
     />
   </div> */}
 
-  {/* DARK ATMOSPHERIC OVERLAY */}
-  {/* <div
+        {/* DARK ATMOSPHERIC OVERLAY */}
+        {/* <div
     className="pointer-events-none hidden sm:block absolute inset-0 z-[1]"
     style={{
       background:
         "radial-gradient(ellipse at 50% 60%, rgba(19,16,8,0.15) 0%, rgba(10,9,0,0.55) 40%, rgba(8,8,8,0.9) 100%)",
     }}
   />         */}
-  <FlyingGlyphs />
-  {/* Animated radial glow */}
+        <FlyingGlyphs />
+        {/* Animated radial glow */}
         <canvas
           ref={canvasRef}
           className="pointer-events-none absolute inset-0 h-full w-full"
@@ -506,7 +620,6 @@ export default function App() {
         <Particles />
 
         {/* Bottom-left decorative image */}
-
 
         {/* Decorative horizontal rule — top */}
         <div
@@ -527,16 +640,16 @@ export default function App() {
         {/* CENTER CONTENT */}
         <div className="relative z-10 flex flex-col items-center justify-center gap-0 px-4">
           {/* Sponsor logos row */}
-            <div
-              className={`mb-10 sm:w-50 w-40 flex items-center justify-center mr-1`}
-            >
-              <Image
-                src="/logo-group.png"
-                alt="Logos"
-                width={250}
-                height={250}
-                className="h-auto w-full object-contain"
-              />{" "}
+          <div
+            className={`mr-1 mb-10 flex w-40 items-center justify-center sm:w-50`}
+          >
+            <Image
+              src="/logo-group.png"
+              alt="Logos"
+              width={250}
+              height={250}
+              className="h-auto w-full object-contain"
+            />{" "}
           </div>
 
           {/* <p className="mb-10 font-norse-bold relative z-10 text-sm tracking-[2px] text-white/70 sm:text-sm sm:tracking-[4px]">
@@ -556,7 +669,7 @@ export default function App() {
 
           {/* Tagline */}
           <h1
-            className="font-norse-bold font-extrabold shimmer-text text-center text-2xl"
+            className="font-norse-bold shimmer-text text-center text-2xl font-extrabold"
             style={{
               // fontFamily: "'Cinzel Decorative', 'Cinzel', serif",
               fontWeight: 700,

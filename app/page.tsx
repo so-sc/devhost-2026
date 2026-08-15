@@ -59,7 +59,6 @@ export default function Home() {
         <Map />
         <Footer />
       </Suspense>
-
     </div>
   );
 }
