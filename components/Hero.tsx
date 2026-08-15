@@ -1,25 +1,6 @@
 "use client";
 import Image from "next/image";
-
-function Pillar({ side }: { side: "left" | "right" }) {
-  return (
-    <div
-      className={`pointer-events-none absolute top-0 z-0 h-full opacity-70 ${
-        side === "left"
-          ? "left-0 -translate-x-1/2 sm:translate-x-0"
-          : "right-0 translate-x-1/2 sm:translate-x-0"
-      } xs:w-[170px] w-[150px] sm:w-[190px] md:w-[240px]`}
-    >
-      <Image
-        src="/pillar.png"
-        alt=""
-        fill
-        className={`object-cover ${side === "right" ? "scale-x-[-1]" : ""}`}
-        priority
-      />
-    </div>
-  );
-}
+import CloudLayer from "./CloudFlayer";
 
 export default function Hero() {
   return (
@@ -27,17 +8,14 @@ export default function Hero() {
       {/* Background overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/bg-greek.svg"
+          src="/greek_bg.svg"
           alt=""
           fill
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <CloudLayer />
       </div>
-
-      <Pillar side="left" />
-      <Pillar side="right" />
 
       {/* Organizer logos */}
       <div className="relative z-10 flex items-center justify-center gap-4 sm:gap-6">
@@ -71,12 +49,12 @@ export default function Hero() {
       </div>
 
       {/* Presents */}
-      <p className="font-norse-bold relative z-10 -translate-y-3 text-sm tracking-[3px] text-white/70 sm:text-base">
+      <p className="font-norse-bold relative z-10 text-sm tracking-[6px] text-white/70 sm:text-base sm:tracking-[10px]">
         presents
       </p>
 
       {/* Main logo */}
-      <div className="relative z-10 h-40 w-40 -translate-y-7 sm:h-60 sm:w-60 md:h-100 md:w-100">
+      <div className="relative z-10 h-40 w-40 -translate-y-7 sm:h-60 sm:w-60 md:h-72 md:w-72">
         <Image
           src="/DVHST.png"
           alt="DevHost 2026"
@@ -87,9 +65,10 @@ export default function Hero() {
       </div>
 
       {/* Tagline */}
-      <p className="font-norse-bold relative -translate-y-12 text-center text-sm tracking-[2px] text-white sm:-translate-y-20 sm:text-base sm:tracking-[4px] md:-translate-y-28 md:text-lg">
+      <p className="font-norse-bold relative -translate-y-7 text-center text-sm tracking-[3px] text-white sm:text-base sm:tracking-[4px] md:text-lg">
         immortal minds build mortal ideas
       </p>
     </div>
   );
 }
+
