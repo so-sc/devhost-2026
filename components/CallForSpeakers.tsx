@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { Mic } from "lucide-react";
 import SpeakerCarousel from "./SpeakerCarousel";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
