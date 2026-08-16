@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const images = [
   "/images/IMG_1.jpg",
@@ -57,22 +58,7 @@ export default function Gallery() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.07),transparent_65%)]" />
 
       {/* CONTENT */}
-      <div
-        className="
-          relative mx-auto
-          flex w-full
-          flex-col
-          items-center
-          gap-4
-          px-4
-          sm:px-8
-          md:items-center
-          md:gap-4
-          md:px-10
-          lg:px-16
-          xl:px-24
-        "
-      >
+      <div className="relative mx-auto flex w-full flex-col items-center gap-4 px-4 sm:px-8 md:items-center md:gap-4 md:px-10 lg:px-16 xl:px-24">
         {/* TITLE */}
         <div className="relative mb-4 text-center sm:mb-6">
           <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
@@ -83,18 +69,7 @@ export default function Gallery() {
         </div>
 
         {/* CAROUSEL */}
-        <div
-          className="
-            relative
-            h-[320px]
-            w-full
-            min-w-0
-            overflow-hidden
-            sm:h-[350px]
-            md:h-[350px]
-
-          "
-        >
+        <div className="relative h-[320px] w-full min-w-0 overflow-hidden sm:h-[350px] md:h-[350px]">
           {images.map((src, index) => {
             const position = getPosition(index);
 
@@ -105,7 +80,7 @@ export default function Gallery() {
             return (
               <div
                 key={src}
-                className="absolute left-1/2 top-1/2"
+                className="absolute top-1/2 left-1/2"
                 style={{
                   zIndex: 20 - Math.abs(position),
 
@@ -143,29 +118,22 @@ export default function Gallery() {
               >
                 {/* GOLD BORDER */}
                 <div
-                  className={`
-                    rounded-[10px]
-                    border
-                    border-[#C9A45C]
-                    bg-[#C9A45C]/10
-                    p-[2px]
-                    transition-all
-                    duration-700
-                    ${
-                      isActive
-                        ? "shadow-[0_8px_30px_rgba(201,164,92,0.25)]"
-                        : "shadow-[0_5px_15px_rgba(0,0,0,0.12)]"
-                    }
-                  `}
+                  className={`rounded-[10px] border border-[#C9A45C] bg-[#C9A45C]/10 p-[2px] transition-all duration-700 ${
+                    isActive
+                      ? "shadow-[0_8px_30px_rgba(201,164,92,0.25)]"
+                      : "shadow-[0_5px_15px_rgba(0,0,0,0.12)]"
+                  } `}
                 >
                   <div className="relative h-[240px] w-[180px] overflow-hidden rounded-[8px] bg-black sm:h-[270px] sm:w-[205px] md:h-[280px] md:w-[210px]">
-                    <img
-                      src={src}
-                      alt={`Gallery image ${index + 1}`}
-                      className="h-full w-full object-cover"
-                      draggable={false}
-                    />
-                  </div>
+  <Image
+    src={src}
+    alt={`Gallery image ${index + 1}`}
+    fill
+    sizes="(max-width: 640px) 180px, (max-width: 768px) 205px, 210px"
+    className="object-cover"
+    draggable={false}
+  />
+</div>
                 </div>
               </div>
             );
