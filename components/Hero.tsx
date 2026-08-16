@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 
@@ -30,14 +30,29 @@ import { gsap } from "gsap";
 // }
 
 function StarField() {
-  const stars = Array.from({ length: 60 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 1.5 + 0.5,
-    opacity: Math.random() * 0.5 + 0.1,
-    delay: Math.random() * 4,
-  }));
+  const [stars, setStars] = useState<
+    {
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      opacity: number;
+      delay: number;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    setStars(
+      Array.from({ length: 60 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.5 + 0.1,
+        delay: Math.random() * 4,
+      })),
+    );
+  }, []);
 
   return (
     <div className="pointer-events-none absolute inset-0">
@@ -229,14 +244,29 @@ function GreekLetters() {
     </div>
   );
 }
+
 function Particles() {
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    delay: Math.random() * 8,
-    duration: 6 + Math.random() * 6,
-    size: Math.random() * 2 + 0.5,
-  }));
+  const [particles, setParticles] = useState<
+    {
+      id: number;
+      x: number;
+      delay: number;
+      duration: number;
+      size: number;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 30 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        delay: Math.random() * 8,
+        duration: 6 + Math.random() * 6,
+        size: Math.random() * 2 + 0.5,
+      })),
+    );
+  }, []);
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -259,61 +289,85 @@ function Particles() {
   );
 }
 
+type FlyingParticle = {
+  id: number;
+  glyph: string;
+  top: number;
+  left: number;
+  size: number;
+  baseOpacity: number;
+
+  dx1: number;
+  dy1: number;
+  r1: number;
+
+  dx2: number;
+  dy2: number;
+  r2: number;
+
+  dx3: number;
+  dy3: number;
+  r3: number;
+
+  dx4: number;
+  dy4: number;
+  r4: number;
+
+  duration: number;
+  delay: number;
+  buzzDuration: number;
+  buzzDelay: number;
+  bx: number;
+  by: number;
+};
+
+const GLYPHS = [
+  "Α", "Ω", "Δ", "Λ", "Σ", "Φ", "Ψ", "Θ",
+  "Ι", "Κ", "Μ", "Ν", "Ξ", "Π", "Ρ", "Τ",
+  "ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᛏ", "ᚺ",
+];
+
 function FlyingGlyphs() {
-  const glyphs = [
-    "Α",
-    "Ω",
-    "Δ",
-    "Λ",
-    "Σ",
-    "Φ",
-    "Ψ",
-    "Θ",
-    "Ι",
-    "Κ",
-    "Μ",
-    "Ν",
-    "Ξ",
-    "Π",
-    "Ρ",
-    "Τ",
-    "ᚠ",
-    "ᚢ",
-    "ᚦ",
-    "ᚨ",
-    "ᚱ",
-    "ᛏ",
-    "ᚺ",
-  ];
+  const rand = (min: number, max: number) =>
+    Math.random() * (max - min) + min;
 
-  const rand = (min: number, max: number) => Math.random() * (max - min) + min;
+  const [particles, setParticles] = useState<FlyingParticle[]>([]);
 
-  const particles = Array.from({ length: 35 }, (_, i) => ({
-    id: i,
-    glyph: glyphs[Math.floor(Math.random() * glyphs.length)],
-    top: rand(5, 90),
-    left: rand(5, 90),
-    size: rand(8, 18),
-    baseOpacity: rand(0.25, 0.5),
-    dx1: rand(-18, 18),
-    dy1: rand(-14, 14),
-    r1: rand(-90, 90),
-    dx2: rand(-22, 22),
-    dy2: rand(-16, 16),
-    r2: rand(-90, 90),
-    dx3: rand(-18, 18),
-    dy3: rand(-14, 14),
-    r3: rand(-90, 90),
-    dx4: rand(-10, 10),
-    dy4: rand(-8, 8),
-    r4: rand(-90, 90),
-    duration: rand(45, 75), // was rand(14, 26) — much slower drift
-    delay: rand(-60, 0), // widen so they don't all sync up
-    buzzDuration: rand(1.5, 3), // was rand(0.15, 0.4) — slow, lazy twitch
-    buzzDelay: rand(0, 3),
-    bx: rand(2, 5), // slightly smaller jitter distance too
-    by: rand(2, 5),
-  }));
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 35 }, (_, i) => ({
+        id: i,
+        glyph: GLYPHS[Math.floor(Math.random() * GLYPHS.length)],
+        top: rand(5, 90),
+        left: rand(5, 90),
+        size: rand(8, 18),
+        baseOpacity: rand(0.25, 0.5),
+
+        dx1: rand(-18, 18),
+        dy1: rand(-14, 14),
+        r1: rand(-90, 90),
+
+        dx2: rand(-22, 22),
+        dy2: rand(-16, 16),
+        r2: rand(-90, 90),
+
+        dx3: rand(-18, 18),
+        dy3: rand(-14, 14),
+        r3: rand(-90, 90),
+
+        dx4: rand(-10, 10),
+        dy4: rand(-8, 8),
+        r4: rand(-90, 90),
+
+        duration: rand(45, 75),
+        delay: rand(-60, 0),
+        buzzDuration: rand(1.5, 3),
+        buzzDelay: rand(0, 3),
+        bx: rand(2, 5),
+        by: rand(2, 5),
+      }))
+    );  
+  }, []);
 
   return (
     <div className="pointer-events-none absolute inset-0 z-[5] hidden overflow-hidden sm:block">
@@ -362,7 +416,6 @@ function FlyingGlyphs() {
     </div>
   );
 }
-
 export default function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 

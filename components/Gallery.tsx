@@ -125,15 +125,15 @@ export default function Gallery() {
                   } `}
                 >
                   <div className="relative h-[240px] w-[180px] overflow-hidden rounded-[8px] bg-black sm:h-[270px] sm:w-[205px] md:h-[280px] md:w-[210px]">
-  <Image
-    src={src}
-    alt={`Gallery image ${index + 1}`}
-    fill
-    sizes="(max-width: 640px) 180px, (max-width: 768px) 205px, 210px"
-    className="object-cover"
-    draggable={false}
-  />
-</div>
+                    <Image
+                      src={src}
+                      alt={`Gallery image ${index + 1}`}
+                      fill
+                      sizes="(max-width: 640px) 180px, (max-width: 768px) 205px, 210px"
+                      className="object-cover"
+                      draggable={false}
+                    />
+                  </div>
                 </div>
               </div>
             );

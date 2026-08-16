@@ -209,9 +209,9 @@ export default function SpeakersInfo() {
             >
               Share your knowledge, research, and technical vision with
               passionate developers, students, and industry leaders. Whether you
-              specialize in AI &amp; Machine Learning, Open Source
-              Infrastructure, Cloud &amp; Web3, or Software Architecture — take
-              the stage and inspire 1000+ passionate developers at DevHost 2026.
+              specialize in AI & Machine Learning, Open Source Infrastructure,
+              Cloud & Web3, or Software Architecture, take the stage and inspire
+              passionate developers at DevHost 2026.
             </p>
           </div>
         </div>
@@ -221,12 +221,7 @@ export default function SpeakersInfo() {
         <div className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12">
           <Button
             onClick={() => {
-              const link = document.createElement("a");
-              link.href = "/brochure/devhost_2025.pdf";
-              link.download = "DevHost_2025_Brochure.pdf";
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
+              window.location.href = "https://forms.gle/PxRYSUCY5ycXWERDA";
             }}
           >
             Submit Proposal
