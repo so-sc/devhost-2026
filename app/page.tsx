@@ -12,10 +12,7 @@ import SponsorsLogo from "@/components/Sponsors";
 import CallForSpeakers from "@/components/CallForSpeakers";
 import Gallery from "@/components/Gallery";
 
-const criticalImages = [
-  "/logo-group.png",
-  "/DVHST.png",
-];
+const criticalImages = ["/logo-group.png", "/DVHST.png"];
 
 function preloadImages(images: string[]) {
   return Promise.all(
@@ -32,8 +29,8 @@ function preloadImages(images: string[]) {
             img.onload = () => resolve();
             img.onerror = () => resolve();
           }
-        })
-    )
+        }),
+    ),
   );
 }
 
