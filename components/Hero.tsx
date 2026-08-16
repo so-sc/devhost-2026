@@ -322,14 +322,33 @@ type FlyingParticle = {
 };
 
 const GLYPHS = [
-  "Α", "Ω", "Δ", "Λ", "Σ", "Φ", "Ψ", "Θ",
-  "Ι", "Κ", "Μ", "Ν", "Ξ", "Π", "Ρ", "Τ",
-  "ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᛏ", "ᚺ",
+  "Α",
+  "Ω",
+  "Δ",
+  "Λ",
+  "Σ",
+  "Φ",
+  "Ψ",
+  "Θ",
+  "Ι",
+  "Κ",
+  "Μ",
+  "Ν",
+  "Ξ",
+  "Π",
+  "Ρ",
+  "Τ",
+  "ᚠ",
+  "ᚢ",
+  "ᚦ",
+  "ᚨ",
+  "ᚱ",
+  "ᛏ",
+  "ᚺ",
 ];
 
 function FlyingGlyphs() {
-  const rand = (min: number, max: number) =>
-    Math.random() * (max - min) + min;
+  const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
   const [particles, setParticles] = useState<FlyingParticle[]>([]);
 
@@ -365,8 +384,8 @@ function FlyingGlyphs() {
         buzzDelay: rand(0, 3),
         bx: rand(2, 5),
         by: rand(2, 5),
-      }))
-    );  
+      })),
+    );
   }, []);
 
   return (
