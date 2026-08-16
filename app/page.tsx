@@ -12,6 +12,7 @@ import Events from "@/components/Events";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import SponsorsLogo from "@/components/Sponsors";
 import CallForSpeakers from "@/components/CallForSpeakers";
+import Gallery from "@/components/Gallery";
 // import SpeakersInfo from "@/components/SpeakersInfo";
 // import Final from "@/components/Final";
 
@@ -55,6 +56,7 @@ export default function Home() {
         <CallForSpeakers />
         <SponsorsLogo />
         <Events />
+        <Gallery />
         <FAQ />
         <Map />
         <Footer />

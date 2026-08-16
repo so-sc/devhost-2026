@@ -316,7 +316,7 @@ function FlyingGlyphs() {
   }));
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-[5] overflow-hidden">
+    <div className="hidden sm:block pointer-events-none absolute inset-0 z-[5] overflow-hidden">
       {particles.map((p) => (
         <span
           key={p.id}
