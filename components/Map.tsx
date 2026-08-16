@@ -5,37 +5,6 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 const Map = () => {
-  const topCut1 = useRef(null);
-  const topCut2 = useRef(null);
-  const bottomCut1 = useRef(null);
-  const bottomCut2 = useRef(null);
-
-  useEffect(() => {
-    const animateCut = (
-      el: HTMLDivElement | null,
-      y: number,
-      duration: number,
-      skew: number,
-    ) => {
-      if (!el) return;
-
-      gsap.to(el, {
-        y,
-        skewY: skew,
-        opacity: 0.15,
-        duration,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    };
-
-    animateCut(topCut1.current, 6, 5, 3);
-    animateCut(topCut2.current, -6, 6, -3);
-    animateCut(bottomCut1.current, -6, 5, -3);
-    animateCut(bottomCut2.current, 6, 6, 3);
-  }, []);
-
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0a0a0a] px-4 py-8 text-white sm:px-24">
       {/* Background */}

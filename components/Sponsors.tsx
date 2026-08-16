@@ -6,19 +6,19 @@ import Button from "./Button";
 const titleSponsor = {
   src: "/sponsors/title-sponsor.png",
   alt: "Title Sponsor",
-  href: "https://egsoftware.com/global/about-us",
+  href: "mailto:sosc@sahyadri.edu.in",
 };
 
 const coSponsors = [
   {
     src: "/sponsors/co-sponsor.png",
     alt: "Co-Sponsor",
-    href: "#",
+    href: "mailto:sosc@sahyadri.edu.in",
   },
   {
     src: "/sponsors/co-sponsor.png",
     alt: "Co-Sponsor",
-    href: "#",
+    href: "mailto:sosc@sahyadri.edu.in",
   },
 ];
 
