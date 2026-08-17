@@ -1,4 +1,5 @@
 "use client";
+
 import { Suspense, useEffect, useState } from "react";
 import Hero from "@/components/Hero";
 import AboutDevhost from "@/components/AboutDevhost";
@@ -10,23 +11,47 @@ import FAQ from "@/components/Faq";
 import Map from "@/components/Map";
 import Events from "@/components/Events";
 import LoadingSpinner from "@/components/LoadingSpinner";
-// import SponsorsLogo from "@/components/Sponsors";
+import SponsorsLogo from "@/components/Sponsors";
 import CallForSpeakers from "@/components/CallForSpeakers";
-// import SpeakersInfo from "@/components/SpeakersInfo";
-// import Final from "@/components/Final";
+import Gallery from "@/components/Gallery";
+
+const criticalImages = ["/logo-group.png", "/DVHST.png"];
+
+function preloadImages(images: string[]) {
+  return Promise.all(
+    images.map(
+      (src) =>
+        new Promise<void>((resolve) => {
+          const img = new Image();
+
+          img.src = src;
+
+          if (img.complete) {
+            resolve();
+          } else {
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+          }
+        }),
+    ),
+  );
+}
 
 export default function Home() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const handleLoaded = () => setReady(true);
+    let mounted = true;
 
-    if (document.readyState === "complete") {
-      setReady(true);
-    } else {
-      window.addEventListener("load", handleLoaded);
-      return () => window.removeEventListener("load", handleLoaded);
-    }
+    preloadImages(criticalImages).then(() => {
+      if (mounted) {
+        setReady(true);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   if (!ready) {
@@ -45,16 +70,17 @@ export default function Home() {
         <Hero />
         {/* <Counter /> */}
         {/* <Final /> */}
-        {/* <SponsorsLogo /> */}
         <AboutDevhost />
         {/* <div className="relative h-[30vh]">
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
         </div> */}
         {/* <AboutHackathon /> */}
         {/* <SpeakersInfo /> */}
+        <CallForSpeakers />
+        <SponsorsLogo />
         <TimelineSection />
         <Events />
-        <CallForSpeakers />
+        <Gallery />
         <FAQ />
         <Map />
         <Footer />

@@ -41,15 +41,11 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-amiga: var(--font-amiga);
-  --font-dystopian: var(--font-dystopian);
-  --font-orbitron: var(--font-orbitron);
-  --font-delagothic: var(--font-delagothic);
-  --font-monospace: var(--font-monospace);
   --font-norse: var(--font-norse);
   --font-norse-bold: var(--font-norse-bold);
   --font-trajan: var(--font-trajan);
-  --font-cinzel: var(--font-cinzel);
+  --font-poppins: var(--font-poppins);
+  --font-lora: var(--font-lora);
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 }
 

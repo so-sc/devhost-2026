@@ -85,10 +85,7 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-[#0a0a0a] py-24 text-white md:px-8"
-    >
+    <section className="relative w-full overflow-visible px-4 py-18 sm:px-6 sm:py-32">
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -131,14 +128,14 @@ export default function FAQ() {
           </h3>
         </div>
 
-        <div className="px-4" ref={itemsRef}>
+        <div className="font-lora px-4 pb-8" ref={itemsRef}>
           <Accordion type="single" collapsible className="space-y-5">
             {faqData.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
                 data-faq-item
-                className="overflow-hidden rounded-xl border border-[#5A4A2B] bg-[#1B1A18]/60 backdrop-blur-md transition-all duration-300 hover:bg-[#23211D]/70"
+                className="relative overflow-hidden rounded-xl border border-[#5A4A2B] bg-[#1B1A18]/60 backdrop-blur-md transition-all duration-300 last:border-b last:border-[#5A4A2B] hover:bg-[#23211D]/70"
               >
                 <AccordionTrigger className="group px-8 py-6 text-left no-underline hover:no-underline">
                   <div className="flex w-full items-center justify-between">
@@ -163,7 +160,7 @@ export default function FAQ() {
                   {/* thin divider */}
                   <div className="mb-6 h-px bg-gradient-to-r from-[#F6CC60]/70 via-[#F6CC60]/20 to-transparent" />
 
-                  <p className="max-w-3xl leading-8 text-zinc-400">
+                  <p className="max-w-3xl text-base text-zinc-300 md:text-lg">
                     {faq.answer}
                   </p>
                 </AccordionContent>
