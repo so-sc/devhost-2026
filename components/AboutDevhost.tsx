@@ -208,7 +208,7 @@ export default function AboutDevhost() {
           alt=""
           width={1100}
           height={1100}
-          className="h-auto w-full object-contain opacity-[0.12] select-none"
+          className="h-auto w-full object-contain opacity-[0.13] select-none"
           style={{ objectPosition: "top right" }}
         />
       </div>
@@ -294,7 +294,7 @@ export default function AboutDevhost() {
           </div>
         </div>
 
-        <div
+        {/* <div
           ref={buttonsRef}
           className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12"
         >
@@ -310,7 +310,7 @@ export default function AboutDevhost() {
           >
             DevHost Brochure
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

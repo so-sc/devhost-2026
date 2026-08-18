@@ -103,7 +103,7 @@ export default function SpeakersInfo() {
 
           gsap.to(ornament, {
             rotate: 360,
-            duration: 180,
+            duration: 160,
             repeat: -1,
             ease: "none",
           });

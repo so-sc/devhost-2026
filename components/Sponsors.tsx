@@ -184,7 +184,7 @@ export default function SponsorsLogo() {
           {/* Co-Sponsor 2 */}
           <SponsorCard sponsor={coSponsors[1]} />
         </div>{" "}
-        <div className="mt-20 flex w-full flex-col items-center gap-3 sm:mt-12">
+        <div className="mt-20 flex w-full flex-col items-center gap-3 sm:mt-18">
           <Button
             onClick={() => {
               window.location.href = "mailto:sosc@sahyadri.edu.in";
