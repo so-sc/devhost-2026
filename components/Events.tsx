@@ -4,14 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import DecryptText from "./animated/TextAnimation";
-// import { ClippedButton } from "./ClippedButton";
 import { events } from "@/assets/data/events";
-import localFont from "next/font/local";
-
-export const dalek = localFont({
-  src: "../public/fonts/DalekPinpointBold.ttf",
-});
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,7 +80,7 @@ export default function Events() {
   return (
     <div
       ref={sectionRef}
-      className="relative flex flex-col items-center overflow-hidden bg-black py-20 md:pb-[20vh]"
+      className="relative flex flex-col items-center overflow-hidden bg-black py-20 md:py-30"
     >
       {/* Static Green Background */}
       <div
@@ -140,13 +133,6 @@ export default function Events() {
 
 */}
 
-      <div className="font-orbitron absolute top-6 left-6 text-sm font-bold text-[#C8A24C]/80">
-        {"// DEVHOST"}
-      </div>
-      <div className="font-orbitron absolute top-6 right-6 text-sm font-bold text-[#C8A24C]/80">
-        2026
-      </div>
-
       {/* Heading */}
       <div className="relative z-10 mb-8 px-4 text-center">
         <div
@@ -157,20 +143,15 @@ export default function Events() {
             textShadow: "0 2px 6px rgba(0,0,0,.55),0 8px 20px rgba(0,0,0,.35)",
           }}
         />
-        <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] md:text-8xl">
-          <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
-            DEVHOST EVENTS
-          </span>
-        </h2>
-        <div className="mt-4 px-4 text-lg sm:text-xl">
-          <DecryptText
-            text="> Build, Compete, and Leave Your Mark"
-            startDelayMs={200}
-            trailSize={6}
-            flickerIntervalMs={50}
-            revealDelayMs={100}
-            className="font-norse h-8 text-lg tracking-wider text-[#C8A24C]/80 md:text-2xl"
-          />
+        <div className="relative mb-4 text-center sm:mb-6">
+          <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] md:text-8xl">
+            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+              DEVHOST EVENTS
+            </span>
+          </h2>
+          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+            build, compete and leave your mark
+          </h3>
         </div>
         {/* Rulebook button */}
         {/* <div className="mt-6 flex flex-col items-center">
@@ -244,7 +225,7 @@ export default function Events() {
                   />
                 </div>
 
-                <div className="mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
+                <div className="font-lora mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
                   <div>
                     <h2
                       className={`font-norse mb-5 text-2xl font-bold tracking-wide text-[#F6CC60] lg:text-3xl`}

@@ -3,42 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ReactLenis from "lenis/react";
 import { Toaster } from "@/components/ui/sonner";
+import { Poppins, Lora } from "next/font/google";
 
-const amiga = localFont({
-  src: "../assets/fonts/amiga4ever.woff2",
-  variable: "--font-amiga",
-  display: "swap",
-  preload: true,
-});
-
-const dystopian = localFont({
-  src: "../assets/fonts/Sddystopian.otf",
-  variable: "--font-dystopian",
-  preload: true,
-});
-
-const orbitron = localFont({
-  src: "../assets/fonts/Orbitron-VariableFont.ttf",
-  variable: "--font-orbitron",
-  preload: true,
-});
-
-const delagothic = localFont({
-  src: "../assets/fonts/DelaGothicOne-Regular.ttf",
-  variable: "--font-delagothic",
-  preload: true,
-});
-
-const monospace = localFont({
-  src: "../assets/fonts/GeistMono-VariableFont_wght.ttf",
-  variable: "--font-monospace",
-  preload: true,
-});
-const dalek = localFont({
-  src: "../assets/fonts/DalekPinpointBold.ttf",
-  variable: "--font-dalek",
-  weight: "700",
-});
 const norse = localFont({
   src: "../assets/fonts/Norse.otf",
   variable: "--font-norse",
@@ -48,11 +14,24 @@ const norseBold = localFont({
   src: "../assets/fonts/Norsebold.otf",
   variable: "--font-norse-bold",
   preload: true,
+  display: "block",
 });
 const trajan = localFont({
   src: "../assets/fonts/Trajan Bold.ttf",
   variable: "--font-trajan",
   preload: true,
+});
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+  preload: true,
+});
+const lora = Lora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-lora",
 });
 
 export const metadata: Metadata = {
@@ -103,7 +82,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${monospace.variable} ${amiga.variable} ${dystopian.variable} ${delagothic.variable} ${orbitron.variable} ${dalek.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
+        className={`${poppins.variable} ${lora.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
       >
         <ReactLenis root />
         {children}

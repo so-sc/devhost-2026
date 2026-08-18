@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { Download } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import Button from "./Button";
+// import SplitType from "split-type";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,7 +14,13 @@ export default function AboutDevhost() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const captionRef = useRef<HTMLHeadingElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
-  const buttonsRef = useRef<HTMLDivElement>(null);
+  // const buttonsRef = useRef<HTMLDivElement>(null);
+  const sunRef = useRef<HTMLDivElement>(null);
+  const templeRef = useRef<HTMLDivElement>(null);
+  const shieldDesktopRef = useRef<HTMLDivElement>(null);
+  const shieldMobileRef = useRef<HTMLDivElement>(null);
+  const paragraphRef = useRef<HTMLParagraphElement>(null);
+  const titleGlowRef = useRef<HTMLSpanElement>(null);
 
   const devhostData = {
     title: "About DevHost",
@@ -24,62 +31,166 @@ export default function AboutDevhost() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.set(
-        [
-          titleRef.current,
-          captionRef.current,
-          aboutRef.current,
-          buttonsRef.current,
-        ],
-        { opacity: 0, y: 30 },
-      );
+      // Sun rotation
+      gsap.to(sunRef.current, {
+        rotate: 360,
+        duration: 30,
+        repeat: -1,
+        ease: "none",
+      });
 
-      const tl = gsap.timeline({
+      // Sun breathing / scaling
+      // gsap.to(sunRef.current, {
+      //   scale: 1.04,
+      //   duration: 5,
+      //   repeat: -1,
+      //   yoyo: true,
+      //   ease: "sine.inOut",
+      // });
+
+      // Temple parallax on scroll
+      gsap.to(templeRef.current, {
+        y: -90,
+        ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
-          end: "bottom 80%",
-          toggleActions: "play none none reverse",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
         },
       });
 
-      tl.to(titleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power3.out",
+      // Shields floating animation
+      [shieldDesktopRef.current, shieldMobileRef.current].forEach((shield) => {
+        if (!shield) return;
+
+        gsap.to(shield, {
+          y: -10,
+          rotation: 2,
+          duration: 4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+
+        gsap.to(shield, {
+          x: 5,
+          duration: 6,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      });
+
+      // =========================
+      // TEXT ANIMATIONS
+      // =========================
+
+      /*
+    let split: SplitType | null = null;
+
+    split = new SplitType(paragraphRef.current!, {
+      types: "lines",
+    });
+
+    split.lines?.forEach((line) => {
+      line.style.overflow = "hidden";
+    });
+
+    gsap.set(
+      [titleRef.current, captionRef.current, buttonsRef.current],
+      {
+        opacity: 0,
+        y: 30,
+      }
+    );
+
+    if (split?.lines) {
+      gsap.set(split.lines, {
+        opacity: 0,
+        y: 20,
+      });
+    }
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+        end: "bottom 80%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    tl.to(titleRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    })
+      .to(
+        captionRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      )
+      .add(() => {
+        if (split?.lines) {
+          gsap.to(split.lines, {
+            opacity: 1,
+            y: 0,
+            stagger: 0.12,
+            duration: 0.6,
+            ease: "power2.out",
+          });
+        }
       })
-        .to(
-          captionRef.current,
-          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
-          "-=0.3",
-        )
-        .to(
-          aboutRef.current,
-          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
-          "-=0.15",
-        )
-        .to(
-          buttonsRef.current,
-          { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.2)" },
-          "-=0.15",
-        );
+      .to(
+        buttonsRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "back.out(1.2)",
+        },
+        "-=0.15"
+      );
+
+    */
+
+      // =========================
+      // TITLE GLOW
+      // =========================
+
+      //   gsap.to(titleGlowRef.current, {
+      //     filter: "drop-shadow(0 0 18px rgba(246,204,96,0.65))",
+      //     scale: 1.01,
+      //     duration: 1.5,
+      //     // repeat: -1,
+      //     yoyo: true,
+      //     ease: "sine.inOut",
+      //   });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (
     <section
       ref={sectionRef}
       id="about"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-12 text-white lg:px-8"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-18 text-white sm:py-26 lg:px-8"
     >
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage: "url('/images/parchment-texture.jpg')",
-          backgroundSize: "cover",
+          backgroundSize: "100% 100%",
           backgroundPosition: "center",
           opacity: 0.6,
           mixBlendMode: "soft-light",
@@ -88,18 +199,24 @@ export default function AboutDevhost() {
 
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.07),transparent_65%)]" />
 
-      <div className="pointer-events-none absolute top-10 right-0 z-[1] hidden w-[280px] lg:block xl:w-[380px]">
+      <div
+        ref={templeRef}
+        className="pointer-events-none absolute top-10 right-0 z-[1] hidden w-[280px] lg:block xl:w-[380px]"
+      >
         <Image
           src="/images/about-temple.png"
           alt=""
           width={1100}
           height={1100}
-          className="h-auto w-full object-contain opacity-[0.12] select-none"
+          className="h-auto w-full object-contain opacity-[0.13] select-none"
           style={{ objectPosition: "top right" }}
         />
       </div>
 
-      <div className="pointer-events-none absolute top-[-30px] left-1/2 z-[1] hidden w-[180px] -translate-x-1/2 sm:block md:w-[240px]">
+      <div
+        ref={sunRef}
+        className="pointer-events-none absolute top-[-30px] left-1/2 z-[1] hidden w-[180px] -translate-x-1/2 sm:block md:w-[240px]"
+      >
         <Image
           src="/images/sun-graphic.svg"
           alt=""
@@ -109,7 +226,10 @@ export default function AboutDevhost() {
         />
       </div>
 
-      <div className="pointer-events-none absolute bottom-0 left-0 z-[1] hidden w-[220px] lg:block xl:w-[260px]">
+      <div
+        ref={shieldDesktopRef}
+        className="pointer-events-none absolute bottom-0 left-0 z-[1] hidden w-[220px] lg:block xl:w-[260px]"
+      >
         <Image
           src="/images/mythic_spartan_shield.webp"
           alt=""
@@ -120,7 +240,10 @@ export default function AboutDevhost() {
         />
       </div>
 
-      <div className="pointer-events-none absolute bottom-0 left-0 z-[1] block w-[120px] sm:w-[150px] lg:hidden">
+      <div
+        ref={shieldMobileRef}
+        className="pointer-events-none absolute bottom-0 left-0 z-[1] block w-[120px] sm:w-[150px] lg:hidden"
+      >
         <Image
           src="/images/mythic_spartan_shield.webp"
           alt=""
@@ -137,7 +260,10 @@ export default function AboutDevhost() {
             ref={titleRef}
             className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
           >
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+            <span
+              ref={titleGlowRef}
+              className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]"
+            >
               {devhostData.title}
             </span>
           </h2>
@@ -156,7 +282,8 @@ export default function AboutDevhost() {
         >
           <div className="relative z-10 w-full text-justify">
             <p
-              className="text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              ref={paragraphRef}
+              className="font-lora text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{
                 textShadow:
                   "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",
@@ -167,22 +294,23 @@ export default function AboutDevhost() {
           </div>
         </div>
 
-        <div
+        {/* <div
           ref={buttonsRef}
-          className="mt-6 flex w-full flex-col items-center gap-3 sm:mt-8"
+          className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12"
         >
-          <a
-            href="/brochure/devhost_2025.pdf"
-            download
-            className="group font-dalek inline-flex items-center justify-center gap-2.5 rounded-sm border border-[#C9963E] bg-gradient-to-b from-[#1C1A17] via-[#121212] to-[#080808] px-6 py-3 text-xs font-bold tracking-[0.12em] text-[#F6CC60] uppercase shadow-[0_0_16px_rgba(246,204,96,0.08),inset_0_0_0_1px_rgba(246,204,96,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#F6CC60] hover:text-[#FFF3C1] hover:shadow-[0_0_24px_rgba(246,204,96,0.25)] active:scale-[0.98] sm:px-8 sm:py-3 sm:text-sm sm:tracking-[0.14em]"
+          <Button
+            onClick={() => {
+              const link = document.createElement("a");
+              link.href = "/brochure/devhost_2025.pdf";
+              link.download = "DevHost_2025_Brochure.pdf";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
           >
-            <Download
-              size={18}
-              className="transition-transform duration-300 group-hover:-translate-y-0.5"
-            />
-            <span>DevHost Brochure</span>
-          </a>
-        </div>
+            DevHost Brochure
+          </Button>
+        </div> */}
       </div>
     </section>
   );
