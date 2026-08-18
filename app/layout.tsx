@@ -14,6 +14,7 @@ const norseBold = localFont({
   src: "../assets/fonts/Norsebold.otf",
   variable: "--font-norse-bold",
   preload: true,
+  display: "block",
 });
 const trajan = localFont({
   src: "../assets/fonts/Trajan Bold.ttf",

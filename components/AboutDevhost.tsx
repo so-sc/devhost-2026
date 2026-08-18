@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Button from "./Button";
+// import Button from "./Button";
 // import SplitType from "split-type";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,7 +14,7 @@ export default function AboutDevhost() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const captionRef = useRef<HTMLHeadingElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
-  const buttonsRef = useRef<HTMLDivElement>(null);
+  // const buttonsRef = useRef<HTMLDivElement>(null);
   const sunRef = useRef<HTMLDivElement>(null);
   const templeRef = useRef<HTMLDivElement>(null);
   const shieldDesktopRef = useRef<HTMLDivElement>(null);
