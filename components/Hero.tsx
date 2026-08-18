@@ -720,6 +720,7 @@ export default function App() {
               alt="Logos"
               width={250}
               height={250}
+              priority
               className="h-auto w-full object-contain"
             />{" "}
           </div>
@@ -735,6 +736,7 @@ export default function App() {
               alt="DevHost 2026"
               width={360}
               height={170}
+              priority
               className="h-full w-auto object-contain"
             />
           </div>
@@ -743,9 +745,7 @@ export default function App() {
           <h1
             className="font-norse-bold shimmer-text text-center text-2xl font-extrabold"
             style={{
-              // fontFamily: "'Cinzel Decorative', 'Cinzel', serif",
               fontWeight: 700,
-              lineHeight: 1.35,
               letterSpacing: "0.05em",
               marginBottom: "0",
             }}
