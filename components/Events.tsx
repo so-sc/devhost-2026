@@ -37,20 +37,61 @@ const CornerBorder = ({ className = "" }: { className?: string }) => (
 export default function Events() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const captionRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate cards only
-      cardsRef.current.forEach((card) => {
-        gsap.to(card, {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Set initial states
+        gsap.set([titleRef.current, captionRef.current], {
+          opacity: 0,
+          y: 35,
+        });
+
+        // Title and caption scroll triggers
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        tl.to(titleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        }).to(
+          captionRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+          },
+          "-=0.3",
+        );
+
+        // Cards animate on scroll with high-performance stagger
+        const cards = gsap.utils.toArray(".class-event-card");
+        gsap.set(cards, {
+          opacity: 0,
+          y: 40,
+        });
+
+        gsap.to(cards, {
+          opacity: 1,
           y: 0,
           duration: 0.8,
-          ease: "power2.out",
+          stagger: 0.15,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            end: "top 60%",
+            trigger: ".class-events-grid",
+            start: "top 80%",
             toggleActions: "play none none none",
           },
         });
@@ -144,12 +185,18 @@ export default function Events() {
           }}
         />
         <div className="relative mb-4 text-center sm:mb-6">
-          <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] md:text-8xl">
+          <h2
+            ref={titleRef}
+            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] md:text-8xl"
+          >
             <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               DEVHOST EVENTS
             </span>
           </h2>
-          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+          <h3
+            ref={captionRef}
+            className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
+          >
             build, compete and leave your mark
           </h3>
         </div>
@@ -178,92 +225,90 @@ export default function Events() {
       />
 
       {/* Event cards */}
-      <div className="relative z-10 grid w-full max-w-[1200px] grid-cols-1 gap-8 px-4 lg:grid-cols-2">
-        {events.map((event, idx) => {
+      <div className="class-events-grid relative z-10 grid w-full max-w-[1200px] grid-cols-1 gap-8 px-4 lg:grid-cols-2">
+        {events.map((event) => {
           return (
-            <div
-              key={event.id}
-              ref={(el) => {
-                if (el) cardsRef.current[idx] = el;
-              }}
-              className="relative mx-auto w-full overflow-hidden border border-[#C8A24C]/60 shadow-[0_0_12px_rgba(200,162,76,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#E2B756] hover:shadow-[0_18px_35px_rgba(200,162,76,0.18)]"
-              style={{
-                clipPath:
-                  "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-              }}
-            >
-              <CornerBorder className="absolute top-2 right-2 z-20 h-8 w-8 rotate-90" />
-              <CornerBorder className="absolute right-1 bottom-1 z-20 h-8 w-8 rotate-180" />
-              <CornerBorder className="absolute bottom-1 left-1 z-20 h-8 w-8 -rotate-90" />
-
+            <div key={event.id} className="class-event-card w-full">
               <div
-                className="relative z-10 m-[2px] flex h-full flex-col p-4 sm:flex-row"
+                className="relative mx-auto w-full overflow-hidden border border-[#C8A24C]/60 shadow-[0_0_12px_rgba(200,162,76,0.08)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-[#E2B756] hover:shadow-[0_18px_35px_rgba(200,162,76,0.18)]"
                 style={{
                   clipPath:
-                    "polygon(20px 0%,100% 0%,100% calc(100% - 12px),calc(100% - 12px) 100%,0% 100%,0% 12px)",
-
-                  background:
-                    "linear-gradient(145deg,#353330 0%,#2b2927 45%,#1d1b1a 100%)",
-
-                  boxShadow:
-                    "inset 0 0 0 1px rgba(255,255,255,.03), inset 0 20px 45px rgba(255,255,255,.03), 0 0 25px rgba(0,0,0,.45)",
+                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
                 }}
               >
+                <CornerBorder className="absolute top-2 right-2 z-20 h-8 w-8 rotate-90" />
+                <CornerBorder className="absolute right-1 bottom-1 z-20 h-8 w-8 rotate-180" />
+                <CornerBorder className="absolute bottom-1 left-1 z-20 h-8 w-8 -rotate-90" />
+
                 <div
-                  className="relative aspect-square w-full overflow-hidden border border-[#C8A24C]/40 shadow-inner sm:aspect-[4/5] sm:w-1/2 md:mb-2"
+                  className="relative z-10 m-[2px] flex h-full flex-col p-4 sm:flex-row"
                   style={{
                     clipPath:
-                      "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
+                      "polygon(20px 0%,100% 0%,100% calc(100% - 12px),calc(100% - 12px) 100%,0% 100%,0% 12px)",
+
+                    background:
+                      "linear-gradient(145deg,#353330 0%,#2b2927 45%,#1d1b1a 100%)",
+
+                    boxShadow:
+                      "inset 0 0 0 1px rgba(255,255,255,.03), inset 0 20px 45px rgba(255,255,255,.03), 0 0 25px rgba(0,0,0,.45)",
                   }}
                 >
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    width={500}
-                    height={500}
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
+                  <div
+                    className="relative aspect-square w-full overflow-hidden border border-[#C8A24C]/40 shadow-inner sm:aspect-[4/5] sm:w-1/2 md:mb-2"
+                    style={{
+                      clipPath:
+                        "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
+                    }}
+                  >
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      width={500}
+                      height={500}
+                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
 
-                <div className="font-lora mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
-                  <div>
-                    <h2
-                      className={`font-norse mb-5 text-2xl font-bold tracking-wide text-[#F6CC60] lg:text-3xl`}
-                    >
-                      {/* &gt;  */}
-                      {event.title}
-                    </h2>
-                    <p className="text-md mb-1 text-white/90 italic">
-                      {event.tagline}
-                    </p>
-                    <p className="mb-2 text-sm text-white/70 lg:text-sm">
-                      {event.description}
-                    </p>
-                    <div className="space-y-0.5 pt-4 text-sm text-white/80">
-                      <p>
-                        <span className="mr-1 font-semibold text-[#F6CC60]">
-                          Date:
-                        </span>
-                        {event.date}
+                  <div className="font-lora mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
+                    <div>
+                      <h2
+                        className={`font-norse mb-5 text-2xl font-bold tracking-wide text-[#F6CC60] lg:text-3xl`}
+                      >
+                        {/* &gt;  */}
+                        {event.title}
+                      </h2>
+                      <p className="text-md mb-1 text-white/90 italic">
+                        {event.tagline}
                       </p>
-                      <p>
-                        <span className="mr-1 font-semibold text-[#F6CC60]">
-                          Time:
-                        </span>
-                        {event.time}
+                      <p className="mb-2 text-sm text-white/70 lg:text-sm">
+                        {event.description}
                       </p>
-                      <p>
-                        <span className="mr-1 font-semibold text-[#F6CC60]">
-                          Organizer:
-                        </span>
-                        {event.organizer}
-                      </p>
-                      <p>
-                        <span className="mr-1 font-semibold text-[#F6CC60]">
-                          Contact:
-                        </span>
-                        {event.contact}
-                      </p>
+                      <div className="space-y-0.5 pt-4 text-sm text-white/80">
+                        <p>
+                          <span className="mr-1 font-semibold text-[#F6CC60]">
+                            Date:
+                          </span>
+                          {event.date}
+                        </p>
+                        <p>
+                          <span className="mr-1 font-semibold text-[#F6CC60]">
+                            Time:
+                          </span>
+                          {event.time}
+                        </p>
+                        <p>
+                          <span className="mr-1 font-semibold text-[#F6CC60]">
+                            Organizer:
+                          </span>
+                          {event.organizer}
+                        </p>
+                        <p>
+                          <span className="mr-1 font-semibold text-[#F6CC60]">
+                            Contact:
+                          </span>
+                          {event.contact}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -272,6 +317,24 @@ export default function Events() {
           );
         })}
       </div>
+
+      {/* Top Transition Gradient */}
+      <div
+        className="pointer-events-none absolute top-0 right-0 left-0 z-10 h-32"
+        style={{
+          background:
+            "linear-gradient(to bottom, #050403, rgba(5, 4, 3, 0.7) 30%, transparent 100%)",
+        }}
+      />
+
+      {/* Bottom Transition Gradient */}
+      <div
+        className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 h-40"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, rgba(5, 4, 3, 0.4) 40%, rgba(5, 4, 3, 0.85) 75%, #050403 100%)",
+        }}
+      />
     </div>
   );
 }

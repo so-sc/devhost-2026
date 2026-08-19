@@ -62,7 +62,7 @@ export default function Home() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full overflow-x-hidden">
       <Suspense fallback={<LoadingSpinner />}>
         <Hero />
         {/* <Counter /> */}

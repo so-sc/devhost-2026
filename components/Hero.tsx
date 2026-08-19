@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // function SponsorLogo({ src, alt, height = 40, screenBlend = false, scale = 1, className = "", }: {
 //   src: string
@@ -437,6 +440,44 @@ function FlyingGlyphs() {
 }
 export default function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const backgroundElementsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Fade out content and background layers on scroll
+        gsap.to(contentRef.current, {
+          opacity: 0,
+          y: -80,
+          scale: 0.96,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        gsap.to(backgroundElementsRef.current, {
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -636,6 +677,7 @@ export default function App() {
         }
       `}</style>
       <div
+        ref={sectionRef}
         className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden"
         style={{
           background:
@@ -675,21 +717,27 @@ export default function App() {
         "radial-gradient(ellipse at 50% 60%, rgba(19,16,8,0.15) 0%, rgba(10,9,0,0.55) 40%, rgba(8,8,8,0.9) 100%)",
     }}
   />         */}
-        <FlyingGlyphs />
-        {/* Animated radial glow */}
-        <canvas
-          ref={canvasRef}
-          className="pointer-events-none absolute inset-0 h-full w-full"
-        />
+        {/* BACKGROUND GRAPHICS WRAPPER */}
+        <div
+          ref={backgroundElementsRef}
+          className="pointer-events-none absolute inset-0 select-none"
+        >
+          <FlyingGlyphs />
+          {/* Animated radial glow */}
+          <canvas
+            ref={canvasRef}
+            className="pointer-events-none absolute inset-0 h-full w-full"
+          />
 
-        {/* Twinkling star field */}
-        <StarField />
+          {/* Twinkling star field */}
+          <StarField />
 
-        {/* Greek letters */}
-        <GreekLetters />
+          {/* Greek letters */}
+          <GreekLetters />
 
-        {/* Floating particles */}
-        <Particles />
+          {/* Floating particles */}
+          <Particles />
+        </div>
 
         {/* Bottom-left decorative image */}
 
@@ -710,7 +758,10 @@ export default function App() {
         />
 
         {/* CENTER CONTENT */}
-        <div className="relative z-10 flex flex-col items-center justify-center gap-0 px-4">
+        <div
+          ref={contentRef}
+          className="relative z-10 flex flex-col items-center justify-center gap-0 px-4"
+        >
           {/* Sponsor logos row */}
           <div
             className={`mr-1 mb-10 flex w-40 items-center justify-center sm:w-50`}
@@ -754,16 +805,34 @@ export default function App() {
           </h1>
         </div>
 
+        {/* Massive Radiant Golden Glow Blob */}
+        <div
+          className="pointer-events-none absolute bottom-0 left-1/2 z-10 h-[350px] w-[120%] -translate-x-1/2 opacity-70 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle at bottom, rgba(196,154,42,0.3) 0%, rgba(196,154,42,0.08) 45%, transparent 75%)",
+          }}
+        />
+
+        {/* Transition gradient overlay to About section */}
+        <div
+          className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 h-36"
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent, rgba(8, 8, 8, 0.3) 25%, rgba(5, 4, 3, 0.8) 70%, #050403 100%)",
+          }}
+        />
+
         {/* Bottom decorative rule */}
         <div
-          className="absolute right-0 bottom-1 left-0 h-px"
+          className="absolute right-0 bottom-1 left-0 h-px opacity-15"
           style={{
             background:
               "linear-gradient(90deg, transparent, #c49a2a44, #c49a2a88, #c49a2a44, transparent)",
           }}
         />
         <div
-          className="absolute right-0 bottom-0 left-0 h-px"
+          className="absolute right-0 bottom-0 left-0 h-px opacity-10"
           style={{
             background:
               "linear-gradient(90deg, transparent, #c49a2a22, #c49a2a44, #c49a2a22, transparent)",

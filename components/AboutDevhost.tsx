@@ -82,84 +82,51 @@ export default function AboutDevhost() {
         });
       });
 
-      // =========================
-      // TEXT ANIMATIONS
-      // =========================
+      // Title, Caption, Paragraph animations with prefers-reduced-motion check
+      const mm = gsap.matchMedia();
 
-      /*
-    let split: SplitType | null = null;
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Set initial states
+        gsap.set([titleRef.current, captionRef.current, paragraphRef.current], {
+          opacity: 0,
+          y: 35,
+        });
 
-    split = new SplitType(paragraphRef.current!, {
-      types: "lines",
-    });
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        });
 
-    split.lines?.forEach((line) => {
-      line.style.overflow = "hidden";
-    });
-
-    gsap.set(
-      [titleRef.current, captionRef.current, buttonsRef.current],
-      {
-        opacity: 0,
-        y: 30,
-      }
-    );
-
-    if (split?.lines) {
-      gsap.set(split.lines, {
-        opacity: 0,
-        y: 20,
+        tl.to(titleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        })
+          .to(
+            captionRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            },
+            "-=0.3",
+          )
+          .to(
+            paragraphRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+            },
+            "-=0.2",
+          );
       });
-    }
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 75%",
-        end: "bottom 80%",
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    tl.to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      ease: "power3.out",
-    })
-      .to(
-        captionRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "-=0.3"
-      )
-      .add(() => {
-        if (split?.lines) {
-          gsap.to(split.lines, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.12,
-            duration: 0.6,
-            ease: "power2.out",
-          });
-        }
-      })
-      .to(
-        buttonsRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "back.out(1.2)",
-        },
-        "-=0.15"
-      );
-
-    */
 
       // =========================
       // TITLE GLOW
@@ -184,7 +151,7 @@ export default function AboutDevhost() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-18 text-white sm:py-26 lg:px-8"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-visible bg-[#050403] py-18 text-white sm:py-26 lg:px-8"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -228,7 +195,7 @@ export default function AboutDevhost() {
 
       <div
         ref={shieldDesktopRef}
-        className="pointer-events-none absolute bottom-0 left-0 z-[1] hidden w-[220px] lg:block xl:w-[260px]"
+        className="pointer-events-none absolute bottom-[-35px] left-0 z-[1] hidden w-[220px] lg:block xl:w-[260px]"
       >
         <Image
           src="/images/mythic_spartan_shield.webp"
@@ -242,7 +209,7 @@ export default function AboutDevhost() {
 
       <div
         ref={shieldMobileRef}
-        className="pointer-events-none absolute bottom-0 left-0 z-[1] block w-[120px] sm:w-[150px] lg:hidden"
+        className="pointer-events-none absolute bottom-[-35px] left-0 z-[1] block w-[120px] sm:w-[150px] lg:hidden"
       >
         <Image
           src="/images/mythic_spartan_shield.webp"
@@ -312,6 +279,15 @@ export default function AboutDevhost() {
           </Button>
         </div> */}
       </div>
+
+      {/* Bottom Transition Gradient */}
+      <div
+        className="pointer-events-none absolute right-0 bottom-0 left-0 z-[2] h-32"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, rgba(5, 4, 3, 0.4) 30%, rgba(13, 13, 13, 0.85) 75%, #0d0d0d 100%)",
+        }}
+      />
     </section>
   );
 }

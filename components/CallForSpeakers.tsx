@@ -10,92 +10,92 @@ import Button from "./Button";
 gsap.registerPlugin(ScrollTrigger);
 export default function SpeakersInfo() {
   const sectionRef = useRef<HTMLElement>(null);
-  // const titleRef = useRef<HTMLHeadingElement>(null);
-  // const titleGlowRef = useRef<HTMLSpanElement>(null);
-  // const captionRef = useRef<HTMLHeadingElement>(null);
-  // const paragraphRef = useRef<HTMLParagraphElement>(null);
-  // const buttonRef = useRef<HTMLAnchorElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const captionRef = useRef<HTMLHeadingElement>(null);
+  const paragraphRef = useRef<HTMLParagraphElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const ornamentDesktopRef = useRef<HTMLDivElement>(null);
   const ornamentMobileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // let split: SplitType | null = null;
-
     const ctx = gsap.context(() => {
-      // split = new SplitType(paragraphRef.current!, {
-      //   types: "lines",
-      // });
+      const mm = gsap.matchMedia();
 
-      // split.lines?.forEach((line) => {
-      //   line.style.overflow = "hidden";
-      // });
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.set(
+          [
+            titleRef.current,
+            captionRef.current,
+            paragraphRef.current,
+            buttonRef.current,
+          ],
+          {
+            opacity: 0,
+            y: 35,
+          },
+        );
 
-      // gsap.set([titleRef.current, captionRef.current, buttonRef.current], {
-      //   opacity: 0,
-      //   y: 40,
-      // });
+        gsap.set(carouselRef.current, {
+          opacity: 0,
+          scale: 0.97,
+        });
 
-      // if (split?.lines) {
-      //   gsap.set(split.lines, {
-      //     opacity: 0,
-      //     y: 20,
-      //   });
-      // }
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        });
 
-      // const tl = gsap.timeline({
-      //   scrollTrigger: {
-      //     trigger: sectionRef.current,
-      //     start: "top 75%",
-      //     toggleActions: "play none none reverse",
-      //   },
-      // });
-
-      // tl.to(titleRef.current, {
-      //   opacity: 1,
-      //   y: 0,
-      //   duration: 0.6,
-      //   ease: "power3.out",
-      // })
-      //   .to(
-      //     captionRef.current,
-      //     {
-      //       opacity: 1,
-      //       y: 0,
-      //       duration: 0.4,
-      //       ease: "power2.out",
-      //     },
-      //     "-=0.3",
-      //   )
-      //   .add(() => {
-      //     if (split?.lines) {
-      //       gsap.to(split.lines, {
-      //         opacity: 1,
-      //         y: 0,
-      //         stagger: 0.12,
-      //         duration: 0.6,
-      //         ease: "power2.out",
-      //       });
-      //     }
-      //   })
-      //   .to(
-      //     buttonRef.current,
-      //     {
-      //       opacity: 1,
-      //       y: 0,
-      //       duration: 0.4,
-      //       ease: "back.out(1.3)",
-      //     },
-      //     "-=0.1",
-      //   );
-
-      // gsap.to(titleGlowRef.current, {
-      //   filter: "drop-shadow(0 0 18px rgba(246,204,96,0.6))",
-      //   scale: 1.01,
-      //   duration: 2.5,
-      //   repeat: -1,
-      //   yoyo: true,
-      //   ease: "sine.inOut",
-      // });
+        tl.to(titleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        })
+          .to(
+            captionRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            },
+            "-=0.3",
+          )
+          .to(
+            paragraphRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+            },
+            "-=0.2",
+          )
+          .to(
+            carouselRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 0.7,
+              ease: "power3.out",
+            },
+            "-=0.3",
+          )
+          .to(
+            buttonRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "back.out(1.2)",
+            },
+            "-=0.3",
+          );
+      });
 
       [ornamentDesktopRef.current, ornamentMobileRef.current].forEach(
         (ornament) => {
@@ -111,7 +111,6 @@ export default function SpeakersInfo() {
       );
     }, sectionRef);
     return () => {
-      // split?.revert();
       ctx.revert();
     };
   }, []);
@@ -159,12 +158,18 @@ export default function SpeakersInfo() {
 
       <div className="relative z-10 mx-auto w-[80%]">
         <div className="relative mb-4 text-center sm:mb-6">
-          <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
+          <h2
+            ref={titleRef}
+            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
+          >
             <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               Call for Speakers
             </span>
           </h2>
-          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+          <h3
+            ref={captionRef}
+            className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
+          >
             Grace the Mythic Stage of DevHost 2026
           </h3>
         </div>
@@ -201,6 +206,7 @@ export default function SpeakersInfo() {
         <div className="relative mx-auto flex flex-col items-center pt-4 sm:w-full sm:max-w-[80%] sm:pt-8">
           <div className="relative z-10 w-full text-justify">
             <p
+              ref={paragraphRef}
               className="font-lora text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{
                 textShadow:
@@ -216,9 +222,14 @@ export default function SpeakersInfo() {
           </div>
         </div>
 
-        <SpeakerCarousel />
+        <div ref={carouselRef}>
+          <SpeakerCarousel />
+        </div>
 
-        <div className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12">
+        <div
+          ref={buttonRef}
+          className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12"
+        >
           <Button
             onClick={() => {
               window.location.href = "https://forms.gle/PxRYSUCY5ycXWERDA";
@@ -228,6 +239,15 @@ export default function SpeakersInfo() {
           </Button>
         </div>
       </div>
+
+      {/* Bottom Transition Gradient */}
+      <div
+        className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 h-32"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, rgba(13, 13, 13, 0.4) 30%, rgba(5, 4, 3, 0.85) 75%, #050403 100%)",
+        }}
+      />
     </section>
   );
 }

@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const images = [
   "/images/IMG_1.jpg",
@@ -18,6 +20,55 @@ const images = [
 
 export default function Gallery() {
   const [active, setActive] = useState(2);
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.set(titleRef.current, {
+          opacity: 0,
+          y: 35,
+        });
+
+        gsap.set(carouselRef.current, {
+          opacity: 0,
+          scale: 0.97,
+        });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        tl.to(titleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        }).to(
+          carouselRef.current,
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.3",
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,7 +93,10 @@ export default function Gallery() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#050403] py-18 sm:py-24">
+    <section
+      ref={sectionRef}
+      className="relative w-full overflow-hidden bg-[#050403] py-18 sm:py-24"
+    >
       {/* Background */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -61,7 +115,10 @@ export default function Gallery() {
       <div className="relative mx-auto flex w-full flex-col items-center gap-4 px-4 sm:px-8 md:items-center md:gap-4 md:px-10 lg:px-16 xl:px-24">
         {/* TITLE */}
         <div className="relative mb-4 text-center sm:mb-6">
-          <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
+          <h2
+            ref={titleRef}
+            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
+          >
             <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               throwback
             </span>
@@ -69,7 +126,10 @@ export default function Gallery() {
         </div>
 
         {/* CAROUSEL */}
-        <div className="relative h-[320px] w-full min-w-0 overflow-hidden sm:h-[350px] md:h-[350px]">
+        <div
+          ref={carouselRef}
+          className="relative h-[320px] w-full min-w-0 overflow-hidden sm:h-[350px] md:h-[350px]"
+        >
           {images.map((src, index) => {
             const position = getPosition(index);
 
@@ -140,6 +200,15 @@ export default function Gallery() {
           })}
         </div>
       </div>
+
+      {/* Bottom Transition Gradient */}
+      <div
+        className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 h-32"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, rgba(5, 4, 3, 0.4) 30%, rgba(13, 13, 13, 0.85) 75%, #191919 100%)",
+        }}
+      />
     </section>
   );
 }

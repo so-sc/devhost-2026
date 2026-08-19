@@ -54,38 +54,78 @@ const faqData = [
 export default function FAQ() {
   const sectionRef = useRef<HTMLElement>(null);
   const itemsRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const captionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (itemsRef.current) {
-        const items = itemsRef.current.querySelectorAll("[data-faq-item]");
+      const mm = gsap.matchMedia();
 
-        gsap.fromTo(
-          items,
-          {
-            opacity: 0,
-            y: 40,
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.set([titleRef.current, captionRef.current], {
+          opacity: 0,
+          y: 35,
+        });
+
+        // Title timeline
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none none",
           },
+        });
+
+        tl.to(titleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        }).to(
+          captionRef.current,
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.12,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: itemsRef.current,
-              start: "top 75%",
-            },
+            duration: 0.5,
+            ease: "power2.out",
           },
+          "-=0.3",
         );
-      }
+
+        if (itemsRef.current) {
+          const items = itemsRef.current.querySelectorAll("[data-faq-item]");
+
+          gsap.fromTo(
+            items,
+            {
+              opacity: 0,
+              y: 40,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.12,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: itemsRef.current,
+                start: "top 75%",
+                toggleActions: "play none none none",
+              },
+            },
+          );
+        }
+      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="relative w-full overflow-visible px-4 py-18 sm:px-6 sm:py-32">
+    <section
+      ref={sectionRef}
+      className="relative w-full overflow-visible px-4 py-18 sm:px-6 sm:py-32"
+    >
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -110,13 +150,16 @@ export default function FAQ() {
         {/* Heading */}
 
         <div className="mb-16 text-center">
-          <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
+          <h2
+            ref={titleRef}
+            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
+          >
             <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               FAQ
             </span>
           </h2>
 
-          <h3 className="mt-4">
+          <div ref={captionRef} className="mt-4">
             <DecryptText
               text="Answers to Common Questions"
               startDelayMs={200}
@@ -125,7 +168,7 @@ export default function FAQ() {
               revealDelayMs={100}
               className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
             />
-          </h3>
+          </div>
         </div>
 
         <div className="font-lora px-4 pb-8" ref={itemsRef}>
@@ -169,6 +212,15 @@ export default function FAQ() {
           </Accordion>
         </div>
       </div>
+
+      {/* Bottom Transition Gradient */}
+      <div
+        className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 h-32"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, rgba(9, 9, 9, 0.4) 30%, rgba(10, 10, 10, 0.85) 75%, #0a0a0a 100%)",
+        }}
+      />
     </section>
   );
 }

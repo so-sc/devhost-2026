@@ -1,7 +1,12 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Button from "./Button";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const titleSponsor = {
   src: "/sponsors/title-sponsor.png",
@@ -38,7 +43,7 @@ function SponsorCard({
       href={sponsor.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group relative ${
+      className={`group class-sponsor-card relative ${
         isTitle ? "w-[280px] sm:w-[340px]" : "w-[230px] sm:w-[260px]"
       }`}
     >
@@ -130,8 +135,80 @@ function SponsorCard({
 }
 
 export default function SponsorsLogo() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const captionRef = useRef<HTMLHeadingElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.set([titleRef.current, captionRef.current, buttonRef.current], {
+          opacity: 0,
+          y: 35,
+        });
+
+        const cards = gsap.utils.toArray(".class-sponsor-card");
+        gsap.set(cards, {
+          opacity: 0,
+          y: 40,
+        });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        tl.to(titleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        })
+          .to(
+            captionRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            },
+            "-=0.3",
+          )
+          .to(
+            cards,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              stagger: 0.15,
+              ease: "power3.out",
+            },
+            "-=0.2",
+          )
+          .to(
+            buttonRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "back.out(1.2)",
+            },
+            "-=0.3",
+          );
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="sponsors"
       className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-18 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
     >
@@ -163,13 +240,19 @@ export default function SponsorsLogo() {
           </div>
         </div>
         <div className="relative mb-4 text-center sm:mb-6">
-          <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
+          <h2
+            ref={titleRef}
+            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
+          >
             <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               sponsors
             </span>
           </h2>
 
-          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+          <h3
+            ref={captionRef}
+            className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
+          >
             powering devhost 2026
           </h3>
         </div>
@@ -184,7 +267,10 @@ export default function SponsorsLogo() {
           {/* Co-Sponsor 2 */}
           <SponsorCard sponsor={coSponsors[1]} />
         </div>{" "}
-        <div className="mt-20 flex w-full flex-col items-center gap-3 sm:mt-18">
+        <div
+          ref={buttonRef}
+          className="mt-20 flex w-full flex-col items-center gap-3 sm:mt-18"
+        >
           <Button
             onClick={() => {
               window.location.href = "mailto:sosc@sahyadri.edu.in";
@@ -194,6 +280,15 @@ export default function SponsorsLogo() {
           </Button>
         </div>
       </div>
+
+      {/* Bottom Transition Gradient */}
+      <div
+        className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 h-32"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, rgba(5, 4, 3, 0.4) 30%, rgba(13, 13, 13, 0.85) 75%, #0d0d0d 100%)",
+        }}
+      />
     </section>
   );
 }
