@@ -254,7 +254,7 @@ export default function AboutDevhost() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto w-[80%]">
+      <div className="relative z-10 mx-auto w-[90%]">
         <div className="relative mb-4 text-center sm:mb-6">
           <h2
             ref={titleRef}
