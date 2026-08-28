@@ -157,7 +157,7 @@ export default function SpeakersInfo() {
         }}
       />
 
-      <div className="relative z-10 mx-auto w-[80%]">
+      <div className="relative z-10 mx-auto w-[90%]">
         <div className="relative mb-4 text-center sm:mb-6">
           <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
             <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
