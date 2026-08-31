@@ -5,7 +5,7 @@ import Hero from "@/components/Hero";
 import AboutDevhost from "@/components/AboutDevhost";
 // import Counter from "@/components/Counter";
 import TimelineSection from "@/components/Timeline";
-// import AboutHackathon from "@/components/AboutHackathon";
+import AboutHackathon from "@/components/AboutHackathon";
 import Footer from "@/components/Footer";
 import FAQ from "@/components/Faq";
 import Map from "@/components/Map";
@@ -74,10 +74,11 @@ export default function Home() {
         {/* <div className="relative h-[30vh]">
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
         </div> */}
-        {/* <AboutHackathon /> */}
+
         {/* <SpeakersInfo /> */}
         <CallForSpeakers />
         <SponsorsLogo />
+        <AboutHackathon />
         <TimelineSection />
         <Events />
         <Gallery />

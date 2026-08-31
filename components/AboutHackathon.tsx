@@ -3,15 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
+//import Image from "next/image";
 // import Link from "next/link";
-import { ClippedButton } from "./ClippedButton";
+import Button from "./Button";
 import { Download } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const [isClient, setIsClient] = useState(false);
+  {
+    /*const [isClient, setIsClient] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const hacRef = useRef<HTMLDivElement>(null);
@@ -20,14 +21,19 @@ export default function Home() {
   const imageRef = useRef<HTMLDivElement>(null);
   const brownCircleRef = useRef<HTMLDivElement>(null);
   const leftBracketRef = useRef<HTMLDivElement>(null);
-  const rightBracketRef = useRef<HTMLDivElement>(null);
+  const rightBracketRef = useRef<HTMLDivElement>(null);*/
+  }
   const contentRef = useRef<HTMLDivElement>(null);
-  const topTextRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  {
+    /*const topTextRef = useRef<HTMLDivElement>(null);
   const bottomTextRef = useRef<HTMLDivElement>(null);
   const topDecorRef = useRef<HTMLDivElement>(null);
-  const glitchLinesRef = useRef<HTMLDivElement>(null);
+  const glitchLinesRef = useRef<HTMLDivElement>(null);*/
+  }
 
-  useEffect(() => {
+  {
+    /*useEffect(() => {
     setIsClient(true);
   }, []);
 
@@ -232,15 +238,19 @@ export default function Home() {
     }, containerRef);
 
     return () => ctx.revert();
-  }, [isClient]);
+  }, [isClient]);*/
+  }
 
-  if (!isClient) {
+  {
+    /*if (!isClient) {
     return (
       <div className="flex min-h-screen items-center justify-center text-white"></div>
     );
+  }*/
   }
 
-  const images = [
+  {
+    /*const images = [
     { src: "/images/IMG_1.jpg", alt: "Innovation workspace 1" },
     { src: "/images/IMG_3.webp", alt: "Innovation workspace 2" },
     { src: "/images/IMG_4.webp", alt: "Modern office workspace" },
@@ -255,45 +265,103 @@ export default function Home() {
     { src: "/images/IMG_12.webp", alt: "Innovation center 12" },
     { src: "/images/IMG_13.webp", alt: "Developer lounge 13" },
     { src: "/images/IMG_14.webp", alt: "Startup workspace 14" },
-  ];
+  ];*/
+  }
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        titleRef.current,
+        {
+          opacity: 0,
+          y: 60,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        contentRef.current,
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: contentRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
+    }, contentRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div
-      ref={containerRef}
-      className="relative min-h-screen overflow-x-clip text-white"
+      //ref={containerRef}
+      className="relative min-h-screen overflow-hidden bg-black text-white"
     >
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background: `
+      radial-gradient(circle at top, rgba(246,204,96,0.07), transparent 45%),
+      radial-gradient(circle at bottom, rgba(255,255,255,0.02), transparent 65%),
+      linear-gradient(180deg, #14120c 0%, #0d0b08 50%, #050403 100%)
+    `,
+        }}
+      />
+
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(circle, transparent 45%, rgba(0,0,0,.55) 100%)",
+        }}
+      />
+
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(25,25,25,0.55) 0%, rgba(12,12,12,0.95) 55%, #050403 100%)",
+        }}
+      />
       <div className="relative flex min-h-screen flex-col items-center justify-center">
-        {/* === Scaled Text Block === */}
-        <div className="flex scale-45 flex-col items-center sm:scale-75 lg:scale-100">
-          <div className="font-orbitron flex items-end justify-center gap-2">
-            {/* DEV */}
-            <div
-              ref={hacRef}
-              className="text-9xl leading-none font-black tracking-tight text-white opacity-0 select-none"
-            >
-              DEV
-            </div>
-
-            {/* H (placeholder where images overlay from outside) */}
-            <div
-              ref={kRef}
-              className="relative text-9xl leading-none font-black tracking-tight text-[#F6CC60] opacity-0 select-none"
-            >
-              H
-            </div>
-
-            {/* ACK */}
-            <div
-              ref={athonRef}
-              className="-ml-1 text-9xl leading-none font-black tracking-tight text-white opacity-0 select-none"
-            >
-              ACK
-            </div>
-          </div>
-        </div>
+        <h1
+          ref={titleRef}
+          className="font-norse-bold text-[clamp(5rem,12vw,12rem)] leading-none font-black tracking-[0.06em] select-none"
+        >
+          <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(246,204,96,0.4)]">
+            DEVHACK
+          </span>
+        </h1>
 
         {/* === Images container OUTSIDE scale === */}
-        <div
+        {/*<div
           ref={imageRef}
           className="absolute flex items-center justify-center"
           style={{
@@ -314,15 +382,15 @@ export default function Home() {
               />
             ))}
           </div>
-        </div>
+        </div>*/}
 
         {/* Content under DEVHACK */}
         <div
           ref={contentRef}
-          className="flex flex-col items-center space-y-2 px-4 opacity-0 sm:mt-10"
+          className="flex flex-col items-center space-y-2 px-4 sm:mt-10"
         >
           <div className="max-w-4xl text-center">
-            <p className="mb-4 font-mono text-sm leading-relaxed text-gray-300 sm:text-base md:text-lg">
+            <p className="font-lora text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-xl sm:leading-[1.75] sm:tracking-[0.03em]">
               Join us for an intense 36-hour hackathon where innovation meets
               execution. Build, code, and create the future in one epic weekend
               of non-stop development.
@@ -351,25 +419,16 @@ export default function Home() {
               </ClippedButton>
             </div> */}
 
-            <div>
+            {/*<div>
               <a href="/brochure/devhack_rulebook.pdf" download>
-                <ClippedButton
-                  innerBg="bg-black"
-                  outerBg="bg-primary"
-                  textColor="text-primary"
-                >
-                  <p className="flex items-center gap-2 whitespace-pre">
-                    <Download size={14} />
+                <Button>
                     Rulebook
-                  </p>
-                </ClippedButton>
+                  
+                </Button>
               </a>
-            </div>
+            </div>*/}
           </div>
         </div>
-
-        {/* Bottom gradient */}
-        <div className="absolute bottom-0 h-24 w-full bg-gradient-to-t from-black/95 via-black/80 to-transparent" />
       </div>
     </div>
   );
