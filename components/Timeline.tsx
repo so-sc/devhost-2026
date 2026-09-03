@@ -1,34 +1,322 @@
 "use client";
-import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React, { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useVelocity,
+} from "framer-motion";
+import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
+import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { markers } from "../assets/data/timeline";
 import DecryptText from "./animated/TextAnimation";
+import Button from "./Button";
 
-const CornerBorder = ({ className = "" }: { className?: string }) => (
-  <svg
-    viewBox="0 0 42 42"
-    className={className}
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M2 18V8a6 6 0 0 1 6-6h10"
-      stroke="#C8A24C"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-    />
+type TimelineEvent = {
+  id: string;
+  displayTime: string;
+  title: string;
+  icon: React.ReactNode;
+  speaker?: string;
+  role?: string;
+  description: string;
+  venue?: string;
+};
 
-    <path
-      d="M2 28V22H8V16H14"
-      stroke="#C8A24C"
-      strokeWidth="1.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+type TimelineDay = {
+  id: string;
+  events: TimelineEvent[];
+};
 
-    <circle cx="8" cy="8" r="1.8" fill="#C8A24C" />
-  </svg>
-);
+type TimelineTabGroup = {
+  id: string;
+  label: string;
+  days: TimelineDay[];
+};
+const ScrollParchmentWrapper = ({ tabGroups, }: { tabGroups: TimelineTabGroup[]; }) => {
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 80%", "end 80%"],
+  });
+
+  // Calculate scroll velocity and smooth it for a physical inertia feel
+  const scrollVelocity = useVelocity(scrollYProgress);
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 30, // Low damping for a subtle physical settle
+    stiffness: 200, // Soft stiffness for organic feeling
+  });
+
+  // Map the smoothed velocity to a tiny rotation wobble
+  // Clamps at 1.5 degrees so it never rotates aggressively
+  const rollerWobble = useTransform(
+    smoothVelocity,
+    [-0.5, 0, 0.5],
+    ["-1.5deg", "0deg", "1.5deg"],
+  );
+
+  // Animates the clip path to reveal the parchment from top to bottom
+  const clipPath = useTransform(scrollYProgress, (p) => {
+    const clamped = Math.max(0, Math.min(1, p));
+    return `inset(0px 0px calc((100% - 100px) * ${1 - clamped}) 0px)`;
+  });
+
+  // Translates the bottom roller downwards exactly in sync with the clip path,
+  // with a small extra downward shift (+ 24px * p) for a subtle physical unrolling effect.
+  const bottomRollerTop = useTransform(scrollYProgress, (p) => {
+    const clamped = Math.max(0, Math.min(1, p));
+    return `calc(100px + (100% - 100px) * ${clamped} + ${clamped * 24}px)`;
+  });
+
+  // Texture rotation to simulate physical unrolling
+  const rollerTextureY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0px", "-250px"],
+  );
+
+  return (
+    <div ref={containerRef} className="relative mx-auto my-10 w-full max-w-4xl">
+      <svg width="0" height="0" className="pointer-events-none absolute">
+        <filter id="torn-edge" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.03"
+            numOctaves="3"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="4"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </svg>
+
+      {/* Top Roller - Fixed at the top */}
+      <div className="absolute top-0 left-[-2%] z-20 h-14 w-[104%] -translate-y-1/2 drop-shadow-[0_15px_15px_rgba(0,0,0,0.9)]">
+        <div className="absolute inset-0 right-6 left-6 overflow-hidden rounded-full bg-[#3d2716]">
+          <motion.div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(180deg, rgba(0,0,0,0.6) 0px, transparent 2px, transparent 6px)",
+              backgroundSize: "100% 12px",
+              backgroundPositionY: rollerTextureY,
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(60,35,15,0.5) 0%, rgba(120,80,40,0.15) 25%, rgba(200,162,76,0.15) 45%, rgba(80,50,20,0.4) 75%, rgba(30,15,5,0.7) 100%)",
+              boxShadow:
+                "inset 0 2px 4px rgba(200,162,76,0.1), inset 0 -4px 6px rgba(0,0,0,0.7)",
+            }}
+          />
+        </div>
+        <div
+          className="absolute left-0 z-10 flex h-10 w-8 items-center justify-center rounded-full"
+          style={{
+            background:
+              "linear-gradient(180deg, #1f140d 0%, #362215 20%, #543924 50%, #29180e 80%, #110905 100%)",
+            boxShadow:
+              "inset -4px 0 8px rgba(0,0,0,0.7), 4px 0 6px rgba(0,0,0,0.5)",
+          }}
+        >
+          <div className="h-6 w-4 rounded-full bg-[#170e09] shadow-[inset_1px_1px_3px_rgba(200,162,76,0.15)]" />
+        </div>
+        <div
+          className="absolute right-0 z-10 flex h-10 w-8 items-center justify-center rounded-full"
+          style={{
+            background:
+              "linear-gradient(180deg, #1f140d 0%, #362215 20%, #543924 50%, #29180e 80%, #110905 100%)",
+            boxShadow:
+              "inset 4px 0 8px rgba(0,0,0,0.7), -4px 0 6px rgba(0,0,0,0.5)",
+          }}
+        >
+          <div className="h-6 w-4 rounded-full bg-[#170e09] shadow-[inset_-1px_1px_3px_rgba(200,162,76,0.15)]" />
+        </div>
+      </div>
+
+      {/* Parchment Surface - Fully renders but is clipped to unroll */}
+      <motion.div
+        className="relative z-10 w-full"
+        style={{
+          clipPath,
+          filter: "url(#torn-edge)",
+        }}
+      >
+        <div className="absolute inset-0 bg-[#422d1c]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/images/parchment-sponsor.jpg')",
+              backgroundSize: "100% auto",
+              backgroundAttachment: "local",
+              opacity: 0.5,
+              mixBlendMode: "multiply",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 50%, rgba(200,162,76,0.04) 0%, transparent 60%)",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 50%, rgba(200,162,76,0.08) 0%, rgba(0,0,0,0.15) 100%)",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(60,35,15,0.15) 0%, transparent 8%, transparent 25%, rgba(60,35,15,0.08) 28%, transparent 34%, transparent 65%, rgba(60,35,15,0.06) 68%, transparent 75%, rgba(60,35,15,0.15) 100%)",
+            }}
+          />
+          <div className="pointer-events-none absolute inset-0 shadow-[inset_15px_0_30px_rgba(70,40,20,0.25),inset_-15px_0_30px_rgba(70,40,20,0.25)]" />
+          <div
+            className="pointer-events-none absolute top-0 right-0 left-0 h-20"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(30,15,5,0.8) 0%, rgba(50,30,15,0.4) 40%, transparent 100%)",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute right-0 bottom-0 left-0 h-20"
+            style={{
+              background:
+                "linear-gradient(0deg, rgba(30,15,5,0.8) 0%, rgba(50,30,15,0.4) 40%, transparent 100%)",
+            }}
+          />
+        </div>
+
+        {/* Content - It takes full height naturally */}
+        <div className="relative z-10 px-8 py-20 sm:px-16 md:px-24">
+          {tabGroups.map((group) => (
+            <TabsContent
+              key={group.id}
+              value={group.id}
+              className="mt-0 outline-none"
+            >
+              <div className="flex flex-col gap-10">
+                {group.days.map((day) => (
+                  <div key={day.id} className="flex flex-col gap-16">
+                    {day.events.map((event) => (
+                      <div
+                        key={event.id}
+                        className="relative flex flex-col gap-3 border-b border-[#C8A24C]/20 pb-10 last:border-b-0"
+                      >
+                        {/* Time */}
+                        <div
+                          className="text-sm font-bold tracking-[0.15em] text-[#C8A24C] uppercase"
+                          style={{ fontFamily: "'Cinzel', serif" }}
+                        >
+                          {event.displayTime}
+                        </div>
+
+                        {/* Title and Speaker */}
+                        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                          <div className="flex flex-1 items-start gap-3">
+                            <div className="mt-1 flex items-center justify-center text-2xl text-[#C8A24C]">
+                              {event.icon}
+                            </div>
+                            <h3 className="font-norse-bold text-3xl font-bold tracking-wide text-[#F6CC60]">
+                              {event.title}
+                            </h3>
+                          </div>
+
+                          {(event.speaker || event.role) && (
+                            <div className="mt-2 flex flex-col text-sm font-semibold tracking-wide text-[#a98f6d] md:mt-0 md:max-w-[40%] md:text-right">
+                              {event.speaker && <span>- {event.speaker}</span>}
+                              {event.role && (
+                                <span className="opacity-80">{event.role}</span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-[16px] leading-relaxed font-medium text-[#dcd1c2]">
+                          {event.description}
+                        </p>
+
+                        {/* Venue */}
+                        {event.venue && (
+                          <div className="mt-2 flex justify-end text-sm font-semibold tracking-wide text-[#a98f6d]">
+                            <span>@ {event.venue}</span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Bottom Roller - Tracks the bottom of the clip path */}
+      <motion.div
+        className="absolute left-[-2%] z-20 h-14 w-[104%] -translate-y-1/2 drop-shadow-[0_20px_25px_rgba(0,0,0,0.95)]"
+        style={{ top: bottomRollerTop, rotate: rollerWobble }}
+      >
+        <div className="absolute inset-0 right-6 left-6 overflow-hidden rounded-full bg-[#3d2716]">
+          <motion.div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(180deg, rgba(0,0,0,0.6) 0px, transparent 2px, transparent 6px)",
+              backgroundSize: "100% 12px",
+              backgroundPositionY: rollerTextureY,
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(60,35,15,0.5) 0%, rgba(80,50,20,0.4) 25%, rgba(200,162,76,0.12) 50%, rgba(100,60,30,0.2) 75%, rgba(30,15,5,0.7) 100%)",
+              boxShadow:
+                "inset 0 2px 4px rgba(200,162,76,0.1), inset 0 -2px 3px rgba(0,0,0,0.6)",
+            }}
+          />
+        </div>
+        <div
+          className="absolute left-0 z-10 flex h-10 w-8 items-center justify-center rounded-full"
+          style={{
+            background:
+              "linear-gradient(180deg, #1f140d 0%, #362215 20%, #543924 50%, #29180e 80%, #110905 100%)",
+            boxShadow:
+              "inset -4px 0 8px rgba(0,0,0,0.7), 4px 0 6px rgba(0,0,0,0.5)",
+          }}
+        >
+          <div className="h-6 w-4 rounded-full bg-[#170e09] shadow-[inset_1px_1px_3px_rgba(200,162,76,0.15)]" />
+        </div>
+        <div
+          className="absolute right-0 z-10 flex h-10 w-8 items-center justify-center rounded-full"
+          style={{
+            background:
+              "linear-gradient(180deg, #1f140d 0%, #362215 20%, #543924 50%, #29180e 80%, #110905 100%)",
+            boxShadow:
+              "inset 4px 0 8px rgba(0,0,0,0.7), -4px 0 6px rgba(0,0,0,0.5)",
+          }}
+        >
+          <div className="h-6 w-4 rounded-full bg-[#170e09] shadow-[inset_-1px_1px_3px_rgba(200,162,76,0.15)]" />
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 const CyberpunkTimeline: React.FC = () => {
   const tabGroups = [
@@ -81,7 +369,7 @@ const CyberpunkTimeline: React.FC = () => {
           &gt; Journey of Events
         </h2> */}
           <DecryptText
-            text=" Journey of Events"
+            text=" The Saga Unfolds"
             startDelayMs={200}
             trailSize={6}
             flickerIntervalMs={50}
@@ -93,141 +381,17 @@ const CyberpunkTimeline: React.FC = () => {
         <div className="mx-auto max-w-6xl px-6">
           <Tabs defaultValue="phase-1" className="w-full">
             {/* Tab Navigation */}
-            <TabsList className="mx-auto mb-10 grid w-full max-w-4xl grid-cols-3 gap-4 bg-transparent p-0">
+            <TabsList className="mx-auto mb-10 flex w-full max-w-4xl flex-wrap justify-center gap-4 bg-transparent p-0 sm:gap-6">
               {tabGroups.map((group) => (
-                <TabsTrigger
-                  key={group.id}
-                  value={group.id}
-                  className="relative rounded-[3px] border border-[#a9744859] bg-gradient-to-b from-[#211c17] to-[#16130f] px-3 py-4 text-sm tracking-[0.15em] text-[#b3a793] shadow-[inset_0_1px_0_rgba(255,255,255,0.04),inset_0_-3px_6px_rgba(0,0,0,0.5),0_3px_8px_rgba(0,0,0,0.45)] transition-all data-[state=active]:border-[#e3c98f] data-[state=active]:bg-gradient-to-b data-[state=active]:from-[#e3c98f] data-[state=active]:via-[#a97448] data-[state=active]:to-[#6e4a2c] data-[state=active]:font-semibold data-[state=active]:text-[#241a0e] data-[state=active]:shadow-[inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-3px_6px_rgba(0,0,0,0.25),0_0_22px_rgba(207,169,106,0.45),0_4px_10px_rgba(0,0,0,0.5)]"
-                >
-                  {group.label}
-                  <div className="absolute top-1 left-1 h-2.5 w-2.5 border-t border-l border-[#C8A24C]/60" />
-                  <div className="absolute right-1 bottom-1 h-2.5 w-2.5 border-r border-b border-[#C8A24C]/60" />
-                </TabsTrigger>
+                <TabsPrimitive.Trigger key={group.id} value={group.id} asChild>
+                  <Button className="flex justify-center transition-all duration-300 data-[state=active]:brightness-125 data-[state=active]:drop-shadow-[0_0_15px_rgba(200,160,40,0.8)]">
+                    {group.label}
+                  </Button>
+                </TabsPrimitive.Trigger>
               ))}
             </TabsList>
             {/* Tab Content */}
-            {tabGroups.map((group) => (
-              <TabsContent key={group.id} value={group.id} className="mt-0">
-                <div className="mx-auto max-w-4xl space-y-8">
-                  {group.days.map((day) => (
-                    <div key={day.id} className="relative flex">
-                      {/* Timeline vertical line */}
-                      <div
-                        className="absolute top-1 left-[-30px] h-[calc(100%-8px)] w-[2px]"
-                        style={{
-                          background:
-                            "linear-gradient(180deg, rgba(169,116,72,0), #a97448 8%, #a97448 92%, rgba(169,116,72,0))",
-                          boxShadow: "0 0 8px rgba(169,116,72,0.4)",
-                        }}
-                      />
-
-                      {/* Events Grid */}
-                      <div className="flex w-full flex-col items-center gap-12">
-                        {day.events.map((event) => (
-                          <div
-                            key={event.id}
-                            className="relative w-full max-w-4xl rounded-[20px] border border-[#a9744866] bg-gradient-to-br from-[#1c1815] via-[#131110] to-[#17130f] p-6 pt-7 pl-16 shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_8px_20px_rgba(0,0,0,0.5)]"
-                          >
-                            <div
-                              className="absolute top-3 -left-[3.15rem] flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#e3c98f] text-[#2a1c0f]"
-                              style={{
-                                background:
-                                  "radial-gradient(circle at 35% 30%, #d9b378, #a97448 55%, #6e4a2c 100%)",
-                                boxShadow:
-                                  "0 0 0 3px #171412, 0 0 14px rgba(207,169,106,0.4), inset 0 2px 3px rgba(255,255,255,0.35), inset 0 -3px 5px rgba(0,0,0,0.4)",
-                              }}
-                            >
-                              <span className="text-lg leading-none">
-                                {event.icon}
-                              </span>
-                            </div>
-                            <CornerBorder className="absolute top-2 right-2 z-20 h-8 w-8 rotate-90" />
-                            <CornerBorder className="absolute bottom-2 left-2.5 z-20 h-8 w-8 -rotate-90" />
-                            {/* Time badge */}
-
-                            <div className="absolute -top-3 left-16">
-                              <div
-                                className="rounded-[8px] border border-[#6e4a2c] px-4 py-1.5 text-[#171412] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),inset_0_-2px_3px_rgba(0,0,0,0.25),0_2px_5px_rgba(0,0,0,0.4)]"
-                                style={{
-                                  background:
-                                    "linear-gradient(180deg, #e3c98f, #a97448)",
-                                  fontFamily: "'Cinzel', serif",
-                                }}
-                              >
-                                <span className="text-xs font-semibold tracking-wide">
-                                  {event.displayTime}
-                                </span>
-                              </div>
-                            </div>
-
-                            {/* Content */}
-                            <div className="mt-6 text-gray-200">
-                              {/* Title row with meta on right */}
-                              <div className="flex flex-col items-start justify-between sm:flex-row">
-                                {/* Icon + Title + Description */}
-                                <div className="min-w-full flex-1 space-y-2">
-                                  <div className="flex w-full flex-col items-baseline justify-between gap-3 md:flex-row">
-                                    <div className="flex">
-                                      <h3 className="font-lora pl-2 leading-tight font-bold text-[#F6CC60]">
-                                        {event.title}
-                                      </h3>
-                                    </div>
-
-                                    {/* Meta (speaker + role) */}
-                                    <div className="flex w-full flex-col items-end text-right text-xs sm:pb-0">
-                                      {event.speaker && (
-                                        <div className="font-lora text-primary flex items-center justify-end gap-2 text-lg text-xs font-medium sm:text-lg">
-                                          {event.speaker}
-                                        </div>
-                                      )}
-                                      {event.role && (
-                                        <div className="text-primary/70">
-                                          {event.role}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-                                  <p className="border-t border-[#a9744840] pt-3 pb-2 text-[15px] leading-relaxed text-white">
-                                    {event.description}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Venue */}
-                            {event.venue && (
-                              <div className="mt-1 flex justify-end">
-                                <div className="">
-                                  <span
-                                    className="inline-flex items-center gap-1.5 rounded-full border border-black/30 px-3 py-1 text-[11px] font-semibold text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_2px_4px_rgba(0,0,0,0.4)]"
-                                    style={{
-                                      background:
-                                        "linear-gradient(180deg, #c99566, #6e4a2c)",
-                                    }}
-                                  >
-                                    <span>@</span>
-                                    <span>{event.venue}</span>
-                                  </span>
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Corner accents 
-                          <div className="absolute top-0 right-0 h-6 w-6">
-                            <div className="border-primary/70 absolute top-1 right-1 h-3 w-3 border-t border-r"></div>
-                          </div>
-                          <div className="absolute bottom-0 left-0 h-6 w-6">
-                            <div className="border-primary/70 absolute bottom-1 left-1 h-3 w-3 border-b border-l"></div>
-                          </div>*/}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </TabsContent>
-            ))}
+            <ScrollParchmentWrapper tabGroups={tabGroups} />
           </Tabs>
         </div>
       </div>
