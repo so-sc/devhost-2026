@@ -34,7 +34,11 @@ type TimelineTabGroup = {
   label: string;
   days: TimelineDay[];
 };
-const ScrollParchmentWrapper = ({ tabGroups, }: { tabGroups: TimelineTabGroup[]; }) => {
+const ScrollParchmentWrapper = ({
+  tabGroups,
+}: {
+  tabGroups: TimelineTabGroup[];
+}) => {
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
