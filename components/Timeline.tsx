@@ -218,48 +218,50 @@ const ScrollParchmentWrapper = ({
                     {day.events.map((event) => (
                       <div
                         key={event.id}
-                        className="relative flex flex-col gap-3 border-b border-[#C8A24C]/20 pb-10 last:border-b-0"
+                        className="relative flex flex-col items-center gap-5 border-b border-[#C8A24C]/20 pb-10 text-center last:border-b-0"
                       >
                         {/* Time */}
                         <div
-                          className="text-sm font-bold tracking-[0.15em] text-[#C8A24C] uppercase"
+                          className="text-base font-bold tracking-[0.18em] text-[#C8A24C] uppercase sm:text-lg"
                           style={{ fontFamily: "'Cinzel', serif" }}
                         >
                           {event.displayTime}
                         </div>
 
-                        {/* Title and Speaker */}
-                        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                          <div className="flex flex-1 items-start gap-3">
-                            <div className="mt-1 flex items-center justify-center text-2xl text-[#C8A24C]">
-                              {event.icon}
-                            </div>
-                            <h3 className="font-norse-bold text-3xl font-bold tracking-wide text-[#F6CC60]">
-                              {event.title}
-                            </h3>
-                          </div>
+                        {/* Title */}
+                        <h3 className="font-norse-bold text-3xl font-bold tracking-wide text-[#F6CC60] sm:text-4xl">
+                          {event.title}
+                        </h3>
 
-                          {(event.speaker || event.role) && (
-                            <div className="mt-2 flex flex-col text-sm font-semibold tracking-wide text-[#a98f6d] md:mt-0 md:max-w-[40%] md:text-right">
-                              {event.speaker && <span>- {event.speaker}</span>}
-                              {event.role && (
-                                <span className="opacity-80">{event.role}</span>
-                              )}
-                            </div>
-                          )}
-                        </div>
+                        {/* Speaker & Role */}
+                        {event.speaker || event.role ? (
+                          <div className="flex flex-col items-center tracking-wide text-[#a98f6d]">
+                            {event.speaker ? (
+                              <span className="text-base font-bold sm:text-lg">
+                                {event.speaker}
+                              </span>
+                            ) : null}
+                            {event.role ? (
+                              <span className="mt-0.5 text-sm font-semibold opacity-85 sm:text-base">
+                                {event.role}
+                              </span>
+                            ) : null}
+                          </div>
+                        ) : null}
 
                         {/* Description */}
-                        <p className="text-[16px] leading-relaxed font-medium text-[#dcd1c2]">
-                          {event.description}
-                        </p>
+                        {event.description ? (
+                          <p className="sm:text-md text-[17px] leading-relaxed font-medium text-[#110905]">
+                            {event.description}
+                          </p>
+                        ) : null}
 
                         {/* Venue */}
-                        {event.venue && (
-                          <div className="mt-2 flex justify-end text-sm font-semibold tracking-wide text-[#a98f6d]">
-                            <span>@ {event.venue}</span>
+                        {event.venue ? (
+                          <div className="text-sm font-semibold tracking-wide text-[#a98f6d]">
+                            <span>{event.venue}</span>
                           </div>
-                        )}
+                        ) : null}
                       </div>
                     ))}
                   </div>
