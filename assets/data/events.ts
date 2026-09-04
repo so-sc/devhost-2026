@@ -16,7 +16,7 @@ export const events = [
     title: "Siege Of Troy",
     tagline: "Nothing here is secure. That's the point.",
     description:
-        "A security contest built around breaking things. Find the hidden flags by understanding the system before taking it apart.",
+      "A security contest built around breaking things. Find the hidden flags by understanding the system before taking it apart.",
     date: "12 Nov",
     time: "01:00 PM onwards",
     organizer: "Sweekar Shetty",
@@ -51,7 +51,8 @@ export const events = [
     id: 5,
     title: "Winged Keys",
     tagline: "Backspace costs you the round.",
-    description: "Raw speed against text you have not seen before. Fast is not enough if you keep going back to fix things.",
+    description:
+      "Raw speed against text you have not seen before. Fast is not enough if you keep going back to fix things.",
     date: "12 & 13 Nov",
     time: "9:00 AM",
     organizer: "Akanksha Vinod Vardhamane",
