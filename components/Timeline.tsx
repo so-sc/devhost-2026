@@ -102,7 +102,7 @@ const ScrollParchmentWrapper = ({
       </svg>
 
       {/* Top Roller - Fixed at the top */}
-      <div className="absolute top-0 left-[-2%] z-20 h-14 w-[130%] sm:w-[104%] -translate-y-1/2 drop-shadow-[0_15px_15px_rgba(0,0,0,0.9)]">
+      <div className="absolute top-0 left-[-2%] z-20 h-14 w-[104%] -translate-y-1/2 drop-shadow-[0_15px_15px_rgba(0,0,0,0.9)]">
         <div className="absolute inset-0 right-6 left-6 overflow-hidden rounded-full bg-[#3d2716]">
           <motion.div
             className="absolute inset-0 opacity-20"
