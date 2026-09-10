@@ -102,7 +102,7 @@ const ScrollParchmentWrapper = ({
       </svg>
 
       {/* Top Roller - Fixed at the top */}
-      <div className="absolute top-0 left-[-2%] z-20 h-14 w-[104%] -translate-y-1/2 drop-shadow-[0_15px_15px_rgba(0,0,0,0.9)]">
+      <div className="absolute top-0 left-[-2%] z-20 h-14 w-[130%] sm:w-[104%] -translate-y-1/2 drop-shadow-[0_15px_15px_rgba(0,0,0,0.9)]">
         <div className="absolute inset-0 right-6 left-6 overflow-hidden rounded-full bg-[#3d2716]">
           <motion.div
             className="absolute inset-0 opacity-20"
@@ -251,7 +251,7 @@ const ScrollParchmentWrapper = ({
 
                         {/* Description */}
                         {event.description ? (
-                          <p className="sm:text-md text-[17px] leading-relaxed font-medium text-[#110905]">
+                          <p className="sm:text-md font-lora text-[17px] leading-relaxed font-medium text-white/70">
                             {event.description}
                           </p>
                         ) : null}
@@ -390,7 +390,7 @@ const CyberpunkTimeline: React.FC = () => {
             <TabsList className="mx-auto mb-10 flex w-full max-w-4xl flex-wrap justify-center gap-4 bg-transparent p-0 sm:gap-6">
               {tabGroups.map((group) => (
                 <TabsPrimitive.Trigger key={group.id} value={group.id} asChild>
-                  <Button className="flex justify-center transition-all duration-300 data-[state=active]:brightness-125 data-[state=active]:drop-shadow-[0_0_15px_rgba(200,160,40,0.8)]">
+                  <Button className="flex justify-center transition-all duration-300 data-[state=active]:brightness-125 data-[state=active]:drop-shadow-[0_0_5px_rgba(200,160,40,0.8)]">
                     {group.label}
                   </Button>
                 </TabsPrimitive.Trigger>
