@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -40,6 +40,11 @@ const ScrollParchmentWrapper = ({
   tabGroups: TimelineTabGroup[];
 }) => {
   const containerRef = useRef(null);
+  const isMobileRef = useRef(false);
+
+  useEffect(() => {
+    isMobileRef.current = window.matchMedia("(max-width: 639px)").matches;
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -53,13 +58,15 @@ const ScrollParchmentWrapper = ({
     stiffness: 200, // Soft stiffness for organic feeling
   });
 
-  // Map the smoothed velocity to a tiny rotation wobble
-  // Clamps at 1.5 degrees so it never rotates aggressively
-  const rollerWobble = useTransform(
-    smoothVelocity,
-    [-0.5, 0, 0.5],
-    ["-1.5deg", "0deg", "1.5deg"],
-  );
+  // Map the smoothed velocity to a tiny rotation wobble.
+  // On mobile, use a tighter ±0.4deg range to prevent visible vibration
+  // from native scroll momentum spikes. Desktop keeps the original ±1.5deg.
+  const rollerWobble = useTransform(smoothVelocity, (v) => {
+    const maxDeg = isMobileRef.current ? 0.4 : 1.5;
+    const clamped = Math.max(-0.5, Math.min(0.5, v));
+    const deg = (clamped / 0.5) * maxDeg;
+    return `${deg}deg`;
+  });
 
   // Animates the clip path to reveal the parchment from top to bottom
   const clipPath = useTransform(scrollYProgress, (p) => {
@@ -82,7 +89,10 @@ const ScrollParchmentWrapper = ({
   );
 
   return (
-    <div ref={containerRef} className="relative mx-auto my-10 w-full max-w-4xl">
+    <div
+      ref={containerRef}
+      className="relative mx-auto my-10 w-full max-w-4xl sm:w-[90%] lg:w-full"
+    >
       <svg width="0" height="0" className="pointer-events-none absolute">
         <filter id="torn-edge" x="-5%" y="-5%" width="110%" height="110%">
           <feTurbulence
@@ -205,20 +215,23 @@ const ScrollParchmentWrapper = ({
         </div>
 
         {/* Content - It takes full height naturally */}
-        <div className="relative z-10 px-8 py-20 sm:px-16 md:px-24">
+        <div className="relative z-10 px-2 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-24 lg:py-20">
           {tabGroups.map((group) => (
             <TabsContent
               key={group.id}
               value={group.id}
               className="mt-0 outline-none"
             >
-              <div className="flex flex-col gap-10">
+              <div className="flex flex-col gap-6 sm:gap-8 lg:gap-10">
                 {group.days.map((day) => (
-                  <div key={day.id} className="flex flex-col gap-16">
+                  <div
+                    key={day.id}
+                    className="flex flex-col gap-10 sm:gap-12 lg:gap-16"
+                  >
                     {day.events.map((event) => (
                       <div
                         key={event.id}
-                        className="relative flex flex-col items-center gap-5 border-b border-[#C8A24C]/20 pb-10 text-center last:border-b-0"
+                        className="relative flex flex-col items-center gap-3 border-b border-[#C8A24C]/20 pb-6 text-center last:border-b-0 sm:gap-4 sm:pb-8 lg:gap-5 lg:pb-10"
                       >
                         {/* Time */}
                         <div
@@ -229,20 +242,20 @@ const ScrollParchmentWrapper = ({
                         </div>
 
                         {/* Title */}
-                        <h3 className="font-norse-bold text-3xl font-bold tracking-wide text-[#F6CC60] sm:text-4xl">
+                        <h3 className="font-norse-bold mx-auto w-full text-3xl font-bold tracking-wide break-words text-[#F6CC60] sm:max-w-[85%] sm:text-4xl lg:max-w-none">
                           {event.title}
                         </h3>
 
                         {/* Speaker & Role */}
                         {event.speaker || event.role ? (
-                          <div className="flex flex-col items-center tracking-wide text-[#a98f6d]">
+                          <div className="mx-auto flex w-full flex-col items-center tracking-wide text-[#a98f6d] sm:max-w-[85%] lg:max-w-none">
                             {event.speaker ? (
-                              <span className="text-base font-bold sm:text-lg">
+                              <span className="text-center text-base font-bold break-words sm:text-lg">
                                 {event.speaker}
                               </span>
                             ) : null}
                             {event.role ? (
-                              <span className="mt-0.5 text-sm font-semibold opacity-85 sm:text-base">
+                              <span className="mt-0.5 text-center text-sm font-semibold break-words opacity-85 sm:text-base">
                                 {event.role}
                               </span>
                             ) : null}
@@ -251,14 +264,14 @@ const ScrollParchmentWrapper = ({
 
                         {/* Description */}
                         {event.description ? (
-                          <p className="sm:text-md font-lora text-[17px] leading-relaxed font-medium text-white/70">
+                          <p className="sm:text-md font-lora mx-auto w-full text-center text-[17px] leading-relaxed font-medium break-words text-white/70 sm:max-w-[85%] lg:max-w-none">
                             {event.description}
                           </p>
                         ) : null}
 
                         {/* Venue */}
                         {event.venue ? (
-                          <div className="text-sm font-semibold tracking-wide text-[#a98f6d]">
+                          <div className="mx-auto w-full text-center text-sm font-semibold tracking-wide break-words text-[#a98f6d] lg:max-w-none">
                             <span>{event.venue}</span>
                           </div>
                         ) : null}
@@ -384,13 +397,13 @@ const CyberpunkTimeline: React.FC = () => {
           />
         </div>
 
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-2 sm:px-6">
           <Tabs defaultValue="phase-1" className="w-full">
             {/* Tab Navigation */}
-            <TabsList className="mx-auto mb-10 flex w-full max-w-4xl flex-wrap justify-center gap-4 bg-transparent p-0 sm:gap-6">
+            <TabsList className="mx-auto mb-10 flex w-full max-w-4xl justify-center gap-2 bg-transparent p-0 sm:mb-14 sm:gap-4 lg:mb-10 lg:gap-6">
               {tabGroups.map((group) => (
                 <TabsPrimitive.Trigger key={group.id} value={group.id} asChild>
-                  <Button className="flex justify-center transition-all duration-300 data-[state=active]:brightness-125 data-[state=active]:drop-shadow-[0_0_5px_rgba(200,160,40,0.8)]">
+                  <Button className="flex justify-center transition-all duration-300 data-[state=active]:brightness-125 data-[state=active]:drop-shadow-[0_0_5px_rgba(200,160,40,0.8)] [&_div.px-8]:px-1 sm:[&_div.px-8]:px-2 lg:[&_div.px-8]:px-8 [&_span]:text-sm sm:[&_span]:text-base lg:[&_span]:text-lg [&>div]:h-[45px] [&>div]:w-[105px] sm:[&>div]:h-[50px] sm:[&>div]:w-[200px] lg:[&>div]:h-[56px] lg:[&>div]:w-[250px]">
                     {group.label}
                   </Button>
                 </TabsPrimitive.Trigger>
