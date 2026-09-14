@@ -49,7 +49,7 @@ function SponsorCard({
 
       {/* Plaque */}
       <div
-        className={`relative aspect-[2.1/1] w-full overflow-hidden scale-120`}
+        className={`relative aspect-[2.1/1] w-full scale-120 overflow-hidden`}
       >
         {/* Sponsor plaque image */}
         <Image
@@ -63,10 +63,8 @@ function SponsorCard({
         {/* Center text */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center">
           <span
-            className={`font-norse-bold font-semibold tracking-[0.10em] sm:tracking-[0.14em] text-2xl ${
-              isTitle
-                ? "text-[#C8A24C]"
-                : "text-[#3b2414]"
+            className={`font-norse-bold text-2xl font-semibold tracking-[0.10em] sm:tracking-[0.14em] ${
+              isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
             }`}
           >
             {isTitle ? "TITLE SPONSOR" : "CO-SPONSOR"}
@@ -105,9 +103,7 @@ const otherSponsors = [
     logo: "/sponsors/render-logo.png",
     name: "Render",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "$500 in credits for each winning team.",
-    ],
+    description: ["$500 in credits for each winning team."],
     width: "w-[140px]",
   },
   {
@@ -148,7 +144,7 @@ function OtherSponsors() {
   return (
     <div className="mt-20 w-full">
       {/* Section label */}
-      <h3 className="mb-10 text-center font-norse-bold text-2xl font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:mb-12 sm:text-3xl">
+      <h3 className="font-norse-bold mb-10 text-center text-2xl font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:mb-12 sm:text-3xl">
         other sponsors
       </h3>
 
@@ -164,22 +160,20 @@ function OtherSponsors() {
 
             {/* CARD */}
             <div className="relative h-full p-[6px]">
-
               {/* GREEK / NORSE BORDER */}
               <div className="pointer-events-none absolute inset-0 z-30 border border-[#C9963E]/80" />
               <div className="pointer-events-none absolute inset-[4px] z-30 border border-[#8F6728]/70" />
 
               {/* STONE CARD - Added h-full flex flex-col here */}
-              <div className="relative h-full flex flex-col overflow-hidden rounded-[2px]">
-
+              <div className="relative flex h-full flex-col overflow-hidden rounded-[2px]">
                 {/* Stone image */}
                 <Image
-  src={`/sponsors/stone-texture-${(index % 4) + 1}.png`}
-  alt=""
-  fill
-  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-  className="object-cover opacity-50"
-/>
+                  src={`/sponsors/stone-texture-${(index % 4) + 1}.png`}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover opacity-50"
+                />
 
                 {/* Dark overlay */}
                 <div className="absolute inset-0 bg-[#0b0704]/45" />
@@ -189,7 +183,6 @@ function OtherSponsors() {
 
                 {/* Content - Changed min-h to h-full flex-1 */}
                 <div className="relative z-20 flex h-full min-h-[360px] flex-1 flex-col items-center px-8 py-10 text-center">
-
                   {/* Logo */}
                   <div className="flex h-[95px] w-full items-center justify-center">
                     <div
@@ -209,23 +202,20 @@ function OtherSponsors() {
                   <div className="my-5 h-px w-16 bg-[#C9963E]/40" />
 
                   {/* Sponsor name */}
-                  <h4 className="font-norse text-xl font-semibold uppercase tracking-[0.12em] text-[#E0B957] drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)]">
+                  <h4 className="font-norse text-xl font-semibold tracking-[0.12em] text-[#E0B957] uppercase drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)]">
                     {sponsor.name}
                   </h4>
 
                   {/* Sponsor title */}
-                  <p className="mt-2 font-lora text-[9px] uppercase tracking-[0.20em] text-[#B4873A] sm:text-[10px]">
+                  <p className="font-lora mt-2 text-[9px] tracking-[0.20em] text-[#B4873A] uppercase sm:text-[10px]">
                     [{sponsor.title}]
                   </p>
 
                   {/* Description */}
-                  <div className="flex justify-center items-center w-full">
-                    <ul className="mt-4 w-full list-disc space-y-1.5 px-3 text-left font-lora text-sm leading-relaxed text-[#F1E8D5]">
+                  <div className="flex w-full items-center justify-center">
+                    <ul className="font-lora mt-4 w-full list-disc space-y-1.5 px-3 text-left text-sm leading-relaxed text-[#F1E8D5]">
                       {sponsor.description.map((item, i) => (
-                        <li
-                          key={i}
-                          className="pl-1 marker:text-[#C9963E]"
-                        >
+                        <li key={i} className="pl-1 marker:text-[#C9963E]">
                           {item}
                         </li>
                       ))}
@@ -399,12 +389,12 @@ export default function SponsorsLogo() {
 //           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07),transparent_60%)]" />
 
 //           {/* Sponsor logo */}
-//           {/* <div className="relative z-10 h-[115px] w-[230px] sm:h-[130px] sm:w-[270px]"> 
-//           <Image 
-//           src={titleSponsor.src} 
-//           alt={titleSponsor.alt} 
-//           fill sizes="270px" 
-//           className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] transition-transform duration-500 group-hover:scale-[1.03]" /> 
+//           {/* <div className="relative z-10 h-[115px] w-[230px] sm:h-[130px] sm:w-[270px]">
+//           <Image
+//           src={titleSponsor.src}
+//           alt={titleSponsor.alt}
+//           fill sizes="270px"
+//           className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] transition-transform duration-500 group-hover:scale-[1.03]" />
 //           */}
 //           <div className="relative z-10 h-full w-full">
 //             <Image
@@ -422,7 +412,6 @@ export default function SponsorsLogo() {
 //     </a>
 //   );
 // }
-
 
 // function SponsorBanners() {
 //   return (
@@ -532,7 +521,7 @@ export default function SponsorsLogo() {
 //                       <div className="relative mx-auto mt-[18%] flex w-auto h-[50%] items-center justify-center p-2">
 //                         <Image src={sponsor.logo} alt={sponsor.id} fill className="p-2" />
 //                       </div>
-                    
+
 //                       <svg
 //                         className="relative mx-auto mt-[12%] h-auto w-[22%] text-[#b38c46]/85"
 //                         viewBox="0 0 28 30"
