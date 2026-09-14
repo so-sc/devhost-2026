@@ -1,13 +1,13 @@
-# DevHost 2025
+# DevHost 2026
 
-**Connecting Minds, Crafting Progress.**  
-_November 06–08, 2025 · Sahyadri Campus, Adyar_
+**Ideas That Echo Through Time.**  
+_November 12–14, 2026 · Sahyadri Campus, Adyar_
 
 ---
 
 ## Overview
 
-DevHost 2025 is the 8th edition of the flagship annual event by the Sahyadri Open Source Community (SOSC). It brings together students, developers, and industry experts for three days of innovation, collaboration, and knowledge sharing.
+DevHost 2026 is the 8th edition of the flagship annual event by the Sahyadri Open Source Community (SOSC). It brings together students, developers, and industry experts for three days of innovation, collaboration, and knowledge sharing.
 
 The event features:
 
@@ -17,7 +17,7 @@ The event features:
 - Gaming & Tech Competitions
 - Networking with 50+ Industry Experts
 
-With 2500+ participants expected from across India, DevHost 2025 continues to be a hub for technology, open-source culture, and innovation.
+With 2500+ participants expected from across India, DevHost 2026 continues to be a hub for technology, open-source culture, and innovation.
 
 ---
 
@@ -39,6 +39,7 @@ Sahyadri Open Source Community (SOSC)
 
 ## Highlights from Past Events
 
+- DevHost 2025 – 2500+ students, 36 hour hackathon, 70+ colleges, 50+ industry experts.
 - DevHost 2024 – 2000+ participants, 25+ colleges, 36-hour hackathon, 12+ speakers.
 - DevFest 2023 – 1200+ participants, industry experts & dev talks.
 - HacktoberFest & CodeBlaze – 100+ teams, 400+ participants in 20-hour hackathons.
@@ -49,8 +50,8 @@ Sahyadri Open Source Community (SOSC)
 
 For sponsorships, participation, or collaboration:
 
-- Manas S – +91 96208 55052
-- Yash Laxman – +91 63620 72050
+- Soniya Kolvekar – +91 86189 50479
+- Nivas M – +91 93530 48159
 - Email – devhost.synergia@sahyadri.edu.in
 - Website – [devhost.sosc.org.in](http://devhost.sosc.org.in)
 
@@ -62,20 +63,17 @@ Follow us:
 
 ## Website Contributors
 
-- [@JustModo](https://github.com/JustModo)
-- [@HithaBadikillaya](https://github.com/HithaBadikillaya)
-- [@Salman-in](https://github.com/Salman-in)
-- [@mrkushalsm](https://github.com/mrkushalsm)
-- [@Prathyusha-K-05](https://github.com/Prathyusha-K-05)
-- [@YiVibro](https://github.com/YiVibro)
-- [@Priyadarshinimulloli](https://github.com/Priyadarshinimulloli)
-- [@josvita0323](https://github.com/josvita0323)
-- [@nithink-code](https://github.com/nithink-code)
-- [@VivekNeer](https://github.com/VivekNeer)
+- [@zaynahanium](https://github.com/zaynahanium)
+- [@041kzee](https://github.com/041kzee)
+- [@Jenisha06](https://github.com/Jenisha06)
+- [@chnmy77](https://github.com/chnmy77)
+- [@Nisargak-21](https://github.com/Nisargak-21)
+- [@VaishnavUpadyaya](https://github.com/VaishnavUpadyaya)
+- [@Nivas-M](https://github.com/Nivas-M)
 
 ---
 
 ## License
 
 This project and its contents are managed by the Sahyadri Open Source Community (SOSC).  
-All rights reserved © 2025.
+All rights reserved © 2026.
