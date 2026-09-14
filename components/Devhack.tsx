@@ -47,7 +47,7 @@ export default function DevHackSection() {
             opacity: 0,
             duration: 0.7,
           },
-          "-=0.5"
+          "-=0.5",
         )
         .from(
           paragraphRef.current,
@@ -56,7 +56,7 @@ export default function DevHackSection() {
             opacity: 0,
             duration: 0.7,
           },
-          "-=0.4"
+          "-=0.4",
         )
         .from(
           buttonRef.current,
@@ -65,7 +65,7 @@ export default function DevHackSection() {
             opacity: 0,
             duration: 0.6,
           },
-          "-=0.3"
+          "-=0.3",
         );
 
       // subtle ambient glow pulse on the title
@@ -174,7 +174,7 @@ export default function DevHackSection() {
               window.open(
                 "https://forms.gle/your-devhack-register-link",
                 "_blank",
-                "noopener,noreferrer"
+                "noopener,noreferrer",
               );
             }}
           >
