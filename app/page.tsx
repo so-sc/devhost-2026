@@ -5,7 +5,7 @@ import Hero from "@/components/Hero";
 import AboutDevhost from "@/components/AboutDevhost";
 // import Counter from "@/components/Counter";
 import TimelineSection from "@/components/Timeline";
-import AboutHackathon from "@/components/AboutHackathon";
+// import AboutHackathon from "@/components/AboutHackathon";
 import Footer from "@/components/Footer";
 import FAQ from "@/components/Faq";
 import Map from "@/components/Map";
@@ -78,7 +78,7 @@ export default function Home() {
         {/* <SpeakersInfo /> */}
         <CallForSpeakers />
         <SponsorsLogo />
-        <AboutHackathon />
+        {/* <AboutHackathon /> */}
         <TimelineSection />
         <Events />
         <Gallery />
