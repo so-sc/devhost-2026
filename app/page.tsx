@@ -73,11 +73,11 @@ export default function Home() {
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
         </div> */}
         {/* <AboutHackathon /> */}
-        <Devhack />
         {/* <TimelineSection /> */}
         {/* <SpeakersInfo /> */}
         <CallForSpeakers />
         <SponsorsLogo />
+        <Devhack />
         <Events />
         <Gallery />
         <FAQ />

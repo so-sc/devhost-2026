@@ -151,7 +151,7 @@ export default function DevHackSection() {
         </div>
 
         <div className="relative mx-auto flex flex-col items-center pt-4 sm:w-full sm:max-w-[80%] sm:pt-8">
-          <div className="relative z-10 w-full text-center">
+          <div className="relative z-10 w-full text-justify md:text-center">
             <p
               ref={paragraphRef}
               className="font-lora text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
@@ -165,7 +165,7 @@ export default function DevHackSection() {
           </div>
         </div>
 
-        <div
+        {/* <div
           ref={buttonRef}
           className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12"
         >
@@ -180,7 +180,7 @@ export default function DevHackSection() {
           >
             Register
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
