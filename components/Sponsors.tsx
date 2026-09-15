@@ -2,26 +2,26 @@
 
 import Image from "next/image";
 import Button from "./Button";
+import OtherSponsors from "./OtherSponsors";
 
 const titleSponsor = {
-  src: "/sponsors/title-sponsor.png",
+  src: "/sponsors/titlesponsor.png",
   alt: "Title Sponsor",
   href: "mailto:sosc@sahyadri.edu.in",
 };
 
 const coSponsors = [
   {
-    src: "/sponsors/co-sponsor.png",
+    src: "/sponsors/cosponsor.png",
     alt: "Co-Sponsor",
     href: "mailto:sosc@sahyadri.edu.in",
   },
   {
-    src: "/sponsors/co-sponsor.png",
+    src: "/sponsors/cosponsor.png",
     alt: "Co-Sponsor",
     href: "mailto:sosc@sahyadri.edu.in",
   },
 ];
-
 function SponsorCard({
   sponsor,
   isTitle = false,
@@ -38,92 +38,41 @@ function SponsorCard({
       href={sponsor.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group relative ${
-        isTitle ? "w-[280px] sm:w-[340px]" : "w-[230px] sm:w-[260px]"
+      className={`group relative block w-full ${
+        isTitle
+          ? "max-w-[360px] sm:max-w-[400px]"
+          : "max-w-[300px] sm:max-w-[330px]"
       }`}
     >
-      {/* Outer glow */}
-      <div className="absolute -inset-3 rounded-md bg-[#C9963E]/10 opacity-0 blur-xl transition duration-700 group-hover:opacity-100" />
+      {/* Glow behind the plaque */}
+      <div className="absolute -inset-4 rounded-full bg-[#C9963E]/10 opacity-0 blur-2xl transition-all duration-700 group-hover:opacity-100" />
 
-      {/* Gold frame */}
-      <div className="relative rounded-md border border-[#C9963E]/60 p-[2px] shadow-[0_0_20px_rgba(201,150,62,0.08)] transition-all duration-500 group-hover:border-[#F6CC60] group-hover:shadow-[0_0_30px_rgba(246,204,96,0.18)]">
-        {/* Marble plaque */}
-        <div
-          className={`relative flex ${
-            isTitle ? "h-[150px] sm:h-[165px]" : "h-[125px] sm:h-[140px]"
-          } w-full items-center justify-center overflow-hidden rounded-[3px] border border-[#C9963E]/20 bg-[#11100e]`}
-        >
-          {/* Marble base */}
-          <div
-            className="absolute inset-0 opacity-80"
-            style={{
-              backgroundImage: `
-                radial-gradient(
-                  ellipse at 20% 20%,
-                  rgba(255,255,255,0.07) 0%,
-                  transparent 35%
-                ),
-                radial-gradient(
-                  ellipse at 80% 70%,
-                  rgba(201,150,62,0.06) 0%,
-                  transparent 40%
-                ),
-                linear-gradient(
-                  135deg,
-                  #181715 0%,
-                  #0b0a09 35%,
-                  #171614 55%,
-                  #090807 100%
-                )
-              `,
-            }}
-          />
+      {/* Plaque */}
+      <div
+        className={`relative aspect-[2.1/1] w-full scale-120 overflow-hidden`}
+      >
+        {/* Sponsor plaque image */}
+        <Image
+          src={sponsor.src}
+          alt={sponsor.alt}
+          fill
+          className="object-contain transition-transform duration-500 group-hover:scale-[1.025]"
+          priority={isTitle}
+        />
 
-          {/* Marble veins */}
-          <div
-            className="pointer-events-none absolute inset-[-30%] opacity-20"
-            style={{
-              backgroundImage: `
-                linear-gradient(
-                  125deg,
-                  transparent 25%,
-                  rgba(255,255,255,0.12) 26%,
-                  transparent 27%,
-                  transparent 48%,
-                  rgba(255,255,255,0.08) 49%,
-                  transparent 50%,
-                  transparent 72%,
-                  rgba(201,150,62,0.08) 73%,
-                  transparent 74%
-                )
-              `,
-              transform: "rotate(-8deg) scale(1.3)",
-            }}
-          />
-
-          {/* Center highlight */}
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07),transparent_60%)]" />
-
-          {/* Sponsor logo */}
-          {/* <div className="relative z-10 h-[115px] w-[230px] sm:h-[130px] sm:w-[270px]"> 
-          <Image 
-          src={titleSponsor.src} 
-          alt={titleSponsor.alt} 
-          fill sizes="270px" 
-          className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] transition-transform duration-500 group-hover:scale-[1.03]" /> 
-          */}
-          <div className="relative z-10 h-full w-full">
-            <Image
-              src={sponsor.src}
-              alt={sponsor.alt}
-              fill
-              className="drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-          </div>
-
-          {/* Shine */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        {/* Center text */}
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center">
+          <span
+            className={`font-norse-bold text-2xl font-semibold tracking-[0.10em] sm:tracking-[0.14em] ${
+              isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
+            }`}
+          >
+            {isTitle ? "TITLE SPONSOR" : "CO-SPONSOR"}
+          </span>
         </div>
+
+        {/* Very subtle hover shine */}
+        <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
       </div>
     </a>
   );
@@ -174,7 +123,7 @@ export default function SponsorsLogo() {
           </h3>
         </div>
         {/* Sponsor */}
-        <div className="mt-12 grid w-full grid-cols-1 items-center justify-items-center gap-10 md:grid-cols-3 md:gap-6 lg:gap-10">
+        <div className="mt-12 grid w-full grid-cols-1 items-center justify-items-center gap-18 md:grid-cols-3 md:gap-6 lg:gap-10">
           {/* Co-Sponsor 1 */}
           <SponsorCard sponsor={coSponsors[0]} />
 
@@ -183,7 +132,8 @@ export default function SponsorsLogo() {
 
           {/* Co-Sponsor 2 */}
           <SponsorCard sponsor={coSponsors[1]} />
-        </div>{" "}
+        </div>
+        <OtherSponsors />
         <div className="mt-20 flex w-full flex-col items-center gap-3 sm:mt-18">
           <Button
             onClick={() => {
