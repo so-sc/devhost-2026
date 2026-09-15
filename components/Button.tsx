@@ -420,7 +420,7 @@ const Button = React.forwardRef<HTMLButtonElement, NewButtonProps>(
                 textAnchor="middle"
                 fontSize="8.5"
                 fontFamily="serif"
-                fill={runeGlow ? "rgba(220,168,20,0.75)" : GOLD_DIM}
+                fill={GOLD_DIM}
               >
                 {r}
               </text>
@@ -435,7 +435,7 @@ const Button = React.forwardRef<HTMLButtonElement, NewButtonProps>(
                 textAnchor="middle"
                 fontSize="8.5"
                 fontFamily="serif"
-                fill={runeGlow ? "rgba(220,168,20,0.75)" : GOLD_DIM}
+                fill={GOLD_DIM}
               >
                 {r}
               </text>
@@ -449,7 +449,7 @@ const Button = React.forwardRef<HTMLButtonElement, NewButtonProps>(
               fontSize="6"
               fontFamily="serif"
               letterSpacing="7"
-              fill={runeGlow ? "rgba(210,160,15,0.6)" : GOLD_FAINT}
+              fill={GOLD_FAINT}
             >
               ᚠ᛫ᚢ᛫ᚦ᛫ᚨ᛫ᚱ
             </text>
@@ -462,7 +462,7 @@ const Button = React.forwardRef<HTMLButtonElement, NewButtonProps>(
               fontSize="6"
               fontFamily="serif"
               letterSpacing="7"
-              fill={runeGlow ? "rgba(210,160,15,0.6)" : GOLD_FAINT}
+              fill={GOLD_FAINT}
             >
               ᛇ᛫ᛈ᛫ᛉ᛫ᛊ᛫ᛏ᛫ᛒ
             </text>
