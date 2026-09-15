@@ -18,9 +18,7 @@ const otherSponsors = [
     logo: "/sponsors/n8n-logo.png",
     name: "n8n",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "n8n Cloud Pro license for all hackathon participants.",
-    ],
+    description: ["n8n Cloud Pro license for all hackathon participants."],
     width: "w-[130px]",
   },
   {
@@ -48,18 +46,14 @@ const otherSponsors = [
     logo: "/sponsors/codecrafters-logo.png",
     name: "CodeCrafters",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "Applicable for hackathon winning teams.",
-    ],
+    description: ["Applicable for hackathon winning teams."],
     width: "w-[150px]",
   },
   {
     logo: "/sponsors/sarvam-logo.png",
     name: "Sarvam AI",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "500 credits for every hackathon participating team.",
-    ],
+    description: ["500 credits for every hackathon participating team."],
     width: "w-[150px]",
   },
 ];
@@ -74,29 +68,13 @@ function SponsorInfo({
   return (
     <div className="relative h-full w-full">
       <div
-        className={`
-          absolute inset-0
-          flex flex-col items-center justify-center
-          px-6 text-center
-
-          transition-all duration-500 ease-out
-
-          /* Mobile click state */
-          ${isActive
-            ? "translate-y-3 opacity-0"
-            : "translate-y-0 opacity-100"
-          }
-
-          /* Desktop hover state */
-          [@media(hover:hover)]:group-hover:-translate-y-3
-          [@media(hover:hover)]:group-hover:opacity-0
-        `}
+        className={`/* Mobile click state */ absolute inset-0 flex flex-col items-center justify-center px-6 text-center transition-all duration-500 ease-out ${
+          isActive ? "translate-y-3 opacity-0" : "translate-y-0 opacity-100"
+        } /* Desktop hover state */ [@media(hover:hover)]:group-hover:-translate-y-3 [@media(hover:hover)]:group-hover:opacity-0`}
       >
         {/* Logo */}
         <div className="flex h-[95px] w-full items-center justify-center">
-          <div
-            className={`relative h-[75px] ${sponsor.width} max-w-full`}
-          >
+          <div className={`relative h-[75px] ${sponsor.width} max-w-full`}>
             <Image
               src={sponsor.logo}
               alt={sponsor.name}
@@ -118,23 +96,9 @@ function SponsorInfo({
         </p>
       </div>
       <div
-        className={`
-          absolute inset-0
-          flex flex-col items-center justify-center
-          px-7 py-8 text-center
-
-          transition-all duration-500 ease-out
-
-          /* Mobile click state */
-          ${isActive
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-3 opacity-0"
-          }
-
-          /* Desktop hover state */
-          [@media(hover:hover)]:group-hover:translate-y-0
-          [@media(hover:hover)]:group-hover:opacity-100
-        `}
+        className={`/* Mobile click state */ absolute inset-0 flex flex-col items-center justify-center px-7 py-8 text-center transition-all duration-500 ease-out ${
+          isActive ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
+        } /* Desktop hover state */ [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100`}
       >
         {/* Sponsor name */}
         <h4 className="font-norse mb-4 text-lg font-semibold tracking-[0.12em] text-[#E0B957] uppercase">
@@ -144,16 +108,12 @@ function SponsorInfo({
         {/* Description */}
         <ul className="font-lora w-full list-disc space-y-2 px-2 text-left text-sm leading-relaxed text-[#F1E8D5]">
           {sponsor.description.map((item, i) => (
-            <li
-              key={i}
-              className="pl-1 marker:text-[#C9963E]"
-            >
+            <li key={i} className="pl-1 marker:text-[#C9963E]">
               {item}
             </li>
           ))}
         </ul>
       </div>
-
     </div>
   );
 }
@@ -181,13 +141,7 @@ function OtherSponsorCard({
     >
       {/* Outer glow */}
       <div
-        className={`
-          absolute -inset-3 rounded-lg bg-[#C9963E]/10 blur-2xl
-          transition-all duration-700
-          opacity-0
-          [@media(hover:hover)]:group-hover:opacity-100
-          ${isActive ? "opacity-100" : ""}
-        `}
+        className={`absolute -inset-3 rounded-lg bg-[#C9963E]/10 opacity-0 blur-2xl transition-all duration-700 [@media(hover:hover)]:group-hover:opacity-100 ${isActive ? "opacity-100" : ""} `}
       />
 
       {/* CARD */}
@@ -216,10 +170,7 @@ function OtherSponsorCard({
 
           {/* Content */}
           <div className="relative z-20 h-full w-full">
-            <SponsorInfo
-              sponsor={sponsor}
-              isActive={isActive}
-            />
+            <SponsorInfo sponsor={sponsor} isActive={isActive} />
           </div>
 
           {/* Vignette */}
@@ -227,13 +178,7 @@ function OtherSponsorCard({
 
           {/* Hover shine */}
           <div
-            className={`
-              pointer-events-none absolute inset-0 z-20
-              bg-gradient-to-r from-transparent via-white/[0.04] to-transparent
-              opacity-0 transition-opacity duration-700
-              [@media(hover:hover)]:group-hover:opacity-100
-              ${isActive ? "opacity-100" : ""}
-            `}
+            className={`pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent opacity-0 transition-opacity duration-700 [@media(hover:hover)]:group-hover:opacity-100 ${isActive ? "opacity-100" : ""} `}
           />
         </div>
       </div>
