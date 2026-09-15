@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Button from "./Button";
+// import Button from "./Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
