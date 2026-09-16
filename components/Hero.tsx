@@ -110,7 +110,7 @@ export default function Hero() {
             filter: "blur(20px)",
             ease: "power2.in",
           },
-          0
+          0,
         )
         .to(
           blackFogRef.current,
@@ -118,7 +118,7 @@ export default function Hero() {
             opacity: 0.85,
             ease: "power1.inOut",
           },
-          0
+          0,
         )
         .to(
           bgRef.current,
@@ -127,7 +127,7 @@ export default function Hero() {
             opacity: 0.25,
             ease: "power1.out",
           },
-          0
+          0,
         )
         .to(
           wheelWrapperRef.current,
@@ -136,7 +136,7 @@ export default function Hero() {
             opacity: 0.35,
             ease: "power1.out",
           },
-          0
+          0,
         )
         .to(
           leftSoldierRef.current,
@@ -145,7 +145,7 @@ export default function Hero() {
             scale: 0.95,
             ease: "power1.out",
           },
-          0
+          0,
         )
         .to(
           rightSoldierRef.current,
@@ -154,7 +154,7 @@ export default function Hero() {
             scale: 0.95,
             ease: "power1.out",
           },
-          0
+          0,
         )
 
         // PHASE 2: ABOUT DEVHOST EMERGES IN FOG WITH SOLDIERS STEPPING SUBTLY OUTWARDS & WHEEL VISIBLE (0.35 to 0.70)
@@ -167,7 +167,7 @@ export default function Hero() {
             filter: "blur(0px)",
             ease: "power2.out",
           },
-          0.35
+          0.35,
         )
         .to(
           leftSoldierRef.current,
@@ -176,7 +176,7 @@ export default function Hero() {
             opacity: 0.9,
             ease: "power2.out",
           },
-          0.35
+          0.35,
         )
         .to(
           rightSoldierRef.current,
@@ -185,7 +185,7 @@ export default function Hero() {
             opacity: 0.9,
             ease: "power2.out",
           },
-          0.35
+          0.35,
         )
 
         // PHASE 3: HOLD ABOUT DEVHOST FULLY VISIBLE & SHARP UNTIL END OF PIN (0.70 to 1.0)
@@ -196,7 +196,7 @@ export default function Hero() {
             opacity: 1,
             scale: 1,
           },
-          1.0
+          1.0,
         );
     }, sectionRef);
 
@@ -233,17 +233,7 @@ export default function Hero() {
       {/* ROTATING RUNE WHEEL */}
       <div
         ref={wheelWrapperRef}
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-1/2
-          z-[2]
-          aspect-square
-          w-[min(85vw,620px)]
-          -translate-x-1/2
-          -translate-y-1/2
-        "
+        className="pointer-events-none absolute top-1/2 left-1/2 z-[2] aspect-square w-[min(85vw,620px)] -translate-x-1/2 -translate-y-1/2"
       >
         <div className="h-full w-full animate-[spin_35s_linear_infinite]">
           <Image
@@ -260,20 +250,7 @@ export default function Hero() {
       {/* LEFT SOLDIER */}
       <div
         ref={leftSoldierRef}
-        className="
-          pointer-events-none
-          hidden
-          sm:block
-          absolute
-          bottom-0
-          left-[-3%]
-          z-[12]
-          w-[min(38vw,520px)]
-          sm:left-[-2%]
-          sm:w-[min(36vw,540px)]
-          lg:left-0
-          lg:w-[min(34vw,560px)]
-        "
+        className="pointer-events-none absolute bottom-0 left-[-3%] z-[12] hidden w-[min(38vw,520px)] sm:left-[-2%] sm:block sm:w-[min(36vw,540px)] lg:left-0 lg:w-[min(34vw,560px)]"
       >
         <Image
           src="/soldier-left.png"
@@ -288,20 +265,7 @@ export default function Hero() {
       {/* RIGHT SOLDIER */}
       <div
         ref={rightSoldierRef}
-        className="
-          pointer-events-none
-          hidden
-          sm:block
-          absolute
-          bottom-0
-          right-[-3%]
-          z-[12]
-          w-[min(38vw,520px)]
-          sm:right-[-2%]
-          sm:w-[min(36vw,540px)]
-          lg:right-[-110px]
-          lg:w-[min(34vw,560px)]
-        "
+        className="pointer-events-none absolute right-[-3%] bottom-0 z-[12] hidden w-[min(38vw,520px)] sm:right-[-2%] sm:block sm:w-[min(36vw,540px)] lg:right-[-110px] lg:w-[min(34vw,560px)]"
       >
         <Image
           src="/soldier-right.png"
@@ -373,7 +337,7 @@ export default function Hero() {
         </div>
 
         {/* TAGLINE */}
-        <p className="relative z-10 font-norse-bold text-xl tracking-widest text-white sm:text-2xl">
+        <p className="font-norse-bold relative z-10 text-xl tracking-widest text-white sm:text-2xl">
           Ideas that Echo Through Time
         </p>
       </div>
@@ -388,34 +352,13 @@ export default function Hero() {
           {/* TITLE */}
           <div className="relative mb-6 sm:mb-8">
             <h2 className="font-norse-bold mb-3 text-5xl font-extrabold tracking-[0.10em] uppercase sm:text-6xl md:text-8xl">
-              <span
-                className="
-                  bg-gradient-to-r
-                  from-[#F6CC60]
-                  via-[#FFF5D0]
-                  to-[#C9963E]
-                  bg-clip-text
-                  text-transparent
-                  drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]
-                "
-              >
+              <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
                 {devhostData.title}
               </span>
             </h2>
 
             {/* CAPTION */}
-            <h3
-              className="
-                font-norse
-                text-base
-                font-semibold
-                tracking-[0.08em]
-                text-[#C8A24C]/80
-                sm:text-lg
-                sm:tracking-[0.12em]
-                md:text-2xl
-              "
-            >
+            <h3 className="font-norse text-base font-semibold tracking-[0.08em] text-[#C8A24C]/80 sm:text-lg sm:tracking-[0.12em] md:text-2xl">
               {devhostData.caption}
             </h3>
           </div>
@@ -423,17 +366,7 @@ export default function Hero() {
           {/* DESCRIPTION */}
           <div className="relative mx-auto w-full sm:max-w-[85%]">
             <p
-              className="
-                font-lora
-                text-base
-                leading-relaxed
-                tracking-[0.02em]
-                break-words
-                text-white
-                sm:text-lg
-                sm:leading-[1.75]
-                sm:tracking-[0.03em]
-              "
+              className="font-lora text-base leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{
                 textShadow:
                   "0 1px 1px rgba(0,0,0,.7), 0 0 12px rgba(246,204,96,.08)",
