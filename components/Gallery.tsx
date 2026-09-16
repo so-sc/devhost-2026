@@ -70,8 +70,7 @@ export default function Gallery({
     [repeatedIndexes, safeImages.length],
   );
 
-  const galleryHeight =
-    typeof height === "number" ? `${height}px` : height;
+  const galleryHeight = typeof height === "number" ? `${height}px` : height;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -188,9 +187,7 @@ export default function Gallery({
 
     if (!gallery || panels.length === 0) return;
 
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    );
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const render = (angle: number) => {
       const width = gallery.clientWidth;
@@ -198,14 +195,9 @@ export default function Gallery({
 
       const radius = Math.max(520, width * 0.72);
 
-      const angleStep =
-        width < 640 ? 0.19 : width < 900 ? 0.155 : 0.135;
+      const angleStep = width < 640 ? 0.19 : width < 900 ? 0.155 : 0.135;
 
-    
-      const panelHeight = Math.min(
-        Math.max(galleryHeightPx * 0.66, 130),
-        300,
-      );
+      const panelHeight = Math.min(Math.max(galleryHeightPx * 0.66, 130), 300);
 
       panels.forEach((panel, index) => {
         if (!panel) return;
@@ -218,14 +210,10 @@ export default function Gallery({
         const yaw = (-theta * 180) / Math.PI;
         const y = (1 - Math.cos(theta)) * 18 - 6;
 
-        const wrapped = Math.abs(
-          Math.atan2(Math.sin(theta), Math.cos(theta)),
-        );
+        const wrapped = Math.abs(Math.atan2(Math.sin(theta), Math.cos(theta)));
 
         const edgeFade =
-          wrapped > 1.28
-            ? Math.max(0, 1 - (wrapped - 1.28) / 0.42)
-            : 1;
+          wrapped > 1.28 ? Math.max(0, 1 - (wrapped - 1.28) / 0.42) : 1;
 
         const imageIndex = panelImageIndexes[index];
         const ratio = ratiosRef.current[imageIndex] ?? DEFAULT_RATIO;
@@ -244,9 +232,7 @@ export default function Gallery({
           rotateY(${yaw.toFixed(2)}deg)
         `;
 
-        panel.style.zIndex = String(
-          Math.round((Math.cos(theta) + 1) * 100),
-        );
+        panel.style.zIndex = String(Math.round((Math.cos(theta) + 1) * 100));
       });
     };
 
@@ -528,7 +514,10 @@ export default function Gallery({
           />
         </div>
 
-        <h2 ref={titleRef} className="throwback-title font-norse-bold relative z-10">
+        <h2
+          ref={titleRef}
+          className="throwback-title font-norse-bold relative z-10"
+        >
           throwback
         </h2>
 
