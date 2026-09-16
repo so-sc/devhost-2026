@@ -331,33 +331,6 @@ const Footer = () => {
                     Terms & Conditions
                   </Link>
                 </li>
-                <li className="py-1">
-                  <Link
-                    href="/policies/privacy-policy"
-                    target="_blank"
-                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
-                  >
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li className="py-1">
-                  <Link
-                    href="/policies/refund-cancellation"
-                    target="_blank"
-                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
-                  >
-                    Refund & Cancellation
-                  </Link>
-                </li>
-                <li className="py-1">
-                  <Link
-                    href="/policies/shipping-delivery"
-                    target="_blank"
-                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
-                  >
-                    Shipping & Delivery
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
