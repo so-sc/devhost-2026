@@ -18,7 +18,10 @@ const otherSponsors = [
     logo: "/sponsors/n8n-logo.png",
     name: "n8n",
     title: "TECHNOLOGY PARTNER",
-    description: ["n8n Cloud Pro license for all hackathon participants."],
+    description: [
+      "n8n Cloud Pro license for all hackathon participants.",
+      "Full access during the hackthon",
+    ],
     width: "w-[130px]",
   },
   {
@@ -46,7 +49,12 @@ const otherSponsors = [
     logo: "/sponsors/codecrafters-logo.png",
     name: "CodeCrafters",
     title: "TECHNOLOGY PARTNER",
-    description: ["Applicable for hackathon winning teams."],
+    description: [
+      "1st: 2-year VIP membership.",
+      "2nd: 1-year VIP membership.",
+      "3rd: 6-month VIP membership.",
+      "Applicable for hackathon winning teams.",
+    ],
     width: "w-[150px]",
   },
   {
