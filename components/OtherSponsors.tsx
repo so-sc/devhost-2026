@@ -20,7 +20,7 @@ const otherSponsors = [
     title: "TECHNOLOGY PARTNER",
     description: [
       "n8n Cloud Pro license for all hackathon participants.",
-      "Full access during the hackthon"
+      "Full access during the hackthon",
     ],
     width: "w-[130px]",
   },
