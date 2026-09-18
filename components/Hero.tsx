@@ -82,6 +82,10 @@ export default function Hero() {
         filter: "blur(12px)",
       });
 
+      const isMobile = window.innerWidth < 640;
+      const leftOutward = isMobile ? -48 : -8;
+      const rightOutward = isMobile ? 48 : 8;
+
       // =========================
       // UNIFIED CONTINUOUS FULLY REVERSIBLE SCROLL TIMELINE
       // Pins sectionRef for +=180% of viewport height
@@ -157,7 +161,7 @@ export default function Hero() {
           0,
         )
 
-        // PHASE 2: ABOUT DEVHOST EMERGES IN FOG WITH SOLDIERS STEPPING SUBTLY OUTWARDS & WHEEL VISIBLE (0.35 to 0.70)
+        // PHASE 2: ABOUT DEVHOST EMERGES IN FOG WITH SOLDIERS STEPPING OUTWARDS & WHEEL VISIBLE (0.35 to 0.70)
         .to(
           aboutContentRef.current,
           {
@@ -172,7 +176,7 @@ export default function Hero() {
         .to(
           leftSoldierRef.current,
           {
-            xPercent: -8,
+            xPercent: leftOutward,
             opacity: 0.9,
             ease: "power2.out",
           },
@@ -181,7 +185,7 @@ export default function Hero() {
         .to(
           rightSoldierRef.current,
           {
-            xPercent: 8,
+            xPercent: rightOutward,
             opacity: 0.9,
             ease: "power2.out",
           },
@@ -210,13 +214,23 @@ export default function Hero() {
     >
       {/* HERO BACKGROUND */}
       <div ref={bgRef} className="absolute inset-0 z-0 h-full w-full">
+        {/* DESKTOP BACKGROUND */}
         <Image
           src="/images/herobackground.png"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="hidden h-full w-full object-cover sm:block"
+        />
+        {/* MOBILE BACKGROUND */}
+        <Image
+          src="/mobile_hero.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="block h-full w-full object-cover sm:hidden"
         />
       </div>
 
@@ -233,7 +247,7 @@ export default function Hero() {
       {/* ROTATING RUNE WHEEL */}
       <div
         ref={wheelWrapperRef}
-        className="pointer-events-none absolute top-1/2 left-1/2 z-[2] aspect-square w-[min(85vw,620px)] -translate-x-1/2 -translate-y-1/2"
+        className="pointer-events-none absolute top-1/2 left-1/2 z-[2] aspect-square w-[min(78vw,260px)] -translate-x-1/2 max-sm:-translate-y-[58%] sm:-translate-y-1/2 sm:w-[min(85vw,620px)]"
       >
         <div className="h-full w-full animate-[spin_35s_linear_infinite]">
           <Image
@@ -241,7 +255,7 @@ export default function Hero() {
             alt=""
             fill
             priority
-            sizes="(max-width: 640px) 85vw, 620px"
+            sizes="(max-width: 640px) 78vw, 620px"
             className="object-contain"
           />
         </div>
@@ -250,47 +264,67 @@ export default function Hero() {
       {/* LEFT SOLDIER */}
       <div
         ref={leftSoldierRef}
-        className="pointer-events-none absolute bottom-0 left-[-3%] z-[12] hidden w-[min(38vw,520px)] sm:left-[-2%] sm:block sm:w-[min(36vw,540px)] lg:left-0 lg:w-[min(34vw,560px)]"
+        className="pointer-events-none absolute bottom-0 left-[-4%] z-[12] w-[min(46vw,190px)] sm:left-[-2%] sm:w-[min(36vw,540px)] lg:left-0 lg:w-[min(34vw,310px)]"
       >
+        {/* DESKTOP SOLDIER LEFT */}
         <Image
           src="/soldier-left.png"
           alt=""
           width={500}
           height={400}
           priority
-          className="h-auto w-85 object-contain"
+          className="hidden h-auto w-full object-contain sm:block"
+        />
+        {/* MOBILE SOLDIER LEFT */}
+        <Image
+          src="/mobile_soldier_left.png"
+          alt=""
+          width={400}
+          height={600}
+          priority
+          className="block h-80 w-full object-contain sm:hidden"
         />
       </div>
 
       {/* RIGHT SOLDIER */}
       <div
         ref={rightSoldierRef}
-        className="pointer-events-none absolute right-[-3%] bottom-0 z-[12] hidden w-[min(38vw,520px)] sm:right-[-2%] sm:block sm:w-[min(36vw,540px)] lg:right-[-110px] lg:w-[min(34vw,560px)]"
+        className="pointer-events-none absolute right-[-4%] bottom-0 z-[12] w-[min(46vw,340px)] sm:right-[-2%] sm:w-[min(36vw,540px)] lg:right-[-90px] lg:w-[min(34vw,560px)]"
       >
+        {/* DESKTOP SOLDIER RIGHT */}
         <Image
           src="/soldier-right.png"
           alt=""
-          width={600}
-          height={800}
+          width={500}
+          height={600}
           priority
-          className="h-auto w-107 object-contain"
+          className="hidden h-135 w-full object-contain sm:block"
+        />
+        {/* MOBILE SOLDIER RIGHT */}
+        <Image
+          src="/mobile_soldier_right.png"
+          alt=""
+          width={400}
+          height={600}
+          priority
+          className="block h-80 w-full object-contain sm:hidden"
         />
       </div>
 
       {/* HERO CONTENT LAYER */}
       <div
         ref={heroContentRef}
-        className="relative z-20 flex flex-col items-center justify-center px-6 text-center max-sm:-translate-y-4"
+        className="relative z-20 flex flex-col items-center justify-center px-4 text-center max-sm:-translate-y-10 sm:px-6"
       >
         {/* LOGOS ABOVE TITLE */}
-        <div className="relative z-10 mb-4 flex items-center justify-center gap-3 sm:gap-5">
+        <div className="relative z-10 mb-2 flex items-center justify-center gap-2 sm:mb-4 sm:gap-5">
           <Image
             src="/sosc_logo.svg"
             alt="SOSC"
             width={70}
             height={70}
             priority
-            className="h-auto w-12 sm:w-14 lg:w-16"
+            className="h-auto w-10 sm:w-14 lg:w-16"
           />
           <Image
             src="/synergia_logo.svg"
@@ -298,7 +332,7 @@ export default function Hero() {
             width={150}
             height={70}
             priority
-            className="h-auto w-20 sm:w-24 lg:w-28"
+            className="h-auto w-16 sm:w-24 lg:w-28"
           />
           <Image
             src="/sahyadri-logo.png"
@@ -306,7 +340,7 @@ export default function Hero() {
             width={90}
             height={90}
             priority
-            className="h-auto w-12 sm:w-14 lg:w-16"
+            className="h-auto w-10 sm:w-14 lg:w-16"
           />
         </div>
 
@@ -332,12 +366,12 @@ export default function Hero() {
             width={390}
             height={200}
             priority
-            className="mb-6 h-30 w-auto sm:h-49"
+            className="mb-4 h-34 w-auto sm:mb-6 sm:h-49"
           />
         </div>
 
         {/* TAGLINE */}
-        <p className="font-norse-bold relative z-10 text-xl tracking-widest text-white sm:text-2xl">
+        <p className="font-norse-bold relative z-10 text-base tracking-wider text-white sm:text-2xl sm:tracking-widest">
           Ideas that Echo Through Time
         </p>
       </div>
@@ -346,27 +380,27 @@ export default function Hero() {
       <div
         ref={aboutContentRef}
         id="about"
-        className="pointer-events-auto absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center"
+        className="pointer-events-auto absolute inset-0 z-30 flex flex-col items-center justify-center px-4 text-center sm:px-6"
       >
-        <div className="mx-auto w-[85%] max-w-4xl text-center">
+        <div className="mx-auto w-[90%] max-w-4xl text-center">
           {/* TITLE */}
-          <div className="relative mb-6 sm:mb-8">
-            <h2 className="font-norse-bold mb-3 text-5xl font-extrabold tracking-[0.10em] uppercase sm:text-6xl md:text-8xl">
+          <div className="relative mb-4 text-center sm:mb-6">
+            <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
               <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
                 {devhostData.title}
               </span>
             </h2>
 
             {/* CAPTION */}
-            <h3 className="font-norse text-base font-semibold tracking-[0.08em] text-[#C8A24C]/80 sm:text-lg sm:tracking-[0.12em] md:text-2xl">
+            <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
               {devhostData.caption}
             </h3>
           </div>
 
           {/* DESCRIPTION */}
-          <div className="relative mx-auto w-full sm:max-w-[85%]">
+          <div className="relative mx-auto w-full text-justify sm:max-w-[80%]">
             <p
-              className="font-lora text-base leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              className="font-lora text-base text-justify leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{
                 textShadow:
                   "0 1px 1px rgba(0,0,0,.7), 0 0 12px rgba(246,204,96,.08)",
