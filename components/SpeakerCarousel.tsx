@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef ,useState} from "react";
+import { useEffect, useRef, useState } from "react";
 
 const speakers = [
   {
@@ -138,8 +138,8 @@ function SpeakerAvatar({
       .filter(Boolean)
       .join("")
       .slice(0, 2);
-      return (
-      <div className="flex h-full w-full items-center justify-center bg-gradient-to-b from-[#2a2416] to-[#12110e] text-[#F6CC60] font-norse font-bold text-xs select-none">
+    return (
+      <div className="font-norse flex h-full w-full items-center justify-center bg-gradient-to-b from-[#2a2416] to-[#12110e] text-xs font-bold text-[#F6CC60] select-none">
         {initials}
       </div>
     );
@@ -303,7 +303,7 @@ function AnimatedSpeakerTrack({
 
   return (
     <div
-      className="relative min-w-0 w-full overflow-hidden"
+      className="relative w-full min-w-0 overflow-hidden"
       onMouseEnter={() => {
         if (pauseOnHover) pausedRef.current = true;
       }}
@@ -336,53 +336,136 @@ function AnimatedSpeakerTrack({
   );
 }
 export default function SpeakerCarousel() {
-  const mid = Math.ceil(speakers.length / 2);
-  const rowOneSpeakers = speakers.slice(0, mid);
-  const rowTwoSpeakers = speakers.slice(mid);
-
   return (
-    <div className="relative flex min-h-0 w-full flex-col items-center justify-center overflow-hidden lg:items-start lg:mt-0">
+    <div className="relative flex min-h-0 w-full flex-col items-center justify-center overflow-hidden lg:mt-0 lg:items-start">
+      
+      {/* TITLE */}
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
-      <h2 className=" font-norse mb-1.5 shrink-0 text-center font-extrabold uppercase tracking-[0.24em] text-[#F6CC60] text-[clamp(0.88rem,2.2svh,1.15rem)] sm:mb-2 sm:text-[clamp(0.98rem,2.3svh,1.25rem)] md:mb-2.5 md:text-[clamp(1.08rem,2.4svh,1.4rem)] lg:mb-3 lg:text-[clamp(1.5rem,3.2svh,2.4rem)] lg:text-left">
-        Past Speakers
-      </h2>
-      </div>
-      <div className="flex min-h-0 w-full flex-col justify-center gap-2 overflow-hidden sm:gap-3 md:gap-3.5 lg:hidden">
-        <AnimatedSpeakerTrack
-          items={rowOneSpeakers}
-          speed={18}
-          gapClassName="gap-3.5 xs:gap-4.5 sm:gap-5.5 md:gap-6"
-          cardWidthClassName="w-[82px] xs:w-[90px] sm:w-[102px] md:w-[114px]"
-          frameClassName="mx-auto h-[52px] w-[52px] xs:h-[58px] xs:w-[58px] sm:h-[66px] sm:w-[66px] md:h-[74px] md:w-[74px]"
-          imageSizes="(max-width: 1024px) 82px, 114px"
-          nameClassName="font-lora mt-0.5 w-full text-[8px] xs:text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold leading-[1.15] tracking-wide text-white text-center line-clamp-1 sm:mt-1"
-          titleClassName="font-lora mt-0.5 w-full text-[6.8px] xs:text-[7.2px] sm:text-[8px] md:text-[9px] leading-[1.15] tracking-[0.01em] text-[#F6CC60]/75 text-center line-clamp-1 block"
-        />
+        <h2
+          className="
+            font-norse
+            mb-1.5
+            shrink-0
+            text-center
+            text-[clamp(0.95rem,2.5svh,1.2rem)]
+            font-extrabold
+            tracking-[0.24em]
+            text-[#F6CC60]
+            uppercase
 
-        <AnimatedSpeakerTrack
-          items={rowTwoSpeakers}
-          speed={16}
-          reverse
-          gapClassName="gap-3.5 xs:gap-4.5 sm:gap-5.5 md:gap-6"
-          cardWidthClassName="w-[82px] xs:w-[90px] sm:w-[102px] md:w-[114px]"
-          frameClassName="mx-auto h-[52px] w-[52px] xs:h-[58px] xs:w-[58px] sm:h-[66px] sm:w-[66px] md:h-[74px] md:w-[74px]"
-          imageSizes="(max-width: 1024px) 82px, 114px"
-          nameClassName="font-lora mt-0.5 w-full text-[8px] xs:text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-semibold leading-[1.15] tracking-wide text-white text-center line-clamp-1 sm:mt-1"
-          titleClassName="font-lora mt-0.5 w-full text-[6.8px] xs:text-[7.2px] sm:text-[8px] md:text-[9px] leading-[1.15] tracking-[0.01em] text-[#F6CC60]/75 text-center line-clamp-1 block"
-        />
-      </div> 
-         <div className="hidden min-h-0 w-full lg:block">
+            sm:mb-2
+            sm:text-[clamp(1rem,2.5svh,1.3rem)]
+
+            md:mb-2.5
+            md:text-[clamp(1.1rem,2.6svh,1.45rem)]
+
+            lg:mb-3
+            lg:text-left
+            lg:text-[clamp(1.5rem,3.2svh,2.4rem)]
+          "
+        >
+          Past Speakers
+        </h2>
+      </div>
+
+      {/* ONE ROW — ALL SCREEN SIZES */}
+      <div className="min-h-0 w-full overflow-hidden">
         <AnimatedSpeakerTrack
           items={speakers}
-          speed={22}
+          speed={18}
           pauseOnHover
-          gapClassName="gap-6 xl:gap-8 2xl:gap-10"
-          cardWidthClassName="w-[clamp(120px,13svh,190px)] xl:w-[clamp(138px,14.5svh,215px)]"
-          frameClassName="mx-auto h-[clamp(90px,11svh,150px)] w-[clamp(90px,11svh,150px)] xl:h-[clamp(104px,12.5svh,172px)] xl:w-[clamp(104px,12.5svh,172px)]"
-          imageSizes="(min-width: 1024px) 190px, 240px"
-          nameClassName="font-lora mt-2 w-full text-[clamp(12px,1.6svh,18px)] font-semibold leading-[1.25] tracking-wide text-white text-center line-clamp-2"
-          titleClassName="font-lora mt-1 w-full text-[clamp(10px,1.3svh,14.5px)] leading-[1.25] tracking-[0.01em] text-[#F6CC60]/75 text-center line-clamp-2"
-          imageClassName="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          gapClassName="
+            gap-4
+            xs:gap-5
+            sm:gap-6
+            md:gap-7
+            lg:gap-6
+            xl:gap-8
+            2xl:gap-10
+          "
+          cardWidthClassName="
+            w-[92px]
+            xs:w-[100px]
+            sm:w-[110px]
+            md:w-[120px]
+            lg:w-[clamp(120px,13svh,190px)]
+            xl:w-[clamp(138px,14.5svh,215px)]
+          "
+          frameClassName="
+            mx-auto
+            h-[60px]
+            w-[60px]
+
+            xs:h-[66px]
+            xs:w-[66px]
+
+            sm:h-[72px]
+            sm:w-[72px]
+
+            md:h-[78px]
+            md:w-[78px]
+
+            lg:h-[clamp(90px,11svh,150px)]
+            lg:w-[clamp(90px,11svh,150px)]
+
+            xl:h-[clamp(104px,12.5svh,172px)]
+            xl:w-[clamp(104px,12.5svh,172px)]
+          "
+          imageSizes="
+            (max-width: 639px) 82px,
+            (max-width: 767px) 105px,
+            (max-width: 1023px) 120px,
+            215px
+          "
+          nameClassName="
+            font-lora
+            mt-1
+            w-full
+            text-center
+            font-semibold
+            leading-[1.15]
+            tracking-wide
+            text-white
+            line-clamp-1
+
+            text-[9px]
+            xs:text-[9.5px]
+            sm:text-[10px]
+            md:text-[10.5px]
+
+            lg:mt-2
+            lg:text-[clamp(12px,1.6svh,18px)]
+            lg:leading-[1.25]
+            lg:line-clamp-2
+          "
+          titleClassName="
+            font-lora
+            mt-0.5
+            block
+            w-full
+            text-center
+            leading-[1.15]
+            tracking-[0.01em]
+            text-[#F6CC60]/75
+            line-clamp-1
+
+            text-[7.5px]
+            xs:text-[8px]
+            sm:text-[8.5px]
+            md:text-[9px]
+
+            lg:mt-1
+            lg:text-[clamp(10px,1.3svh,14.5px)]
+            lg:leading-[1.25]
+            lg:line-clamp-2
+          "
+          imageClassName="
+            object-cover
+            object-center
+            transition-transform
+            duration-500
+            group-hover:scale-105
+          "
         />
       </div>
     </div>
