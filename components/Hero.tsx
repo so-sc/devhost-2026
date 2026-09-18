@@ -115,7 +115,7 @@ export default function Hero() {
         .to(
           blackFogRef.current,
           {
-            opacity: 0.85,
+            opacity: 0.6,
             ease: "power1.inOut",
           },
           0,
@@ -123,8 +123,8 @@ export default function Hero() {
         .to(
           bgRef.current,
           {
-            scale: 1.2,
-            opacity: 0.25,
+            scale: 1.18,
+            opacity: 0.7,
             ease: "power1.out",
           },
           0,
