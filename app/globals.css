@@ -46,10 +46,22 @@
   --font-trajan: var(--font-trajan);
   --font-poppins: var(--font-poppins);
   --font-lora: var(--font-lora);
+  --font-greek: "Greek-Freak", Impact, sans-serif;
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 }
 
 :root {
+  --dh-bg: #000000;
+  --dh-ember: #d84d09;
+  --dh-ember-deep: #5e2103;
+  --dh-gold-glow: #e4c423;
+  --dh-text: #ffffff;
+  --dh-star-core: #ffffff;
+  --dh-star-edge: rgba(255, 94, 94, 0);
+  --dh-gold-1: #fff3b0;
+  --dh-gold-2: #f5c842;
+  --dh-gold-3: #e8a317;
+  --dh-gold-4: #b36b0a;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
