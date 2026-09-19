@@ -338,32 +338,9 @@ function AnimatedSpeakerTrack({
 export default function SpeakerCarousel() {
   return (
     <div className="relative flex min-h-0 w-full flex-col items-center justify-center overflow-hidden lg:mt-0 lg:items-start">
-      
       {/* TITLE */}
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        <h2
-          className="
-            font-norse
-            mb-1.5
-            shrink-0
-            text-center
-            text-[clamp(0.95rem,2.5svh,1.2rem)]
-            font-extrabold
-            tracking-[0.24em]
-            text-[#F6CC60]
-            uppercase
-
-            sm:mb-2
-            sm:text-[clamp(1rem,2.5svh,1.3rem)]
-
-            md:mb-2.5
-            md:text-[clamp(1.1rem,2.6svh,1.45rem)]
-
-            lg:mb-3
-            lg:text-left
-            lg:text-[clamp(1.5rem,3.2svh,2.4rem)]
-          "
-        >
+        <h2 className="font-norse mb-1.5 shrink-0 text-center text-[clamp(0.95rem,2.5svh,1.2rem)] font-extrabold tracking-[0.24em] text-[#F6CC60] uppercase sm:mb-2 sm:text-[clamp(1rem,2.5svh,1.3rem)] md:mb-2.5 md:text-[clamp(1.1rem,2.6svh,1.45rem)] lg:mb-3 lg:text-left lg:text-[clamp(1.5rem,3.2svh,2.4rem)]">
           Past Speakers
         </h2>
       </div>
@@ -389,7 +366,7 @@ export default function SpeakerCarousel() {
             sm:w-[110px]
             md:w-[120px]
             lg:w-[clamp(120px,13svh,190px)]
-            xl:w-[clamp(138px,14.5svh,215px)]
+            xl:w-[clamp(160px,14.5svh,215px)]
           "
           frameClassName="
             mx-auto
@@ -408,8 +385,8 @@ export default function SpeakerCarousel() {
             lg:h-[clamp(90px,11svh,150px)]
             lg:w-[clamp(90px,11svh,150px)]
 
-            xl:h-[clamp(104px,12.5svh,172px)]
-            xl:w-[clamp(104px,12.5svh,172px)]
+            xl:h-[clamp(134px,12.5svh,172px)]
+            xl:w-[clamp(134px,12.5svh,172px)]
           "
           imageSizes="
             (max-width: 639px) 82px,
@@ -434,7 +411,7 @@ export default function SpeakerCarousel() {
             md:text-[10.5px]
 
             lg:mt-2
-            lg:text-[clamp(12px,1.6svh,18px)]
+            lg:text-[clamp(16px,1.6svh,18px)]
             lg:leading-[1.25]
             lg:line-clamp-2
           "
@@ -455,7 +432,7 @@ export default function SpeakerCarousel() {
             md:text-[9px]
 
             lg:mt-1
-            lg:text-[clamp(10px,1.3svh,14.5px)]
+            lg:text-[clamp(12px,1.3svh,14.5px)]
             lg:leading-[1.25]
             lg:line-clamp-2
           "

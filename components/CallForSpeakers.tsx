@@ -9,7 +9,7 @@
 // gsap.registerPlugin(ScrollTrigger);
 // export default function CallForSpeakers() {
 //   const sectionRef = useRef<HTMLElement>(null);
-  
+
 //   const revealRef = useRef<HTMLDivElement>(null);
 //   const titleGroupRef = useRef<HTMLDivElement>(null);
 
@@ -17,13 +17,13 @@
 //     const section = sectionRef.current;
 //     if (!section) return;
 //     const ctx = gsap.context(() => {
-     
+
 //       const prevSection = section.previousElementSibling as HTMLElement | null;
 //       const tl = gsap.timeline({
 //         scrollTrigger: {
 //           trigger: section,
-//           start: "top bottom", 
-//           end: "top 20%", 
+//           start: "top bottom",
+//           end: "top 20%",
 //           scrub: 1,
 //         },
 //       });
@@ -142,21 +142,31 @@ import Button from "./Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// From xl (1280px) up, the whole section is laid out as if the screen were
-// DESIGN_W x DESIGN_H, then scaled to fit the real screen.
+
 const DESIGN_W = 1920;
 const DESIGN_H = 1080;
 const SCALE_FROM = "(min-width: 1280px)";
-// 1 = the previous size. Above 1 makes everything bigger, below 1 smaller.
-// Keep it under ~1.3 or the content gets taller than the screen.
+
 const ZOOM = 1.15;
+const SUN_X = 58;
+const BEAMS = [
+  { x: SUN_X, w: 30, rot: -3, a: 0.22, blur: 26 },
+  { x: SUN_X - 6, w: 14, rot: 9, a: 0.13, blur: 16 },
+  { x: SUN_X + 6, w: 12, rot: -14, a: 0.12, blur: 16 },
+  { x: SUN_X - 1, w: 7, rot: 3, a: 0.16, blur: 8 }, 
+  { x: SUN_X + 12, w: 8, rot: -22, a: 0.08, blur: 14 },
+  { x: SUN_X - 12, w: 9, rot: 17, a: 0.08, blur: 14 },
+];
+const SUN_GLOW = `radial-gradient(ellipse 38% 55% at ${SUN_X}% -4%, rgba(255,214,150,0.30) 0%, rgba(255,190,120,0.08) 40%, transparent 70%), radial-gradient(ellipse 70% 60% at ${SUN_X}% 0%, rgba(255,215,160,0.10) 0%, transparent 75%)`;
 
 export default function CallForSpeakers() {
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const darkRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+  const fadeRef = useRef<HTMLDivElement>(null);
 
-  // Scale the stage to fit the section (xl and up only).
+  
   useEffect(() => {
     const section = sectionRef.current;
     const stage = stageRef.current;
@@ -184,76 +194,207 @@ export default function CallForSpeakers() {
     return () => ro.disconnect();
   }, []);
 
-  // One reveal when the section scrolls into view.
-  useEffect(() => {
+  
+    useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
     const mm = gsap.matchMedia();
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      gsap.from(contentRef.current, {
-        opacity: 0,
-        y: 24,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 60%",
-          once: true,
-        },
-      });
-    });
+    mm.add(
+      {
+        motion: "(prefers-reduced-motion: no-preference)",
+        reduce: "(prefers-reduced-motion: reduce)",
+      },
+      (context) => {
+        const items = gsap.utils.toArray<HTMLElement>("[data-reveal]", section);
+        const wraps = gsap.utils.toArray<HTMLElement>("[data-beam-wrap]", section);
+        const beams = gsap.utils.toArray<HTMLElement>("[data-beam]", section);
+
+        gsap.set(wraps, {
+          rotation: (_i: number, el: HTMLElement) => Number(el.dataset.rot),
+          transformOrigin: "50% 0%",
+        });
+        gsap.set(beams, { transformOrigin: "50% 0%" });
+
+       
+        if (context.conditions?.reduce) {
+          gsap.set(darkRef.current, { opacity: 0 });
+          return;
+        }
+        const tl = gsap.timeline({ paused: true });
+
+         tl.fromTo(
+          glowRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 1.6, ease: "power2.out" },
+          0,
+        );
+         tl.fromTo(
+          beams,
+          { opacity: 0, scaleY: 0.4 },
+          { opacity: 1, scaleY: 1, duration: 2, ease: "power2.out", stagger: 0.18 },
+          0.1,
+        );
+
+        
+        tl.to(darkRef.current, { opacity: 0, duration: 1.8, ease: "power2.inOut" }, 0.6);
+
+        
+        tl.fromTo(
+          items,
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.9, ease: "power2.out", stagger: 0.12 },
+          1.1,
+        );
+
+        const sway = wraps.map((el, i) =>
+          gsap.to(el, {
+            rotation: Number(el.dataset.rot) + (i % 2 ? -2 : 2),
+            opacity: 0.7,
+            duration: 6 + i * 1.7,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            paused: true,
+          }),
+        );
+
+        const show = () => {
+          tl.timeScale(1).play();
+          sway.forEach((t) => t.play());
+        };
+        const hide = () => {
+          tl.timeScale(1.8).reverse(); 
+          sway.forEach((t) => t.pause());
+        };
+
+          const reset = () => {
+          tl.pause(0);
+          sway.forEach((t) => t.pause());
+        };
+
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top 55%",
+          end: "bottom top",
+          onEnter: show,
+          onEnterBack: show,
+          onLeave: reset,
+          onLeaveBack: hide,
+        });
+        gsap.fromTo(
+          fadeRef.current,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "bottom bottom",
+              end: "bottom 15%",
+              scrub: 1.2,
+            },
+          },
+        );
+      },
+    );
 
     return () => mm.revert();
   }, []);
-
   return (
     <section
       ref={sectionRef}
       id="speakers"
       className="relative min-h-svh w-full overflow-hidden bg-[#050403] text-white xl:h-svh"
     >
-      {/* Background: mobile image by default, desktop image from lg up */}
+      
       <div className="absolute inset-0 bg-[url('/images/greek-callfs2.png')] bg-cover bg-right bg-no-repeat lg:bg-[url('/images/greek-callfs.png')]" />
 
-      {/* Darken the left side so the text stays readable */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
 
-      {/* Stage: normal flow below xl, absolutely positioned and scaled from xl up */}
+        <div
+        ref={darkRef}
+        className="pointer-events-none absolute inset-0 z-[2] bg-[#050403]"
+      />
       <div
+        ref={glowRef}
+        className="pointer-events-none absolute inset-0 z-[3] mix-blend-screen"
+        style={{ background: SUN_GLOW }}
+      />
+      <div className="pointer-events-none absolute inset-0 z-[3] mix-blend-screen">
+        {BEAMS.map((b, i) => (
+          <div
+            key={i}
+            data-beam-wrap
+            data-rot={b.rot}
+            className={`absolute -top-[4%] h-[105%] ${i >= 4 ? "hidden lg:block" : ""}`}
+            style={{
+              left: `${b.x - b.w / 2}%`,
+              width: `${b.w}%`,
+              filter: `blur(${b.blur}px)`,
+            }}
+          >
+            <div
+              data-beam
+              className="h-full w-full"
+              style={{
+                clipPath: "polygon(40% 0, 60% 0, 100% 100%, 0 100%)",
+                background: `linear-gradient(to bottom, rgba(255,226,175,${b.a}) 0%, rgba(255,214,150,${(b.a * 0.45).toFixed(3)}) 40%, transparent 100%)`,
+              }}
+            />
+          </div>
+        ))}
+      </div>
+        <div
         ref={stageRef}
-        className="relative flex min-h-svh flex-col justify-between xl:absolute xl:top-0 xl:left-0 xl:min-h-0"
+        className="relative z-10 flex min-h-svh flex-col justify-between xl:absolute xl:top-0 xl:left-0 xl:min-h-0"
       >
-        <div ref={contentRef} className="w-full px-12 pt-20 md:px-20 xl:px-30 xl:pt-24">
-          <h2 className="font-norse-bold text-4xl text-[#F6CC60] md:text-6xl lg:text-6xl xl:text-8xl">
+        <div className="w-full px-12 pt-20 md:px-20 xl:px-30 xl:pt-24">
+          <h2 
+          data-reveal
+          className="font-norse-bold text-4xl text-[#F6CC60] md:text-6xl lg:text-6xl xl:text-8xl">
             Call for Speakers
           </h2>
 
-          <p className="font-lora mt-2 text-sm text-white md:text-2xl xl:text-3xl">
+          <p 
+          data-reveal
+          className="font-lora mt-2 text-sm text-white md:text-2xl xl:text-3xl">
             Grace the mythic stage of DevHost 2026
           </p>
 
-          <p className="font-lora mt-8 max-w-xl leading-[2.2] text-white/90 lg:max-w-6xl lg:py-10 lg:text-lg xl:max-w-5xl xl:text-2xl md:leading-[2.2] md:text-2xl md:py-10 mx-[-10] px-3 text-base">
+          <p 
+          data-reveal
+          className="font-lora mx-[-10] mt-8 max-w-xl px-3 text-base leading-[2.2] text-white/90 md:py-10 md:text-sm md:leading-[2.2] lg:max-w-6xl lg:py-10 lg:text-lg xl:max-w-5xl xl:text-2xl ">
             Share your knowledge, research, and technical vision with
             developers, students, and industry leaders. Whether your focus is AI
             and machine learning, open source infrastructure, cloud and Web3, or
             software architecture, take the stage at DevHost 2026.
           </p>
 
-          <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:mt-18 md:mt-2">
-            
-              <Button
-                onClick={() => {
-                  window.location.href = "https://forms.gle/PxRYSUCY5ycXWERDA";
-                }}
-              >
-                Submit Proposal
-              </Button>
+          <div 
+          data-reveal
+          className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:mt-18 md:mt-2">
+            <Button
+              onClick={() => {
+                window.location.href = "https://forms.gle/PxRYSUCY5ycXWERDA";
+              }}
+            >
+              Submit Proposal
+            </Button>
           </div>
         </div>
 
-        <div className="mt-10 pb-6">
+        <div 
+        data-reveal
+        className="mt-10 pb-6">
           <SpeakerCarousel />
         </div>
       </div>
+      <div
+        ref={fadeRef}
+        className="pointer-events-none absolute inset-0 z-20 bg-[#050403] opacity-0"
+      />
     </section>
   );
 }
