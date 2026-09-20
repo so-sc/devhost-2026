@@ -46,8 +46,8 @@ function Anchor({
 const ASSETS = {
   pureBackground: "/assets/devhack/pure-background.svg",
   background: "/assets/devhack/background.svg",
-  swordLeft: "/assets/devhack/left-arm.svg",
-  swordRight: "/assets/devhack/right-arm.svg",
+  swordLeft: "/assets/devhack/left-arm.png",
+  swordRight: "/assets/devhack/right-arm.png",
   title: "/assets/devhack/dev-hack-logo.svg",
 };
 
@@ -141,16 +141,14 @@ export default function DevHackSection() {
      *   x: 100vw → 8vw
      *   y: 70 → 0
      */
-    const swordProgress = easeIn(range(progress, 0.1, 0.4));
-
+    const swordProgress = easeIn(range(progress, 0.02, 0.28));
     const leftX = -100 + 92 * swordProgress;
 
     const rightX = 100 - 92 * swordProgress;
 
     const swordY = 70 - 70 * swordProgress;
 
-    const swordOpacity = easeOut(range(progress, 0.1, 0.13));
-
+    const swordOpacity = easeOut(range(progress, 0.02, 0.05));
     /*
      * =========================================================
      * 3. IMPACT
@@ -162,8 +160,8 @@ export default function DevHackSection() {
      */
     let flashOpacity = 0;
 
-    if (progress >= 0.395 && progress <= 0.47) {
-      const p = range(progress, 0.395, 0.47);
+    if (progress >= 0.27 && progress <= 0.34) {
+      const p = range(progress, 0.27, 0.34);
 
       if (p < 0.15) {
         flashOpacity = p / 0.15;
@@ -185,10 +183,8 @@ export default function DevHackSection() {
     /*
      * STREAK
      */
-    const streakIn = smooth(range(progress, 0.4, 0.47));
-
-    const streakOut = 1 - smooth(range(progress, 0.47, 0.52));
-
+    const streakIn = smooth(range(progress, 0.28, 0.33));
+    const streakOut = 1 - smooth(range(progress, 0.33, 0.38));
     setStyle(".js-streak", {
       opacity: String(streakIn * streakOut),
       transform: `scaleX(${streakIn})`,
@@ -197,10 +193,8 @@ export default function DevHackSection() {
     /*
      * RING
      */
-    const ringProgress = smooth(range(progress, 0.4, 0.6));
-
-    const ringFade = 1 - smooth(range(progress, 0.4, 0.58));
-
+    const ringProgress = smooth(range(progress, 0.28, 0.42));
+    const ringFade = 1 - smooth(range(progress, 0.28, 0.4));
     setStyle(".js-ring", {
       opacity: String(ringProgress * ringFade),
       transform: `scale(${0.15 + ringProgress * 3.05})`,
@@ -215,8 +209,7 @@ export default function DevHackSection() {
 
     const shakeK = mobile ? 0.6 : 1;
 
-    const shakeProgress = range(progress, 0.4, 0.49);
-
+    const shakeProgress = range(progress, 0.28, 0.36);
     let shakeX = 0;
     let shakeY = 0;
     let shakeScale = 1;
@@ -240,8 +233,7 @@ export default function DevHackSection() {
      * 4. SWORD RECOIL
      * =========================================================
      */
-    const recoilProgress = range(progress, 0.4, 0.56);
-
+    const recoilProgress = range(progress, 0.28, 0.42);
     let recoilLeft = -6;
     let recoilRight = 6;
 
@@ -353,7 +345,7 @@ export default function DevHackSection() {
      * Scroll triggers the collision once.
      * The actual particles continue running independently.
      */
-    if (progress >= 0.4 && !impactTriggered.current) {
+    if (progress >= 0.28 && !impactTriggered.current) {
       impactTriggered.current = true;
 
       embers.current?.burst({
@@ -368,7 +360,7 @@ export default function DevHackSection() {
      * Allow another collision after scrolling
      * sufficiently far backwards.
      */
-    if (progress < 0.34) {
+    if (progress < 0.22) {
       impactTriggered.current = false;
     }
   });

@@ -22,8 +22,8 @@ const criticalImages = [
   // DevHack
   "/assets/devhack/pure-background.svg",
   "/assets/devhack/background.svg",
-  "/assets/devhack/left-arm.svg",
-  "/assets/devhack/right-arm.svg",
+  "/assets/devhack/left-arm.png",
+  "/assets/devhack/right-arm.png",
   "/assets/devhack/dev-hack-logo.svg",
 ];
 
