@@ -20,8 +20,8 @@ const criticalImages = [
   "/DVHST.png",
 
   // DevHack
-  "/assets/devhack/pure-background.svg",
-  "/assets/devhack/background.svg",
+  "/assets/devhack/pure-background.webp",
+  "/assets/devhack/background.webp",
   "/assets/devhack/left-arm.png",
   "/assets/devhack/right-arm.png",
   "/assets/devhack/dev-hack-logo.svg",
@@ -93,8 +93,12 @@ export default function Home() {
         </div> */}
         {/* <SpeakersInfo /> */}
         <CallForSpeakers />
-        <SponsorsLogo />
-        <Devhack />
+        <div className="relative z-0">
+          <SponsorsLogo />
+        </div>
+        <div className="relative z-10 -mt-[100vh]">
+          <Devhack />
+        </div>
         <TimelineSection />
         <Events />
         <Gallery />

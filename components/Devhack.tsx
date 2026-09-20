@@ -14,7 +14,7 @@
 
 import { useRef } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import Image from "next/image";
+import Button from "./Button";
 import Link from "next/link";
 import EmberCanvas, { type EmberCanvasHandle } from "./EmberCanvas";
 
@@ -34,7 +34,7 @@ function Anchor({
 }) {
   return (
     <div
-      className={`pointer-events-none absolute inset-x-0 top-0 flex items-center justify-center ${className}`}
+      className={`pointer-events-none absolute inset-x-0 top-0 flex items-center justify-center overflow-visible ${className}`}
       style={{ height: `${CLASH_Y * 2}%` }}
     >
       {children}
@@ -44,8 +44,8 @@ function Anchor({
 
 // DevHack assets
 const ASSETS = {
-  pureBackground: "/assets/devhack/pure-background.svg",
-  background: "/assets/devhack/background.svg",
+  pureBackground: "/assets/devhack/pure-background.webp",
+  background: "/assets/devhack/background.webp",
   swordLeft: "/assets/devhack/left-arm.png",
   swordRight: "/assets/devhack/right-arm.png",
   title: "/assets/devhack/dev-hack-logo.svg",
@@ -118,14 +118,15 @@ export default function DevHackSection() {
 
     /*
      * =========================================================
-     * 1. PURE BACKGROUND
+     * 1. TRANSITION OVERLAYS
      * =========================================================
-     *
-     * 0% → 8% fade in
-     * Empty background is intentionally short.
      */
+    setStyle(".js-darken", {
+      opacity: String(easeIn(range(progress, 0, 0.15))),
+    });
+
     setStyle(".js-bg-pure", {
-      opacity: "1",
+      opacity: String(easeIn(range(progress, 0.05, 0.20))),
     });
 
     /*
@@ -141,14 +142,13 @@ export default function DevHackSection() {
      *   x: 100vw → 8vw
      *   y: 70 → 0
      */
-    const swordProgress = easeIn(range(progress, 0.02, 0.28));
+    const swordProgress = easeIn(range(progress, 0, 0.28));
     const leftX = -100 + 92 * swordProgress;
 
     const rightX = 100 - 92 * swordProgress;
 
-    const swordY = 70 - 70 * swordProgress;
-
-    const swordOpacity = easeOut(range(progress, 0.02, 0.05));
+    const swordY = 45 - 45 * swordProgress;
+    const swordOpacity = easeOut(range(progress, 0, 0.05));
     /*
      * =========================================================
      * 3. IMPACT
@@ -304,9 +304,8 @@ export default function DevHackSection() {
     setStyle(".js-title-img", {
       opacity: String(titleProgress),
 
-      transform: `translate3d(0, ${30 - 30 * titleProgress}px, 0) scale(${
-        1.25 - 0.25 * titleProgress
-      })`,
+      transform: `translate3d(0, ${30 - 30 * titleProgress}px, 0) scale(${1.25 - 0.25 * titleProgress
+        })`,
 
       filter: `blur(${14 - 14 * titleProgress}px)`,
     });
@@ -332,9 +331,22 @@ export default function DevHackSection() {
 
       detail.style.opacity = String(detailProgress);
 
-      detail.style.transform = `translate3d(0, ${
-        20 - 20 * detailProgress
-      }px, 0)`;
+      detail.style.transform = `translate3d(0, ${20 - 20 * detailProgress}px, 0)`;
+    });
+
+    /*
+     * =========================================================
+     * 10. EXIT TRANSITION
+     * =========================================================
+     */
+    const exitProgress = smooth(range(progress, 0.82, 1.0));
+    setStyle(".js-exit", {
+      opacity: String(exitProgress),
+    });
+
+    const embersFade = 1 - easeIn(range(progress, 0.85, 1.0));
+    setStyle(".js-embers", {
+      opacity: String(embersFade),
     });
 
     /*
@@ -372,7 +384,7 @@ export default function DevHackSection() {
     >
       <section
         id="devhack"
-        className="sticky top-0 h-screen w-full overflow-hidden bg-[#050201] text-white"
+        className="sticky top-0 h-screen w-full overflow-hidden bg-transparent text-white pointer-events-none"
         style={{ height: "100svh" }}
       >
         {/*
@@ -382,11 +394,13 @@ export default function DevHackSection() {
         <div className="js-stage absolute inset-0 will-change-transform">
           {/* BACKGROUNDS */}
           <div className="absolute inset-0" style={{ inset: "-32px" }}>
+            <div className="js-darken absolute inset-0 bg-[#050201] opacity-0" />
+
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={ASSETS.pureBackground}
               alt=""
-              className="js-bg-pure absolute inset-0 h-full w-full object-cover opacity-100"
+              className="js-bg-pure absolute inset-0 h-full w-full object-cover opacity-0"
             />
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -395,6 +409,19 @@ export default function DevHackSection() {
               alt=""
               className="js-bg-final absolute inset-0 h-full w-full object-cover opacity-0"
             />
+
+            {/* EXIT TRANSITION LAYER */}
+            <div className="js-exit absolute inset-0 opacity-0 will-change-opacity pointer-events-none">
+              <div className="absolute inset-0 bg-[#050403]" />
+              <div
+                className="absolute inset-0 opacity-70 mix-blend-soft-light"
+                style={{
+                  backgroundImage: "url('/images/parchment-sponsor.jpg')",
+                  backgroundSize: "700px auto",
+                  backgroundRepeat: "repeat",
+                }}
+              />
+            </div>
           </div>
 
           {/* SWORDS */}
@@ -505,18 +532,12 @@ export default function DevHackSection() {
 
           {/* DETAILS */}
           <div
-            className="absolute inset-x-0 z-40 flex flex-col items-center px-5 text-center"
+            className="absolute inset-x-0 z-40 flex flex-col items-center px-5 text-center pointer-events-auto"
             style={{ top: "56%" }}
           >
-            <p
-              className="js-detail mb-3 font-serif text-[10px] tracking-[0.25em] text-white sm:text-xs md:text-sm"
-              style={{ opacity: 0 }}
-            >
-              36 HOURS. REAL PROBLEMS. WORKING CODE.
-            </p>
 
             <p
-              className="js-detail mb-6 max-w-2xl font-serif text-xs leading-relaxed text-neutral-300 sm:text-sm md:text-base"
+              className="js-detail mb-14 max-w-2xl font-lora text-md leading-relaxed break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{ opacity: 0 }}
             >
               DevHack is the centre of DEVHOST. Teams get a problem statement,
@@ -524,19 +545,14 @@ export default function DevHackSection() {
               you build in that window is up to you.
             </p>
 
-            <div className="js-detail" style={{ opacity: 0 }}>
-              <Link
-                href="https://forms.gle/your-devhack-register-link"
-                className="inline-block"
+            <div className="js-detail">
+              <Button
+                onClick={() => {
+                  window.location.href = "https://forms.gle/your-devhack-register-link";
+                }}
               >
-                <Image
-                  src="/assets/devhack/register-plate.svg"
-                  alt="Register Now"
-                  width={250}
-                  height={80}
-                  className="w-[200px] transition-transform hover:scale-105 md:w-[250px]"
-                />
-              </Link>
+                Register
+              </Button>
             </div>
           </div>
 
@@ -545,7 +561,7 @@ export default function DevHackSection() {
             ref={embers}
             originX={0.5}
             originY={CLASH_Y / 100}
-            className="pointer-events-none absolute inset-0 z-50 h-full w-full"
+            className="js-embers pointer-events-none absolute inset-0 z-50 h-full w-full"
           />
         </div>
       </section>
