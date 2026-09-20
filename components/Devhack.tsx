@@ -42,7 +42,6 @@ function Anchor({
   );
 }
 
-
 // DevHack assets
 const ASSETS = {
   pureBackground: "/assets/devhack/pure-background.svg",
@@ -126,8 +125,8 @@ export default function DevHackSection() {
      * Empty background is intentionally short.
      */
     setStyle(".js-bg-pure", {
-  opacity: "1",
-});
+      opacity: "1",
+    });
 
     /*
      * =========================================================
