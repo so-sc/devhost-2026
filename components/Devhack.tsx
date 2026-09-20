@@ -135,7 +135,7 @@ const ASSETS = {
 export default function DevHackSection() {
   const [scope, animate] = useAnimate();
   const embers = useRef<EmberCanvasHandle>(null);
-  const isInView = useInView(scope, { once: true, amount: 0.3 });
+  const isInView = useInView(scope, { once: false, amount: 0 });
 
   useEffect(() => {
     if (!isInView) return;
@@ -163,13 +163,13 @@ export default function DevHackSection() {
     };
 
     async function run() {
-      await Promise.all([
-        preloadImage(ASSETS.pureBackground),
-        preloadImage(ASSETS.background),
-        preloadImage(ASSETS.title),
-      ]);
-      if (cancelled) return;
-      if (reduced) return showFinal();
+      // await Promise.all([
+      //   preloadImage(ASSETS.pureBackground),
+      //   preloadImage(ASSETS.background),
+      //   preloadImage(ASSETS.title),
+      // ]);
+      // if (cancelled) return;
+      // if (reduced) return showFinal();
 
       // ── 1. PURE BACKGROUND — fades up out of black, then holds alone for a beat ──
       await animate(
@@ -178,8 +178,7 @@ export default function DevHackSection() {
         { duration: 1.0, ease: "easeOut" },
       );
       if (cancelled) return;
-      await wait(0.45);
-      if (cancelled) return;
+
 
       // ── 2. SWORDS — left from the left edge, right from the right edge, accelerating into the hit ──
       const fly = {
@@ -242,7 +241,7 @@ export default function DevHackSection() {
         {
           x: [0, -sx, sx * 0.8, -sx * 0.6, sx * 0.4, 0],
           y: [0, sy, -sy, sy * 0.6, -sy * 0.3, 0],
-          scale: [1, 1.025, 1.012, 1.018, 1.004, 1],
+          scale: [1, 1, 1, 1, 1, 1],
         },
         { duration: 0.7, ease: "easeOut" },
       );
@@ -279,7 +278,7 @@ export default function DevHackSection() {
         { duration: 1.2, delay: 0.4, ease: "easeInOut" },
       );
 
-      await wait(0.35); // let the impact breathe briefly before title
+      await wait(0.05); // let the impact breathe briefly before title
       if (cancelled) return;
 
       // ── 4. TITLE — letters ignite one after another; the glow cools as it settles ──

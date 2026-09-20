@@ -38,11 +38,10 @@ function SponsorCard({
       href={sponsor.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group relative block w-full ${
-        isTitle
-          ? "max-w-[360px] sm:max-w-[400px]"
-          : "max-w-[300px] sm:max-w-[330px]"
-      }`}
+      className={`group relative block w-full ${isTitle
+        ? "max-w-[360px] sm:max-w-[400px]"
+        : "max-w-[300px] sm:max-w-[330px]"
+        }`}
     >
       {/* Glow behind the plaque */}
       <div className="absolute -inset-4 rounded-full bg-[#C9963E]/10 opacity-0 blur-2xl transition-all duration-700 group-hover:opacity-100" />
@@ -63,9 +62,8 @@ function SponsorCard({
         {/* Center text */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center">
           <span
-            className={`font-norse-bold text-2xl font-semibold tracking-[0.10em] sm:tracking-[0.14em] ${
-              isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
-            }`}
+            className={`font-norse-bold text-2xl font-semibold tracking-[0.10em] sm:tracking-[0.14em] ${isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
+              }`}
           >
             {isTitle ? "TITLE SPONSOR" : "CO-SPONSOR"}
           </span>

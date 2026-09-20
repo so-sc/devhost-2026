@@ -15,7 +15,17 @@ import CallForSpeakers from "@/components/CallForSpeakers";
 import Gallery from "@/components/Gallery";
 import Devhack from "@/components/Devhack";
 
-const criticalImages = ["/logo-group.png", "/DVHST.png"];
+const criticalImages = [
+  "/logo-group.png",
+  "/DVHST.png",
+
+  // DevHack
+  "/assets/devhack/pure-background.svg",
+  "/assets/devhack/background.svg",
+  "/assets/devhack/left-arm.svg",
+  "/assets/devhack/right-arm.svg",
+  "/assets/devhack/dev-hack-logo.svg",
+];
 
 function preloadImages(images: string[]) {
   return Promise.all(
@@ -24,13 +34,20 @@ function preloadImages(images: string[]) {
         new Promise<void>((resolve) => {
           const img = new Image();
 
+          img.onload = async () => {
+            try {
+              await img.decode();
+            } catch {
+              // Image loaded even if decode isn't available/fails
+            }
+            resolve();
+          };
+
+          img.onerror = () => resolve();
           img.src = src;
 
           if (img.complete) {
             resolve();
-          } else {
-            img.onload = () => resolve();
-            img.onerror = () => resolve();
           }
         }),
     ),
