@@ -95,7 +95,7 @@ const ScrollParchmentWrapper = ({
       if (!isMobileRef.current) return 0;
       const c = Math.max(0, Math.min(1, p));
       return 100 + (h - 100) * c + c * 24;
-    }
+    },
   );
 
   // Texture rotation to simulate physical unrolling
@@ -176,7 +176,7 @@ const ScrollParchmentWrapper = ({
 
       {/* Parchment Surface - Fully renders but is clipped to unroll */}
       <motion.div
-        className="relative z-10 w-full sm:[filter:url(#torn-edge)] max-sm:transform-gpu"
+        className="relative z-10 w-full max-sm:transform-gpu sm:[filter:url(#torn-edge)]"
         style={{
           clipPath,
         }}
@@ -303,7 +303,7 @@ const ScrollParchmentWrapper = ({
 
       {/* Bottom Roller - Tracks the bottom of the clip path */}
       <motion.div
-        className="absolute left-[-2%] z-20 h-14 w-[104%] -translate-y-1/2 max-sm:will-change-transform drop-shadow-[0_20px_25px_rgba(0,0,0,0.95)]"
+        className="absolute left-[-2%] z-20 h-14 w-[104%] -translate-y-1/2 drop-shadow-[0_20px_25px_rgba(0,0,0,0.95)] max-sm:will-change-transform"
         style={{ top: bottomRollerTop, y: bottomRollerY, rotate: rollerWobble }}
       >
         <div className="absolute inset-0 right-6 left-6 overflow-hidden rounded-full bg-[#3d2716]">
