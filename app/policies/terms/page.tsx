@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PolicyTemplate from "../base/PolicyTemplate";
 
 export default function TermsAndConditionsPage() {
@@ -104,31 +103,6 @@ export default function TermsAndConditionsPage() {
         contribute to the enrichment of open-source learning and empower fellow
         developers to grow and innovate together.
       </p>
-
-      {/* Links to other policies */}
-      <div className="mt-10 border-t border-gray-700 pt-6 text-sm text-gray-400">
-        <p className="mb-2 text-center italic">Related Policies</p>
-        <div className="font-orbitron flex flex-wrap justify-center gap-4 text-xs tracking-widest">
-          <Link
-            href="/policies/privacy-policy"
-            className="text-primary hover:underline"
-          >
-            Privacy Policy
-          </Link>
-          <Link
-            href="/policies/refund-cancellation"
-            className="text-primary hover:underline"
-          >
-            Refund & Cancellation
-          </Link>
-          <Link
-            href="/policies/shipping-delivery"
-            className="text-primary hover:underline"
-          >
-            Shipping & Delivery
-          </Link>
-        </div>
-      </div>
     </PolicyTemplate>
   );
 }
