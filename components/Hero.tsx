@@ -39,169 +39,293 @@ export default function Hero() {
     }
 
     const ctx = gsap.context(() => {
-      // =========================
-      // EXPLICIT INITIAL STATES FOR SCROLL 0.0
-      // =========================
-
-      gsap.set(heroContentRef.current, {
-        scale: 1,
-        opacity: 1,
-        filter: "blur(0px)",
-      });
-
-      gsap.set(leftSoldierRef.current, {
-        xPercent: 0,
-        opacity: 1,
-        scale: 1,
-      });
-
-      gsap.set(rightSoldierRef.current, {
-        xPercent: 0,
-        opacity: 1,
-        scale: 1,
-      });
-
-      gsap.set(wheelWrapperRef.current, {
-        scale: 1,
-        opacity: 1,
-      });
-
-      gsap.set(bgRef.current, {
-        scale: 1,
-        opacity: 1,
-      });
-
-      gsap.set(blackFogRef.current, {
-        opacity: 0,
-      });
-
-      gsap.set(aboutContentRef.current, {
-        opacity: 0,
-        scale: 0.85,
-        y: 40,
-        filter: "blur(12px)",
-      });
-
-      const isMobile = window.innerWidth < 640;
-      const leftOutward = isMobile ? -48 : -8;
-      const rightOutward = isMobile ? 48 : 8;
+      const mm = gsap.matchMedia();
 
       // =========================
-      // UNIFIED CONTINUOUS FULLY REVERSIBLE SCROLL TIMELINE
-      // Pins sectionRef for +=180% of viewport height
-      // 0.0 -> 0.40: Hero text zooms into camera lens into black fog
-      // 0.35 -> 0.70: About DevHost text emerges out of fog while soldiers & wheel remain visible
-      // 0.70 -> 1.00: Holds About DevHost sharp & visible until immediate unpin into next section
+      // MOBILE TIMELINE (< 640px)
       // =========================
+      mm.add("(max-width: 639px)", () => {
+        gsap.set(heroContentRef.current, {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+        });
 
-      const mainTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=180%",
-          pin: true,
-          scrub: 1,
-        },
+        gsap.set(leftSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.set(rightSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.set(wheelWrapperRef.current, {
+          xPercent: -50,
+          yPercent: -58,
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(bgRef.current, {
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(blackFogRef.current, {
+          opacity: 0,
+        });
+
+        gsap.set(aboutContentRef.current, {
+          opacity: 0,
+          scale: 0.85,
+          y: 40,
+          filter: "blur(12px)",
+        });
+
+        const mobileTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=180%",
+            pin: true,
+            scrub: 1,
+          },
+        });
+
+        mobileTimeline
+          // PHASE 1: Hero text zooms out, fog builds, soldiers slide completely off-screen
+          .to(
+            heroContentRef.current,
+            {
+              scale: 4.2,
+              opacity: 0,
+              filter: "blur(20px)",
+              ease: "power2.in",
+            },
+            0,
+          )
+          .to(
+            blackFogRef.current,
+            {
+              opacity: 0.35,
+              ease: "power1.inOut",
+            },
+            0,
+          )
+          .to(
+            bgRef.current,
+            {
+              scale: 1.18,
+              opacity: 0.85,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            wheelWrapperRef.current,
+            {
+              scale: 1.15,
+              opacity: 0.35,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              xPercent: -200,
+              opacity: 0,
+              ease: "power2.inOut",
+            },
+            0,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              xPercent: 200,
+              opacity: 0,
+              ease: "power2.inOut",
+            },
+            0,
+          )
+
+          // PHASE 2: About DevHost emerges with zero soldiers visible
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+            },
+            1.0,
+          );
       });
 
-      mainTimeline
-        // PHASE 1: Hero text zooms into camera lens & atmospheric fog builds (0.0 to 0.40)
-        .to(
-          heroContentRef.current,
-          {
-            scale: 4.2,
-            opacity: 0,
-            filter: "blur(20px)",
-            ease: "power2.in",
-          },
-          0,
-        )
-        .to(
-          blackFogRef.current,
-          {
-            opacity: 0.6,
-            ease: "power1.inOut",
-          },
-          0,
-        )
-        .to(
-          bgRef.current,
-          {
-            scale: 1.18,
-            opacity: 0.7,
-            ease: "power1.out",
-          },
-          0,
-        )
-        .to(
-          wheelWrapperRef.current,
-          {
-            scale: 1.15,
-            opacity: 0.35,
-            ease: "power1.out",
-          },
-          0,
-        )
-        .to(
-          leftSoldierRef.current,
-          {
-            opacity: 0.85,
-            scale: 0.95,
-            ease: "power1.out",
-          },
-          0,
-        )
-        .to(
-          rightSoldierRef.current,
-          {
-            opacity: 0.85,
-            scale: 0.95,
-            ease: "power1.out",
-          },
-          0,
-        )
+      // =========================
+      // DESKTOP TIMELINE (>= 640px)
+      // =========================
+      mm.add("(min-width: 640px)", () => {
+        gsap.set(heroContentRef.current, {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+        });
 
-        // PHASE 2: ABOUT DEVHOST EMERGES IN FOG WITH SOLDIERS STEPPING OUTWARDS & WHEEL VISIBLE (0.35 to 0.70)
-        .to(
-          aboutContentRef.current,
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            filter: "blur(0px)",
-            ease: "power2.out",
-          },
-          0.35,
-        )
-        .to(
-          leftSoldierRef.current,
-          {
-            xPercent: leftOutward,
-            opacity: 0.9,
-            ease: "power2.out",
-          },
-          0.35,
-        )
-        .to(
-          rightSoldierRef.current,
-          {
-            xPercent: rightOutward,
-            opacity: 0.9,
-            ease: "power2.out",
-          },
-          0.35,
-        )
+        gsap.set(leftSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
 
-        // PHASE 3: HOLD ABOUT DEVHOST FULLY VISIBLE & SHARP UNTIL END OF PIN (0.70 to 1.0)
-        // Direct unpin to next section — no blank black screen gap!
-        .to(
-          aboutContentRef.current,
-          {
-            opacity: 1,
-            scale: 1,
+        gsap.set(rightSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.set(wheelWrapperRef.current, {
+          xPercent: -50,
+          yPercent: -50,
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(bgRef.current, {
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(blackFogRef.current, {
+          opacity: 0,
+        });
+
+        gsap.set(aboutContentRef.current, {
+          opacity: 0,
+          scale: 0.85,
+          y: 40,
+          filter: "blur(12px)",
+        });
+
+        const desktopTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=180%",
+            pin: true,
+            scrub: 1,
           },
-          1.0,
-        );
+        });
+
+        desktopTimeline
+          // PHASE 1: Hero text zooms out, fog builds, soldiers adjust opacity
+          .to(
+            heroContentRef.current,
+            {
+              scale: 4.2,
+              opacity: 0,
+              filter: "blur(20px)",
+              ease: "power2.in",
+            },
+            0,
+          )
+          .to(
+            blackFogRef.current,
+            {
+              opacity: 0.45,
+              ease: "power1.inOut",
+            },
+            0,
+          )
+          .to(
+            bgRef.current,
+            {
+              scale: 1.18,
+              opacity: 0.95,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            wheelWrapperRef.current,
+            {
+              scale: 1.15,
+              opacity: 0.35,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              opacity: 0.85,
+              scale: 0.95,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              opacity: 0.85,
+              scale: 0.95,
+              ease: "power1.out",
+            },
+            0,
+          )
+
+          // PHASE 2: About DevHost emerges with soldiers stepping slightly outward (-8% / 8%)
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              xPercent: -8,
+              opacity: 0.95,
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              xPercent: 8,
+              opacity: 0.95,
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+            },
+            1.0,
+          );
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -240,14 +364,14 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 z-10 h-full w-full bg-[#050403]"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(5,4,3,0.98) 0%, #050403 75%)",
+            "radial-gradient(ellipse at center, rgba(5,4,3,0.85) 0%, #050403 85%)",
         }}
       />
 
       {/* ROTATING RUNE WHEEL */}
       <div
         ref={wheelWrapperRef}
-        className="pointer-events-none absolute top-1/2 left-1/2 z-[2] aspect-square w-[min(78vw,260px)] -translate-x-1/2 max-sm:-translate-y-[58%] sm:-translate-y-1/2 sm:w-[min(85vw,620px)]"
+        className="pointer-events-none absolute top-1/2 left-1/2 z-[2] aspect-square w-[min(78vw,260px)] sm:w-[min(85vw,620px)]"
       >
         <div className="h-full w-full animate-[spin_35s_linear_infinite]">
           <Image
@@ -400,7 +524,7 @@ export default function Hero() {
           {/* DESCRIPTION */}
           <div className="relative mx-auto w-full text-justify sm:max-w-[80%]">
             <p
-              className="font-lora text-base text-justify leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              className="font-lora text-justify text-base leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{
                 textShadow:
                   "0 1px 1px rgba(0,0,0,.7), 0 0 12px rgba(246,204,96,.08)",
