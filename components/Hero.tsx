@@ -175,10 +175,162 @@ export default function Hero() {
           );
       });
 
+      // ===================================
+      // TABLET TIMELINE (640px to 1023px)
+      // ===================================
+      mm.add("(min-width: 640px) and (max-width: 1023px)", () => {
+        gsap.set(heroContentRef.current, {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+        });
+
+        gsap.set(leftSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.set(rightSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.set(wheelWrapperRef.current, {
+          xPercent: -50,
+          yPercent: -50,
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(bgRef.current, {
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(blackFogRef.current, {
+          opacity: 0,
+        });
+
+        gsap.set(aboutContentRef.current, {
+          opacity: 0,
+          scale: 0.85,
+          y: 40,
+          filter: "blur(12px)",
+        });
+
+        const tabletTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=180%",
+            pin: true,
+            scrub: 1,
+          },
+        });
+
+        tabletTimeline
+          // PHASE 1: Hero text zooms out, fog builds, soldiers soften
+          .to(
+            heroContentRef.current,
+            {
+              scale: 4.2,
+              opacity: 0,
+              filter: "blur(20px)",
+              ease: "power2.in",
+            },
+            0,
+          )
+          .to(
+            blackFogRef.current,
+            {
+              opacity: 0.20,
+              ease: "power1.inOut",
+            },
+            0,
+          )
+          .to(
+            bgRef.current,
+            {
+              scale: 1.18,
+              opacity: 1,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            wheelWrapperRef.current,
+            {
+              scale: 1.15,
+              opacity: 0.35,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              opacity: 0.75,
+              scale: 0.95,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              opacity: 0.75,
+              scale: 0.95,
+              ease: "power1.out",
+            },
+            0,
+          )
+
+          // PHASE 2: About DevHost emerges with soldiers stepping outward on tablet (-18% / 18%)
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              xPercent: -18,
+              opacity: 0.7,
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              xPercent: 18,
+              opacity: 0.7,
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+            },
+            1.0,
+          );
+      });
+
       // =========================
-      // DESKTOP TIMELINE (>= 640px)
+      // DESKTOP TIMELINE (>= 1024px)
       // =========================
-      mm.add("(min-width: 640px)", () => {
+      mm.add("(min-width: 1024px)", () => {
         gsap.set(heroContentRef.current, {
           scale: 1,
           opacity: 1,
@@ -245,7 +397,7 @@ export default function Hero() {
           .to(
             blackFogRef.current,
             {
-              opacity: 0.45,
+              opacity: 0.20,
               ease: "power1.inOut",
             },
             0,
@@ -254,7 +406,7 @@ export default function Hero() {
             bgRef.current,
             {
               scale: 1.18,
-              opacity: 0.95,
+              opacity: 1,
               ease: "power1.out",
             },
             0,
@@ -364,14 +516,14 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 z-10 h-full w-full bg-[#050403]"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(5,4,3,0.85) 0%, #050403 85%)",
+            "radial-gradient(ellipse at center, rgba(5,4,3,0.55) 0%, rgba(5,4,3,0.92) 85%)",
         }}
       />
 
       {/* ROTATING RUNE WHEEL */}
       <div
         ref={wheelWrapperRef}
-        className="pointer-events-none absolute top-1/2 left-1/2 z-[2] aspect-square w-[min(78vw,260px)] sm:w-[min(85vw,620px)]"
+        className="pointer-events-none absolute top-1/2 left-1/2 z-[2] aspect-square w-[min(78vw,260px)] sm:w-[min(70vw,380px)] md:w-[min(65vw,480px)] lg:w-[min(85vw,620px)]"
       >
         <div className="h-full w-full animate-[spin_35s_linear_infinite]">
           <Image
@@ -388,16 +540,16 @@ export default function Hero() {
       {/* LEFT SOLDIER */}
       <div
         ref={leftSoldierRef}
-        className="pointer-events-none absolute bottom-0 left-[-4%] z-[12] w-[min(46vw,190px)] sm:left-[-2%] sm:w-[min(36vw,540px)] lg:left-0 lg:w-[min(34vw,310px)]"
+        className="pointer-events-none absolute bottom-0 left-[-4%] z-[12] w-[min(46vw,190px)] sm:left-0 sm:w-auto"
       >
         {/* DESKTOP SOLDIER LEFT */}
         <Image
           src="/soldier-left.png"
           alt=""
           width={500}
-          height={400}
+          height={600}
           priority
-          className="hidden h-auto w-full object-contain sm:block"
+          className="hidden h-[min(80vh,540px)] w-auto object-contain object-bottom sm:block"
         />
         {/* MOBILE SOLDIER LEFT */}
         <Image
@@ -413,7 +565,7 @@ export default function Hero() {
       {/* RIGHT SOLDIER */}
       <div
         ref={rightSoldierRef}
-        className="pointer-events-none absolute right-[-4%] bottom-0 z-[12] w-[min(46vw,340px)] sm:right-[-2%] sm:w-[min(36vw,540px)] lg:right-[-90px] lg:w-[min(34vw,560px)]"
+        className="pointer-events-none absolute right-[-8%] bottom-0 z-[12] w-[min(46vw,340px)] sm:right-0 sm:w-auto"
       >
         {/* DESKTOP SOLDIER RIGHT */}
         <Image
@@ -422,7 +574,7 @@ export default function Hero() {
           width={500}
           height={600}
           priority
-          className="hidden h-135 w-full object-contain sm:block"
+          className="hidden h-[min(80vh,540px)] w-auto object-contain object-bottom sm:block"
         />
         {/* MOBILE SOLDIER RIGHT */}
         <Image
@@ -441,14 +593,14 @@ export default function Hero() {
         className="relative z-20 flex flex-col items-center justify-center px-4 text-center max-sm:-translate-y-10 sm:px-6"
       >
         {/* LOGOS ABOVE TITLE */}
-        <div className="relative z-10 mb-2 flex items-center justify-center gap-2 sm:mb-4 sm:gap-5">
+        <div className="relative z-10 mb-2 flex items-center justify-center gap-2 sm:mb-3 sm:gap-3 md:mb-4 md:gap-4 lg:gap-5">
           <Image
             src="/sosc_logo.svg"
             alt="SOSC"
             width={70}
             height={70}
             priority
-            className="h-auto w-10 sm:w-14 lg:w-16"
+            className="h-auto w-10 sm:w-12 md:w-14 lg:w-16"
           />
           <Image
             src="/synergia_logo.svg"
@@ -456,7 +608,7 @@ export default function Hero() {
             width={150}
             height={70}
             priority
-            className="h-auto w-16 sm:w-24 lg:w-28"
+            className="h-auto w-16 sm:w-20 md:w-24 lg:w-28"
           />
           <Image
             src="/sahyadri-logo.png"
@@ -464,7 +616,7 @@ export default function Hero() {
             width={90}
             height={90}
             priority
-            className="h-auto w-10 sm:w-14 lg:w-16"
+            className="h-auto w-10 sm:w-12 md:w-14 lg:w-16"
           />
         </div>
 
@@ -490,12 +642,12 @@ export default function Hero() {
             width={390}
             height={200}
             priority
-            className="mb-4 h-34 w-auto sm:mb-6 sm:h-49"
+            className="mb-4 h-34 w-auto sm:mb-5 sm:h-40 md:mb-6 md:h-44 lg:h-49"
           />
         </div>
 
         {/* TAGLINE */}
-        <p className="font-norse-bold relative z-10 text-base tracking-wider text-white sm:text-2xl sm:tracking-widest">
+        <p className="font-norse-bold relative z-10 text-base tracking-wider text-white sm:text-lg md:text-xl lg:text-2xl sm:tracking-widest">
           Ideas that Echo Through Time
         </p>
       </div>
@@ -509,22 +661,22 @@ export default function Hero() {
         <div className="mx-auto w-[90%] max-w-4xl text-center">
           {/* TITLE */}
           <div className="relative mb-4 text-center sm:mb-6">
-            <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
+            <h2 className="font-norse-bold mb-2 text-5xl font-extrabold tracking-[0.12em] uppercase sm:text-6xl md:text-7xl lg:text-8xl">
               <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
                 {devhostData.title}
               </span>
             </h2>
 
             {/* CAPTION */}
-            <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+            <h3 className="font-norse text-base font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:text-lg sm:tracking-[0.14em] md:text-xl lg:text-2xl">
               {devhostData.caption}
             </h3>
           </div>
 
           {/* DESCRIPTION */}
-          <div className="relative mx-auto w-full text-justify sm:max-w-[80%]">
+          <div className="relative mx-auto w-full text-justify sm:max-w-[85%] md:max-w-[80%]">
             <p
-              className="font-lora text-justify text-base leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              className="font-lora text-justify text-sm leading-relaxed tracking-[0.02em] break-words text-white sm:text-base md:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{
                 textShadow:
                   "0 1px 1px rgba(0,0,0,.7), 0 0 12px rgba(246,204,96,.08)",
