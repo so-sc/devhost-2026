@@ -72,7 +72,7 @@ const otherSponsors = [
       "Applicable only if the teams are interested.",
     ],
     width: "w-[100px]",
-  }
+  },
 ];
 
 function SponsorInfo({
@@ -207,7 +207,7 @@ export default function OtherSponsors() {
       </h3>
 
       {/* SPONSOR GRID */}
-      <div className="flex w-full flex-wrap justify-center md:gap-6 gap-8">
+      <div className="flex w-full flex-wrap justify-center gap-8 md:gap-6">
         {otherSponsors.map((sponsor, index) => (
           <OtherSponsorCard
             key={sponsor.name}
