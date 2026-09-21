@@ -126,7 +126,7 @@ export default function DevHackSection() {
     });
 
     setStyle(".js-bg-pure", {
-      opacity: String(easeIn(range(progress, 0.05, 0.20))),
+      opacity: String(easeIn(range(progress, 0.05, 0.2))),
     });
 
     /*
@@ -304,8 +304,9 @@ export default function DevHackSection() {
     setStyle(".js-title-img", {
       opacity: String(titleProgress),
 
-      transform: `translate3d(0, ${30 - 30 * titleProgress}px, 0) scale(${1.25 - 0.25 * titleProgress
-        })`,
+      transform: `translate3d(0, ${30 - 30 * titleProgress}px, 0) scale(${
+        1.25 - 0.25 * titleProgress
+      })`,
 
       filter: `blur(${14 - 14 * titleProgress}px)`,
     });
@@ -384,7 +385,7 @@ export default function DevHackSection() {
     >
       <section
         id="devhack"
-        className="sticky top-0 h-screen w-full overflow-hidden bg-transparent text-white pointer-events-none"
+        className="pointer-events-none sticky top-0 h-screen w-full overflow-hidden bg-transparent text-white"
         style={{ height: "100svh" }}
       >
         {/*
@@ -411,7 +412,7 @@ export default function DevHackSection() {
             />
 
             {/* EXIT TRANSITION LAYER */}
-            <div className="js-exit absolute inset-0 opacity-0 will-change-opacity pointer-events-none">
+            <div className="js-exit will-change-opacity pointer-events-none absolute inset-0 opacity-0">
               <div className="absolute inset-0 bg-[#050403]" />
               <div
                 className="absolute inset-0 opacity-70 mix-blend-soft-light"
@@ -532,12 +533,11 @@ export default function DevHackSection() {
 
           {/* DETAILS */}
           <div
-            className="absolute inset-x-0 z-40 flex flex-col items-center px-5 text-center pointer-events-auto"
+            className="pointer-events-auto absolute inset-x-0 z-40 flex flex-col items-center px-5 text-center"
             style={{ top: "56%" }}
           >
-
             <p
-              className="js-detail mb-14 max-w-2xl font-lora text-md leading-relaxed break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              className="js-detail font-lora text-md mb-14 max-w-2xl leading-relaxed break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
               style={{ opacity: 0 }}
             >
               DevHack is the centre of DEVHOST. Teams get a problem statement,
@@ -548,7 +548,8 @@ export default function DevHackSection() {
             <div className="js-detail">
               <Button
                 onClick={() => {
-                  window.location.href = "https://forms.gle/your-devhack-register-link";
+                  window.location.href =
+                    "https://forms.gle/your-devhack-register-link";
                 }}
               >
                 Register
