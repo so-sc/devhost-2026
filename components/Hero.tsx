@@ -245,7 +245,7 @@ export default function Hero() {
           .to(
             blackFogRef.current,
             {
-              opacity: 0.20,
+              opacity: 0.2,
               ease: "power1.inOut",
             },
             0,
@@ -397,7 +397,7 @@ export default function Hero() {
           .to(
             blackFogRef.current,
             {
-              opacity: 0.20,
+              opacity: 0.2,
               ease: "power1.inOut",
             },
             0,
@@ -647,7 +647,7 @@ export default function Hero() {
         </div>
 
         {/* TAGLINE */}
-        <p className="font-norse-bold relative z-10 text-base tracking-wider text-white sm:text-lg md:text-xl lg:text-2xl sm:tracking-widest">
+        <p className="font-norse-bold relative z-10 text-base tracking-wider text-white sm:text-lg sm:tracking-widest md:text-xl lg:text-2xl">
           Ideas that Echo Through Time
         </p>
       </div>
@@ -676,7 +676,7 @@ export default function Hero() {
           {/* DESCRIPTION */}
           <div className="relative mx-auto w-full text-justify sm:max-w-[85%] md:max-w-[80%]">
             <p
-              className="font-lora text-justify text-sm leading-relaxed tracking-[0.02em] break-words text-white sm:text-base md:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              className="font-lora text-justify text-sm leading-relaxed tracking-[0.02em] break-words text-white sm:text-base sm:leading-[1.75] sm:tracking-[0.03em] md:text-lg"
               style={{
                 textShadow:
                   "0 1px 1px rgba(0,0,0,.7), 0 0 12px rgba(246,204,96,.08)",
