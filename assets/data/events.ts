@@ -4,7 +4,7 @@ export const events = [
     title: "Arena Of Ares",
     tagline: "Only one squad walks away.",
     description:
-      "Drop in, fight it out, and hold your ground. Aim matters. Positioning and communication matte more.",
+      "Drop in, fight it out, and hold your ground. Aim matters. Positioning and communication matter more.",
     date: "13 Nov",
     time: "10:00 AM onwards",
     organizer: "Kshithij",
@@ -31,7 +31,7 @@ export const events = [
       "A stage, a panel, and an idea worth backing. Present what you want to build and answer for it. The pitch that survives the questions wins.",
     date: "12 Nov",
     time: "10:00 AM onwards",
-    organizer: "Thanushree K G Bhat",
+    organizer: "Thanushree Bhat K G",
     contact: "+91 8590610306",
     image: "/event/VOO.png",
   },

@@ -29,9 +29,8 @@ const otherSponsors = [
     name: "Render",
     title: "TECHNOLOGY PARTNER",
     description: [
-      "$50 Render credit for general attendees of Devhost 2026.",
-      "$500/$300/$100 credit for the Top 3 Hackathon winning teams.",
-      "Winners must use Render Workflows to be eligible for the prizes.",
+      "$50 Render credit for attendees of Devhost 2026.",
+      "$500/$300/$100 credit for the Top 3 Hackathon winning teams.inners must use Render Workflows to be eligible.",
     ],
     width: "w-[140px]",
   },
@@ -63,6 +62,16 @@ const otherSponsors = [
     title: "TECHNOLOGY PARTNER",
     description: ["500 credits for every hackathon participating team."],
     width: "w-[150px]",
+  },
+  {
+    logo: "/sponsors/acic-logo.png",
+    name: "ACIC Sahyadri",
+    title: "INCUBATIONN PARTNER",
+    description: [
+      "Top 5/10 teams of the hackathon will get pre incubation support.",
+      "Applicable only if the teams are interested.",
+    ],
+    width: "w-[100px]",
   },
 ];
 
@@ -108,13 +117,8 @@ function SponsorInfo({
           isActive ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0"
         } /* Desktop hover state */ [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100`}
       >
-        {/* Sponsor name */}
-        <h4 className="font-norse mb-4 text-lg font-semibold tracking-[0.12em] text-[#E0B957] uppercase">
-          {sponsor.name}
-        </h4>
-
         {/* Description */}
-        <ul className="font-lora w-full list-disc space-y-2 px-2 text-left text-sm leading-relaxed text-[#F1E8D5]">
+        <ul className="font-lora w-full list-disc space-y-2 px-1 text-left text-sm leading-relaxed text-[#F1E8D5]">
           {sponsor.description.map((item, i) => (
             <li key={i} className="pl-1 marker:text-[#C9963E]">
               {item}
@@ -144,7 +148,7 @@ function OtherSponsorCard({
 
   return (
     <div
-      className="group relative w-full cursor-pointer sm:w-[calc(50%-1rem)] lg:w-[calc((100%-4rem)/3)]"
+      className="group relative w-full cursor-pointer sm:w-[calc(50%-1rem)] md:w-[calc((100%-4rem)/3)] lg:w-[calc((100%-6rem)/4)]"
       onClick={handleClick}
     >
       {/* Outer glow */}
@@ -203,7 +207,7 @@ export default function OtherSponsors() {
       </h3>
 
       {/* SPONSOR GRID */}
-      <div className="flex w-full flex-wrap justify-center gap-8">
+      <div className="flex w-full flex-wrap justify-center gap-8 md:gap-6">
         {otherSponsors.map((sponsor, index) => (
           <OtherSponsorCard
             key={sponsor.name}
