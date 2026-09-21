@@ -1,775 +1,692 @@
-import { useEffect, useRef, useState } from "react";
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// function SponsorLogo({ src, alt, height = 40, screenBlend = false, scale = 1, className = "", }: {
-//   src: string
-//   alt: string
-//   height?: number
-//   screenBlend?: boolean
-//   scale?: number
-//   className?: string
-// }) {
-//   return (
-//     <div className={`flex items-center justify-center ${className}`} style={{ height: `${height}px` }}>
-// <Image
-//   src={src}
-//   alt={alt}
-//   width={80}
-//   height={height * scale}
-//   style={{
-//     height: `${height * scale}px`,
-//     width: "auto",
-//     maxWidth: "120px",
-//     objectFit: "contain",
-//     mixBlendMode: screenBlend ? "screen" : "normal",
-//     filter: screenBlend ? "brightness(1.1)" : "none",
-//   }}
-// />    </div>
-//   )
-// }
+gsap.registerPlugin(ScrollTrigger);
 
-function StarField() {
-  const [stars, setStars] = useState<
-    {
-      id: number;
-      x: number;
-      y: number;
-      size: number;
-      opacity: number;
-      delay: number;
-    }[]
-  >([]);
+export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const aboutContentRef = useRef<HTMLDivElement>(null);
+  const wheelWrapperRef = useRef<HTMLDivElement>(null);
+  const leftSoldierRef = useRef<HTMLDivElement>(null);
+  const rightSoldierRef = useRef<HTMLDivElement>(null);
+  const blackFogRef = useRef<HTMLDivElement>(null);
+
+  const devhostData = {
+    title: "About DevHost",
+    caption: "Where Ancient Wisdom Meets Future Code",
+    about:
+      "Devhost, the flagship event is a remarkable tech convergence by Sahyadri Open Source Community (SOSC), is set to be an exhilarating experience with an exciting mix of technical and non-technical events. It seeks to equip participants with knowledge and skills, while encouraging curiosity and fostering innovation. With a variety of tech and non-tech battles and events featuring dev talks and workshops led by industry experts, it creates opportunities for both personal development and self-exploration. Join the 36-hour live hack event to bring your ideas to fruition, with challenges designed for every level of experience.",
+  };
 
   useEffect(() => {
-    setStars(
-      Array.from({ length: 60 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 1.5 + 0.5,
-        opacity: Math.random() * 0.5 + 0.1,
-        delay: Math.random() * 4,
-      })),
-    );
-  }, []);
-
-  return (
-    <div className="pointer-events-none absolute inset-0">
-      {stars.map((s) => (
-        <div
-          key={s.id}
-          className="absolute rounded-full bg-[#e8c250]"
-          style={{
-            left: `${s.x}%`,
-            top: `${s.y}%`,
-            width: `${s.size}px`,
-            height: `${s.size}px`,
-            opacity: s.opacity,
-            animation: `shimmer-gold ${2 + s.delay}s ease-in-out infinite`,
-            animationDelay: `${s.delay}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-function GreekLetters() {
-  const lettersRef = useRef<HTMLDivElement>(null);
-
-  const letters = [
-    { char: "Α", x: 5, y: 12, size: 64, opacity: 0.08, rotate: -15, delay: 0 },
-    { char: "Ω", x: 88, y: 8, size: 80, opacity: 0.07, rotate: 10, delay: 1.8 },
-    {
-      char: "Δ",
-      x: 78,
-      y: 55,
-      size: 56,
-      opacity: 0.06,
-      rotate: -8,
-      delay: 3.2,
-    },
-    { char: "Σ", x: 3, y: 60, size: 72, opacity: 0.08, rotate: 12, delay: 0.9 },
-    {
-      char: "Θ",
-      x: 15,
-      y: 82,
-      size: 50,
-      opacity: 0.07,
-      rotate: -5,
-      delay: 4.1,
-    },
-    {
-      char: "Λ",
-      x: 82,
-      y: 80,
-      size: 60,
-      opacity: 0.06,
-      rotate: 18,
-      delay: 2.5,
-    },
-    {
-      char: "Φ",
-      x: 48,
-      y: 6,
-      size: 52,
-      opacity: 0.05,
-      rotate: -20,
-      delay: 5.3,
-    },
-    { char: "Ψ", x: 92, y: 38, size: 66, opacity: 0.06, rotate: 8, delay: 1.2 },
-    {
-      char: "Ξ",
-      x: 2,
-      y: 35,
-      size: 48,
-      opacity: 0.07,
-      rotate: -10,
-      delay: 3.7,
-    },
-    { char: "Π", x: 60, y: 88, size: 70, opacity: 0.06, rotate: 5, delay: 0.4 },
-    {
-      char: "Γ",
-      x: 30,
-      y: 75,
-      size: 44,
-      opacity: 0.05,
-      rotate: -18,
-      delay: 6.1,
-    },
-    {
-      char: "Β",
-      x: 70,
-      y: 18,
-      size: 58,
-      opacity: 0.06,
-      rotate: 14,
-      delay: 2.0,
-    },
-    {
-      char: "Μ",
-      x: 22,
-      y: 20,
-      size: 46,
-      opacity: 0.05,
-      rotate: -6,
-      delay: 4.8,
-    },
-    {
-      char: "Ρ",
-      x: 55,
-      y: 70,
-      size: 54,
-      opacity: 0.06,
-      rotate: 22,
-      delay: 1.5,
-    },
-  ];
-
-  useEffect(() => {
-    if (!lettersRef.current) return;
+    if (
+      !sectionRef.current ||
+      !heroContentRef.current ||
+      !aboutContentRef.current ||
+      !leftSoldierRef.current ||
+      !rightSoldierRef.current ||
+      !bgRef.current ||
+      !wheelWrapperRef.current ||
+      !blackFogRef.current
+    ) {
+      return;
+    }
 
     const ctx = gsap.context(() => {
-      const container = lettersRef.current;
-      if (!container) return;
+      const mm = gsap.matchMedia();
 
-      const section = container.parentElement;
-      if (!section) return;
+      // =========================
+      // MOBILE TIMELINE (< 640px)
+      // =========================
+      mm.add("(max-width: 639px)", () => {
+        gsap.set(heroContentRef.current, {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+        });
 
-      const letterElements = gsap.utils.toArray<HTMLElement>(".greek-letter");
+        gsap.set(leftSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
 
-      letterElements.forEach((letter) => {
-        // Random horizontal resting position
-        const finalX = gsap.utils.random(-40, 40);
+        gsap.set(rightSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
 
-        // Calculate a Y position near the bottom of THIS section
-        const sectionHeight = section.offsetHeight;
-        const letterHeight = letter.offsetHeight;
+        gsap.set(wheelWrapperRef.current, {
+          xPercent: -50,
+          yPercent: -58,
+          scale: 1,
+          opacity: 1,
+        });
 
-        const finalY = sectionHeight - letterHeight - gsap.utils.random(10, 40);
+        gsap.set(bgRef.current, {
+          scale: 1,
+          opacity: 1,
+        });
 
-        const finalRotation = gsap.utils.random(-100, 100);
-        const finalScale = gsap.utils.random(0.7, 1.15);
+        gsap.set(blackFogRef.current, {
+          opacity: 0,
+        });
 
-        gsap.to(letter, {
-          x: finalX,
-          y: finalY,
-          rotation: finalRotation,
-          scale: finalScale,
-          opacity: 0.16,
+        gsap.set(aboutContentRef.current, {
+          opacity: 0,
+          scale: 0.85,
+          y: 40,
+          filter: "blur(12px)",
+        });
 
-          ease: "power3.in",
-
+        const mobileTimeline = gsap.timeline({
           scrollTrigger: {
-            trigger: section,
-            start: "top 90%",
-            end: "bottom top",
-            scrub: 1.4,
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=180%",
+            pin: true,
+            scrub: 1,
           },
         });
+
+        mobileTimeline
+          // PHASE 1: Hero text zooms out, fog builds, soldiers slide completely off-screen
+          .to(
+            heroContentRef.current,
+            {
+              scale: 4.2,
+              opacity: 0,
+              filter: "blur(20px)",
+              ease: "power2.in",
+            },
+            0,
+          )
+          .to(
+            blackFogRef.current,
+            {
+              opacity: 0.35,
+              ease: "power1.inOut",
+            },
+            0,
+          )
+          .to(
+            bgRef.current,
+            {
+              scale: 1.18,
+              opacity: 0.85,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            wheelWrapperRef.current,
+            {
+              scale: 1.15,
+              opacity: 0.35,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              xPercent: -200,
+              opacity: 0,
+              ease: "power2.inOut",
+            },
+            0,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              xPercent: 200,
+              opacity: 0,
+              ease: "power2.inOut",
+            },
+            0,
+          )
+
+          // PHASE 2: About DevHost emerges with zero soldiers visible
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+            },
+            1.0,
+          );
       });
-    }, lettersRef);
+
+      // ===================================
+      // TABLET TIMELINE (640px to 1023px)
+      // ===================================
+      mm.add("(min-width: 640px) and (max-width: 1023px)", () => {
+        gsap.set(heroContentRef.current, {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+        });
+
+        gsap.set(leftSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.set(rightSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.set(wheelWrapperRef.current, {
+          xPercent: -50,
+          yPercent: -50,
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(bgRef.current, {
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(blackFogRef.current, {
+          opacity: 0,
+        });
+
+        gsap.set(aboutContentRef.current, {
+          opacity: 0,
+          scale: 0.85,
+          y: 40,
+          filter: "blur(12px)",
+        });
+
+        const tabletTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=180%",
+            pin: true,
+            scrub: 1,
+          },
+        });
+
+        tabletTimeline
+          // PHASE 1: Hero text zooms out, fog builds, soldiers soften
+          .to(
+            heroContentRef.current,
+            {
+              scale: 4.2,
+              opacity: 0,
+              filter: "blur(20px)",
+              ease: "power2.in",
+            },
+            0,
+          )
+          .to(
+            blackFogRef.current,
+            {
+              opacity: 0.2,
+              ease: "power1.inOut",
+            },
+            0,
+          )
+          .to(
+            bgRef.current,
+            {
+              scale: 1.18,
+              opacity: 1,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            wheelWrapperRef.current,
+            {
+              scale: 1.15,
+              opacity: 0.35,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              opacity: 0.75,
+              scale: 0.95,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              opacity: 0.75,
+              scale: 0.95,
+              ease: "power1.out",
+            },
+            0,
+          )
+
+          // PHASE 2: About DevHost emerges with soldiers stepping outward on tablet (-18% / 18%)
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              xPercent: -18,
+              opacity: 0.7,
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              xPercent: 18,
+              opacity: 0.7,
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+            },
+            1.0,
+          );
+      });
+
+      // =========================
+      // DESKTOP TIMELINE (>= 1024px)
+      // =========================
+      mm.add("(min-width: 1024px)", () => {
+        gsap.set(heroContentRef.current, {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+        });
+
+        gsap.set(leftSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.set(rightSoldierRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          scale: 1,
+        });
+
+        gsap.set(wheelWrapperRef.current, {
+          xPercent: -50,
+          yPercent: -50,
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(bgRef.current, {
+          scale: 1,
+          opacity: 1,
+        });
+
+        gsap.set(blackFogRef.current, {
+          opacity: 0,
+        });
+
+        gsap.set(aboutContentRef.current, {
+          opacity: 0,
+          scale: 0.85,
+          y: 40,
+          filter: "blur(12px)",
+        });
+
+        const desktopTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=180%",
+            pin: true,
+            scrub: 1,
+          },
+        });
+
+        desktopTimeline
+          // PHASE 1: Hero text zooms out, fog builds, soldiers adjust opacity
+          .to(
+            heroContentRef.current,
+            {
+              scale: 4.2,
+              opacity: 0,
+              filter: "blur(20px)",
+              ease: "power2.in",
+            },
+            0,
+          )
+          .to(
+            blackFogRef.current,
+            {
+              opacity: 0.2,
+              ease: "power1.inOut",
+            },
+            0,
+          )
+          .to(
+            bgRef.current,
+            {
+              scale: 1.18,
+              opacity: 1,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            wheelWrapperRef.current,
+            {
+              scale: 1.15,
+              opacity: 0.35,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              opacity: 0.85,
+              scale: 0.95,
+              ease: "power1.out",
+            },
+            0,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              opacity: 0.85,
+              scale: 0.95,
+              ease: "power1.out",
+            },
+            0,
+          )
+
+          // PHASE 2: About DevHost emerges with soldiers stepping slightly outward (-8% / 8%)
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            leftSoldierRef.current,
+            {
+              xPercent: -8,
+              opacity: 0.95,
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            rightSoldierRef.current,
+            {
+              xPercent: 8,
+              opacity: 0.95,
+              ease: "power2.out",
+            },
+            0.35,
+          )
+          .to(
+            aboutContentRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+            },
+            1.0,
+          );
+      });
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
+
   return (
-    <div
-      ref={lettersRef}
-      className="pointer-events-none absolute inset-0 overflow-hidden"
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403]"
     >
-      {letters.map((l, i) => (
-        <span
-          key={i}
-          className="greek-letter absolute"
-          style={{
-            left: `${l.x}%`,
-            top: `${l.y}%`,
-            fontSize: `${l.size}px`,
-            opacity: l.opacity,
-            transform: `rotate(${l.rotate}deg)`,
-            color: "#c49a2a",
-            fontFamily: "'Cinzel', serif",
-            fontWeight: 700,
-            lineHeight: 1,
-            userSelect: "none",
-
-            animation: `letter-glow ${4 + i * 0.35}s ease-in-out infinite`,
-            animationDelay: `${l.delay}s`,
-          }}
-        >
-          {l.char}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function Particles() {
-  const [particles, setParticles] = useState<
-    {
-      id: number;
-      x: number;
-      delay: number;
-      duration: number;
-      size: number;
-    }[]
-  >([]);
-
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: 30 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        delay: Math.random() * 8,
-        duration: 6 + Math.random() * 6,
-        size: Math.random() * 2 + 0.5,
-      })),
-    );
-  }, []);
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {particles.map((p) => (
-        <div
-          key={p.id}
-          className="absolute rounded-full bg-[#d4a832]"
-          style={{
-            left: `${p.x}%`,
-            bottom: "-10px",
-            width: `${p.size}px`,
-            height: `${p.size}px`,
-            opacity: 0,
-            animation: `float-particle ${p.duration}s ease-out infinite`,
-            animationDelay: `${p.delay}s`,
-          }}
+      {/* HERO BACKGROUND */}
+      <div ref={bgRef} className="absolute inset-0 z-0 h-full w-full">
+        {/* DESKTOP BACKGROUND */}
+        <Image
+          src="/hero/herobackground.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hidden h-full w-full object-cover sm:block"
         />
-      ))}
-    </div>
-  );
-}
-
-type FlyingParticle = {
-  id: number;
-  glyph: string;
-  top: number;
-  left: number;
-  size: number;
-  baseOpacity: number;
-
-  dx1: number;
-  dy1: number;
-  r1: number;
-
-  dx2: number;
-  dy2: number;
-  r2: number;
-
-  dx3: number;
-  dy3: number;
-  r3: number;
-
-  dx4: number;
-  dy4: number;
-  r4: number;
-
-  duration: number;
-  delay: number;
-  buzzDuration: number;
-  buzzDelay: number;
-  bx: number;
-  by: number;
-};
-
-const GLYPHS = [
-  "Α",
-  "Ω",
-  "Δ",
-  "Λ",
-  "Σ",
-  "Φ",
-  "Ψ",
-  "Θ",
-  "Ι",
-  "Κ",
-  "Μ",
-  "Ν",
-  "Ξ",
-  "Π",
-  "Ρ",
-  "Τ",
-  "ᚠ",
-  "ᚢ",
-  "ᚦ",
-  "ᚨ",
-  "ᚱ",
-  "ᛏ",
-  "ᚺ",
-];
-
-function FlyingGlyphs() {
-  const rand = (min: number, max: number) => Math.random() * (max - min) + min;
-
-  const [particles, setParticles] = useState<FlyingParticle[]>([]);
-
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: 35 }, (_, i) => ({
-        id: i,
-        glyph: GLYPHS[Math.floor(Math.random() * GLYPHS.length)],
-        top: rand(5, 90),
-        left: rand(5, 90),
-        size: rand(8, 18),
-        baseOpacity: rand(0.25, 0.5),
-
-        dx1: rand(-18, 18),
-        dy1: rand(-14, 14),
-        r1: rand(-90, 90),
-
-        dx2: rand(-22, 22),
-        dy2: rand(-16, 16),
-        r2: rand(-90, 90),
-
-        dx3: rand(-18, 18),
-        dy3: rand(-14, 14),
-        r3: rand(-90, 90),
-
-        dx4: rand(-10, 10),
-        dy4: rand(-8, 8),
-        r4: rand(-90, 90),
-
-        duration: rand(45, 75),
-        delay: rand(-60, 0),
-        buzzDuration: rand(1.5, 3),
-        buzzDelay: rand(0, 3),
-        bx: rand(2, 5),
-        by: rand(2, 5),
-      })),
-    );
-  }, []);
-
-  return (
-    <div className="pointer-events-none absolute inset-0 z-[5] hidden overflow-hidden sm:block">
-      {particles.map((p) => (
-        <span
-          key={p.id}
-          className="flying-glyph-wrap absolute"
-          style={
-            {
-              top: `${p.top}%`,
-              left: `${p.left}%`,
-              animationDuration: `${p.duration}s`,
-              animationDelay: `${p.delay}s`,
-              "--dx1": `${p.dx1}vw`,
-              "--dy1": `${p.dy1}vh`,
-              "--r1": `${p.r1}deg`,
-              "--dx2": `${p.dx2}vw`,
-              "--dy2": `${p.dy2}vh`,
-              "--r2": `${p.r2}deg`,
-              "--dx3": `${p.dx3}vw`,
-              "--dy3": `${p.dy3}vh`,
-              "--r3": `${p.r3}deg`,
-              "--dx4": `${p.dx4}vw`,
-              "--dy4": `${p.dy4}vh`,
-              "--r4": `${p.r4}deg`,
-              "--base-opacity": p.baseOpacity,
-            } as React.CSSProperties
-          }
-        >
-          <span
-            className="flying-glyph-buzz font-serif"
-            style={
-              {
-                fontSize: `${p.size}px`,
-                animationDuration: `${p.buzzDuration}s`,
-                animationDelay: `${p.buzzDelay}s`,
-                "--bx": `${p.bx}px`,
-                "--by": `${p.by}px`,
-              } as React.CSSProperties
-            }
-          >
-            {p.glyph}
-          </span>
-        </span>
-      ))}
-    </div>
-  );
-}
-export default function App() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    let t = 0;
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const grd = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height * 0.52,
-        0,
-        canvas.width / 2,
-        canvas.height * 0.52,
-        canvas.width * 0.28,
-      );
-      grd.addColorStop(
-        0,
-        `rgba(196,154,42,${0.06 + 0.02 * Math.sin(t * 0.5)})`,
-      );
-      grd.addColorStop(
-        0.5,
-        `rgba(196,154,42,${0.03 + 0.01 * Math.sin(t * 0.5)})`,
-      );
-      grd.addColorStop(1, "rgba(196,154,42,0)");
-      ctx.fillStyle = grd;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      t += 0.02;
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <>
-      <style jsx global>{`
-        @keyframes shimmer-gold {
-          0%,
-          100% {
-            opacity: 0.4;
-          }
-          50% {
-            opacity: 1;
-          }
-        }
-
-        @keyframes float-particle {
-          0% {
-            transform: translateY(0px) translateX(0px);
-            opacity: 0;
-          }
-          15% {
-            opacity: 0.8;
-          }
-          85% {
-            opacity: 0.5;
-          }
-          100% {
-            transform: translateY(-18vh) translateX(12px);
-            opacity: 0;
-          }
-        }
-
-        @keyframes letter-glow {
-          0%,
-          100% {
-            text-shadow: 0 0 6px rgba(196, 154, 42, 0.13);
-          }
-          50% {
-            text-shadow:
-              0 0 14px rgba(196, 154, 42, 0.33),
-              0 0 28px rgba(196, 154, 42, 0.1);
-          }
-        }
-
-        @keyframes glow-pulse {
-          0%,
-          100% {
-            filter: drop-shadow(0 0 8px rgba(196, 154, 42, 0.27));
-          }
-          50% {
-            filter: drop-shadow(0 0 24px rgba(196, 154, 42, 0.53));
-          }
-        }
-
-        @keyframes shimmer-move {
-          0% {
-            background-position: 0% center;
-          }
-          100% {
-            background-position: 200% center;
-          }
-        }
-
-        .shimmer-text {
-          background: linear-gradient(
-            135deg,
-            #c49a2a 0%,
-            #f2d98a 30%,
-            #c49a2a 50%,
-            #e8c250 70%,
-            #c49a2a 100%
-          );
-          background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: shimmer-move 4s linear infinite;
-        }
-
-        .glow-gold {
-          animation: glow-pulse 3s ease-in-out infinite;
-        }
-
-        // Flying glyphs animation
-        @keyframes flying-wander {
-          0% {
-            transform: translate3d(0, 0, 0) rotate(0deg);
-            opacity: 0;
-          }
-          8% {
-            opacity: var(--base-opacity);
-          }
-          25% {
-            transform: translate3d(var(--dx1), var(--dy1), 0) rotate(var(--r1));
-          }
-          50% {
-            transform: translate3d(var(--dx2), var(--dy2), 0) rotate(var(--r2));
-          }
-          75% {
-            transform: translate3d(var(--dx3), var(--dy3), 0) rotate(var(--r3));
-          }
-          92% {
-            opacity: var(--base-opacity);
-          }
-          100% {
-            transform: translate3d(var(--dx4), var(--dy4), 0) rotate(var(--r4));
-            opacity: 0;
-          }
-        }
-
-        @keyframes flying-buzz {
-          0% {
-            transform: translate(0, 0);
-          }
-          20% {
-            transform: translate(var(--bx), calc(var(--by) * -1));
-          }
-          40% {
-            transform: translate(calc(var(--bx) * -0.6), var(--by));
-          }
-          60% {
-            transform: translate(var(--bx), var(--by));
-          }
-          80% {
-            transform: translate(calc(var(--bx) * -1), calc(var(--by) * -0.5));
-          }
-          100% {
-            transform: translate(0, 0);
-          }
-        }
-
-        .flying-glyph-wrap {
-          animation-name: flying-wander;
-          animation-timing-function: ease-in-out;
-          animation-iteration-count: infinite;
-          will-change: transform, opacity;
-        }
-
-        .flying-glyph-buzz {
-          display: inline-block;
-          animation-name: flying-buzz;
-          animation-timing-function: ease-in-out;
-          animation-iteration-count: infinite;
-          color: #ffd975;
-          font-weight: 400;
-          line-height: 1;
-          text-shadow:
-            0 0 4px rgba(255, 217, 117, 0.8),
-            0 0 10px rgba(232, 194, 80, 0.55),
-            0 0 18px rgba(196, 154, 42, 0.35);
-          will-change: transform;
-        }
-      `}</style>
-      <div
-        className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 60%, #131008 0%, #0a0900 40%, #080808 100%)",
-        }}
-      >
-        {/* IMAGES — behind overlay */}
-
-        {/* Archer - bottom right */}
-        {/* <div className="absolute right-0 bottom-0 z-0 w-32 hidden sm:block sm:w-48 md:w-56 lg:w-72 xl:w-80">
-    <Image
-      src="/archer.png"
-      alt=""
-      width={400}
-      height={400}
-      className="h-auto w-full object-contain"
-    />
-     <div className="absolute inset-0 bg-[#080808]/50" />
-  </div> */}
-
-        {/* Target - top left */}
-        {/* <div className="absolute top-0 left-0 hidden sm:block z-0 w-32 sm:w-48 md:w-56 lg:w-72 xl:w-80">
-    <Image
-      src="/target.png"
-      alt=""
-      width={400}
-      height={400}
-      className="h-auto w-full object-contain"
-    />
-  </div> */}
-
-        {/* DARK ATMOSPHERIC OVERLAY */}
-        {/* <div
-    className="pointer-events-none hidden sm:block absolute inset-0 z-[1]"
-    style={{
-      background:
-        "radial-gradient(ellipse at 50% 60%, rgba(19,16,8,0.15) 0%, rgba(10,9,0,0.55) 40%, rgba(8,8,8,0.9) 100%)",
-    }}
-  />         */}
-        <FlyingGlyphs />
-        {/* Animated radial glow */}
-        <canvas
-          ref={canvasRef}
-          className="pointer-events-none absolute inset-0 h-full w-full"
-        />
-
-        {/* Twinkling star field */}
-        <StarField />
-
-        {/* Greek letters */}
-        <GreekLetters />
-
-        {/* Floating particles */}
-        <Particles />
-
-        {/* Bottom-left decorative image */}
-
-        {/* Decorative horizontal rule — top */}
-        <div
-          className="absolute top-0 right-0 left-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, #c49a2a44, #c49a2a88, #c49a2a44, transparent)",
-          }}
-        />
-        <div
-          className="absolute top-1 right-0 left-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, #c49a2a22, #c49a2a44, #c49a2a22, transparent)",
-          }}
-        />
-
-        {/* CENTER CONTENT */}
-        <div className="relative z-10 flex flex-col items-center justify-center gap-0 px-4">
-          {/* Sponsor logos row */}
-          <div
-            className={`mr-1 mb-10 flex w-40 items-center justify-center sm:w-50`}
-          >
-            <Image
-              src="/logo-group.png"
-              alt="Logos"
-              width={250}
-              height={250}
-              priority
-              className="h-auto w-full object-contain"
-            />{" "}
-          </div>
-
-          {/* <p className="mb-10 font-norse-bold relative z-10 text-sm tracking-[2px] text-white/70 sm:text-sm sm:tracking-[4px]">
-        presents
-      </p> */}
-
-          {/* DevHost logo */}
-          <div className="glow-gold relative mb-6 flex h-30 items-center justify-center sm:h-40">
-            <Image
-              src="/DVHST.png"
-              alt="DevHost 2026"
-              width={360}
-              height={170}
-              priority
-              className="h-full w-auto object-contain"
-            />
-          </div>
-
-          {/* Tagline */}
-          <h1
-            className="font-norse-bold shimmer-text text-center text-2xl font-extrabold"
-            style={{
-              fontWeight: 700,
-              letterSpacing: "0.05em",
-              marginBottom: "0",
-            }}
-          >
-            Ideas that Echo Through Time
-          </h1>
-        </div>
-
-        {/* Bottom decorative rule */}
-        <div
-          className="absolute right-0 bottom-1 left-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, #c49a2a44, #c49a2a88, #c49a2a44, transparent)",
-          }}
-        />
-        <div
-          className="absolute right-0 bottom-0 left-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, #c49a2a22, #c49a2a44, #c49a2a22, transparent)",
-          }}
+        {/* MOBILE BACKGROUND */}
+        <Image
+          src="/hero/mobile_hero.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="block h-full w-full object-cover sm:hidden"
         />
       </div>
-    </>
+
+      {/* FULL PITCH-BLACK FOG TRANSITION OVERLAY */}
+      <div
+        ref={blackFogRef}
+        className="pointer-events-none absolute inset-0 z-10 h-full w-full bg-[#050403]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(5,4,3,0.55) 0%, rgba(5,4,3,0.92) 85%)",
+        }}
+      />
+
+      {/* ROTATING RUNE WHEEL */}
+      <div
+        ref={wheelWrapperRef}
+        className="pointer-events-none absolute top-1/2 left-1/2 z-[2] aspect-square w-[min(78vw,260px)] sm:w-[min(70vw,380px)] md:w-[min(65vw,480px)] lg:w-[min(85vw,620px)]"
+      >
+        <div className="h-full w-full animate-[spin_35s_linear_infinite]">
+          <Image
+            src="/hero/hero-section-wheel.png"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 640px) 78vw, 620px"
+            className="object-contain"
+          />
+        </div>
+      </div>
+
+      {/* LEFT SOLDIER */}
+      <div
+        ref={leftSoldierRef}
+        className="pointer-events-none absolute bottom-0 left-[-4%] z-[12] w-[min(46vw,190px)] sm:left-0 sm:w-auto"
+      >
+        {/* DESKTOP SOLDIER LEFT */}
+        <Image
+          src="/hero/soldier-left.png"
+          alt=""
+          width={500}
+          height={600}
+          priority
+          className="hidden h-[min(80vh,540px)] w-auto object-contain object-bottom sm:block"
+        />
+        {/* MOBILE SOLDIER LEFT */}
+        <Image
+          src="/hero/mobile_soldier_left.png"
+          alt=""
+          width={400}
+          height={600}
+          priority
+          className="block h-80 w-full object-contain sm:hidden"
+        />
+      </div>
+
+      {/* RIGHT SOLDIER */}
+      <div
+        ref={rightSoldierRef}
+        className="pointer-events-none absolute right-[-8%] bottom-0 z-[12] w-[min(46vw,340px)] sm:right-0 sm:w-auto"
+      >
+        {/* DESKTOP SOLDIER RIGHT */}
+        <Image
+          src="/hero/soldier-right.png"
+          alt=""
+          width={500}
+          height={600}
+          priority
+          className="hidden h-[min(80vh,540px)] w-auto object-contain object-bottom sm:block"
+        />
+        {/* MOBILE SOLDIER RIGHT */}
+        <Image
+          src="/hero/mobile_soldier_right.png"
+          alt=""
+          width={400}
+          height={600}
+          priority
+          className="block h-80 w-full object-contain sm:hidden"
+        />
+      </div>
+
+      {/* HERO CONTENT LAYER */}
+      <div
+        ref={heroContentRef}
+        className="relative z-20 flex flex-col items-center justify-center px-4 text-center max-sm:-translate-y-10 sm:px-6"
+      >
+        {/* LOGOS ABOVE TITLE */}
+        <div className="relative z-10 mb-2 flex items-center justify-center gap-2 sm:mb-3 sm:gap-3 md:mb-4 md:gap-4 lg:gap-5">
+          <Image
+            src="/sosc_logo.svg"
+            alt="SOSC"
+            width={70}
+            height={70}
+            priority
+            className="h-auto w-10 sm:w-12 md:w-14 lg:w-16"
+          />
+          <Image
+            src="/synergia_logo.svg"
+            alt="Synergia"
+            width={150}
+            height={70}
+            priority
+            className="h-auto w-16 sm:w-20 md:w-24 lg:w-28"
+          />
+          <Image
+            src="/sahyadri-logo.png"
+            alt="Sahyadri"
+            width={90}
+            height={90}
+            priority
+            className="h-auto w-10 sm:w-12 md:w-14 lg:w-16"
+          />
+        </div>
+
+        {/* DEVHOST TITLE */}
+        <div className="relative z-10">
+          <div
+            className="absolute -inset-x-20 -inset-y-10 -z-10 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(ellipse, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.2) 65%, transparent 82%)",
+            }}
+          />
+          <div
+            className="absolute -inset-x-10 -inset-y-6 -z-10 scale-90 blur-xl"
+            style={{
+              background:
+                "radial-gradient(ellipse, rgba(212,175,55,0.35) 0%, rgba(212,175,55,0.12) 45%, transparent 75%)",
+            }}
+          />
+          <Image
+            src="/DVHST.png"
+            alt="DevHost"
+            width={390}
+            height={200}
+            priority
+            className="mb-4 h-34 w-auto sm:mb-5 sm:h-40 md:mb-6 md:h-44 lg:h-49"
+          />
+        </div>
+
+        {/* TAGLINE */}
+        <p className="font-norse-bold relative z-10 text-base tracking-wider text-white sm:text-lg sm:tracking-widest md:text-xl lg:text-2xl">
+          Ideas that Echo Through Time
+        </p>
+      </div>
+
+      {/* ABOUT DEVHOST CONTENT LAYER */}
+      <div
+        ref={aboutContentRef}
+        id="about"
+        className="pointer-events-auto absolute inset-0 z-30 flex flex-col items-center justify-center px-4 text-center sm:px-6"
+      >
+        <div className="mx-auto w-[90%] max-w-4xl text-center">
+          {/* TITLE */}
+          <div className="relative mb-4 text-center sm:mb-6">
+            <h2 className="font-norse-bold mb-2 text-5xl font-extrabold tracking-[0.12em] uppercase sm:text-6xl md:text-7xl lg:text-8xl">
+              <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+                {devhostData.title}
+              </span>
+            </h2>
+
+            {/* CAPTION */}
+            <h3 className="font-norse text-base font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:text-lg sm:tracking-[0.14em] md:text-xl lg:text-2xl">
+              {devhostData.caption}
+            </h3>
+          </div>
+
+          {/* DESCRIPTION */}
+          <div className="relative mx-auto w-full text-justify sm:max-w-[85%] md:max-w-[80%]">
+            <p
+              className="font-lora text-justify text-sm leading-relaxed tracking-[0.02em] break-words text-white sm:text-base sm:leading-[1.75] sm:tracking-[0.03em] md:text-lg"
+              style={{
+                textShadow:
+                  "0 1px 1px rgba(0,0,0,.7), 0 0 12px rgba(246,204,96,.08)",
+              }}
+            >
+              {devhostData.about}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

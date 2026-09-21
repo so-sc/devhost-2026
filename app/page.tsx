@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useState } from "react";
 import Hero from "@/components/Hero";
-import AboutDevhost from "@/components/AboutDevhost";
 // import Counter from "@/components/Counter";
 import TimelineSection from "@/components/Timeline";
 import Footer from "@/components/Footer";
@@ -12,12 +11,18 @@ import Events from "@/components/Events";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import SponsorsLogo from "@/components/Sponsors";
 import CallForSpeakers from "@/components/CallForSpeakers";
-import Gallery from "@/components/Gallery";
+// import Gallery from "@/components/Gallery";
 import Devhack from "@/components/Devhack";
 
 const criticalImages = [
-  "/logo-group.png",
   "/DVHST.png",
+  "/hero/hero-section-wheel.png",
+  "/hero/herobackground.png",
+  "/hero/mobile_hero.png",
+  "/hero/mobile_soldier_left.png",
+  "/hero/mobile_soldier_right.png",
+  "/hero/soldier-left.png",
+  "/hero/soldier-right.png",
 
   // DevHack
   "/assets/devhack/pure-background.webp",
@@ -87,7 +92,7 @@ export default function Home() {
         <Hero />
         {/* <Counter /> */}
         {/* <Final /> */}
-        <AboutDevhost />
+        {/* <AboutDevhost /> */}
         {/* <div className="relative h-[30vh]">
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
         </div> */}
@@ -101,7 +106,7 @@ export default function Home() {
         </div>
         <TimelineSection />
         <Events />
-        <Gallery />
+        {/* <Gallery /> */}
         <FAQ />
         <Map />
         <Footer />

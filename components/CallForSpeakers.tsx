@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -36,165 +35,164 @@ export default function CallForSpeakers() {
   const sectionRef = useRef<HTMLElement>(null);
   const darkRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
-  const fadeRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+  const exitRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
+
     if (!section) return;
 
-    const items = gsap.utils.toArray<HTMLElement>("[data-reveal]", section);
+    const ctx = gsap.context(() => {
+      const items = gsap.utils.toArray<HTMLElement>("[data-reveal]", section);
 
-    const wraps = gsap.utils.toArray<HTMLElement>("[data-beam-wrap]", section);
+      const wraps = gsap.utils.toArray<HTMLElement>(
+        "[data-beam-wrap]",
+        section,
+      );
 
-    const beams = gsap.utils.toArray<HTMLElement>("[data-beam]", section);
+      const beams = gsap.utils.toArray<HTMLElement>("[data-beam]", section);
 
-    gsap.set(wraps, {
-      rotation: (_i: number, el: HTMLElement) => Number(el.dataset.rot),
-      transformOrigin: "50% 0%",
-    });
+      gsap.set(wraps, {
+        rotation: (_i: number, el: HTMLElement) => Number(el.dataset.rot) || 0,
+        transformOrigin: "50% 0%",
+      });
 
-    gsap.set(beams, {
-      transformOrigin: "50% 0%",
-      opacity: 0,
-      scaleY: 0.15,
-    });
-
-    gsap.set(bgRef.current, {
-      opacity: 0,
-    });
-
-    gsap.set(darkRef.current, {
-      opacity: 1,
-    });
-
-    gsap.set(glowRef.current, {
-      opacity: 0,
-    });
-
-    gsap.set(items, {
-      opacity: 0,
-      y: 28,
-    });
-
-    const tl = gsap.timeline({
-      paused: true,
-    });
-
-    tl.to(
-      glowRef.current,
-      {
-        opacity: 1,
-        duration: 1.4,
-        ease: "power2.out",
-      },
-      0,
-    );
-
-    tl.to(
-      beams,
-      {
-        opacity: 1,
-        scaleY: 1,
-        duration: 1.8,
-        ease: "power2.out",
-        stagger: 0.12,
-      },
-      0.05,
-    );
-
-    tl.to(
-      bgRef.current,
-      {
-        opacity: 1,
-        duration: 1.0,
-        ease: "power2.out",
-      },
-      0.2,
-    );
-
-    tl.to(
-      darkRef.current,
-      {
+      gsap.set(beams, {
+        transformOrigin: "50% 0%",
         opacity: 0,
-        duration: 1.5,
-        ease: "power2.inOut",
-      },
-      1.9,
-    );
-    tl.to(
-      items,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.1,
-      },
-      1.05,
-    );
+        scaleY: 0.12,
+      });
 
-    const sway = wraps.map((el, i) =>
-      gsap.to(el, {
-        rotation: Number(el.dataset.rot) + (i % 2 ? -2 : 2),
-        opacity: 0.7,
-        duration: 6 + i * 1.7,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
+      gsap.set(bgRef.current, {
+        opacity: 0,
+      });
+
+      gsap.set(darkRef.current, {
+        opacity: 1,
+      });
+
+      gsap.set(glowRef.current, {
+        opacity: 0,
+      });
+
+      gsap.set(exitRef.current, {
+        opacity: 0,
+      });
+
+      gsap.set(items, {
+        opacity: 0,
+        y: 32,
+      });
+
+      const entranceTl = gsap.timeline({
         paused: true,
-      }),
-    );
+      });
 
-    const show = () => {
-      tl.timeScale(1).play();
-      sway.forEach((t) => t.play());
-    };
-
-    const hide = () => {
-      tl.timeScale(1.8).reverse();
-      sway.forEach((t) => t.pause());
-    };
-
-    const reset = () => {
-      tl.pause(0);
-      sway.forEach((t) => t.pause());
-    };
-
-    const trigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top 75%",
-      end: "bottom top",
-      onEnter: show,
-      onEnterBack: show,
-      onLeave: reset,
-      onLeaveBack: hide,
-    });
-
-    gsap.fromTo(
-      fadeRef.current,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "bottom bottom",
-          end: "bottom 15%",
-          scrub: 1.2,
+      entranceTl.to(
+        bgRef.current,
+        {
+          opacity: 1,
+          duration: 0.55,
+          ease: "none",
         },
-      },
-    );
+        0,
+      );
 
-    ScrollTrigger.refresh();
+      entranceTl.to(
+        glowRef.current,
+        {
+          opacity: 1,
+          duration: 0.9,
+          ease: "none",
+        },
+        0,
+      );
 
-    return () => {
-      trigger.kill();
-      sway.forEach((t) => t.kill());
-      tl.kill();
-    };
+      entranceTl.to(
+        beams,
+        {
+          opacity: 1,
+          scaleY: 1,
+          duration: 0.9,
+          ease: "none",
+          stagger: 0.06,
+        },
+        0,
+      );
+
+      entranceTl.to(
+        darkRef.current,
+        {
+          opacity: 0,
+          duration: 0.75,
+          ease: "none",
+        },
+        0.27,
+      );
+
+      entranceTl.to(
+        items,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.45,
+          ease: "power2.out",
+        },
+        0.32,
+      );
+
+      const entranceTrigger = ScrollTrigger.create({
+        trigger: section,
+        start: "top bottom",
+        end: "bottom 15%",
+        scrub: true,
+        animation: entranceTl,
+      });
+
+      const exitTl = gsap.timeline({
+        paused: true,
+      });
+
+      exitTl.to(exitRef.current, {
+        opacity: 1,
+        duration: 1,
+        ease: "none",
+      });
+
+      const exitTrigger = ScrollTrigger.create({
+        trigger: section,
+        start: "bottom 20%",
+        end: "bottom top",
+        scrub: true,
+        animation: exitTl,
+      });
+
+      const sway = wraps.map((el, i) =>
+        gsap.to(el, {
+          rotation: Number(el.dataset.rot) + (i % 2 ? -2 : 2),
+          opacity: 0.7,
+          duration: 6 + i * 1.7,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        }),
+      );
+
+      ScrollTrigger.refresh();
+
+      return () => {
+        entranceTrigger.kill();
+        exitTrigger.kill();
+
+        sway.forEach((tween) => tween.kill());
+
+        entranceTl.kill();
+        exitTl.kill();
+      };
+    }, section);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -212,7 +210,7 @@ export default function CallForSpeakers() {
 
       <div
         ref={darkRef}
-        className="pointer-events-none absolute inset-0 z-[2] bg-[#050403] opacity-100"
+        className="pointer-events-none absolute inset-0 z-[2] bg-[#050403]"
       />
 
       <div
@@ -255,36 +253,32 @@ export default function CallForSpeakers() {
         ))}
       </div>
 
-      <div className="relative z-10 flex min-h-svh w-full flex-col justify-between">
+      <div
+        ref={exitRef}
+        className="pointer-events-none absolute inset-0 z-[20] bg-black opacity-0"
+      />
+
+      <div
+        data-reveal
+        className="relative z-10 flex min-h-svh w-full flex-col justify-between"
+      >
         <div className="w-full px-4 md:px-20 xl:px-30 xl:pt-24">
-          <h2
-            data-reveal
-            className="font-norse-bold mb-2 bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-6xl font-extrabold tracking-[0.12em] text-transparent uppercase drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)] md:text-8xl"
-          >
+          <h2 className="font-norse-bold mb-2 bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-6xl font-extrabold tracking-[0.12em] text-transparent uppercase drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)] md:text-8xl">
             Call for Speakers
           </h2>
 
-          <p
-            data-reveal
-            className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
-          >
+          <p className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
             Grace the mythic stage of DevHost 2026
           </p>
 
-          <p
-            data-reveal
-            className="font-lora text-md mx-[-10] mt-8 max-w-xl px-3 leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em] md:py-10 lg:max-w-6xl lg:py-10 xl:max-w-5xl"
-          >
+          <p className="font-lora text-md mx-[-10] mt-8 max-w-xl px-3 leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em] md:py-10 lg:max-w-6xl lg:py-10 xl:max-w-5xl">
             Share your knowledge, research, and technical vision with
             developers, students, and industry leaders. Whether your focus is AI
             and machine learning, open source infrastructure, cloud and Web3, or
             software architecture, take the stage at DevHost 2026.
           </p>
 
-          <div
-            data-reveal
-            className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-18 md:mt-2"
-          >
+          <div className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-18 md:mt-2">
             <Button
               onClick={() => {
                 window.location.href = "https://forms.gle/PxRYSUCY5ycXWERDA";
@@ -295,15 +289,10 @@ export default function CallForSpeakers() {
           </div>
         </div>
 
-        <div data-reveal className="mt-10 w-full">
+        <div className="mt-10 w-full">
           <SpeakerCarousel />
         </div>
       </div>
-
-      <div
-        ref={fadeRef}
-        className="pointer-events-none absolute inset-0 z-20 bg-[#050403] opacity-0"
-      />
     </section>
   );
 }

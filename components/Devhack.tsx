@@ -1,21 +1,8 @@
-// Devhack.tsx — DEV HACK intro
-//
-// Scroll-driven version.
-//
-// ORDER:
-//   1. Pure background fades in briefly
-//   2. Left/right swords enter and clash
-//   3. Impact: flash + shockwave + screen shake + live embers/sparks
-//   4. Final background fades in and swords fade away
-//   5. Title reveals
-//   6. Details reveal one after another
-
 "use client";
 
 import { useRef } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import Button from "./Button";
-import Link from "next/link";
 import EmberCanvas, { type EmberCanvasHandle } from "./EmberCanvas";
 
 const CLASH_Y = 40; // % from the top where the blades meet
