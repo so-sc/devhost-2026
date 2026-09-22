@@ -98,10 +98,10 @@ export default function Home() {
         </div> */}
         {/* <SpeakersInfo /> */}
         <CallForSpeakers />
-        <div className="relative z-0">
+        <div className="relative z-10">
           <SponsorsLogo />
         </div>
-        <div className="relative z-10 -mt-[100vh]">
+        <div className="pointer-events-none relative z-10 -mt-[100vh]">
           <Devhack />
         </div>
         <TimelineSection />

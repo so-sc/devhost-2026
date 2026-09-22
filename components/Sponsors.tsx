@@ -82,7 +82,7 @@ export default function SponsorsLogo() {
   return (
     <section
       id="sponsors"
-      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-18 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-18 pb-24 text-white sm:py-30 sm:pb-32 lg:px-8"
     >
       {/* Section background */}
       <div

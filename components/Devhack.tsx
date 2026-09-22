@@ -520,7 +520,7 @@ export default function DevHackSection() {
 
           {/* DETAILS */}
           <div
-            className="pointer-events-auto absolute inset-x-0 z-40 flex flex-col items-center px-5 text-center"
+            className="pointer-events-none absolute inset-x-0 z-40 flex flex-col items-center px-5 text-center"
             style={{ top: "56%" }}
           >
             <p
@@ -532,7 +532,7 @@ export default function DevHackSection() {
               you build in that window is up to you.
             </p>
 
-            <div className="js-detail">
+            <div className="js-detail pointer-events-auto">
               <Button
                 onClick={() => {
                   window.location.href =
