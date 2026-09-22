@@ -259,6 +259,9 @@ const ScrollParchmentWrapper = ({
 
                         {/* Title */}
                         <h3 className="font-norse-bold mx-auto w-full text-3xl font-bold tracking-wide break-words text-[#F6CC60] sm:max-w-[85%] sm:text-4xl lg:max-w-none">
+                          <span className="mr-2 mb-2 inline-flex align-middle tracking-tighter">
+                            {event.icon}
+                          </span>
                           {event.title}
                         </h3>
 
