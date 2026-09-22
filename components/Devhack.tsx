@@ -33,8 +33,8 @@ function Anchor({
 const ASSETS = {
   pureBackground: "/assets/devhack/pure-background.webp",
   background: "/assets/devhack/background.webp",
-  swordLeft: "/assets/devhack/left-arm.png",
-  swordRight: "/assets/devhack/right-arm.png",
+  swordLeft: "/assets/devhack/leftarm.png",
+  swordRight: "/assets/devhack/rightarm.png",
   title: "/assets/devhack/dev-hack-logo.svg",
 };
 
