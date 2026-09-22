@@ -5,13 +5,9 @@ import { useMotionValueEvent, useScroll } from "framer-motion";
 import Button from "./Button";
 import EmberCanvas, { type EmberCanvasHandle } from "./EmberCanvas";
 
-const CLASH_Y = 40; // % from the top where the blades meet
+const CLASH_Y = 40; // % from top where blades meet
 const SWORD_W = "min(130vw, 1400px)";
 
-/**
- * Centres its children on the clash point.
- * Layout does the centring, so transforms are animation-only.
- */
 function Anchor({
   children,
   className = "",
@@ -29,7 +25,6 @@ function Anchor({
   );
 }
 
-// DevHack assets
 const ASSETS = {
   pureBackground: "/assets/devhack/pure-background.webp",
   background: "/assets/devhack/background.webp",
@@ -39,20 +34,9 @@ const ASSETS = {
 };
 
 export default function DevHackSection() {
-  /*
-   * IMPORTANT:
-   * Use a normal HTMLElement ref for useScroll.
-   * Do not use useAnimate() scope as the scroll target.
-   */
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const embers = useRef<EmberCanvasHandle>(null);
 
-  /*
-   * Entire animation is controlled by scroll progress.
-   *
-   * The section itself remains exactly 100svh,
-   * so the visual section/layout is unchanged.
-   */
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
@@ -65,9 +49,6 @@ export default function DevHackSection() {
 
     if (!root) return;
 
-    /*
-     * Helpers
-     */
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
     const range = (value: number, start: number, end: number) => {
@@ -93,21 +74,13 @@ export default function DevHackSection() {
       return x * x * x;
     };
 
-    /*
-     * IMPORTANT:
-     * This is now safely scoped to the actual section element.
-     */
     const setStyle = (selector: string, styles: Record<string, string>) => {
       root.querySelectorAll<HTMLElement>(selector).forEach((element) => {
         Object.assign(element.style, styles);
       });
     };
 
-    /*
-     * =========================================================
-     * 1. TRANSITION OVERLAYS
-     * =========================================================
-     */
+    // 1. TRANSITION OVERLAYS
     setStyle(".js-darken", {
       opacity: String(easeIn(range(progress, 0, 0.15))),
     });
@@ -116,35 +89,25 @@ export default function DevHackSection() {
       opacity: String(easeIn(range(progress, 0.05, 0.2))),
     });
 
-    /*
-     * =========================================================
-     * 2. SWORDS
-     * =========================================================
-     *
-     * LEFT:
-     *   x: -100vw → -8vw
-     *   y: 70 → 0
-     *
-     * RIGHT:
-     *   x: 100vw → 8vw
-     *   y: 70 → 0
-     */
-    const swordProgress = easeIn(range(progress, 0, 0.28));
-    const leftX = -100 + 92 * swordProgress;
+    // 2. SWORDS
+    // Swords target leftX = -8 (clash at center) but are clamped so the
+    // outer edge never crosses the viewport boundary. SWORD_W is capped at
+    // 1400px on large screens, so swordHalfVw is computed from actual px.
+    const vw = window.innerWidth;
+    const swordHalfVw = (Math.min(1.3 * vw, 1400) / vw / 2) * 100;
+    const leftXFinal = swordHalfVw - 50; // left edge at viewport boundary
 
-    const rightX = 100 - 92 * swordProgress;
+    const swordProgress = easeIn(range(progress, 0, 0.28));
+    const naturalLeftX = -100 + 92 * swordProgress;
+    const naturalRightX = 100 - 92 * swordProgress;
+
+    const leftX = Math.min(naturalLeftX, leftXFinal);
+    const rightX = Math.max(naturalRightX, -leftXFinal);
 
     const swordY = 45 - 45 * swordProgress;
     const swordOpacity = easeOut(range(progress, 0, 0.05));
-    /*
-     * =========================================================
-     * 3. IMPACT
-     * =========================================================
-     */
 
-    /*
-     * FLASH
-     */
+    // 3. IMPACT — FLASH
     let flashOpacity = 0;
 
     if (progress >= 0.27 && progress <= 0.34) {
@@ -167,9 +130,7 @@ export default function DevHackSection() {
       transform: `scale(${flashScale})`,
     });
 
-    /*
-     * STREAK
-     */
+    // STREAK
     const streakIn = smooth(range(progress, 0.28, 0.33));
     const streakOut = 1 - smooth(range(progress, 0.33, 0.38));
     setStyle(".js-streak", {
@@ -177,9 +138,7 @@ export default function DevHackSection() {
       transform: `scaleX(${streakIn})`,
     });
 
-    /*
-     * RING
-     */
+    // RING
     const ringProgress = smooth(range(progress, 0.28, 0.42));
     const ringFade = 1 - smooth(range(progress, 0.28, 0.4));
     setStyle(".js-ring", {
@@ -187,9 +146,7 @@ export default function DevHackSection() {
       transform: `scale(${0.15 + ringProgress * 3.05})`,
     });
 
-    /*
-     * SCREEN SHAKE
-     */
+    // SCREEN SHAKE
     const mobile =
       typeof window !== "undefined" &&
       window.matchMedia("(max-width: 768px)").matches;
@@ -215,11 +172,7 @@ export default function DevHackSection() {
       transform: `translate3d(${shakeX}px, ${shakeY}px, 0) scale(${shakeScale})`,
     });
 
-    /*
-     * =========================================================
-     * 4. SWORD RECOIL
-     * =========================================================
-     */
+    // 4. SWORD RECOIL
     const recoilProgress = range(progress, 0.28, 0.42);
     let recoilLeft = -6;
     let recoilRight = 6;
@@ -244,11 +197,7 @@ export default function DevHackSection() {
 
     const recoilRightVw = recoilRight / 10;
 
-    /*
-     * =========================================================
-     * 5. FINAL BACKGROUND + SWORD FADE
-     * =========================================================
-     */
+    // 5. FINAL BACKGROUND + SWORD FADE
     const finalBgProgress = smooth(range(progress, 0.5, 0.65));
 
     setStyle(".js-bg-final", {
@@ -267,11 +216,7 @@ export default function DevHackSection() {
       transform: `translate3d(${rightX + recoilRightVw}vw, ${swordY}px, 0)`,
     });
 
-    /*
-     * =========================================================
-     * 6. TITLE GLOW
-     * =========================================================
-     */
+    // 6. TITLE GLOW
     const glowIn = smooth(range(progress, 0.6, 0.72));
 
     const glowCool = smooth(range(progress, 0.72, 0.86));
@@ -281,11 +226,7 @@ export default function DevHackSection() {
       transform: `scale(${0.7 + glowIn * 0.45})`,
     });
 
-    /*
-     * =========================================================
-     * 7. TITLE
-     * =========================================================
-     */
+    // 7. TITLE
     const titleProgress = easeOut(range(progress, 0.62, 0.76));
 
     setStyle(".js-title-img", {
@@ -298,16 +239,7 @@ export default function DevHackSection() {
       filter: `blur(${14 - 14 * titleProgress}px)`,
     });
 
-    /*
-     * =========================================================
-     * 8. DETAILS
-     * =========================================================
-     *
-     * Three elements:
-     *   1. heading
-     *   2. description
-     *   3. register button
-     */
+    // 8. DETAILS
     const detailStarts = [0.74, 0.795, 0.85];
 
     const details = root.querySelectorAll<HTMLElement>(".js-detail");
@@ -322,11 +254,7 @@ export default function DevHackSection() {
       detail.style.transform = `translate3d(0, ${20 - 20 * detailProgress}px, 0)`;
     });
 
-    /*
-     * =========================================================
-     * 10. EXIT TRANSITION
-     * =========================================================
-     */
+    // 9. EXIT TRANSITION
     const exitProgress = smooth(range(progress, 0.82, 1.0));
     setStyle(".js-exit", {
       opacity: String(exitProgress),
@@ -337,14 +265,7 @@ export default function DevHackSection() {
       opacity: String(embersFade),
     });
 
-    /*
-     * =========================================================
-     * 9. EMBERS
-     * =========================================================
-     *
-     * Scroll triggers the collision once.
-     * The actual particles continue running independently.
-     */
+    // 10. EMBERS — triggered once at clash, re-arms when scrolling back
     if (progress >= 0.28 && !impactTriggered.current) {
       impactTriggered.current = true;
 
@@ -356,10 +277,6 @@ export default function DevHackSection() {
       embers.current?.trickle(2.8, 45);
     }
 
-    /*
-     * Allow another collision after scrolling
-     * sufficiently far backwards.
-     */
     if (progress < 0.22) {
       impactTriggered.current = false;
     }
@@ -368,17 +285,13 @@ export default function DevHackSection() {
   return (
     <div
       ref={sectionRef as React.RefObject<HTMLDivElement>}
-      className="relative h-[300vh] w-full"
+      className="pointer-events-none relative h-[300vh] w-full"
     >
       <section
         id="devhack"
         className="pointer-events-none sticky top-0 h-screen w-full overflow-hidden bg-transparent text-white"
         style={{ height: "100svh" }}
       >
-        {/*
-         * The stage is what shakes on impact.
-         * Background overhangs by 32px so the shake never shows an edge.
-         */}
         <div className="js-stage absolute inset-0 will-change-transform">
           {/* BACKGROUNDS */}
           <div className="absolute inset-0" style={{ inset: "-32px" }}>
@@ -546,7 +459,7 @@ export default function DevHackSection() {
             </div>
           </div>
 
-          {/* EMBERS — above everything */}
+          {/* EMBERS */}
           <EmberCanvas
             ref={embers}
             originX={0.5}
