@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { events } from "@/assets/data/events";
+import Button from "./Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -264,6 +265,16 @@ export default function Events() {
                         </span>
                         {event.contact}
                       </p>
+                      {/* <div className="mt-4 scale-70 origin-top-left">
+                      <Button
+                onClick={() => {
+                  window.location.href =
+                    `${event.registrationLink}`;
+                }}
+              >
+                Register
+              </Button>
+              </div> */}
                     </div>
                   </div>
                 </div>
