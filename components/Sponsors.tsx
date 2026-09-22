@@ -99,7 +99,7 @@ export default function SponsorsLogo() {
       {/* Dark overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.07),transparent_65%)]" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-4 sm:px-6">
         {/* Small ornament */}
         <div className="mb-2 opacity-70">
           <div className="relative h-14 w-14">
