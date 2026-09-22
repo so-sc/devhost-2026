@@ -145,7 +145,8 @@ const Footer = () => {
               </Link>
 
               <div className="mt-5 w-40 border-t border-[#C8A24C]/40"></div>
-              <p className="pt-4">
+              <p className="pt-4 font-bold">Organisers:</p>
+              <p className="pt-2">
                 Name: Soniya Kolvekar
                 <br />
                 Phone: +91 86189 50479

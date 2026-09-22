@@ -59,4 +59,16 @@ export const events = [
     contact: "+91 9008616250",
     image: "/event/BFF.png",
   },
+  {
+    id: 6,
+    title: "The Mythical Canvas",
+    tagline: "The Creator's Quest",
+    description:
+      "A content creation contest judged by attention, not accuracy. Turn DevHost into a story worth watching. The algorithm only cares whether people stopped scrolling.",
+    date: "12 & 13 Nov",
+    time: "9:00 AM",
+    organizer: "Jenisha Dsouza",
+    contact: "+91 9148412527",
+    image: "/event/content.jpeg",
+  },
 ];
