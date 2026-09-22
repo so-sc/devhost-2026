@@ -33,15 +33,15 @@ const SUN_GLOW = `radial-gradient(
 
 export default function CallForSpeakers() {
   const sectionRef = useRef<HTMLElement>(null);
-  const darkRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const exitRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
 
     if (!section) return;
+
+    let refreshTimer: NodeJS.Timeout;
 
     const ctx = gsap.context(() => {
       const items = gsap.utils.toArray<HTMLElement>("[data-reveal]", section);
@@ -56,122 +56,69 @@ export default function CallForSpeakers() {
       gsap.set(wraps, {
         rotation: (_i: number, el: HTMLElement) => Number(el.dataset.rot) || 0,
         transformOrigin: "50% 0%",
+        force3D: true,
       });
 
       gsap.set(beams, {
         transformOrigin: "50% 0%",
         opacity: 0,
         scaleY: 0.12,
+        force3D: true,
       });
 
       gsap.set(bgRef.current, {
         opacity: 0,
-      });
-
-      gsap.set(darkRef.current, {
-        opacity: 1,
+        force3D: true,
       });
 
       gsap.set(glowRef.current, {
         opacity: 0,
-      });
-
-      gsap.set(exitRef.current, {
-        opacity: 0,
+        force3D: true,
       });
 
       gsap.set(items, {
         opacity: 0,
         y: 32,
+        force3D: true,
       });
 
       const entranceTl = gsap.timeline({
-        paused: true,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 90%",
+          end: "top 25%",
+          scrub: 0.4,
+          invalidateOnRefresh: true,
+        },
       });
 
-      entranceTl.to(
-        bgRef.current,
-        {
-          opacity: 1,
-          duration: 0.55,
-          ease: "none",
-        },
-        0,
-      );
-
-      entranceTl.to(
-        glowRef.current,
-        {
-          opacity: 1,
-          duration: 0.9,
-          ease: "none",
-        },
-        0,
-      );
-
-      entranceTl.to(
-        beams,
-        {
-          opacity: 1,
-          scaleY: 1,
-          duration: 0.9,
-          ease: "none",
-          stagger: 0.06,
-        },
-        0,
-      );
-
-      entranceTl.to(
-        darkRef.current,
-        {
-          opacity: 0,
-          duration: 0.75,
-          ease: "none",
-        },
-        0.27,
-      );
-
-      entranceTl.to(
-        items,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.45,
-          ease: "power2.out",
-        },
-        0.32,
-      );
-
-      const entranceTrigger = ScrollTrigger.create({
-        trigger: section,
-        start: "top bottom",
-        end: "bottom 15%",
-        scrub: true,
-        animation: entranceTl,
-      });
-
-      const exitTl = gsap.timeline({
-        paused: true,
-      });
-
-      exitTl.to(exitRef.current, {
-        opacity: 1,
-        duration: 1,
-        ease: "none",
-      });
-
-      const exitTrigger = ScrollTrigger.create({
-        trigger: section,
-        start: "bottom 20%",
-        end: "bottom top",
-        scrub: true,
-        animation: exitTl,
-      });
+      entranceTl
+        .to(bgRef.current, { opacity: 1, ease: "none" }, 0)
+        .to(glowRef.current, { opacity: 1, ease: "none" }, 0)
+        .to(
+          beams,
+          {
+            opacity: 1,
+            scaleY: 1,
+            stagger: 0.04,
+            ease: "none",
+          },
+          0,
+        )
+        .to(
+          items,
+          {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+          },
+          0.1,
+        );
 
       const sway = wraps.map((el, i) =>
         gsap.to(el, {
           rotation: Number(el.dataset.rot) + (i % 2 ? -2 : 2),
-          opacity: 0.7,
+          opacity: 0.75,
           duration: 6 + i * 1.7,
           ease: "sine.inOut",
           yoyo: true,
@@ -179,16 +126,13 @@ export default function CallForSpeakers() {
         }),
       );
 
-      ScrollTrigger.refresh();
+      refreshTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 250);
 
       return () => {
-        entranceTrigger.kill();
-        exitTrigger.kill();
-
+        clearTimeout(refreshTimer);
         sway.forEach((tween) => tween.kill());
-
-        entranceTl.kill();
-        exitTl.kill();
       };
     }, section);
 
@@ -203,19 +147,14 @@ export default function CallForSpeakers() {
     >
       <div
         ref={bgRef}
-        className="absolute inset-0 bg-[url('/images/greek-callfs2.png')] bg-cover bg-right bg-no-repeat opacity-0 lg:bg-[url('/images/greek-callfs.png')]"
+        className="absolute inset-0 bg-[url('/images/greek-callfs2.png')] bg-cover bg-center bg-no-repeat opacity-0 will-change-[opacity] sm:bg-right lg:bg-[url('/images/greek-callfs.png')]"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
-
-      <div
-        ref={darkRef}
-        className="pointer-events-none absolute inset-0 z-[2] bg-[#050403]"
-      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent sm:bg-gradient-to-r sm:from-black/70 sm:via-black/30 sm:to-transparent" />
 
       <div
         ref={glowRef}
-        className="pointer-events-none absolute inset-0 z-[3] mix-blend-screen"
+        className="pointer-events-none absolute inset-0 z-[3] opacity-0 mix-blend-screen will-change-[opacity]"
         style={{
           background: SUN_GLOW,
         }}
@@ -227,7 +166,7 @@ export default function CallForSpeakers() {
             key={i}
             data-beam-wrap
             data-rot={b.rot}
-            className={`absolute -top-[4%] h-[105%] ${
+            className={`absolute -top-[4%] h-[105%] will-change-transform ${
               i >= 4 ? "hidden lg:block" : ""
             }`}
             style={{
@@ -238,7 +177,7 @@ export default function CallForSpeakers() {
           >
             <div
               data-beam
-              className="h-full w-full"
+              className="h-full w-full will-change-transform"
               style={{
                 clipPath: "polygon(40% 0, 60% 0, 100% 100%, 0 100%)",
                 background: `linear-gradient(
@@ -254,13 +193,8 @@ export default function CallForSpeakers() {
       </div>
 
       <div
-        ref={exitRef}
-        className="pointer-events-none absolute inset-0 z-[20] bg-black opacity-0"
-      />
-
-      <div
         data-reveal
-        className="relative z-10 flex min-h-svh w-full flex-col justify-between"
+        className="relative z-10 flex min-h-svh w-full flex-col justify-between will-change-[opacity,transform]"
       >
         <div className="w-full px-4 md:px-20 xl:px-30 xl:pt-24">
           <h2 className="font-norse-bold mb-2 bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-6xl font-extrabold tracking-[0.12em] text-transparent uppercase drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)] md:text-8xl">
