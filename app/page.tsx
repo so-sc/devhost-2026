@@ -106,7 +106,7 @@ export default function Home() {
         </div>
         <TimelineSection />
         <Events />
-         <Gallery /> 
+        <Gallery />
         <FAQ />
         <Map />
         <Footer />
