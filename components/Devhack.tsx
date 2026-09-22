@@ -538,8 +538,7 @@ export default function DevHackSection() {
             >
               <Button
                 onClick={() => {
-                  window.location.href =
-                    "https://forms.gle/your-devhack-register-link";
+                  window.location.href = "/register";
                 }}
               >
                 Register
