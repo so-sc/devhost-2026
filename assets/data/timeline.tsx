@@ -50,7 +50,8 @@ export const markers = [
         displayTime: "10:00 AM - 12:00 PM",
         icon: <MicVocal className="h-auto sm:w-8" />,
         title: "Voice of the Oracle (Tech Pitch)",
-        description: "A tech pitch competition where teams present their ideas before a panel of judges and compete for the top spot.",
+        description:
+          "A tech pitch competition where teams present their ideas before a panel of judges and compete for the top spot.",
         venue: "Ground Floor Seminar Hall",
       },
       {
@@ -68,7 +69,8 @@ export const markers = [
         displayTime: "1:00 PM - 03:00 PM",
         icon: <Flame className="h-auto sm:w-8" />,
         title: "Siege of Troy (CTF)",
-        description: "A Capture the Flag cybersecurity challenge where participants take on the roles of attackers and defenders.",
+        description:
+          "A Capture the Flag cybersecurity challenge where participants take on the roles of attackers and defenders.",
         venue: "Ground Floor CSE Central Lab",
       },
       {
@@ -77,7 +79,8 @@ export const markers = [
         displayTime: "3:00 PM - 05:00 PM",
         icon: <Flame className="h-auto sm:w-8" />,
         title: "The Sphinx Trial (Competitive Programming)",
-        description: "A competitive programming contest where participants solve algorithmic problems under time pressure.",
+        description:
+          "A competitive programming contest where participants solve algorithmic problems under time pressure.",
         venue: "Ground Floor CSE Central Lab",
       },
       {
@@ -86,7 +89,8 @@ export const markers = [
         displayTime: "5:00 PM - 06:00 PM",
         icon: <Flame className="h-auto sm:w-8" />,
         title: "Bonfire",
-        description: "A casual evening for participants to connect, unwind, and recharge.",
+        description:
+          "A casual evening for participants to connect, unwind, and recharge.",
         venue: "",
       },
     ],
@@ -119,7 +123,8 @@ export const markers = [
         displayTime: "10:00 AM - 05:00 PM",
         icon: <Flame className="h-auto sm:w-8" />,
         title: "Arena of Ares (BGMI)",
-        description: "A BGMI gaming tournament open to participants throughout the day.",
+        description:
+          "A BGMI gaming tournament open to participants throughout the day.",
         venue: "CAED and CIM Lab",
       },
       {
@@ -128,7 +133,8 @@ export const markers = [
         displayTime: "4:00 PM",
         icon: <Flame className="h-auto sm:w-8" />,
         title: "Concert Night",
-        description: "A live music evening for participants to unwind and celebrate the spirit of DevHost",
+        description:
+          "A live music evening for participants to unwind and celebrate the spirit of DevHost",
         venue: "",
       },
     ],
@@ -143,7 +149,8 @@ export const markers = [
         displayTime: "3:00 AM",
         icon: <Flame className="h-auto sm:w-8" />,
         title: "Flagship Hackathon Wind-Up",
-        description: "Final hours for teams to wrap up their builds before judging begins.",
+        description:
+          "Final hours for teams to wrap up their builds before judging begins.",
         venue: "Skill Labs",
       },
       {
@@ -170,7 +177,8 @@ export const markers = [
         displayTime: "2:30 PM Onwards",
         icon: <MicVocal className="h-auto sm:w-8" />,
         title: "Hackathon Valedictory",
-        description: "Closing ceremony to celebrate the builders, honor the winners, and bring DevHost 2026 to a close.",
+        description:
+          "Closing ceremony to celebrate the builders, honor the winners, and bring DevHost 2026 to a close.",
         venue: "",
       },
       {
