@@ -19,7 +19,7 @@ export const events = [
       "A security contest built around breaking things. Find the hidden flags by understanding the system before taking it apart.",
     date: "12 Nov",
     time: "01:00 PM onwards",
-    organizer: "Sweekar Shetty",
+    organizer: "Sweekar Shetty & Valasapalli Moksha",
     contact: "+91 9449417695",
     image: "/event/SOT.png",
   },
