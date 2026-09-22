@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useState } from "react";
 import Hero from "@/components/Hero";
-import AboutDevhost from "@/components/AboutDevhost";
 // import Counter from "@/components/Counter";
 import TimelineSection from "@/components/Timeline";
 import Footer from "@/components/Footer";
@@ -15,7 +14,23 @@ import CallForSpeakers from "@/components/CallForSpeakers";
 import Gallery from "@/components/Gallery";
 import Devhack from "@/components/Devhack";
 
-const criticalImages = ["/logo-group.png", "/DVHST.png"];
+const criticalImages = [
+  "/DVHST.png",
+  "/hero/hero-section-wheel.png",
+  "/hero/herobackground.png",
+  "/hero/mobile_hero.png",
+  "/hero/mobile_soldier_left.png",
+  "/hero/mobile_soldier_right.png",
+  "/hero/soldier-left.png",
+  "/hero/soldier-right.png",
+
+  // DevHack
+  "/assets/devhack/pure-background.webp",
+  "/assets/devhack/background.webp",
+  "/assets/devhack/leftarm.png",
+  "/assets/devhack/rightarm.png",
+  "/assets/devhack/dev-hack-logo.svg",
+];
 
 function preloadImages(images: string[]) {
   return Promise.all(
@@ -24,13 +39,20 @@ function preloadImages(images: string[]) {
         new Promise<void>((resolve) => {
           const img = new Image();
 
+          img.onload = async () => {
+            try {
+              await img.decode();
+            } catch {
+              // Image loaded even if decode isn't available/fails
+            }
+            resolve();
+          };
+
+          img.onerror = () => resolve();
           img.src = src;
 
           if (img.complete) {
             resolve();
-          } else {
-            img.onload = () => resolve();
-            img.onerror = () => resolve();
           }
         }),
     ),
@@ -70,14 +92,18 @@ export default function Home() {
         <Hero />
         {/* <Counter /> */}
         {/* <Final /> */}
-        <AboutDevhost />
+        {/* <AboutDevhost /> */}
         {/* <div className="relative h-[30vh]">
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
         </div> */}
         {/* <SpeakersInfo /> */}
         <CallForSpeakers />
-        <SponsorsLogo />
-        <Devhack />
+        <div className="relative z-10">
+          <SponsorsLogo />
+        </div>
+        <div className="pointer-events-none relative z-10 -mt-[100vh]">
+          <Devhack />
+        </div>
         <TimelineSection />
         <Events />
         <Gallery />

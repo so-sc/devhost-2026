@@ -53,8 +53,71 @@ const speakers = [
     img: "/speakers/RaghuAnand.jpg",
     link: "https://www.linkedin.com/in/raghuanand16",
   },
-];
+  {
+    id: 8,
+    name: "Suyog Shetty",
+    title: "Chief Executive Officer @ Niveus Solutions Pvt. Ltd.",
+    img: "/speakers/Suyog.png",
+    link: "https://www.linkedin.com/in/suyog-shetty-79693730/",
+  },
+  {
+    id: 11,
+    name: "Shashir Shetty",
+    title: "Chief Growth Officer @ Niveus Solutions",
+    img: "/speakers/shashir.png",
+    link: "https://www.linkedin.com/in/shashirshetty/",
+  },
+  {
+    id: 13,
+    name: "Shihab Kalandar",
+    title: "Co-Founder & COO, Niveus Solutions Pvt. Ltd.",
+    img: "/speakers/shihab.png",
+    link: "https://www.linkedin.com/in/shihab-kalandar-5228b315/",
+  },
+  {
+    id: 14,
+    name: "Amrith Shenava",
+    title: "Founder of Flashmates.inc",
+    img: "/speakers/amrit shenava.png",
+    link: "https://www.linkedin.com/in/amritshenava/",
+  },
+  //   {
+  //   id: 10,
+  //   name: "Mohit P. Tahiliani",
+  //   title: "Associate Professor, NITK Surathkal",
+  //   img: "",
+  //   link: "https://www.linkedin.com/in/mohittahiliani/",
+  // },
 
+  //   {
+  //   id: 12,
+  //   name: "Prasanna",
+  //   title: "Lead, Data Center of Excellence, TCS",
+  //   img: "",
+  //   link: "",
+  // },
+  // {
+  //   id: 15,
+  //   name: "R Balakrishnan",
+  //   title: "Principal Program Manager, Azure Microsoft, Seattle",
+  //   img: "",
+  //   link: "",
+  // },
+  // {
+  //   id: 16,
+  //   name: "Sagar Vaidya",
+  //   title: "Chief Architect (Enterprise), Niveus Solutions Pvt. Ltd.",
+  //   img: "",
+  //   link: "",
+  // },
+  //   {
+  //   id: 9,
+  //   name: "Nikhil Raj",
+  //   title: "Former Head of Talent Management, TCS Europe",
+  //   img: "",
+  //   link: "",
+  // },
+];
 const displaySpeakers = [...speakers, ...speakers];
 
 export default function SpeakerCarousel() {
@@ -104,8 +167,8 @@ export default function SpeakerCarousel() {
   }, []);
 
   return (
-    <div className="relative mx-auto mt-8 w-full overflow-hidden pb-4 sm:mt-10 sm:max-w-[80%] sm:py-10">
-      <h2 className="font-norse mt-6 text-center text-2xl font-extrabold tracking-wider text-[#C8A24C] uppercase sm:mt-8 sm:text-3xl">
+    <div className="relative mx-auto mt-8 w-full overflow-hidden sm:mt-10 sm:py-10">
+      <h2 className="font-norse mb-4 text-center text-2xl font-extrabold tracking-wider text-[#C8A24C] uppercase sm:text-3xl">
         Past Speakers
       </h2>
 
@@ -123,7 +186,7 @@ export default function SpeakerCarousel() {
         {/* Moving track */}
         <div
           ref={trackRef}
-          className="flex w-max gap-12 px-8 sm:gap-10 sm:px-10 lg:gap-14"
+          className="flex w-max gap-12 px-8 sm:gap-16 sm:px-10 lg:gap-26"
         >
           {displaySpeakers.map((speaker, index) => (
             <a
@@ -131,7 +194,7 @@ export default function SpeakerCarousel() {
               href={speaker.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex w-32 flex-none flex-col items-center py-4 text-center sm:w-36"
+              className="group flex w-32 flex-none flex-col items-center py-4 text-center sm:w-45"
             >
               {/* Circle photo */}
               <div className="relative flex h-32 w-32 items-center justify-center sm:h-48 sm:w-48">
@@ -158,15 +221,11 @@ export default function SpeakerCarousel() {
                 />
               </div>
               {/* Name */}
-              <h3 className="font-norse mt-4 line-clamp-2 min-h-10 text-base leading-tight tracking-wide text-[#F6CC60] transition-colors duration-300 group-hover:text-[#FFF5D0] sm:text-lg">
+              <h3 className="font-lora mt-2 line-clamp-2 w-full text-center text-[18px] leading-[1.25] font-semibold tracking-wide text-white max-sm:text-[14px]">
                 {speaker.name}
               </h3>
 
-              {/* Divider */}
-              <div className="h-px w-8 bg-[#C8A24C]/60 transition-all duration-300 group-hover:w-14 group-hover:bg-[#F6CC60] sm:mt-2" />
-
-              {/* Designation */}
-              <p className="font-lora mt-2 line-clamp-3 min-h-12 text-xs leading-relaxed text-white/60 transition-colors duration-300 group-hover:text-white/80">
+              <p className="font-lora mt-1 line-clamp-2 block w-full text-center text-[14px] leading-[1.25] tracking-[0.01em] text-[#F6CC60]/75 max-sm:text-[11px]">
                 {speaker.title}
               </p>
             </a>

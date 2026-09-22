@@ -6,6 +6,7 @@ import {
   useTransform,
   useSpring,
   useVelocity,
+  useMotionValue,
 } from "framer-motion";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
@@ -39,12 +40,19 @@ const ScrollParchmentWrapper = ({
 }: {
   tabGroups: TimelineTabGroup[];
 }) => {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const isMobileRef = useRef(false);
+  const containerHeight = useMotionValue(0);
 
   useEffect(() => {
     isMobileRef.current = window.matchMedia("(max-width: 639px)").matches;
-  }, []);
+
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => containerHeight.set(el.offsetHeight));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [containerHeight]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -62,10 +70,9 @@ const ScrollParchmentWrapper = ({
   // On mobile, use a tighter ±0.4deg range to prevent visible vibration
   // from native scroll momentum spikes. Desktop keeps the original ±1.5deg.
   const rollerWobble = useTransform(smoothVelocity, (v) => {
-    const maxDeg = isMobileRef.current ? 0.4 : 1.5;
+    if (isMobileRef.current) return "0deg";
     const clamped = Math.max(-0.5, Math.min(0.5, v));
-    const deg = (clamped / 0.5) * maxDeg;
-    return `${deg}deg`;
+    return `${(clamped / 0.5) * 1.5}deg`;
   });
 
   // Animates the clip path to reveal the parchment from top to bottom
@@ -77,9 +84,19 @@ const ScrollParchmentWrapper = ({
   // Translates the bottom roller downwards exactly in sync with the clip path,
   // with a small extra downward shift (+ 24px * p) for a subtle physical unrolling effect.
   const bottomRollerTop = useTransform(scrollYProgress, (p) => {
+    if (isMobileRef.current) return "0px";
     const clamped = Math.max(0, Math.min(1, p));
     return `calc(100px + (100% - 100px) * ${clamped} + ${clamped * 24}px)`;
   });
+
+  const bottomRollerY = useTransform(
+    [scrollYProgress, containerHeight],
+    ([p, h]: number[]) => {
+      if (!isMobileRef.current) return 0;
+      const c = Math.max(0, Math.min(1, p));
+      return 100 + (h - 100) * c + c * 24;
+    },
+  );
 
   // Texture rotation to simulate physical unrolling
   const rollerTextureY = useTransform(
@@ -159,10 +176,9 @@ const ScrollParchmentWrapper = ({
 
       {/* Parchment Surface - Fully renders but is clipped to unroll */}
       <motion.div
-        className="relative z-10 w-full"
+        className="relative z-10 w-full max-sm:transform-gpu sm:[filter:url(#torn-edge)]"
         style={{
           clipPath,
-          filter: "url(#torn-edge)",
         }}
       >
         <div className="absolute inset-0 bg-[#422d1c]">
@@ -243,6 +259,9 @@ const ScrollParchmentWrapper = ({
 
                         {/* Title */}
                         <h3 className="font-norse-bold mx-auto w-full text-3xl font-bold tracking-wide break-words text-[#F6CC60] sm:max-w-[85%] sm:text-4xl lg:max-w-none">
+                          <span className="mr-2 mb-2 inline-flex align-middle tracking-tighter">
+                            {event.icon}
+                          </span>
                           {event.title}
                         </h3>
 
@@ -287,8 +306,8 @@ const ScrollParchmentWrapper = ({
 
       {/* Bottom Roller - Tracks the bottom of the clip path */}
       <motion.div
-        className="absolute left-[-2%] z-20 h-14 w-[104%] -translate-y-1/2 drop-shadow-[0_20px_25px_rgba(0,0,0,0.95)]"
-        style={{ top: bottomRollerTop, rotate: rollerWobble }}
+        className="absolute left-[-2%] z-20 h-14 w-[104%] -translate-y-1/2 drop-shadow-[0_20px_25px_rgba(0,0,0,0.95)] max-sm:will-change-transform"
+        style={{ top: bottomRollerTop, y: bottomRollerY, rotate: rollerWobble }}
       >
         <div className="absolute inset-0 right-6 left-6 overflow-hidden rounded-full bg-[#3d2716]">
           <motion.div
@@ -341,12 +360,12 @@ const CyberpunkTimeline: React.FC = () => {
   const tabGroups = [
     {
       id: "phase-1",
-      label: "Nov 6",
+      label: "Nov 12",
       days: markers.slice(0, Math.ceil(markers.length / 3)),
     },
     {
       id: "phase-2",
-      label: "Nov 7",
+      label: "Nov 13",
       days: markers.slice(
         Math.ceil(markers.length / 3),
         Math.ceil((markers.length * 2) / 3),
@@ -354,7 +373,7 @@ const CyberpunkTimeline: React.FC = () => {
     },
     {
       id: "phase-3",
-      label: "Nov 8",
+      label: "Nov 14",
       days: markers.slice(Math.ceil((markers.length * 2) / 3)),
     },
   ];

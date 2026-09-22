@@ -1,187 +1,473 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import Button from "./Button";
+import { useRef } from "react";
+import { useMotionValueEvent, useScroll } from "framer-motion";
+import Button from "./Button";
+import EmberCanvas, { type EmberCanvasHandle } from "./EmberCanvas";
 
-gsap.registerPlugin(ScrollTrigger);
+const CLASH_Y = 40; // % from top where blades meet
+const SWORD_W = "min(130vw, 1400px)";
+
+function Anchor({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`pointer-events-none absolute inset-x-0 top-0 flex items-center justify-center overflow-visible ${className}`}
+      style={{ height: `${CLASH_Y * 2}%` }}
+    >
+      {children}
+    </div>
+  );
+}
+
+const ASSETS = {
+  pureBackground: "/assets/devhack/pure-background.webp",
+  background: "/assets/devhack/background.webp",
+  swordLeft: "/assets/devhack/leftarm.png",
+  swordRight: "/assets/devhack/rightarm.png",
+  title: "/assets/devhack/dev-hack-logo.svg",
+};
 
 export default function DevHackSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const captionRef = useRef<HTMLHeadingElement>(null);
-  const paragraphRef = useRef<HTMLParagraphElement>(null);
-  const titleGlowRef = useRef<HTMLSpanElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
-  const mountainRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const embers = useRef<EmberCanvasHandle>(null);
 
-  const devhackData = {
-    title: "DevHack",
-    caption: "36 Hours. Real Problems. Working Code.",
-    about:
-      "DevHack is the centre of DEVHOST. Teams get a problem statement, 36 hours, and mentors who've shipped actual products. What you build in that window is up to you.",
-  };
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
-        defaults: { ease: "power3.out" },
-      });
+  const impactTriggered = useRef(false);
 
-      tl.from(titleRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-      })
-        .from(
-          captionRef.current,
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.7,
-          },
-          "-=0.5",
-        )
-        .from(
-          paragraphRef.current,
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.7,
-          },
-          "-=0.4",
-        )
-        .from(
-          buttonRef.current,
-          {
-            y: 15,
-            opacity: 0,
-            duration: 0.6,
-          },
-          "-=0.3",
-        );
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    const root = sectionRef.current;
 
-      // subtle ambient glow pulse on the title
-      gsap.to(titleGlowRef.current, {
-        filter: "drop-shadow(0 2px 18px rgba(246,204,96,0.45))",
-        duration: 2.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
+    if (!root) return;
 
-      // slow parallax drift on the mountain backdrop
-      gsap.to(mountainRef.current, {
-        yPercent: -6,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-    }, sectionRef);
+    const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
-    return () => {
-      ctx.revert();
+    const range = (value: number, start: number, end: number) => {
+      if (end === start) {
+        return value >= end ? 1 : 0;
+      }
+
+      return clamp((value - start) / (end - start));
     };
-  }, []);
+
+    const smooth = (value: number) => {
+      const x = clamp(value);
+      return x * x * (3 - 2 * x);
+    };
+
+    const easeOut = (value: number) => {
+      const x = clamp(value);
+      return 1 - Math.pow(1 - x, 3);
+    };
+
+    const easeIn = (value: number) => {
+      const x = clamp(value);
+      return x * x * x;
+    };
+
+    const setStyle = (selector: string, styles: Record<string, string>) => {
+      root.querySelectorAll<HTMLElement>(selector).forEach((element) => {
+        Object.assign(element.style, styles);
+      });
+    };
+
+    // 1. TRANSITION OVERLAYS
+    setStyle(".js-darken", {
+      opacity: String(easeIn(range(progress, 0, 0.15))),
+    });
+
+    setStyle(".js-bg-pure", {
+      opacity: String(easeIn(range(progress, 0.05, 0.2))),
+    });
+
+    // 2. SWORDS
+    // Swords target leftX = -8 (clash at center) but are clamped so the
+    // outer edge never crosses the viewport boundary. SWORD_W is capped at
+    // 1400px on large screens, so swordHalfVw is computed from actual px.
+    const vw = window.innerWidth;
+    const swordHalfVw = (Math.min(1.3 * vw, 1400) / vw / 2) * 100;
+    const leftXFinal = swordHalfVw - 50; // left edge at viewport boundary
+
+    const swordProgress = easeIn(range(progress, 0, 0.28));
+    const naturalLeftX = -100 + 92 * swordProgress;
+    const naturalRightX = 100 - 92 * swordProgress;
+
+    const leftX = Math.min(naturalLeftX, leftXFinal);
+    const rightX = Math.max(naturalRightX, -leftXFinal);
+
+    const swordY = 45 - 45 * swordProgress;
+    const swordOpacity = easeOut(range(progress, 0, 0.05));
+
+    // 3. IMPACT — FLASH
+    let flashOpacity = 0;
+
+    if (progress >= 0.27 && progress <= 0.34) {
+      const p = range(progress, 0.27, 0.34);
+
+      if (p < 0.15) {
+        flashOpacity = p / 0.15;
+      } else {
+        flashOpacity = 1 - range(p, 0.15, 1);
+      }
+    }
+
+    const flashScale =
+      progress < 0.395
+        ? 0.2
+        : 0.2 + easeOut(range(progress, 0.395, 0.47)) * 1.6;
+
+    setStyle(".js-flash", {
+      opacity: String(clamp(flashOpacity)),
+      transform: `scale(${flashScale})`,
+    });
+
+    // STREAK
+    const streakIn = smooth(range(progress, 0.28, 0.33));
+    const streakOut = 1 - smooth(range(progress, 0.33, 0.38));
+    setStyle(".js-streak", {
+      opacity: String(streakIn * streakOut),
+      transform: `scaleX(${streakIn})`,
+    });
+
+    // RING
+    const ringProgress = smooth(range(progress, 0.28, 0.42));
+    const ringFade = 1 - smooth(range(progress, 0.28, 0.4));
+    setStyle(".js-ring", {
+      opacity: String(ringProgress * ringFade),
+      transform: `scale(${0.15 + ringProgress * 3.05})`,
+    });
+
+    // SCREEN SHAKE
+    const mobile =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 768px)").matches;
+
+    const shakeK = mobile ? 0.6 : 1;
+
+    const shakeProgress = range(progress, 0.28, 0.36);
+    let shakeX = 0;
+    let shakeY = 0;
+    let shakeScale = 1;
+
+    if (shakeProgress > 0 && shakeProgress < 1) {
+      const decay = 1 - shakeProgress;
+
+      shakeX = Math.sin(shakeProgress * Math.PI * 5) * 7 * shakeK * decay;
+
+      shakeY = Math.cos(shakeProgress * Math.PI * 4) * 5 * shakeK * decay;
+
+      shakeScale = 1 + Math.sin(shakeProgress * Math.PI) * 0.025 * shakeK;
+    }
+
+    setStyle(".js-stage", {
+      transform: `translate3d(${shakeX}px, ${shakeY}px, 0) scale(${shakeScale})`,
+    });
+
+    // 4. SWORD RECOIL
+    const recoilProgress = range(progress, 0.28, 0.42);
+    let recoilLeft = -6;
+    let recoilRight = 6;
+
+    if (recoilProgress > 0) {
+      if (recoilProgress < 0.2) {
+        const p = recoilProgress / 0.2;
+
+        recoilLeft = -6 - 14 * p;
+
+        recoilRight = 6 + 14 * p;
+      } else {
+        const p = easeOut(range(recoilProgress, 0.2, 1));
+
+        recoilLeft = -20 + 14 * p;
+
+        recoilRight = 20 - 14 * p;
+      }
+    }
+
+    const recoilLeftVw = recoilLeft / 10;
+
+    const recoilRightVw = recoilRight / 10;
+
+    // 5. FINAL BACKGROUND + SWORD FADE
+    const finalBgProgress = smooth(range(progress, 0.5, 0.65));
+
+    setStyle(".js-bg-final", {
+      opacity: String(finalBgProgress),
+    });
+
+    const swordFade = 1 - smooth(range(progress, 0.52, 0.68));
+
+    setStyle(".js-sword-l", {
+      opacity: String(swordOpacity * swordFade),
+      transform: `translate3d(${leftX + recoilLeftVw}vw, ${swordY}px, 0)`,
+    });
+
+    setStyle(".js-sword-r", {
+      opacity: String(swordOpacity * swordFade),
+      transform: `translate3d(${rightX + recoilRightVw}vw, ${swordY}px, 0)`,
+    });
+
+    // 6. TITLE GLOW
+    const glowIn = smooth(range(progress, 0.6, 0.72));
+
+    const glowCool = smooth(range(progress, 0.72, 0.86));
+
+    setStyle(".js-glow", {
+      opacity: String(glowIn * (1 - glowCool * 0.5)),
+      transform: `scale(${0.7 + glowIn * 0.45})`,
+    });
+
+    // 7. TITLE
+    const titleProgress = easeOut(range(progress, 0.62, 0.76));
+
+    setStyle(".js-title-img", {
+      opacity: String(titleProgress),
+
+      transform: `translate3d(0, ${30 - 30 * titleProgress}px, 0) scale(${
+        1.25 - 0.25 * titleProgress
+      })`,
+
+      filter: `blur(${14 - 14 * titleProgress}px)`,
+    });
+
+    // 8. DETAILS
+    const detailStarts = [0.74, 0.795, 0.85];
+
+    const details = root.querySelectorAll<HTMLElement>(".js-detail");
+
+    details.forEach((detail, index) => {
+      const start = detailStarts[index] ?? 0.85;
+
+      const detailProgress = easeOut(range(progress, start, start + 0.1));
+
+      detail.style.opacity = String(detailProgress);
+
+      detail.style.transform = `translate3d(0, ${20 - 20 * detailProgress}px, 0)`;
+    });
+
+    // 9. EXIT TRANSITION
+    const exitProgress = smooth(range(progress, 0.82, 1.0));
+    setStyle(".js-exit", {
+      opacity: String(exitProgress),
+    });
+
+    const embersFade = 1 - easeIn(range(progress, 0.85, 1.0));
+    setStyle(".js-embers", {
+      opacity: String(embersFade),
+    });
+
+    // 10. EMBERS — triggered once at clash, re-arms when scrolling back
+    if (progress >= 0.28 && !impactTriggered.current) {
+      impactTriggered.current = true;
+
+      embers.current?.burst({
+        sparks: 120,
+        embers: 90,
+      });
+
+      embers.current?.trickle(2.8, 45);
+    }
+
+    if (progress < 0.22) {
+      impactTriggered.current = false;
+    }
+  });
 
   return (
-    <section
-      ref={sectionRef}
-      id="devhack"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403] py-18 text-white sm:py-26 lg:px-8"
+    <div
+      ref={sectionRef as React.RefObject<HTMLDivElement>}
+      className="pointer-events-none relative h-[300vh] w-full"
     >
-      {/* Parchment texture overlay */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: "url('/images/parchment-texture.jpg')",
-          backgroundSize: "100% 100%",
-          backgroundPosition: "center",
-          opacity: 0.6,
-          mixBlendMode: "soft-light",
-        }}
-      />
-
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,204,96,.07),transparent_65%)]" />
-
-      {/* Mountain silhouette footer */}
-      <div
-        ref={mountainRef}
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[280px] w-full opacity-30 sm:h-[340px]"
+      <section
+        id="devhack"
+        className="pointer-events-none sticky top-0 h-screen w-full overflow-hidden bg-transparent text-white"
+        style={{ height: "100svh" }}
       >
-        <Image
-          src="/images/mountain.png"
-          alt=""
-          fill
-          className="object-cover object-bottom select-none"
-        />
-      </div>
+        <div className="js-stage absolute inset-0 will-change-transform">
+          {/* BACKGROUNDS */}
+          <div className="absolute inset-0" style={{ inset: "-32px" }}>
+            <div className="js-darken absolute inset-0 bg-[#050201] opacity-0" />
 
-      <div className="relative z-10 mx-auto w-[90%]">
-        <div className="relative mb-4 text-center sm:mb-6">
-          <h2
-            ref={titleRef}
-            className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl"
-          >
-            <span
-              ref={titleGlowRef}
-              className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]"
-            >
-              {devhackData.title}
-            </span>
-          </h2>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={ASSETS.pureBackground}
+              alt=""
+              className="js-bg-pure absolute inset-0 h-full w-full object-cover opacity-0"
+            />
 
-          <h3
-            ref={captionRef}
-            className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
-          >
-            {devhackData.caption}
-          </h3>
-        </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={ASSETS.background}
+              alt=""
+              className="js-bg-final absolute inset-0 h-full w-full object-cover opacity-0"
+            />
 
-        <div className="relative mx-auto flex flex-col items-center pt-4 sm:w-full sm:max-w-[80%] sm:pt-8">
-          <div className="relative z-10 w-full text-justify md:text-center">
-            <p
-              ref={paragraphRef}
-              className="font-lora text-md leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+            {/* EXIT TRANSITION LAYER */}
+            <div className="js-exit will-change-opacity pointer-events-none absolute inset-0 opacity-0">
+              <div className="absolute inset-0 bg-[#050403]" />
+              <div
+                className="absolute inset-0 opacity-70 mix-blend-soft-light"
+                style={{
+                  backgroundImage: "url('/images/parchment-sponsor.jpg')",
+                  backgroundSize: "700px auto",
+                  backgroundRepeat: "repeat",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* SWORDS */}
+          <Anchor className="z-20">
+            <div
+              className="js-sword-l shrink-0 will-change-transform"
               style={{
-                textShadow:
-                  "0 1px 1px rgba(0,0,0,.7),0 0 12px rgba(246,204,96,.08)",
+                width: SWORD_W,
+                opacity: 0,
               }}
             >
-              {devhackData.about}
-            </p>
-          </div>
-        </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={ASSETS.swordLeft}
+                alt=""
+                draggable={false}
+                className="block h-auto w-full"
+              />
+            </div>
+          </Anchor>
 
-        {/* <div
-          ref={buttonRef}
-          className="mt-10 flex w-full flex-col items-center gap-3 sm:mt-12"
-        >
-          <Button
-            onClick={() => {
-              window.open(
-                "https://forms.gle/your-devhack-register-link",
-                "_blank",
-                "noopener,noreferrer",
-              );
-            }}
+          <Anchor className="z-20">
+            <div
+              className="js-sword-r shrink-0 will-change-transform"
+              style={{
+                width: SWORD_W,
+                opacity: 0,
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={ASSETS.swordRight}
+                alt=""
+                draggable={false}
+                className="block h-auto w-full"
+              />
+            </div>
+          </Anchor>
+
+          {/* IMPACT FX */}
+          <Anchor className="z-30">
+            <div
+              className="js-flash shrink-0 rounded-full"
+              style={{
+                width: "min(70vmin, 620px)",
+                height: "min(70vmin, 620px)",
+                opacity: 0,
+                background:
+                  "radial-gradient(circle, rgba(255,250,230,1) 0%, rgba(255,190,80,0.85) 22%, rgba(255,110,30,0.35) 50%, transparent 70%)",
+              }}
+            />
+          </Anchor>
+
+          <Anchor className="z-30">
+            <div
+              className="js-streak shrink-0"
+              style={{
+                width: "min(95vw, 1400px)",
+                height: "3px",
+                opacity: 0,
+                background:
+                  "linear-gradient(90deg, transparent, #fff, transparent)",
+                boxShadow: "0 0 18px 4px rgba(255,190,90,0.8)",
+              }}
+            />
+          </Anchor>
+
+          <Anchor className="z-30">
+            <div
+              className="js-ring shrink-0 rounded-full"
+              style={{
+                width: "min(30vmin, 260px)",
+                height: "min(30vmin, 260px)",
+                opacity: 0,
+                border: "2px solid rgba(255,214,140,0.8)",
+              }}
+            />
+          </Anchor>
+
+          {/* TITLE GLOW */}
+          <Anchor className="z-[35]">
+            <div
+              className="js-glow shrink-0"
+              style={{
+                width: "min(92vw, 1100px)",
+                height: "min(42vmin, 420px)",
+                opacity: 0,
+                background:
+                  "radial-gradient(ellipse at center, rgba(255,150,40,0.55) 0%, rgba(255,100,20,0.2) 42%, transparent 70%)",
+              }}
+            />
+          </Anchor>
+
+          {/* TITLE */}
+          <Anchor className="z-40 px-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={ASSETS.title}
+              alt="DEV HACK"
+              className="js-title-img block h-auto w-full max-w-[800px] drop-shadow-2xl"
+              style={{
+                opacity: 0,
+                filter: "blur(14px)",
+              }}
+              draggable={false}
+            />
+          </Anchor>
+
+          {/* DETAILS */}
+          <div
+            className="pointer-events-none absolute inset-x-0 z-40 flex flex-col items-center px-5 text-center"
+            style={{ top: "56%" }}
           >
-            Register
-          </Button>
-        </div> */}
-      </div>
-    </section>
+            <p
+              className="js-detail font-lora text-md mb-14 max-w-2xl leading-relaxed break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+              style={{ opacity: 0 }}
+            >
+              DevHack is the centre of DEVHOST. Teams get a problem statement,
+              36 hours, and mentors who&apos;ve shipped actual products. What
+              you build in that window is up to you.
+            </p>
+
+            <div
+              className="js-detail pointer-events-auto"
+              style={{ opacity: 0 }}
+            >
+              <Button
+                onClick={() => {
+                  window.location.href = "/register";
+                }}
+              >
+                Register
+              </Button>
+            </div>
+          </div>
+
+          {/* EMBERS */}
+          <EmberCanvas
+            ref={embers}
+            originX={0.5}
+            originY={CLASH_Y / 100}
+            className="js-embers pointer-events-none absolute inset-0 z-50 h-full w-full"
+          />
+        </div>
+      </section>
+    </div>
   );
 }
