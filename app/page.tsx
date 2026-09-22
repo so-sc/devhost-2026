@@ -11,7 +11,7 @@ import Events from "@/components/Events";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import SponsorsLogo from "@/components/Sponsors";
 import CallForSpeakers from "@/components/CallForSpeakers";
-// import Gallery from "@/components/Gallery";
+import Gallery from "@/components/Gallery";
 import Devhack from "@/components/Devhack";
 
 const criticalImages = [
@@ -106,7 +106,7 @@ export default function Home() {
         </div>
         <TimelineSection />
         <Events />
-        {/* <Gallery /> */}
+         <Gallery /> 
         <FAQ />
         <Map />
         <Footer />
