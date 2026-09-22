@@ -54,9 +54,7 @@ const otherSponsors = [
     logo: "/sponsors/sarvam-logo.png",
     name: "Sarvam AI",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "500 AI credits for every hackathon participating team.",
-    ],
+    description: ["500 AI credits for every hackathon participating team."],
   },
   {
     logo: "/sponsors/acic-logo.png",
@@ -109,9 +107,9 @@ function OtherSponsorCard({
           <div
             className={`flex h-full w-full flex-col items-center justify-center text-center transition-all duration-500 ease-out ${
               isActive
-                ? "-translate-y-3 opacity-0 pointer-events-none"
+                ? "pointer-events-none -translate-y-3 opacity-0"
                 : "translate-y-0 opacity-100"
-            } [@media(hover:hover)]:group-hover:-translate-y-3 [@media(hover:hover)]:group-hover:opacity-0 [@media(hover:hover)]:group-hover:pointer-events-none`}
+            } [@media(hover:hover)]:group-hover:pointer-events-none [@media(hover:hover)]:group-hover:-translate-y-3 [@media(hover:hover)]:group-hover:opacity-0`}
           >
             {/* Logo */}
             <div className="flex h-14 w-full items-center justify-center sm:h-16">
@@ -121,7 +119,7 @@ function OtherSponsorCard({
                   alt={sponsor.name}
                   fill
                   sizes="130px"
-                  className="object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]"
+                  className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] filter"
                 />
               </div>
             </div>
@@ -142,10 +140,10 @@ function OtherSponsorCard({
             className={`absolute inset-0 flex flex-col items-center justify-center px-3 py-2 text-center transition-all duration-500 ease-out ${
               isActive
                 ? "translate-y-0 opacity-100"
-                : "translate-y-3 opacity-0 pointer-events-none"
-            } [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pointer-events-auto`}
+                : "pointer-events-none translate-y-3 opacity-0"
+            } [@media(hover:hover)]:group-hover:pointer-events-auto [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100`}
           >
-            <ul className="flex flex-col items-center justify-center space-y-1.5 text-center font-lora text-[11px] leading-snug text-[#F1E8D5] sm:text-xs">
+            <ul className="font-lora flex flex-col items-center justify-center space-y-1.5 text-center text-[11px] leading-snug text-[#F1E8D5] sm:text-xs">
               {sponsor.description.map((perk, i) => (
                 <li key={i} className="w-full text-center">
                   {perk}
