@@ -29,7 +29,6 @@ const IMAGES = [
   "/images/IMG_16.webp",
   "/images/IMG_17.webp",
   "/images/IMG_18.webp",
-  
 ];
 
 export default function Gallery({ images = IMAGES }: GalleryProps) {
@@ -273,14 +272,14 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
         </div>
 
         {/* DUAL AUTOMATIC SMOOTH INFINITE FLOWING STREAMS */}
-        <div ref={containerRef} className="marquee-rows-container relative z-10">
+        <div
+          ref={containerRef}
+          className="marquee-rows-container relative z-10"
+        >
           {/* ROW 1: FLOWS LEFT */}
           <div className="marquee-track-row marquee-left">
             {row1Images.map((src, index) => (
-              <div
-                key={`r1-${index}`}
-                className="throwback-marquee-card"
-              >
+              <div key={`r1-${index}`} className="throwback-marquee-card">
                 <div className="rune-corner rune-tl" />
                 <div className="rune-corner rune-tr" />
                 <div className="rune-corner rune-bl" />
@@ -302,10 +301,7 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
           {/* ROW 2: FLOWS RIGHT */}
           <div className="marquee-track-row marquee-right">
             {row2Images.map((src, index) => (
-              <div
-                key={`r2-${index}`}
-                className="throwback-marquee-card"
-              >
+              <div key={`r2-${index}`} className="throwback-marquee-card">
                 <div className="rune-corner rune-tl" />
                 <div className="rune-corner rune-tr" />
                 <div className="rune-corner rune-bl" />
