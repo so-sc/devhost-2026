@@ -532,7 +532,10 @@ export default function DevHackSection() {
               you build in that window is up to you.
             </p>
 
-            <div className="js-detail pointer-events-auto">
+            <div
+              className="js-detail pointer-events-auto"
+              style={{ opacity: 0 }}
+            >
               <Button
                 onClick={() => {
                   window.location.href =
