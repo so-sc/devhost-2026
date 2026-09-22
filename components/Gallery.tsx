@@ -142,10 +142,6 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
           animation: marqueeScrollRight 42s linear infinite;
         }
 
-        .marquee-rows-container:hover .marquee-track-row {
-          animation-play-state: paused;
-        }
-
         @keyframes marqueeScrollLeft {
           0% {
             transform: translate3d(0, 0, 0);
@@ -182,16 +178,6 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
           transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
         }
 
-        .throwback-marquee-card:hover {
-          transform: scale(1.04) translateY(-3px);
-          border-color: rgba(246, 204, 96, 0.9);
-          box-shadow:
-            0 22px 50px rgba(0, 0, 0, 0.85),
-            0 0 35px rgba(246, 204, 96, 0.4),
-            inset 0 1px 1px rgba(255, 245, 208, 0.5);
-          z-index: 30;
-        }
-
         .throwback-card-img {
           display: block;
           width: 100%;
@@ -201,10 +187,6 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
           user-select: none;
           -webkit-user-drag: none;
           transition: transform 0.5s ease;
-        }
-
-        .throwback-marquee-card:hover .throwback-card-img {
-          transform: scale(1.05);
         }
 
         /* Golden Corner Rune Accents */
