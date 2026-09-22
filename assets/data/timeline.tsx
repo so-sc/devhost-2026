@@ -125,7 +125,7 @@ export const markers = [
       {
         id: "day2-event4",
         time: "16:00",
-        displayTime: "4:00 PM Onwards",
+        displayTime: "4:00 PM",
         icon: <Flame className="h-auto sm:w-8" />,
         title: "Concert Night",
         description: "Participant buffer activity.",

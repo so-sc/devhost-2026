@@ -357,12 +357,12 @@ const CyberpunkTimeline: React.FC = () => {
   const tabGroups = [
     {
       id: "phase-1",
-      label: "Nov 6",
+      label: "Nov 12",
       days: markers.slice(0, Math.ceil(markers.length / 3)),
     },
     {
       id: "phase-2",
-      label: "Nov 7",
+      label: "Nov 13",
       days: markers.slice(
         Math.ceil(markers.length / 3),
         Math.ceil((markers.length * 2) / 3),
@@ -370,7 +370,7 @@ const CyberpunkTimeline: React.FC = () => {
     },
     {
       id: "phase-3",
-      label: "Nov 8",
+      label: "Nov 14",
       days: markers.slice(Math.ceil((markers.length * 2) / 3)),
     },
   ];
