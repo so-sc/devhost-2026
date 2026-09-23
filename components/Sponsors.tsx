@@ -7,19 +7,16 @@ import OtherSponsors from "./OtherSponsors";
 const titleSponsor = {
   src: "/sponsors/titlesponsor.png",
   alt: "Title Sponsor",
-  href: "mailto:sosc@sahyadri.edu.in",
 };
 
 const coSponsors = [
   {
     src: "/sponsors/cosponsor.png",
     alt: "Co-Sponsor",
-    href: "mailto:sosc@sahyadri.edu.in",
   },
   {
     src: "/sponsors/cosponsor.png",
     alt: "Co-Sponsor",
-    href: "mailto:sosc@sahyadri.edu.in",
   },
 ];
 function SponsorCard({
@@ -29,15 +26,11 @@ function SponsorCard({
   sponsor: {
     src: string;
     alt: string;
-    href: string;
   };
   isTitle?: boolean;
 }) {
   return (
-    <a
-      href={sponsor.href}
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
       className={`group relative block w-full ${
         isTitle
           ? "max-w-[360px] sm:max-w-[400px]"
@@ -74,7 +67,7 @@ function SponsorCard({
         {/* Very subtle hover shine */}
         <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
       </div>
-    </a>
+    </div>
   );
 }
 

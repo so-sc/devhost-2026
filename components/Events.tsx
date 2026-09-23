@@ -155,17 +155,14 @@ export default function Events() {
           </h3>
         </div>
         {/* Rulebook button */}
-        {/* <div className="mt-6 flex flex-col items-center">
-                                  <a
-  href="/brochure/devhack_rulebook.pdf"
-  download="devhack_rulebook.pdf"
->
-  <Button>
-    Rulebook
-  </Button>
-</a>
-
-        </div>  */}
+        <div className="mt-6 flex flex-col items-center">
+          <a
+            href="/brochure/events_rulebook.pdf"
+            download="events_rulebook.pdf"
+          >
+            <Button>Rulebook</Button>
+          </a>
+        </div>
       </div>
       <div
         className="pointer-events-none absolute top-[340px] left-1/2 -z-0 h-[700px] w-[1100px] -translate-x-1/2 rounded-full blur-[160px]"
@@ -262,17 +259,16 @@ export default function Events() {
                         </span>
                         {event.contact}
                       </p>
-                      {event.registrationLink &&(
-                      <div className="mt-4 scale-70 origin-top-left">
-                        <Button
-                          onClick={() => {
-                            window.location.href =
-                              `${event.registrationLink}`;
-                          }}
-                        >
-                          Register
-                        </Button>
-                      </div> 
+                      {event.registrationLink && (
+                        <div className="mt-4 origin-top-left scale-70">
+                          <Button
+                            onClick={() => {
+                              window.location.href = `${event.registrationLink}`;
+                            }}
+                          >
+                            Register
+                          </Button>
+                        </div>
                       )}
                     </div>
                   </div>
