@@ -100,7 +100,7 @@ export default function Events() {
     linear-gradient(
       180deg,
       #000000 0%,
-      #121212 50%,
+      #1a1a1a 50%,
       #000000 100%
     )
   `,
