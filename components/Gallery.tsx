@@ -100,7 +100,6 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
           justify-content: center;
           align-items: center;
           overflow: hidden;
-          padding: 56px 0;
           background: #050403;
         }
 
@@ -135,11 +134,11 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
         }
 
         .marquee-left {
-          animation: marqueeScrollLeft 38s linear infinite;
+          animation: marqueeScrollLeft 80s linear infinite;
         }
 
         .marquee-right {
-          animation: marqueeScrollRight 42s linear infinite;
+          animation: marqueeScrollRight 80s linear infinite;
         }
 
         @keyframes marqueeScrollLeft {
@@ -217,7 +216,7 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
 
       <section
         ref={sectionRef}
-        className="throwback-section"
+        className="throwback-section py-18 sm:py-32"
         aria-label="Throwback photo gallery"
       >
         {/* PARCHMENT BACKGROUND & GLOW */}
