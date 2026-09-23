@@ -259,6 +259,11 @@ export default function Events() {
                         </span>
                         {event.contact}
                       </p>
+                      {event.title == "Winged Keys" && (
+                        <p className="mr-1 font-semibold text-white/70">
+                          [Spot registration]
+                        </p>
+                      )}
                       {event.registrationLink && (
                         <div className="mt-4 origin-top-left scale-70">
                           <Button
