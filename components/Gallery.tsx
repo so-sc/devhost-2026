@@ -216,7 +216,7 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
 
       <section
         ref={sectionRef}
-        className="throwback-section py-18 sm:py-32"
+        className="throwback-section"
         aria-label="Throwback photo gallery"
       >
         {/* PARCHMENT BACKGROUND & GLOW */}

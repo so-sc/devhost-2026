@@ -9,7 +9,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import DecryptText from "./animated/TextAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,7 +84,7 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section className="relative w-full bg-black overflow-visible px-4 py-18 sm:px-6 sm:py-32">
+    <section className="relative w-full overflow-visible bg-black px-4 py-18 sm:px-6 sm:py-32">
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -123,7 +122,6 @@ export default function FAQ() {
         }}
       />
 
-
       <div className="relative z-10 mx-auto w-full max-w-5xl">
         {/* Heading */}
 
@@ -135,7 +133,7 @@ export default function FAQ() {
           </h2>
 
           <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
-              Answers to Common Questions
+            Answers to Common Questions
           </h3>
         </div>
 
