@@ -451,7 +451,7 @@ export default function DevHackSection() {
             >
               <Button
                 onClick={() => {
-                  window.location.href = "/register";
+                  window.location.href = "/hackathon/register";
                 }}
               >
                 Register
