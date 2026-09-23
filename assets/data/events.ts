@@ -6,7 +6,7 @@ export const events = [
     description:
       "Drop in, fight it out, and hold your ground. Aim matters. Positioning and communication matter more.",
     date: "13 Nov",
-    time: "10:00 AM onwards",
+    time: "09:00 AM onwards",
     organizer: "Kshithij",
     contact: "+91 9380967460",
     image: "/event/BGMI.png",
