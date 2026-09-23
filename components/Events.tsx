@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { events } from "@/assets/data/events";
-// import Button from "./EventButton";
+import Button from "./EventButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,9 +99,9 @@ export default function Events() {
       transparent 65%),
     linear-gradient(
       180deg,
-      #1a1a1a 0%,
-      #121212 50%,
-      #0b0b0b 100%
+      #000000 0%,
+      #1a1a1a 50%,
+      #000000 100%
     )
   `,
         }}
@@ -111,7 +111,7 @@ export default function Events() {
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(circle, transparent 45%, rgba(0,0,0,.55) 100%)",
+            "radial-gradient(circle, transparent 45%, rgba(0,0,0,.95) 100%)",
         }}
       />
 
@@ -119,7 +119,7 @@ export default function Events() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(45,45,45,0.65) 0%, rgba(22,22,22,0.95) 55%, #0d0d0d 100%)",
+            "radial-gradient(circle at center, rgba(45,45,45,0.65) 0%, rgba(22,22,22,0.95) 55%, #000000 100%)",
         }}
       />
 
@@ -155,20 +155,14 @@ export default function Events() {
           </h3>
         </div>
         {/* Rulebook button */}
-        {/* <div className="mt-6 flex flex-col items-center">
-          <a href="/brochure/devhost_event_rulebook.pdf" download>
-            <ClippedButton
-              innerBg="bg-[#1B1A18]"
-              outerBg="bg-[#C8A24C]"
-              textColor="text-[#F5E4B2]"
-              className="border border-[#C8A24C]/70 shadow-[0_0_12px_rgba(200,162,76,0.15)] transition-all duration-300 hover:border-[#F6CC60] hover:shadow-[0_0_22px_rgba(200,162,76,0.28)]"
-            >
-              <span className={`${dalek.className} text-xs tracking-wider`}>
-                EVENT RULEBOOK
-              </span>
-            </ClippedButton>
+        <div className="mt-6 flex flex-col items-center">
+          <a
+            href="/brochure/events_rulebook.pdf"
+            download="events_rulebook.pdf"
+          >
+            <Button>Rulebook</Button>
           </a>
-        </div> */}
+        </div>
       </div>
       <div
         className="pointer-events-none absolute top-[340px] left-1/2 -z-0 h-[700px] w-[1100px] -translate-x-1/2 rounded-full blur-[160px]"
@@ -265,16 +259,17 @@ export default function Events() {
                         </span>
                         {event.contact}
                       </p>
-                      {/* <div className="mt-4 scale-70 origin-top-left">
-                        <Button
-                          onClick={() => {
-                            window.location.href =
-                              `${event.registrationLink}`;
-                          }}
-                        >
-                          Register
-                        </Button>
-                      </div> */}
+                      {event.registrationLink && (
+                        <div className="mt-4 origin-top-left scale-70">
+                          <Button
+                            onClick={() => {
+                              window.location.href = `${event.registrationLink}`;
+                            }}
+                          >
+                            Register
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

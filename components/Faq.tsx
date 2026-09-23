@@ -9,7 +9,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import DecryptText from "./animated/TextAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,24 +84,41 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-visible px-4 py-18 sm:px-6 sm:py-32">
+    <section className="relative w-full overflow-visible bg-black px-4 py-18 sm:px-6 sm:py-32">
       {/* Background */}
       <div
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(circle at top, rgba(246,204,96,0.06), transparent 45%),
-            radial-gradient(circle at bottom, rgba(255,255,255,0.02), transparent 70%),
-            linear-gradient(180deg,#191919 0%,#121212 55%,#090909 100%)
-          `,
+    radial-gradient(circle at top,
+      rgba(200,162,76,0.06),
+      transparent 45%),
+    radial-gradient(circle at bottom,
+      rgba(255,255,255,0.02),
+      transparent 65%),
+    linear-gradient(
+      180deg,
+      #000000 0%,
+      #1a1a1a 70%,
+      #000000 100%
+    )
+  `,
         }}
       />
 
       <div
-        className="absolute inset-0 opacity-70"
+        className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(45,45,45,.65) 0%, rgba(18,18,18,.92) 60%, #090909 100%)",
+            "radial-gradient(circle, transparent 45%, rgba(0,0,0,.95) 100%)",
+        }}
+      />
+
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(45,45,45,0.65) 0%, rgba(22,22,22,0.95) 55%, #000000 100%)",
         }}
       />
 
@@ -116,15 +132,8 @@ export default function FAQ() {
             </span>
           </h2>
 
-          <h3 className="mt-4">
-            <DecryptText
-              text="Answers to Common Questions"
-              startDelayMs={200}
-              trailSize={6}
-              flickerIntervalMs={50}
-              revealDelayMs={100}
-              className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
-            />
+          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+            Answers to Common Questions
           </h3>
         </div>
 

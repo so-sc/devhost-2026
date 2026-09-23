@@ -10,6 +10,7 @@ export const events = [
     organizer: "Kshithij",
     contact: "+91 9380967460",
     image: "/event/BGMI.png",
+    registrationLink: "/bgmi/register",
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ export const events = [
     organizer: "Sweekar Shetty & Valasapalli Moksha",
     contact: "+91 9449417695",
     image: "/event/SOT.png",
+    registrationLink: "/ctf/register",
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ export const events = [
     organizer: "Thanushree Bhat K G",
     contact: "+91 8590610306",
     image: "/event/VOO.png",
+    registrationLink: "/tech-pitch/register",
   },
   {
     id: 4,
@@ -43,9 +46,10 @@ export const events = [
       "An algorithmic contest for people who think in complexity classes. The problems get harder as you go, and the leaderboard moves until the last minute.",
     date: "12 Nov",
     time: "03:00 PM onwards",
-    organizer: "Vikas K Malipatil",
+    organizer: "Vikas K Malipatil & S Chinmay",
     contact: "+91 7975993524",
     image: "/event/tst.png",
+    registrationLink: "/cp/register",
   },
   {
     id: 5,
@@ -70,5 +74,6 @@ export const events = [
     organizer: "Jenisha Dsouza",
     contact: "+91 9148412527",
     image: "/event/content.jpeg",
+    registrationLink: "/content-creation/register",
   },
 ];
