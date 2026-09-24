@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     default: "DevHost 2026",
     template: `%s - DevHost 2026`,
   },
-  description: "Connecting Minds, Crafting Progress.",
+  description: "Ideas That Echo Through Time",
   keywords: [
     "sosc",
     "Sahyadri Open Source Community",
