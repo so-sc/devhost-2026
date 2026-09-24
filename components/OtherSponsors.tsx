@@ -18,7 +18,7 @@ const otherSponsors = [
     name: "n8n",
     title: "TECHNOLOGY PARTNER",
     description: [
-      "n8n Cloud Pro license for all hackathon participants.",
+      "n8n Cloud Pro license for top 30 hackathon teams.",
       "Full access during the hackathon duration.",
     ],
   },
@@ -64,6 +64,12 @@ const otherSponsors = [
       "Top 5-10 hackathon teams receive pre-incubation support.",
       "Applicable for interested founder teams.",
     ],
+  },
+  {
+    logo: "/sponsors/unstop-logo.png",
+    name: "Unstop",
+    title: "PLATFORM PARTNER",
+    description: ["Official registration platform for DevHost 2026."],
   },
 ];
 

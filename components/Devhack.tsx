@@ -30,7 +30,7 @@ const ASSETS = {
   background: "/assets/devhack/background.webp",
   swordLeft: "/assets/devhack/leftarm.png",
   swordRight: "/assets/devhack/rightarm.png",
-  title: "/assets/devhack/dev-hack-logo.svg",
+  title: "/assets/devhack/DEVHACK.svg",
 };
 
 export default function DevHackSection() {

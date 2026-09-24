@@ -29,7 +29,7 @@ const criticalImages = [
   "/assets/devhack/background.webp",
   "/assets/devhack/leftarm.png",
   "/assets/devhack/rightarm.png",
-  "/assets/devhack/dev-hack-logo.svg",
+  "/assets/devhack/DEVHACK.svg",
 ];
 
 function preloadImages(images: string[]) {
