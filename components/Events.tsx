@@ -223,12 +223,12 @@ export default function Events() {
                 <div className="font-lora mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
                   <div>
                     <h2
-                      className={`font-norse mb-5 text-2xl font-bold tracking-wide text-[#F6CC60] lg:text-3xl`}
+                      className={`font-norse text-2xl font-bold tracking-wide text-[#F6CC60] lg:text-3xl`}
                     >
                       {/* &gt;  */}
                       {event.title}
                     </h2>
-                    <p className="text-md mb-1 text-white/90 italic">
+                    <p className="text-md mb-4 text-white italic">
                       {event.tagline}
                     </p>
                     <p className="mb-2 text-sm text-white/70 lg:text-sm">

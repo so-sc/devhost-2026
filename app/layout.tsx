@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://devhost.sosc.org.in/",
     title: "DevHost 2026",
-    description: "Connecting Minds, Crafting Progress.",
+    description: "Ideas That Echo Through Time",
     siteName: "DevHost 2026",
     images: [
       {
