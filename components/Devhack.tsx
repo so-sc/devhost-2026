@@ -254,6 +254,16 @@ export default function DevHackSection() {
       detail.style.transform = `translate3d(0, ${20 - 20 * detailProgress}px, 0)`;
     });
 
+    const registerProgress = easeOut(range(progress, 0.795, 0.895));
+
+    const register = root.querySelector<HTMLElement>(".js-register");
+
+    if (register) {
+      register.style.opacity = String(registerProgress);
+
+      register.style.pointerEvents = progress >= 0.795 ? "auto" : "none";
+    }
+
     // 9. EXIT TRANSITION
     const exitProgress = smooth(range(progress, 0.82, 1.0));
     setStyle(".js-exit", {
@@ -446,7 +456,7 @@ export default function DevHackSection() {
             </p>
 
             <div
-              className="js-detail pointer-events-auto"
+              className="js-register pointer-events-none"
               style={{ opacity: 0 }}
             >
               <Button
