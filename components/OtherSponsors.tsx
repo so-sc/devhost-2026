@@ -57,15 +57,6 @@ const otherSponsors = [
     description: ["500 AI credits for every hackathon participating team."],
   },
   {
-    logo: "/sponsors/acic-logo.png",
-    name: "ACIC Sahyadri",
-    title: "INCUBATION PARTNER",
-    description: [
-      "Top 5-10 hackathon teams receive pre-incubation support.",
-      "Applicable for interested founder teams.",
-    ],
-  },
-  {
     logo: "/sponsors/unstop-logo.png",
     name: "Unstop",
     title: "PLATFORM PARTNER",

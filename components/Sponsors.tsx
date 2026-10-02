@@ -6,12 +6,18 @@ import OtherSponsors from "./OtherSponsors";
 
 const titleSponsor = {
   src: "/sponsors/titlesponsor.png",
+  logo: "/sponsors/eg-logo.png",
+  dimensions: "h-18 w-42 sm:h-14 sm:w-38 lg:h-20 lg:w-50",
+  desc: "Title Sponsor",
   alt: "Title Sponsor",
 };
 
 const coSponsors = [
   {
     src: "/sponsors/cosponsor.png",
+    logo: "/sponsors/acic-logo.png",
+    dimensions: "h-10 w-32 sm:8 sm:30 lg:h-12 lg:w-40",
+    desc: "Incubation partner",
     alt: "Co-Sponsor",
   },
   {
@@ -26,6 +32,9 @@ function SponsorCard({
   sponsor: {
     src: string;
     alt: string;
+    logo?: string;
+    desc?: string;
+    dimensions?: string;
   };
   isTitle?: boolean;
 }) {
@@ -53,17 +62,42 @@ function SponsorCard({
           priority={isTitle}
         />
 
-        {/* Center text */}
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center">
-          <span
-            className={`font-norse-bold text-2xl font-semibold tracking-[0.10em] sm:tracking-[0.14em] ${
-              isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
-            }`}
-          >
-            {isTitle ? "TITLE SPONSOR" : "CO-SPONSOR"}
-          </span>
-        </div>
+        {/* Center content */}
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 px-4 text-center">
+          {sponsor.logo ? (
+            <>
+              {/* Sponsor logo */}
+              <div className={`relative ${sponsor.dimensions}`}>
+                <Image
+                  src={sponsor.logo}
+                  alt={`${sponsor.alt} logo`}
+                  fill
+                  className="mt-1 object-contain"
+                />
+              </div>
 
+              {/* Description below logo */}
+              {sponsor.desc && (
+                <span
+                  className={`font-norse-bold -mt-1 text-sm font-semibold tracking-[0.08em] sm:text-xs lg:text-base ${
+                    isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
+                  }`}
+                >
+                  {sponsor.desc}
+                </span>
+              )}
+            </>
+          ) : (
+            /* Fallback when no logo is available */
+            <span
+              className={`font-norse-bold text-2xl font-semibold tracking-[0.10em] sm:tracking-[0.14em] ${
+                isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
+              }`}
+            >
+              {isTitle ? "TITLE SPONSOR" : "CO-SPONSOR"}
+            </span>
+          )}
+        </div>
         {/* Very subtle hover shine */}
         <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
       </div>

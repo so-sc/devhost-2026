@@ -448,8 +448,8 @@ export default function DevHackSection() {
                 style={{ opacity: 0 }}
               >
                 DevHack is the centre of DEVHOST. Teams get a problem statement,
-                36 hours, and mentors who&apos;ve shipped actual products. What you
-                build in that window is up to you.
+                36 hours, and mentors who&apos;ve shipped actual products. What
+                you build in that window is up to you.
               </p>
 
               <div className="mt-10 flex flex-col gap-6 md:flex-row md:gap-10">
