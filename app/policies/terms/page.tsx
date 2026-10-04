@@ -2,8 +2,8 @@ import PolicyTemplate from "../base/PolicyTemplate";
 
 export default function TermsAndConditionsPage() {
   return (
-    <PolicyTemplate 
-      title="Terms and Conditions" 
+    <PolicyTemplate
+      title="Terms and Conditions"
       bgImage="/terms_condi_desktop.png"
       mobileBgImage="/terms_condi_moblie.png"
     >

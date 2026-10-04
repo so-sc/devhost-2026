@@ -2,8 +2,8 @@ import PolicyTemplate from "../base/PolicyTemplate";
 
 export default function AboutUs() {
   return (
-    <PolicyTemplate 
-      title="About Us" 
+    <PolicyTemplate
+      title="About Us"
       bgImage="/about.png"
       mobileBgImage="/about_mobile.png"
     >

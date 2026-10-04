@@ -16,10 +16,10 @@ export default function PolicyTemplate({
   mobileBgImage,
 }: PolicyTemplateProps) {
   return (
-    <main className="relative flex min-h-screen flex-col items-center bg-black px-6 pt-28 md:pt-36 pb-32 md:pb-40 font-lora text-white overflow-hidden">
+    <main className="font-lora relative flex min-h-screen flex-col items-center overflow-hidden bg-black px-6 pt-28 pb-32 text-white md:pt-36 md:pb-40">
       {bgImage && (
         <div
-          className={`pointer-events-none absolute inset-0 z-0 ${mobileBgImage ? 'hidden md:block' : 'block'}`}
+          className={`pointer-events-none absolute inset-0 z-0 ${mobileBgImage ? "hidden md:block" : "block"}`}
           style={{
             backgroundImage: `url('${bgImage}')`,
             backgroundSize: "100% 100%",
