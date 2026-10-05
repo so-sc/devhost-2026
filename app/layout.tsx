@@ -82,6 +82,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        {/* Preload the most critical above-the-fold images at browser-parse time */}
+        <link rel="preload" as="image" href="/hero/herobackground.png" />
+        <link rel="preload" as="image" href="/hero/soldier-left.png" />
+        <link rel="preload" as="image" href="/hero/soldier-right.png" />
+        <link rel="preload" as="image" href="/hero/hero-section-wheel.png" />
+        <link rel="preload" as="image" href="/DVHST.png" />
+        <link rel="preload" as="image" href="/assets/devhack/pure-background.webp" type="image/webp" />
+        <link rel="preload" as="image" href="/assets/devhack/background.webp" type="image/webp" />
+        <link rel="preload" as="image" href="/assets/devhack/leftarm.png" />
+        <link rel="preload" as="image" href="/assets/devhack/rightarm.png" />
+      </head>
       <body
         className={`${poppins.variable} ${lora.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
       >
@@ -101,3 +113,4 @@ export default function RootLayout({
     </html>
   );
 }
+
