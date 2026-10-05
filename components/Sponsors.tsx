@@ -6,7 +6,7 @@ import OtherSponsors from "./OtherSponsors";
 
 const titleSponsor = {
   src: "/sponsors/titlesponsor.png",
-  logo: "/sponsors/eg-logo.png",
+  // logo: "/sponsors/eg-logo.png",
   dimensions: "h-18 w-42 sm:h-14 sm:w-38 lg:h-20 lg:w-50",
   desc: "Title Sponsor",
   alt: "Title Sponsor",
