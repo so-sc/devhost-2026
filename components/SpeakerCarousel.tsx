@@ -205,7 +205,7 @@ export default function SpeakerCarousel() {
                     alt={speaker.name}
                     fill
                     sizes="128px"
-                    className="object-cover object-center grayscale-[80%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                    className="object-cover object-center transition-all duration-500 group-hover:scale-105"
                   />
 
                   <div className="pointer-events-none absolute inset-0 rounded-full bg-[#F6CC60]/5 transition-opacity duration-300 group-hover:opacity-0" />
