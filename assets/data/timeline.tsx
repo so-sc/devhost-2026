@@ -21,7 +21,7 @@ export const markers = [
         icon: <MicVocal className="h-auto sm:w-8" />,
         title: "Inauguration",
         description: "Opening ceremony of DevHost 2026.",
-        venue: "Shashikiran",
+        venue: "Shashikiran Auditorium",
       },
       {
         id: "day1-event3",
@@ -148,7 +148,7 @@ export const markers = [
         time: "03:00",
         displayTime: "3:00 AM",
         icon: <Flame className="h-auto sm:w-8" />,
-        title: "Flagship Hackathon Wind-Up",
+        title: "Hackathon Wind-Up",
         description:
           "Final hours for teams to wrap up their builds before judging begins.",
         venue: "Skill Labs",
@@ -169,7 +169,7 @@ export const markers = [
         icon: <MicVocal className="h-auto sm:w-8" />,
         title: "DevTalk starts",
         description: "Technical talks and knowledge sessions.",
-        venue: "Shashikiran",
+        venue: "Shashikiran Auditorium",
       },
       {
         id: "day3-event4",
@@ -188,7 +188,7 @@ export const markers = [
         icon: <MicVocal className="h-auto sm:w-8" />,
         title: "DevTalk ends",
         description: "",
-        venue: "Shashikiran",
+        venue: "Shashikiran Auditorium",
       },
     ],
   },
