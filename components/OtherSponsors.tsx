@@ -9,53 +9,41 @@ const otherSponsors = [
     name: "CodeChef",
     title: "CP PARTNER",
     description: [
-      "Annual subscription of CodeChef Pro for Top 3 in CP.",
-      "50% discount on CodeChef Pro for all DevHost participants.",
+      "50% discount on Codechef Pro for all devhost participants and free Codechef Pro for top 3 Winners in competitive programming event",
     ],
   },
   {
     logo: "/sponsors/n8n-logo.png",
     name: "n8n",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "n8n Cloud Pro license for top 30 hackathon teams.",
-      "Full access during the hackathon duration.",
-    ],
+    description: ["Pro License for Hackathon participants"],
   },
   {
     logo: "/sponsors/render-logo.png",
     name: "Render",
     title: "TECHNOLOGY PARTNER",
     description: [
-      "$50 Render credit for attendees of DevHost 2026.",
-      "$500 / $300 / $100 credit for Top 3 winning teams.",
+      "Render credits upto $900 for hackathon winners and $50 render credits for all devhost participants",
     ],
   },
   {
     logo: "/sponsors/xyz-logo.png",
     name: ".xyz",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "Free individual .xyz domain for the first year.",
-      "Available for all hackathon participants.",
-    ],
+    description: ["Free Domain for all hackathon participants."],
   },
   {
     logo: "/sponsors/codecrafters-logo.png",
     name: "CodeCrafters",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "1st: 2-year VIP membership.",
-      "2nd: 1-year VIP membership.",
-      "3rd: 6-month VIP membership for winning teams.",
-    ],
+    description: ["Vip membership worth upto $5000 for hackathon winners"],
   },
-  {
-    logo: "/sponsors/sarvam-logo.png",
-    name: "Sarvam AI",
-    title: "TECHNOLOGY PARTNER",
-    description: ["500 AI credits for every hackathon participating team."],
-  },
+  // {
+  //   logo: "/sponsors/sarvam-logo.png",
+  //   name: "Sarvam AI",
+  //   title: "TECHNOLOGY PARTNER",
+  //   description: ["AI credits for hackathon participants."],
+  // },
   {
     logo: "/sponsors/unstop-logo.png",
     name: "Unstop",
@@ -110,7 +98,7 @@ function OtherSponsorCard({
           >
             {/* Logo */}
             <div className="flex h-14 w-full items-center justify-center sm:h-16">
-              <div className="relative h-10 w-full max-w-[130px] sm:h-12">
+              <div className="relative h-10 w-full max-w-[150px] sm:h-12">
                 <Image
                   src={sponsor.logo}
                   alt={sponsor.name}
@@ -122,12 +110,12 @@ function OtherSponsorCard({
             </div>
 
             {/* Sponsor Name */}
-            <h4 className="font-norse mt-1 w-full text-center text-lg font-bold tracking-[0.12em] text-[#E0B957] uppercase drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)] sm:text-xl">
+            {/* <h4 className="font-norse mt-1 w-full text-center text-lg font-bold tracking-[0.12em] text-[#E0B957] uppercase drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)] sm:text-xl">
               {sponsor.name}
-            </h4>
+            </h4> */}
 
             {/* Title */}
-            <p className="font-lora mt-0.5 w-full text-center text-[9px] tracking-[0.18em] text-[#C8A24C] uppercase sm:text-[11px]">
+            <p className="font-lora mt-0.5 w-full text-center text-[9px] font-semibold tracking-[0.18em] text-[#C8A24C] uppercase sm:text-[11px]">
               [{sponsor.title}]
             </p>
           </div>

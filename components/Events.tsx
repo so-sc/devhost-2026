@@ -216,7 +216,7 @@ export default function Events() {
                     alt={event.title}
                     width={500}
                     height={500}
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="h-full w-full transition-transform duration-500 hover:scale-105"
                   />
                 </div>
 

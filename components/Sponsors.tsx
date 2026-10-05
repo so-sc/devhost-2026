@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Button from "./Button";
 import OtherSponsors from "./OtherSponsors";
 
 const titleSponsor = {
@@ -161,15 +160,6 @@ export default function SponsorsLogo() {
           <SponsorCard sponsor={coSponsors[1]} />
         </div>
         <OtherSponsors />
-        <div className="mt-20 flex w-full flex-col items-center gap-3 sm:mt-18">
-          <Button
-            onClick={() => {
-              window.location.href = "mailto:sosc@sahyadri.edu.in";
-            }}
-          >
-            Sponsor DevHost
-          </Button>
-        </div>
       </div>
     </section>
   );
