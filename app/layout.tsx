@@ -89,8 +89,18 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/hero/soldier-right.png" />
         <link rel="preload" as="image" href="/hero/hero-section-wheel.png" />
         <link rel="preload" as="image" href="/DVHST.png" />
-        <link rel="preload" as="image" href="/assets/devhack/pure-background.webp" type="image/webp" />
-        <link rel="preload" as="image" href="/assets/devhack/background.webp" type="image/webp" />
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/devhack/pure-background.webp"
+          type="image/webp"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/devhack/background.webp"
+          type="image/webp"
+        />
         <link rel="preload" as="image" href="/assets/devhack/leftarm.png" />
         <link rel="preload" as="image" href="/assets/devhack/rightarm.png" />
       </head>
@@ -113,4 +123,3 @@ export default function RootLayout({
     </html>
   );
 }
-
