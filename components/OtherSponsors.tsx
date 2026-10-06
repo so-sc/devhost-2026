@@ -23,7 +23,7 @@ const otherSponsors = [
     name: "Render",
     title: "TECHNOLOGY PARTNER",
     description: [
-      "Render credits upto $900 for hackathon winners and $50 render credits for all devhost participants",
+      "Render credits upto $900 for hackathon winners (Winners must use render workflows to be eligible) and $50 render credits for all devhost participants",
     ],
   },
   {
