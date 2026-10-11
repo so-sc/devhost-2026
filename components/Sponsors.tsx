@@ -49,52 +49,52 @@ function SponsorCard({
 
       {/* Plaque */}
 
-{/* Plaque */}
-<a
-  href={sponsor.url}
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label={`Visit ${sponsor.alt} website`}
-  className="group/plaque relative block aspect-[2.1/1] w-full scale-120 overflow-hidden"
->
-  {/* Sponsor plaque image */}
-  <Image
-    src={sponsor.src}
-    alt={sponsor.alt}
-    fill
-    className="object-contain transition-transform duration-500 group-hover/plaque:scale-[1.025]"
-    priority={isTitle}
-  />
-
-  {/* Center content */}
-  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 px-4 text-center">
-    {/* Sponsor logo */}
-    <div className={`relative ${sponsor.dimensions}`}>
-      <Image
-        src={sponsor.logo}
-        alt={`${sponsor.alt} logo`}
-        fill
-        className="mt-1 object-contain"
-      />
-    </div>
-
-    {/* Sponsor description */}
-    {sponsor.desc && (
-      <span
-        className={`font-norse-bold -mt-1 text-sm font-semibold tracking-[0.08em] sm:text-base ${
-          isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
-        }`}
+      {/* Plaque */}
+      <a
+        href={sponsor.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Visit ${sponsor.alt} website`}
+        className="group/plaque relative block aspect-[2.1/1] w-full scale-120 overflow-hidden"
       >
-        {sponsor.desc}
-      </span>
-    )}
-  </div>
+        {/* Sponsor plaque image */}
+        <Image
+          src={sponsor.src}
+          alt={sponsor.alt}
+          fill
+          className="object-contain transition-transform duration-500 group-hover/plaque:scale-[1.025]"
+          priority={isTitle}
+        />
 
-  {/* Hover shine */}
-  <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden opacity-0 transition-opacity duration-700 group-hover/plaque:opacity-100">
-    <div className="absolute inset-y-0 left-1/2 w-1/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#c8a24c]/20 to-transparent blur-md" />
-  </div>
-</a>
+        {/* Center content */}
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 px-4 text-center">
+          {/* Sponsor logo */}
+          <div className={`relative ${sponsor.dimensions}`}>
+            <Image
+              src={sponsor.logo}
+              alt={`${sponsor.alt} logo`}
+              fill
+              className="mt-1 object-contain"
+            />
+          </div>
+
+          {/* Sponsor description */}
+          {sponsor.desc && (
+            <span
+              className={`font-norse-bold -mt-1 text-sm font-semibold tracking-[0.08em] sm:text-base ${
+                isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
+              }`}
+            >
+              {sponsor.desc}
+            </span>
+          )}
+        </div>
+
+        {/* Hover shine */}
+        <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden opacity-0 transition-opacity duration-700 group-hover/plaque:opacity-100">
+          <div className="absolute inset-y-0 left-1/2 w-1/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#c8a24c]/20 to-transparent blur-md" />
+        </div>
+      </a>
     </div>
   );
 }
