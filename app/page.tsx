@@ -16,6 +16,9 @@ import Devhack from "@/components/Devhack";
 
 const criticalImages = [
   "/DVHST.png",
+  "/sosc_logo.svg",
+  "/synergia_logo.svg",
+  "/sahyadri-logo.png",
   "/hero/hero-section-wheel.png",
   "/hero/herobackground.png",
   "/hero/mobile_hero.png",

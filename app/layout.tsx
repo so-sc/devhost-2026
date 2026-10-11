@@ -82,6 +82,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <head>
+          <link rel="preload" as="image" href="/DVHST.png" />
+          <link rel="preload" as="image" href="/sosc_logo.svg" />
+          <link rel="preload" as="image" href="/synergia_logo.svg" />
+          <link rel="preload" as="image" href="/sahyadri-logo.png" />
+
+          <link rel="preload" as="image" href="/hero/hero-section-wheel.png" />
+          <link rel="preload" as="image" href="/hero/herobackground.png" />
+          <link rel="preload" as="image" href="/hero/mobile_hero.png" />
+          <link rel="preload" as="image" href="/hero/mobile_soldier_left.png" />
+          <link
+            rel="preload"
+            as="image"
+            href="/hero/mobile_soldier_right.png"
+          />
+          <link rel="preload" as="image" href="/hero/soldier-left.png" />
+          <link rel="preload" as="image" href="/hero/soldier-right.png" />
+        </head>
+      </head>
       <body
         className={`${poppins.variable} ${lora.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
       >
