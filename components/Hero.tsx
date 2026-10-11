@@ -486,7 +486,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403]"
+      className="bg-dark-obsidian relative flex min-h-screen w-full items-center justify-center overflow-hidden"
     >
       {/* HERO BACKGROUND */}
       <div ref={bgRef} className="absolute inset-0 z-0 h-full w-full">
@@ -513,7 +513,7 @@ export default function Hero() {
       {/* FULL PITCH-BLACK FOG TRANSITION OVERLAY */}
       <div
         ref={blackFogRef}
-        className="pointer-events-none absolute inset-0 z-10 h-full w-full bg-[#050403]"
+        className="bg-dark-obsidian pointer-events-none absolute inset-0 z-10 h-full w-full"
         style={{
           background:
             "radial-gradient(ellipse at center, rgba(5,4,3,0.55) 0%, rgba(5,4,3,0.92) 85%)",
@@ -662,13 +662,13 @@ export default function Hero() {
           {/* TITLE */}
           <div className="relative mb-4 text-center sm:mb-6">
             <h2 className="font-norse-bold mb-2 text-5xl font-extrabold tracking-[0.12em] uppercase sm:text-6xl md:text-7xl lg:text-8xl">
-              <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+              <span className="from-gold via-gold-light to-gold-deep bg-gradient-to-r bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
                 {devhostData.title}
               </span>
             </h2>
 
             {/* CAPTION */}
-            <h3 className="font-norse text-base font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:text-lg sm:tracking-[0.14em] md:text-xl lg:text-2xl">
+            <h3 className="font-norse text-gold-antique/80 text-base font-semibold tracking-[0.10em] sm:text-lg sm:tracking-[0.14em] md:text-xl lg:text-2xl">
               {devhostData.caption}
             </h3>
           </div>

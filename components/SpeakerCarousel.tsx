@@ -168,7 +168,7 @@ export default function SpeakerCarousel() {
 
   return (
     <div className="relative mx-auto mt-8 w-full overflow-hidden sm:mt-10 sm:py-10">
-      <h2 className="font-norse mb-4 text-center text-2xl font-extrabold tracking-wider text-[#C8A24C] uppercase sm:text-3xl">
+      <h2 className="font-norse text-gold-antique mb-4 text-center text-2xl font-extrabold tracking-wider uppercase sm:text-3xl">
         Past Speakers
       </h2>
 
@@ -208,7 +208,7 @@ export default function SpeakerCarousel() {
                     className="object-cover object-center transition-all duration-500 group-hover:scale-105"
                   />
 
-                  <div className="pointer-events-none absolute inset-0 rounded-full bg-[#F6CC60]/5 transition-opacity duration-300 group-hover:opacity-0" />
+                  <div className="bg-gold/5 pointer-events-none absolute inset-0 rounded-full transition-opacity duration-300 group-hover:opacity-0" />
                 </div>
 
                 {/* Gold frame */}
@@ -225,7 +225,7 @@ export default function SpeakerCarousel() {
                 {speaker.name}
               </h3>
 
-              <p className="font-lora mt-1 line-clamp-2 block w-full text-center text-[14px] leading-[1.25] tracking-[0.01em] text-[#F6CC60]/75 max-sm:text-[11px]">
+              <p className="font-lora text-gold/75 mt-1 line-clamp-2 block w-full text-center text-[14px] leading-[1.25] tracking-[0.01em] max-sm:text-[11px]">
                 {speaker.title}
               </p>
             </a>

@@ -138,13 +138,13 @@ const Footer = () => {
               </p>
               <Link
                 target="_blank"
-                className="underlined_link mt-3 inline-block text-[#D8D8D8] transition-all duration-300 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                className="underlined_link hover:text-gold mt-3 inline-block text-[#D8D8D8] transition-all duration-300 hover:drop-shadow-[0_0_5px_#F6CC60]"
                 href="mailto:sosc@sahyadri.edu.in"
               >
                 sosc@sahyadri.edu.in
               </Link>
 
-              <div className="mt-5 w-40 border-t border-[#C8A24C]/40"></div>
+              <div className="border-gold-antique/40 mt-5 w-40 border-t"></div>
               <p className="pt-4 font-bold">Organisers:</p>
               <p className="pt-2">
                 Name: Soniya Kolvekar
@@ -160,7 +160,7 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-8 sm:gap-6">
             <div>
               <h2
-                className={`font-norse mb-6 text-2xl font-bold tracking-wider text-[#C8A24C] uppercase`}
+                className={`font-norse text-gold-antique mb-6 text-2xl font-bold tracking-wider uppercase`}
               >
                 Follow us
               </h2>
@@ -169,7 +169,7 @@ const Footer = () => {
                   <Link
                     href="https://github.com/so-sc"
                     target="_blank"
-                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
+                    className="group hover:text-gold flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1"
                   >
                     <svg
                       className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
@@ -192,7 +192,7 @@ const Footer = () => {
                   <Link
                     href="https://www.instagram.com/sosc.sahyadri"
                     target="_blank"
-                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
+                    className="group hover:text-gold flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1"
                   >
                     <svg
                       className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
@@ -215,7 +215,7 @@ const Footer = () => {
                   <Link
                     href="https://www.linkedin.com/company/sosc-sahyadri"
                     target="_blank"
-                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
+                    className="group hover:text-gold flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1"
                   >
                     <svg
                       className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
@@ -239,7 +239,7 @@ const Footer = () => {
                   <Link
                     href="https://www.youtube.com/channel/UCk8nlSMwUT-jhEtamMF-V-w"
                     target="_blank"
-                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
+                    className="group hover:text-gold flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1"
                   >
                     <svg
                       className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
@@ -262,7 +262,7 @@ const Footer = () => {
                   <Link
                     href="https://discord.gg/KJbBUjrY"
                     target="_blank"
-                    className="group flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60]"
+                    className="group hover:text-gold flex items-center gap-2 text-white transition-all duration-300 hover:translate-x-1"
                   >
                     <svg
                       className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_5px_#F6CC60]"
@@ -282,7 +282,7 @@ const Footer = () => {
             </div>
             <div>
               <h2
-                className={`font-norse mb-6 text-2xl font-bold tracking-wider text-[#C8A24C] uppercase`}
+                className={`font-norse text-gold-antique mb-6 text-2xl font-bold tracking-wider uppercase`}
               >
                 Others
               </h2>
@@ -291,7 +291,7 @@ const Footer = () => {
                   <Link
                     href="https://www.sosc.org.in"
                     target="_blank"
-                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link hover:text-gold inline-flex transition-all duration-300 hover:translate-x-1 hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Website
                   </Link>
@@ -300,7 +300,7 @@ const Footer = () => {
                   <Link
                     href="https://www.sosc.org.in/guidelines"
                     target="_blank"
-                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link hover:text-gold inline-flex transition-all duration-300 hover:translate-x-1 hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Community Guidelines
                   </Link>
@@ -309,7 +309,7 @@ const Footer = () => {
                   <Link
                     href="https://github.com/so-sc/code-of-conduct"
                     target="_blank"
-                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link hover:text-gold inline-flex transition-all duration-300 hover:translate-x-1 hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Code of Conduct
                   </Link>
@@ -318,7 +318,7 @@ const Footer = () => {
                   <Link
                     href="/policies/about-us"
                     target="_blank"
-                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link hover:text-gold inline-flex transition-all duration-300 hover:translate-x-1 hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     About Us
                   </Link>
@@ -327,7 +327,7 @@ const Footer = () => {
                   <Link
                     href="/policies/terms"
                     target="_blank"
-                    className="group underlined_link inline-flex transition-all duration-300 hover:translate-x-1 hover:text-[#F6CC60] hover:drop-shadow-[0_0_5px_#F6CC60]"
+                    className="group underlined_link hover:text-gold inline-flex transition-all duration-300 hover:translate-x-1 hover:drop-shadow-[0_0_5px_#F6CC60]"
                   >
                     Terms & Conditions
                   </Link>

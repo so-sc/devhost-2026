@@ -322,7 +322,7 @@ export default function DevHackSection() {
 
             {/* EXIT TRANSITION LAYER */}
             <div className="js-exit will-change-opacity pointer-events-none absolute inset-0 opacity-0">
-              <div className="absolute inset-0 bg-[#050403]" />
+              <div className="bg-dark-obsidian absolute inset-0" />
               <div
                 className="absolute inset-0 opacity-70 mix-blend-soft-light"
                 style={{

@@ -127,12 +127,12 @@ export default function FAQ() {
 
         <div className="mb-16 text-center">
           <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+            <span className="from-gold via-gold-light to-gold-deep bg-gradient-to-r bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               FAQ
             </span>
           </h2>
 
-          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+          <h3 className="font-norse text-gold-antique/80 text-lg font-semibold tracking-[0.10em] sm:tracking-[0.14em] md:text-2xl">
             Answers to Common Questions
           </h3>
         </div>
@@ -144,18 +144,18 @@ export default function FAQ() {
                 key={index}
                 value={`item-${index}`}
                 data-faq-item
-                className="relative overflow-hidden rounded-xl border border-[#5A4A2B] bg-[#1B1A18]/60 backdrop-blur-md transition-all duration-300 last:border-b last:border-[#5A4A2B] hover:bg-[#23211D]/70"
+                className="border-gold-bronze bg-dark-card/60 last:border-gold-bronze hover:bg-dark-card-hover/70 relative overflow-hidden rounded-xl border backdrop-blur-md transition-all duration-300 last:border-b"
               >
                 <AccordionTrigger className="group px-8 py-6 text-left no-underline hover:no-underline">
                   <div className="flex w-full items-center justify-between">
                     <div className="flex items-center gap-5">
                       {/* Number */}
-                      <span className="font-norse-bold text-2xl leading-none text-[#F6CC60]/80 md:text-2xl">
+                      <span className="font-norse-bold text-gold/80 text-2xl leading-none md:text-2xl">
                         {["Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ"][index]}
                       </span>
 
                       {/* Divider */}
-                      <div className="h-8 w-px bg-[#F6CC60]/25" />
+                      <div className="bg-gold/25 h-8 w-px" />
 
                       {/* Question */}
                       <h3 className="text-base text-zinc-200 transition-all duration-300 md:text-lg">
@@ -167,7 +167,7 @@ export default function FAQ() {
 
                 <AccordionContent className="px-8 pb-7">
                   {/* thin divider */}
-                  <div className="mb-6 h-px bg-gradient-to-r from-[#F6CC60]/70 via-[#F6CC60]/20 to-transparent" />
+                  <div className="from-gold/70 via-gold/20 mb-6 h-px bg-gradient-to-r to-transparent" />
 
                   <p className="max-w-3xl text-base text-zinc-300 md:text-lg">
                     {faq.answer}

@@ -247,18 +247,18 @@ const ScrollParchmentWrapper = ({
                     {day.events.map((event) => (
                       <div
                         key={event.id}
-                        className="relative flex flex-col items-center gap-3 border-b border-[#C8A24C]/20 pb-6 text-center last:border-b-0 sm:gap-4 sm:pb-8 lg:gap-5 lg:pb-10"
+                        className="border-gold-antique/20 relative flex flex-col items-center gap-3 border-b pb-6 text-center last:border-b-0 sm:gap-4 sm:pb-8 lg:gap-5 lg:pb-10"
                       >
                         {/* Time */}
                         <div
-                          className="text-base font-bold tracking-[0.18em] text-[#C8A24C] uppercase sm:text-lg"
+                          className="text-gold-antique text-base font-bold tracking-[0.18em] uppercase sm:text-lg"
                           style={{ fontFamily: "'Cinzel', serif" }}
                         >
                           {event.displayTime}
                         </div>
 
                         {/* Title */}
-                        <h3 className="font-norse-bold mx-auto w-full text-3xl font-bold tracking-wide break-words text-[#F6CC60] sm:max-w-[85%] sm:text-4xl lg:max-w-none">
+                        <h3 className="font-norse-bold text-gold mx-auto w-full text-3xl font-bold tracking-wide break-words sm:max-w-[85%] sm:text-4xl lg:max-w-none">
                           <span className="mr-2 mb-2 inline-flex align-middle tracking-tighter">
                             {event.icon}
                           </span>
@@ -381,7 +381,7 @@ const CyberpunkTimeline: React.FC = () => {
   return (
     <section
       id="Timeline"
-      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-18 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
+      className="bg-dark-obsidian relative flex w-full items-center justify-center overflow-hidden py-18 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -399,7 +399,7 @@ const CyberpunkTimeline: React.FC = () => {
         {/* Header */}
         <div className="relative py-12 text-center">
           <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] md:text-8xl">
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+            <span className="from-gold via-gold-light to-gold-deep bg-gradient-to-r bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               TIMELINE
             </span>
           </h2>
@@ -412,7 +412,7 @@ const CyberpunkTimeline: React.FC = () => {
             trailSize={6}
             flickerIntervalMs={50}
             revealDelayMs={100}
-            className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
+            className="font-norse text-gold-antique/80 text-lg font-semibold tracking-[0.10em] sm:tracking-[0.14em] md:text-2xl"
           />
         </div>
 

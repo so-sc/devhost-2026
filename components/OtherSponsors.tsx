@@ -115,7 +115,7 @@ function OtherSponsorCard({
             </h4> */}
 
             {/* Title */}
-            <p className="font-lora mt-0.5 w-full text-center text-[9px] font-semibold tracking-[0.18em] text-[#C8A24C] uppercase sm:text-[11px]">
+            <p className="font-lora text-gold-antique mt-0.5 w-full text-center text-[9px] font-semibold tracking-[0.18em] uppercase sm:text-[11px]">
               [{sponsor.title}]
             </p>
           </div>
@@ -147,7 +147,7 @@ export default function OtherSponsors() {
     <div className="mt-16 w-full sm:mt-20">
       {/* Section Header */}
       <div className="mb-10 text-center sm:mb-12">
-        <h3 className="font-norse-bold text-3xl font-bold tracking-[0.14em] text-[#C8A24C] uppercase sm:text-4xl">
+        <h3 className="font-norse-bold text-gold-antique text-3xl font-bold tracking-[0.14em] uppercase sm:text-4xl">
           Other Sponsors
         </h3>
       </div>

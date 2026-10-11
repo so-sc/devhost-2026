@@ -45,9 +45,7 @@ function SponsorCard({
       // }
     >
       {/* Glow behind the plaque */}
-      <div className="absolute -inset-4 rounded-full bg-[#C9963E]/10 opacity-0 blur-2xl transition-all duration-700 group-hover:opacity-100" />
-
-      {/* Plaque */}
+      <div className="bg-gold-deep/10 absolute -inset-4 rounded-full opacity-0 blur-2xl transition-all duration-700 group-hover:opacity-100" />
 
       {/* Plaque */}
       <a
@@ -82,7 +80,7 @@ function SponsorCard({
           {sponsor.desc && (
             <span
               className={`font-norse-bold -mt-1 text-sm font-semibold tracking-[0.08em] sm:text-base ${
-                isTitle ? "text-[#C8A24C]" : "text-[#3b2414]"
+                isTitle ? "text-gold-antique" : "text-[#3b2414]"
               }`}
             >
               {sponsor.desc}
@@ -92,7 +90,7 @@ function SponsorCard({
 
         {/* Hover shine */}
         <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden opacity-0 transition-opacity duration-700 group-hover/plaque:opacity-100">
-          <div className="absolute inset-y-0 left-1/2 w-1/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#c8a24c]/20 to-transparent blur-md" />
+          <div className="via-gold-antique/20 absolute inset-y-0 left-1/2 w-1/3 -translate-x-1/2 bg-gradient-to-r from-transparent to-transparent blur-md" />
         </div>
       </a>
     </div>
@@ -103,7 +101,7 @@ export default function SponsorsLogo() {
   return (
     <section
       id="sponsors"
-      className="relative flex w-full items-center justify-center overflow-hidden bg-[#050403] py-18 pb-24 text-white sm:py-30 sm:pb-32 lg:px-8"
+      className="bg-dark-obsidian relative flex w-full items-center justify-center overflow-hidden py-18 pb-24 text-white sm:py-30 sm:pb-32 lg:px-8"
     >
       {/* Section background */}
       <div
@@ -134,12 +132,12 @@ export default function SponsorsLogo() {
         </div>
         <div className="relative mb-4 text-center sm:mb-6">
           <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+            <span className="from-gold via-gold-light to-gold-deep bg-gradient-to-r bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               sponsors
             </span>
           </h2>
 
-          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+          <h3 className="font-norse text-gold-antique/80 text-lg font-semibold tracking-[0.10em] sm:tracking-[0.14em] md:text-2xl">
             powering devhost 2026
           </h3>
         </div>
