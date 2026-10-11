@@ -83,7 +83,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <head>
           <link rel="preload" as="image" href="/DVHST.png" />
           <link rel="preload" as="image" href="/sosc_logo.svg" />
           <link rel="preload" as="image" href="/synergia_logo.svg" />
@@ -100,7 +99,6 @@ export default function RootLayout({
           />
           <link rel="preload" as="image" href="/hero/soldier-left.png" />
           <link rel="preload" as="image" href="/hero/soldier-right.png" />
-        </head>
       </head>
       <body
         className={`${poppins.variable} ${lora.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
