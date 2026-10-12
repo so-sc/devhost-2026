@@ -593,22 +593,31 @@ export default function Hero() {
         className="relative z-20 flex flex-col items-center justify-center px-4 text-center max-sm:-translate-y-10 sm:px-6"
       >
         {/* LOGOS ABOVE TITLE */}
-        <div className="relative z-10 mb-2 flex items-center justify-center gap-2 sm:mb-3 sm:gap-3 md:mb-4 md:gap-4 lg:gap-5">
+        <div className="relative z-10 mb-4 flex items-center justify-center gap-2 sm:mb-3 sm:gap-3 md:mb-4 md:gap-4 lg:gap-5">
           <Image
-            src="/sosc_logo.svg"
-            alt="SOSC"
-            width={70}
+            src="/logo_group.png"
+            alt="Synergia"
+            width={150}
             height={70}
             priority
-            className="h-auto w-10 sm:w-12 md:w-14 lg:w-16"
+            className="h-7 w-auto sm:h-10"
           />
-          <Image
+          {/* <Image
             src="/synergia_logo.svg"
             alt="Synergia"
             width={150}
             height={70}
             priority
             className="h-auto w-16 sm:w-20 md:w-24 lg:w-28"
+          />
+
+          <Image
+            src="/sosc_logo.svg"
+            alt="SOSC"
+            width={70}
+            height={70}
+            priority
+            className="ml-[-6] h-auto w-10 sm:w-12 md:w-14 lg:w-16"
           />
           <Image
             src="/sponsors/eg-logo.png"
@@ -625,7 +634,7 @@ export default function Hero() {
             height={90}
             priority
             className="h-auto w-10 sm:w-12 md:w-14 lg:w-16"
-          />
+          /> */}
         </div>
 
         {/* DEVHOST TITLE */}

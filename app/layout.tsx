@@ -84,10 +84,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <link rel="preload" as="image" href="/DVHST.png" />
-        <link rel="preload" as="image" href="/sosc_logo.svg" />
-        <link rel="preload" as="image" href="/synergia_logo.svg" />
-        <link rel="preload" as="image" href="/sahyadri-logo.png" />
-        <link rel="preload" as="image" href="/sponsors/eg-logo.png" />
+        <link rel="preload" as="image" href="/logo_group.png" />
 
         <link rel="preload" as="image" href="/hero/hero-section-wheel.png" />
         <link rel="preload" as="image" href="/hero/herobackground.png" />
