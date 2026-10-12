@@ -30,12 +30,12 @@ const Map = () => {
         {/* LEFT — TEXT */}
         <div className="space-y-6 lg:col-span-2">
           <h2 className="font-norse-bold text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+            <span className="from-gold via-gold-light to-gold-deep bg-gradient-to-r bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               Location
             </span>
           </h2>
 
-          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-xl">
+          <h3 className="font-norse text-gold-antique/80 text-lg font-semibold tracking-[0.10em] sm:tracking-[0.14em] md:text-xl">
             Sahyadri College of Engineering &amp; Management
           </h3>
 
@@ -75,8 +75,8 @@ const Map = () => {
 
               {/* Click to view */}
               <div className="absolute top-5 left-1/2 -translate-x-1/2">
-                <div className="border border-[#F6CC60]/70 bg-black/70 px-2 py-1 backdrop-blur-sm transition-all duration-300 group-hover:border-[#F6CC60] sm:px-6 sm:py-2">
-                  <span className="font-norse text-xs tracking-[1px] text-[#F6CC60] uppercase sm:text-sm sm:tracking-[0.2em]">
+                <div className="border-gold/70 group-hover:border-gold border bg-black/70 px-2 py-1 backdrop-blur-sm transition-all duration-300 sm:px-6 sm:py-2">
+                  <span className="font-norse text-gold text-xs tracking-[1px] uppercase sm:text-sm sm:tracking-[0.2em]">
                     Click to View Location
                   </span>
                 </div>

@@ -472,7 +472,7 @@ const Button = React.forwardRef<HTMLButtonElement, NewButtonProps>(
           <div className="absolute inset-0 flex items-center justify-center px-8">
             <span
               className={cn(
-                "font-norse font-semibold text-[#C8A24C]/80 uppercase sm:text-lg",
+                "font-norse text-gold-antique/80 font-semibold uppercase sm:text-lg",
                 "tracking-[0.2em]",
                 "select-none",
                 "transition-all duration-300",
