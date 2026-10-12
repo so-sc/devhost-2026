@@ -7,7 +7,7 @@ const otherSponsors = [
   {
     logo: "/sponsors/codechef.png",
     name: "CodeChef",
-    title: "CP PARTNER",
+    title: "Competitive Programming PARTNER",
     description: [
       "50% discount on Codechef Pro for all devhost participants and free Codechef Pro for top 3 Winners in competitive programming event",
     ],

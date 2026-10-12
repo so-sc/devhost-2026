@@ -611,6 +611,14 @@ export default function Hero() {
             className="h-auto w-16 sm:w-20 md:w-24 lg:w-28"
           />
           <Image
+            src="/sponsors/eg-logo.png"
+            alt="Sahyadri"
+            width={90}
+            height={90}
+            priority
+            className="h-auto w-6 sm:w-8 lg:w-9"
+          />
+          <Image
             src="/sahyadri-logo.png"
             alt="Sahyadri"
             width={90}
