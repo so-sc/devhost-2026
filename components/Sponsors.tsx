@@ -12,14 +12,24 @@ const titleSponsor = {
   alt: "Title Sponsor",
 };
 
-const coSponsors = {
-  src: "/sponsors/cosponsor.png",
-  logo: "/sponsors/acic-logo.png",
-  dimensions: "h-10 w-32 sm:h-12 sm:w-40",
-  url: "https://www.acicsahyadri.com/",
-  desc: "Incubation partner",
-  alt: "Co-Sponsor",
-};
+const coSponsors = [
+  {
+    src: "/sponsors/cosponsor.png",
+    logo: "/sponsors/acic-logo.png",
+    dimensions: "h-10 w-32 sm:h-12 sm:w-40",
+    url: "https://www.acicsahyadri.com/",
+    desc: "Incubation partner",
+    alt: "Co-Sponsor",
+  },
+  {
+    src: "/sponsors/cosponsor.png",
+    logo: "/sponsors/unstop-logo.png",
+    dimensions: "h-10 w-32 sm:h-12 sm:w-40",
+    url: "https://unstop.com",
+    desc: "Powered by",
+    alt: "platform partner",
+  },
+];
 
 function SponsorCard({
   sponsor,
@@ -146,8 +156,10 @@ export default function SponsorsLogo() {
           {/* Title Sponsor */}
           <SponsorCard sponsor={titleSponsor} isTitle />
 
-          {/* Co-Sponsor 1 */}
-          <SponsorCard sponsor={coSponsors} />
+          <div className="flex w-full flex-col items-center justify-center gap-18 md:flex-row md:gap-12">
+            <SponsorCard sponsor={coSponsors[0]} />
+            <SponsorCard sponsor={coSponsors[1]} />
+          </div>
         </div>
         <OtherSponsors />
       </div>

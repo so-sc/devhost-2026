@@ -44,12 +44,12 @@ const otherSponsors = [
   //   title: "TECHNOLOGY PARTNER",
   //   description: ["AI credits for hackathon participants."],
   // },
-  {
-    logo: "/sponsors/unstop-logo.png",
-    name: "Unstop",
-    title: "PLATFORM PARTNER",
-    description: ["Official registration platform for DevHost 2026."],
-  },
+  // {
+  //   logo: "/sponsors/unstop-logo.png",
+  //   name: "Unstop",
+  //   title: "PLATFORM PARTNER",
+  //   description: ["Official registration platform for DevHost 2026."],
+  // },
 ];
 
 function OtherSponsorCard({
