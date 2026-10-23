@@ -153,7 +153,7 @@ export default function OtherSponsors() {
       </div>
 
       {/* SPONSOR BRICKS GRID (CENTERED ON ALL ROWS, 4 PER ROW ON DESKTOP) */}
-      <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6">
+      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-10">
         {otherSponsors.map((sponsor) => (
           <div
             key={sponsor.name}
