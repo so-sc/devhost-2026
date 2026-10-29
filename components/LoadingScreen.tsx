@@ -85,7 +85,7 @@ export default function LoadingScreen({
         />
 
         {/* Small DevHost 2026 Logo (from Hero section) */}
-        <div className="relative z-10 w-32 sm:w-36 md:w-40">
+        <div className="relative z-10 w-32 sm:w-36 md:w-50">
           <Image
             src="/DVHST.png"
             alt="DevHost 2026"
@@ -99,7 +99,7 @@ export default function LoadingScreen({
         {/* ================= RECTANGLE / PROGRESS BAR ================= */}
         <div className="relative z-10 mt-4 sm:mt-5 flex flex-col items-center">
           {/* Outer rectangular track */}
-          <div className="relative h-1 sm:h-1.5 w-32 sm:w-36 md:w-40 overflow-hidden rounded-[2px] border border-[#c8a24c]/30 bg-[#16120b] p-[1px] shadow-[0_0_8px_rgba(200,162,76,0.12)]">
+          <div className="relative h-1 sm:h-1.5 w-32 sm:w-36 md:w-50 overflow-hidden rounded-[2px] border border-[#c8a24c]/30 bg-[#16120b] p-[1px] shadow-[0_0_8px_rgba(200,162,76,0.12)]">
             {/* Smooth filling bar */}
             <div
               className="relative h-full rounded-[1px] bg-gradient-to-r from-[#C9963E] via-[#F6CC60] to-[#FFF5D0] transition-all duration-75 ease-out"
@@ -114,9 +114,9 @@ export default function LoadingScreen({
           </div>
 
           {/* Minimal percentage text */}
-          <div className="mt-2 flex w-32 sm:w-36 md:w-40 items-center justify-between font-trajan text-[9px] sm:text-[10px] tracking-[0.2em] text-[#c8a24c]/75">
+          <div className="font-lora mt-2 flex w-32 sm:w-36 md:w-50 items-center justify-between text-xs sm:text-md tracking-[0.2em] text-[#c8a24c]/75">
             <span>LOADING</span>
-            <span className="text-[#f6cc60] font-semibold">
+            <span className="text-[#f6cc60] font-semibold font-norse">
               {Math.round(displayedProgress)}%
             </span>
           </div>
