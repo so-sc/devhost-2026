@@ -70,14 +70,14 @@ export default function LoadingScreen({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-black select-none transition-opacity duration-350 ease-out ${
-        isFadingOut ? "opacity-0 pointer-events-none" : "opacity-100"
+      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-black transition-opacity duration-350 ease-out select-none ${
+        isFadingOut ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
-      <div className="relative flex flex-col items-center justify-center text-center px-4">
+      <div className="relative flex flex-col items-center justify-center px-4 text-center">
         {/* Soft golden ambient backlight behind logo */}
         <div
-          className="pointer-events-none absolute -inset-4 -z-10 blur-xl opacity-40"
+          className="pointer-events-none absolute -inset-4 -z-10 opacity-40 blur-xl"
           style={{
             background:
               "radial-gradient(ellipse at center, rgba(212,175,55,0.35) 0%, rgba(212,175,55,0.08) 50%, transparent 75%)",
@@ -97,9 +97,9 @@ export default function LoadingScreen({
         </div>
 
         {/* ================= RECTANGLE / PROGRESS BAR ================= */}
-        <div className="relative z-10 mt-4 sm:mt-5 flex flex-col items-center">
+        <div className="relative z-10 mt-4 flex flex-col items-center sm:mt-5">
           {/* Outer rectangular track */}
-          <div className="relative h-1 sm:h-1.5 w-32 sm:w-36 md:w-50 overflow-hidden rounded-[2px] border border-[#c8a24c]/30 bg-[#16120b] p-[1px] shadow-[0_0_8px_rgba(200,162,76,0.12)]">
+          <div className="relative h-1 w-32 overflow-hidden rounded-[2px] border border-[#c8a24c]/30 bg-[#16120b] p-[1px] shadow-[0_0_8px_rgba(200,162,76,0.12)] sm:h-1.5 sm:w-36 md:w-50">
             {/* Smooth filling bar */}
             <div
               className="relative h-full rounded-[1px] bg-gradient-to-r from-[#C9963E] via-[#F6CC60] to-[#FFF5D0] transition-all duration-75 ease-out"
@@ -109,14 +109,14 @@ export default function LoadingScreen({
               }}
             >
               {/* Subtle glowing leading pulse */}
-              <div className="absolute right-0 top-0 bottom-0 w-1.5 bg-white/70 blur-[0.5px]" />
+              <div className="absolute top-0 right-0 bottom-0 w-1.5 bg-white/70 blur-[0.5px]" />
             </div>
           </div>
 
           {/* Minimal percentage text */}
-          <div className="font-lora mt-2 flex w-32 sm:w-36 md:w-50 items-center justify-between text-xs sm:text-md tracking-[0.2em] text-[#c8a24c]/75">
+          <div className="font-lora sm:text-md mt-2 flex w-32 items-center justify-between text-xs tracking-[0.2em] text-[#c8a24c]/75 sm:w-36 md:w-50">
             <span>LOADING</span>
-            <span className="text-[#f6cc60] font-semibold font-norse">
+            <span className="font-norse font-semibold text-[#f6cc60]">
               {Math.round(displayedProgress)}%
             </span>
           </div>

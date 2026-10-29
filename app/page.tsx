@@ -35,7 +35,7 @@ const criticalImages = [
 
 function preloadImages(
   images: string[],
-  onProgress?: (loaded: number, total: number) => void
+  onProgress?: (loaded: number, total: number) => void,
 ) {
   let loaded = 0;
   const total = images.length;
