@@ -165,7 +165,7 @@ export const markers = [
       {
         id: "day3-event3",
         time: "09:30",
-        displayTime: "9:30 AM - 01:30 PM",
+        displayTime: "9:30 AM - 12:45 PM",
         icon: <MicVocal className="h-auto sm:w-8" />,
         title: "DevTalk starts",
         description: "Technical talks and knowledge sessions.",
@@ -184,7 +184,7 @@ export const markers = [
       {
         id: "day3-event5",
         time: "15:30",
-        displayTime: "3:30 PM - 05:00 PM",
+        displayTime: "2:30 PM - 04:00 PM",
         icon: <MicVocal className="h-auto sm:w-8" />,
         title: "DevTalk ends",
         description: "",
