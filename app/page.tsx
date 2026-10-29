@@ -108,27 +108,27 @@ export default function Home() {
 
   return (
     <div className="relative">
-        <Hero />
-        {/* <Counter /> */}
-        {/* <Final /> */}
-        {/* <AboutDevhost /> */}
-        {/* <div className="relative h-[30vh]">
+      <Hero />
+      {/* <Counter /> */}
+      {/* <Final /> */}
+      {/* <AboutDevhost /> */}
+      {/* <div className="relative h-[30vh]">
           <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
         </div> */}
-        {/* <SpeakersInfo /> */}
-        <CallForSpeakers />
-        <div className="relative z-10">
-          <SponsorsLogo />
-        </div>
-        <div className="pointer-events-none relative z-10 -mt-[100vh]">
-          <Devhack />
-        </div>
-        <TimelineSection />
-        <Events />
-        <Gallery />
-        <FAQ />
-        <Map />
-        <Footer />
+      {/* <SpeakersInfo /> */}
+      <CallForSpeakers />
+      <div className="relative z-10">
+        <SponsorsLogo />
+      </div>
+      <div className="pointer-events-none relative z-10 -mt-[100vh]">
+        <Devhack />
+      </div>
+      <TimelineSection />
+      <Events />
+      <Gallery />
+      <FAQ />
+      <Map />
+      <Footer />
 
       {/* Background grid */}
       {/*<div className="pointer-events-none fixed inset-0 -z-10 opacity-10">
