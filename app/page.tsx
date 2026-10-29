@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import FAQ from "@/components/Faq";
 import Map from "@/components/Map";
 import Events from "@/components/Events";
-import LoadingSpinner from "@/components/LoadingSpinner";
 import LoadingScreen from "@/components/LoadingScreen";
 import SponsorsLogo from "@/components/Sponsors";
 import CallForSpeakers from "@/components/CallForSpeakers";
@@ -17,6 +16,7 @@ import Devhack from "@/components/Devhack";
 
 const criticalImages = [
   "/DVHST.png",
+  "/logo_group.png",
   "/hero/hero-section-wheel.png",
   "/hero/herobackground.png",
   "/hero/mobile_hero.png",
@@ -30,7 +30,7 @@ const criticalImages = [
   "/assets/devhack/background.webp",
   "/assets/devhack/leftarm.png",
   "/assets/devhack/rightarm.png",
-  "/assets/devhack/dev-hack-logo.svg",
+  "/assets/devhack/DEVHACK.svg",
 ];
 
 function preloadImages(
@@ -108,7 +108,6 @@ export default function Home() {
 
   return (
     <div className="relative">
-      <Suspense fallback={<LoadingSpinner />}>
         <Hero />
         {/* <Counter /> */}
         {/* <Final /> */}
@@ -130,7 +129,6 @@ export default function Home() {
         <FAQ />
         <Map />
         <Footer />
-      </Suspense>
 
       {/* Background grid */}
       {/*<div className="pointer-events-none fixed inset-0 -z-10 opacity-10">

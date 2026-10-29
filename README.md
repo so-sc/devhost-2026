@@ -7,7 +7,7 @@ _November 12–14, 2026 · Sahyadri Campus, Adyar_
 
 ## Overview
 
-DevHost 2026 is the 8th edition of the flagship annual event by the Sahyadri Open Source Community (SOSC). It brings together students, developers, and industry experts for three days of innovation, collaboration, and knowledge sharing.
+DevHost 2026 is the 9th edition of the flagship annual event by the Sahyadri Open Source Community (SOSC). It brings together students, developers, and industry experts for three days of innovation, collaboration, and knowledge sharing.
 
 The event features:
 
@@ -69,6 +69,7 @@ Follow us:
 - [@chnmy77](https://github.com/chnmy77)
 - [@Nisargak-21](https://github.com/Nisargak-21)
 - [@VaishnavUpadyaya](https://github.com/VaishnavUpadyaya)
+- [@rehanpatel215](https://github.com/rehanpatel215)
 - [@Nivas-M](https://github.com/Nivas-M)
 
 ---

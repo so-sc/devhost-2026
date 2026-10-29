@@ -7,64 +7,49 @@ const otherSponsors = [
   {
     logo: "/sponsors/codechef.png",
     name: "CodeChef",
-    title: "CP PARTNER",
+    title: "Competitive Programming PARTNER",
     description: [
-      "Annual subscription of CodeChef Pro for Top 3 in CP.",
-      "50% discount on CodeChef Pro for all DevHost participants.",
+      "50% discount on Codechef Pro for all devhost participants and free Codechef Pro for top 3 Winners in competitive programming event",
     ],
   },
   {
     logo: "/sponsors/n8n-logo.png",
     name: "n8n",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "n8n Cloud Pro license for all hackathon participants.",
-      "Full access during the hackathon duration.",
-    ],
+    description: ["Pro License for Hackathon participants"],
   },
   {
     logo: "/sponsors/render-logo.png",
     name: "Render",
     title: "TECHNOLOGY PARTNER",
     description: [
-      "$50 Render credit for attendees of DevHost 2026.",
-      "$500 / $300 / $100 credit for Top 3 winning teams.",
+      "Render credits upto $900 for hackathon winners (Winners must use render workflows to be eligible) and $50 render credits for all devhost participants",
     ],
   },
   {
     logo: "/sponsors/xyz-logo.png",
     name: ".xyz",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "Free individual .xyz domain for the first year.",
-      "Available for all hackathon participants.",
-    ],
+    description: ["Free Domain for all hackathon participants."],
   },
   {
     logo: "/sponsors/codecrafters-logo.png",
     name: "CodeCrafters",
     title: "TECHNOLOGY PARTNER",
-    description: [
-      "1st: 2-year VIP membership.",
-      "2nd: 1-year VIP membership.",
-      "3rd: 6-month VIP membership for winning teams.",
-    ],
+    description: ["Vip membership worth upto $5000 for hackathon winners"],
   },
-  {
-    logo: "/sponsors/sarvam-logo.png",
-    name: "Sarvam AI",
-    title: "TECHNOLOGY PARTNER",
-    description: ["500 AI credits for every hackathon participating team."],
-  },
-  {
-    logo: "/sponsors/acic-logo.png",
-    name: "ACIC Sahyadri",
-    title: "INCUBATION PARTNER",
-    description: [
-      "Top 5-10 hackathon teams receive pre-incubation support.",
-      "Applicable for interested founder teams.",
-    ],
-  },
+  // {
+  //   logo: "/sponsors/sarvam-logo.png",
+  //   name: "Sarvam AI",
+  //   title: "TECHNOLOGY PARTNER",
+  //   description: ["AI credits for hackathon participants."],
+  // },
+  // {
+  //   logo: "/sponsors/unstop-logo.png",
+  //   name: "Unstop",
+  //   title: "PLATFORM PARTNER",
+  //   description: ["Official registration platform for DevHost 2026."],
+  // },
 ];
 
 function OtherSponsorCard({
@@ -93,7 +78,7 @@ function OtherSponsorCard({
       <div className="relative aspect-[1.35/1] w-full overflow-hidden drop-shadow-[0_10px_25px_rgba(0,0,0,0.95)]">
         {/* SPONSOR BRICK IMAGE */}
         <Image
-          src="/sponsor_brick.png"
+          src="/sponsors/sponsor_brick.png"
           alt=""
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
@@ -113,7 +98,7 @@ function OtherSponsorCard({
           >
             {/* Logo */}
             <div className="flex h-14 w-full items-center justify-center sm:h-16">
-              <div className="relative h-10 w-full max-w-[130px] sm:h-12">
+              <div className="relative h-10 w-full max-w-[150px] sm:h-12">
                 <Image
                   src={sponsor.logo}
                   alt={sponsor.name}
@@ -125,12 +110,12 @@ function OtherSponsorCard({
             </div>
 
             {/* Sponsor Name */}
-            <h4 className="font-norse mt-1 w-full text-center text-lg font-bold tracking-[0.12em] text-[#E0B957] uppercase drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)] sm:text-xl">
+            {/* <h4 className="font-norse mt-1 w-full text-center text-lg font-bold tracking-[0.12em] text-[#E0B957] uppercase drop-shadow-[0_2px_5px_rgba(0,0,0,0.9)] sm:text-xl">
               {sponsor.name}
-            </h4>
+            </h4> */}
 
             {/* Title */}
-            <p className="font-lora mt-0.5 w-full text-center text-[9px] tracking-[0.18em] text-[#C8A24C] uppercase sm:text-[11px]">
+            <p className="font-lora text-gold-antique mt-0.5 w-full text-center text-[9px] font-semibold tracking-[0.18em] uppercase sm:text-[11px]">
               [{sponsor.title}]
             </p>
           </div>
@@ -162,13 +147,13 @@ export default function OtherSponsors() {
     <div className="mt-16 w-full sm:mt-20">
       {/* Section Header */}
       <div className="mb-10 text-center sm:mb-12">
-        <h3 className="font-norse-bold text-3xl font-bold tracking-[0.14em] text-[#C8A24C] uppercase sm:text-4xl">
+        <h3 className="font-norse-bold text-gold-antique text-3xl font-bold tracking-[0.14em] uppercase sm:text-4xl">
           Other Sponsors
         </h3>
       </div>
 
       {/* SPONSOR BRICKS GRID (CENTERED ON ALL ROWS, 4 PER ROW ON DESKTOP) */}
-      <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6">
+      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-10">
         {otherSponsors.map((sponsor) => (
           <div
             key={sponsor.name}

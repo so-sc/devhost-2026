@@ -143,7 +143,7 @@ export default function CallForSpeakers() {
     <section
       ref={sectionRef}
       id="speakers"
-      className="relative min-h-svh w-full overflow-hidden bg-[#050403] py-18 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
+      className="bg-dark-obsidian relative min-h-svh w-full overflow-hidden py-18 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
     >
       <div
         ref={bgRef}
@@ -197,11 +197,11 @@ export default function CallForSpeakers() {
         className="relative z-10 flex min-h-svh w-full flex-col justify-between will-change-[opacity,transform]"
       >
         <div className="w-full px-4 md:px-20 xl:px-30 xl:pt-24">
-          <h2 className="font-norse-bold mb-2 bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-6xl font-extrabold tracking-[0.12em] text-transparent uppercase drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)] md:text-8xl">
+          <h2 className="font-norse-bold from-gold via-gold-light to-gold-deep mb-2 bg-gradient-to-r bg-clip-text text-6xl font-extrabold tracking-[0.12em] text-transparent uppercase drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)] md:text-8xl">
             Call for Speakers
           </h2>
 
-          <p className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+          <p className="font-norse text-gold-antique/80 text-lg font-semibold tracking-[0.10em] sm:tracking-[0.14em] md:text-2xl">
             Grace the mythic stage of DevHost 2026
           </p>
 

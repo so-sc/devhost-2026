@@ -486,7 +486,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050403]"
+      className="bg-dark-obsidian relative flex min-h-screen w-full items-center justify-center overflow-hidden"
     >
       {/* HERO BACKGROUND */}
       <div ref={bgRef} className="absolute inset-0 z-0 h-full w-full">
@@ -513,7 +513,7 @@ export default function Hero() {
       {/* FULL PITCH-BLACK FOG TRANSITION OVERLAY */}
       <div
         ref={blackFogRef}
-        className="pointer-events-none absolute inset-0 z-10 h-full w-full bg-[#050403]"
+        className="bg-dark-obsidian pointer-events-none absolute inset-0 z-10 h-full w-full"
         style={{
           background:
             "radial-gradient(ellipse at center, rgba(5,4,3,0.55) 0%, rgba(5,4,3,0.92) 85%)",
@@ -593,22 +593,39 @@ export default function Hero() {
         className="relative z-20 flex flex-col items-center justify-center px-4 text-center max-sm:-translate-y-10 sm:px-6"
       >
         {/* LOGOS ABOVE TITLE */}
-        <div className="relative z-10 mb-2 flex items-center justify-center gap-2 sm:mb-3 sm:gap-3 md:mb-4 md:gap-4 lg:gap-5">
+        <div className="relative z-10 mb-4 flex items-center justify-center gap-2 sm:mb-3 sm:gap-3 md:mb-4 md:gap-4 lg:gap-5">
           <Image
-            src="/sosc_logo.svg"
-            alt="SOSC"
-            width={70}
+            src="/logo_group.png"
+            alt="Synergia"
+            width={150}
             height={70}
             priority
-            className="h-auto w-10 sm:w-12 md:w-14 lg:w-16"
+            className="h-7 w-auto sm:h-10"
           />
-          <Image
+          {/* <Image
             src="/synergia_logo.svg"
             alt="Synergia"
             width={150}
             height={70}
             priority
             className="h-auto w-16 sm:w-20 md:w-24 lg:w-28"
+          />
+
+          <Image
+            src="/sosc_logo.svg"
+            alt="SOSC"
+            width={70}
+            height={70}
+            priority
+            className="ml-[-6] h-auto w-10 sm:w-12 md:w-14 lg:w-16"
+          />
+          <Image
+            src="/sponsors/eg-logo.png"
+            alt="Sahyadri"
+            width={90}
+            height={90}
+            priority
+            className="h-auto w-6 sm:w-8 lg:w-9"
           />
           <Image
             src="/sahyadri-logo.png"
@@ -617,7 +634,7 @@ export default function Hero() {
             height={90}
             priority
             className="h-auto w-10 sm:w-12 md:w-14 lg:w-16"
-          />
+          /> */}
         </div>
 
         {/* DEVHOST TITLE */}
@@ -662,13 +679,13 @@ export default function Hero() {
           {/* TITLE */}
           <div className="relative mb-4 text-center sm:mb-6">
             <h2 className="font-norse-bold mb-2 text-5xl font-extrabold tracking-[0.12em] uppercase sm:text-6xl md:text-7xl lg:text-8xl">
-              <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+              <span className="from-gold via-gold-light to-gold-deep bg-gradient-to-r bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
                 {devhostData.title}
               </span>
             </h2>
 
             {/* CAPTION */}
-            <h3 className="font-norse text-base font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:text-lg sm:tracking-[0.14em] md:text-xl lg:text-2xl">
+            <h3 className="font-norse text-gold-antique/80 text-base font-semibold tracking-[0.10em] sm:text-lg sm:tracking-[0.14em] md:text-xl lg:text-2xl">
               {devhostData.caption}
             </h3>
           </div>

@@ -30,7 +30,7 @@ const ASSETS = {
   background: "/assets/devhack/background.webp",
   swordLeft: "/assets/devhack/leftarm.png",
   swordRight: "/assets/devhack/rightarm.png",
-  title: "/assets/devhack/dev-hack-logo.svg",
+  title: "/assets/devhack/DEVHACK.svg",
 };
 
 export default function DevHackSection() {
@@ -254,6 +254,15 @@ export default function DevHackSection() {
       detail.style.transform = `translate3d(0, ${20 - 20 * detailProgress}px, 0)`;
     });
 
+    const registerProgress = easeOut(range(progress, 0.795, 0.895));
+
+    const registers = root.querySelectorAll<HTMLElement>(".js-register");
+
+    registers.forEach((register) => {
+      register.style.opacity = String(registerProgress);
+      register.style.pointerEvents = progress >= 0.795 ? "auto" : "none";
+    });
+
     // 9. EXIT TRANSITION
     const exitProgress = smooth(range(progress, 0.82, 1.0));
     setStyle(".js-exit", {
@@ -313,7 +322,7 @@ export default function DevHackSection() {
 
             {/* EXIT TRANSITION LAYER */}
             <div className="js-exit will-change-opacity pointer-events-none absolute inset-0 opacity-0">
-              <div className="absolute inset-0 bg-[#050403]" />
+              <div className="bg-dark-obsidian absolute inset-0" />
               <div
                 className="absolute inset-0 opacity-70 mix-blend-soft-light"
                 style={{
@@ -416,49 +425,61 @@ export default function DevHackSection() {
             />
           </Anchor>
 
-          {/* TITLE */}
-          <Anchor className="z-40 px-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={ASSETS.title}
-              alt="DEV HACK"
-              className="js-title-img block h-auto w-full max-w-[800px] drop-shadow-2xl"
-              style={{
-                opacity: 0,
-                filter: "blur(14px)",
-              }}
-              draggable={false}
-            />
-          </Anchor>
-
-          {/* DETAILS */}
-          <div
-            className="pointer-events-none absolute inset-x-0 z-40 flex flex-col items-center px-5 text-center"
-            style={{ top: "56%" }}
-          >
-            <p
-              className="js-detail font-lora text-md mb-14 max-w-2xl leading-relaxed break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
-              style={{ opacity: 0 }}
-            >
-              DevHack is the centre of DEVHOST. Teams get a problem statement,
-              36 hours, and mentors who&apos;ve shipped actual products. What
-              you build in that window is up to you.
-            </p>
-
-            <div
-              className="js-detail pointer-events-auto"
-              style={{ opacity: 0 }}
-            >
-              <Button
-                onClick={() => {
-                  window.location.href = "/hackathon/register";
+          {/* TITLE + DETAILS */}
+          <div className="pointer-events-none absolute inset-0 z-40 flex flex-col items-center justify-center px-5 text-center">
+            {/* TITLE */}
+            <div className="flex w-full shrink-0 justify-center px-4">
+              <img
+                src={ASSETS.title}
+                alt="DEV HACK"
+                className="js-title-img block h-auto w-full max-w-[800px] drop-shadow-2xl"
+                style={{
+                  opacity: 0,
+                  filter: "blur(14px)",
                 }}
+                draggable={false}
+              />
+            </div>
+
+            {/* DETAILS */}
+            <div className="flex w-full shrink-0 flex-col items-center">
+              <p
+                className="js-detail font-lora text-md mt-6 mb-0 max-w-2xl leading-relaxed break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em]"
+                style={{ opacity: 0 }}
               >
-                Register
-              </Button>
+                DevHack is the centre of DEVHOST. Teams get a problem statement,
+                36 hours, and mentors who&apos;ve shipped actual products. What
+                you build in that window is up to you.
+              </p>
+
+              <div className="mt-10 flex flex-col gap-6 md:flex-row md:gap-10">
+                <div
+                  className="js-register pointer-events-none"
+                  style={{ opacity: 0 }}
+                >
+                  <Button
+                    onClick={() => {
+                      window.location.href = "/hackathon/register";
+                    }}
+                  >
+                    Register
+                  </Button>
+                </div>
+
+                <div
+                  className="js-register pointer-events-none"
+                  style={{ opacity: 0 }}
+                >
+                  <a
+                    href="/brochure/devhack_rulebook.pdf"
+                    download="devhack_rulebook.pdf"
+                  >
+                    <Button>Rulebook</Button>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-
           {/* EMBERS */}
           <EmberCanvas
             ref={embers}

@@ -236,7 +236,7 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
         {/* SECTION HEADER */}
         <div ref={titleRef} className="relative z-10 mb-8 text-center sm:mb-12">
           <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] uppercase md:text-8xl">
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+            <span className="from-gold via-gold-light to-gold-deep bg-gradient-to-r bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               throwback
             </span>
           </h2>
@@ -247,7 +247,7 @@ export default function Gallery({ images = IMAGES }: GalleryProps) {
               trailSize={6}
               flickerIntervalMs={50}
               revealDelayMs={100}
-              className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl"
+              className="font-norse text-gold-antique/80 text-lg font-semibold tracking-[0.10em] sm:tracking-[0.14em] md:text-2xl"
             />
           </h3>
         </div>

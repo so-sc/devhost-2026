@@ -2,7 +2,7 @@ export const events = [
   {
     id: 1,
     title: "Arena Of Ares",
-    tagline: "Only one squad walks away.",
+    tagline: "BGMI",
     description:
       "Drop in, fight it out, and hold your ground. Aim matters. Positioning and communication matter more.",
     date: "13 Nov",
@@ -15,7 +15,7 @@ export const events = [
   {
     id: 2,
     title: "Siege Of Troy",
-    tagline: "Nothing here is secure. That's the point.",
+    tagline: "Capture The Flag",
     description:
       "A security contest built around breaking things. Find the hidden flags by understanding the system before taking it apart.",
     date: "12 Nov",
@@ -28,7 +28,7 @@ export const events = [
   {
     id: 3,
     title: "Voice Of The Oracle",
-    tagline: "Your idea, and a room to convince.",
+    tagline: "Tech Pitch",
     description:
       "A stage, a panel, and an idea worth backing. Present what you want to build and answer for it. The pitch that survives the questions wins.",
     date: "12 Nov",
@@ -41,7 +41,7 @@ export const events = [
   {
     id: 4,
     title: "The Sphinx Trial",
-    tagline: "Compile your victory.",
+    tagline: "Competitive Programming",
     description:
       "An algorithmic contest for people who think in complexity classes. The problems get harder as you go, and the leaderboard moves until the last minute.",
     date: "12 Nov",
@@ -54,7 +54,7 @@ export const events = [
   {
     id: 5,
     title: "Winged Keys",
-    tagline: "Backspace costs you the round.",
+    tagline: "Speed Typing",
     description:
       "Raw speed against text you have not seen before. Fast is not enough if you keep going back to fix things.",
     date: "12 & 13 Nov",
@@ -66,7 +66,7 @@ export const events = [
   {
     id: 6,
     title: "The Mythical Canvas",
-    tagline: "The Creator's Quest",
+    tagline: "Content Creation",
     description:
       "A content creation contest judged by attention, not accuracy. Turn DevHost into a story worth watching. The algorithm only cares whether people stopped scrolling.",
     date: "12 & 13 Nov",

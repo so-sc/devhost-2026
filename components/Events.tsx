@@ -146,11 +146,11 @@ export default function Events() {
         />
         <div className="relative mb-4 text-center sm:mb-6">
           <h2 className="font-norse-bold mb-2 text-6xl font-extrabold tracking-[0.12em] md:text-8xl">
-            <span className="bg-gradient-to-r from-[#F6CC60] via-[#FFF5D0] to-[#C9963E] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
+            <span className="from-gold via-gold-light to-gold-deep bg-gradient-to-r bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)]">
               DEVHOST EVENTS
             </span>
           </h2>
-          <h3 className="font-norse text-lg font-semibold tracking-[0.10em] text-[#C8A24C]/80 sm:tracking-[0.14em] md:text-2xl">
+          <h3 className="font-norse text-gold-antique/80 text-lg font-semibold tracking-[0.10em] sm:tracking-[0.14em] md:text-2xl">
             build, compete and leave your mark
           </h3>
         </div>
@@ -181,7 +181,7 @@ export default function Events() {
               ref={(el) => {
                 if (el) cardsRef.current[idx] = el;
               }}
-              className="relative mx-auto w-full overflow-hidden border border-[#C8A24C]/60 shadow-[0_0_12px_rgba(200,162,76,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#E2B756] hover:shadow-[0_18px_35px_rgba(200,162,76,0.18)]"
+              className="border-gold-antique/60 hover:border-gold-bright relative mx-auto w-full overflow-hidden border shadow-[0_0_12px_rgba(200,162,76,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(200,162,76,0.18)]"
               style={{
                 clipPath:
                   "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
@@ -205,7 +205,7 @@ export default function Events() {
                 }}
               >
                 <div
-                  className="relative aspect-square w-full overflow-hidden border border-[#C8A24C]/40 shadow-inner sm:aspect-[4/5] sm:w-1/2 md:mb-2"
+                  className="border-gold-antique/40 relative aspect-square w-full overflow-hidden border shadow-inner sm:aspect-[4/5] sm:w-1/2 md:mb-2"
                   style={{
                     clipPath:
                       "polygon(20px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
@@ -216,19 +216,19 @@ export default function Events() {
                     alt={event.title}
                     width={500}
                     height={500}
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="h-full w-full transition-transform duration-500 hover:scale-105"
                   />
                 </div>
 
                 <div className="font-lora mt-3 flex flex-1 flex-col justify-between px-4 py-5 pl-0 sm:mt-0 sm:pl-4">
                   <div>
                     <h2
-                      className={`font-norse mb-5 text-2xl font-bold tracking-wide text-[#F6CC60] lg:text-3xl`}
+                      className={`font-norse text-gold text-2xl font-bold tracking-wide lg:text-3xl`}
                     >
                       {/* &gt;  */}
                       {event.title}
                     </h2>
-                    <p className="text-md mb-1 text-white/90 italic">
+                    <p className="text-md mb-4 text-white italic">
                       {event.tagline}
                     </p>
                     <p className="mb-2 text-sm text-white/70 lg:text-sm">
@@ -236,25 +236,25 @@ export default function Events() {
                     </p>
                     <div className="space-y-0.5 pt-4 text-sm text-white/80">
                       <p>
-                        <span className="mr-1 font-semibold text-[#F6CC60]">
+                        <span className="text-gold mr-1 font-semibold">
                           Date:
                         </span>
                         {event.date}
                       </p>
                       <p>
-                        <span className="mr-1 font-semibold text-[#F6CC60]">
+                        <span className="text-gold mr-1 font-semibold">
                           Time:
                         </span>
                         {event.time}
                       </p>
                       <p>
-                        <span className="mr-1 font-semibold text-[#F6CC60]">
+                        <span className="text-gold mr-1 font-semibold">
                           Organizer:
                         </span>
                         {event.organizer}
                       </p>
                       <p>
-                        <span className="mr-1 font-semibold text-[#F6CC60]">
+                        <span className="text-gold mr-1 font-semibold">
                           Contact:
                         </span>
                         {event.contact}

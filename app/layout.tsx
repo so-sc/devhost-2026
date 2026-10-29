@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     default: "DevHost 2026",
     template: `%s - DevHost 2026`,
   },
-  description: "Connecting Minds, Crafting Progress.",
+  description: "Ideas That Echo Through Time",
   keywords: [
     "sosc",
     "Sahyadri Open Source Community",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://devhost.sosc.org.in/",
     title: "DevHost 2026",
-    description: "Connecting Minds, Crafting Progress.",
+    description: "Ideas That Echo Through Time",
     siteName: "DevHost 2026",
     images: [
       {
@@ -82,6 +82,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="preload" as="image" href="/DVHST.png" />
+        <link rel="preload" as="image" href="/logo_group.png" />
+
+        <link rel="preload" as="image" href="/hero/hero-section-wheel.png" />
+        <link rel="preload" as="image" href="/hero/herobackground.png" />
+        <link rel="preload" as="image" href="/hero/mobile_hero.png" />
+        <link rel="preload" as="image" href="/hero/mobile_soldier_left.png" />
+        <link rel="preload" as="image" href="/hero/mobile_soldier_right.png" />
+        <link rel="preload" as="image" href="/hero/soldier-left.png" />
+        <link rel="preload" as="image" href="/hero/soldier-right.png" />
+      </head>
       <body
         className={`${poppins.variable} ${lora.variable} ${norse.variable} ${norseBold.variable} ${trajan.variable} antialiased`}
       >
