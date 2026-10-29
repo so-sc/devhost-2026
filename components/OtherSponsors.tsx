@@ -78,7 +78,7 @@ function OtherSponsorCard({
       <div className="relative aspect-[1.35/1] w-full overflow-hidden drop-shadow-[0_10px_25px_rgba(0,0,0,0.95)]">
         {/* SPONSOR BRICK IMAGE */}
         <Image
-          src="/sponsor_brick.png"
+          src="/sponsors/sponsor_brick.png"
           alt=""
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
