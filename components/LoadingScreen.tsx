@@ -96,25 +96,24 @@ export default function LoadingScreen({
           />
         </div>
 
-        {/* ================= RECTANGLE / PROGRESS BAR ================= */}
-        <div className="relative z-10 mt-4 flex flex-col items-center sm:mt-5">
-          {/* Outer rectangular track */}
-          <div className="relative h-1 w-32 overflow-hidden rounded-[2px] border border-[#c8a24c]/30 bg-[#16120b] p-[1px] shadow-[0_0_8px_rgba(200,162,76,0.12)] sm:h-1.5 sm:w-36 md:w-50">
-            {/* Smooth filling bar */}
+        {/* Progress bar */}
+        <div className="relative z-10 mt-4 flex w-32 flex-col items-center sm:mt-5 sm:w-36 md:w-50">
+          {/* Track */}
+          <div className="relative h-1.5 w-full overflow-hidden rounded-sm border border-[#c8a24c]/30 bg-[#16120b] sm:h-2">
+            {/* Filled portion */}
             <div
-              className="relative h-full rounded-[1px] bg-gradient-to-r from-[#C9963E] via-[#F6CC60] to-[#FFF5D0] transition-all duration-75 ease-out"
+              className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#C9963E] via-[#F6CC60] to-[#FFF5D0]"
               style={{
-                width: `${displayedProgress}%`,
+                width: `${Math.min(100, Math.max(0, displayedProgress))}%`,
                 boxShadow: "0 0 6px rgba(246, 204, 96, 0.7)",
               }}
             >
-              {/* Subtle glowing leading pulse */}
-              <div className="absolute top-0 right-0 bottom-0 w-1.5 bg-white/70 blur-[0.5px]" />
+              <div className="absolute top-0 right-0 h-full w-1 bg-white/70" />
             </div>
           </div>
 
-          {/* Minimal percentage text */}
-          <div className="font-lora sm:text-md mt-2 flex w-32 items-center justify-between text-xs tracking-[0.2em] text-[#c8a24c]/75 sm:w-36 md:w-50">
+          {/* Percentage */}
+          <div className="font-lora mt-2 flex w-full items-center justify-between text-xs tracking-[0.2em] text-[#c8a24c]/75 sm:text-sm">
             <span>LOADING</span>
             <span className="font-norse font-semibold text-[#f6cc60]">
               {Math.round(displayedProgress)}%
