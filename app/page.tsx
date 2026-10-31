@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import FAQ from "@/components/Faq";
 import Map from "@/components/Map";
 import Events from "@/components/Events";
-// import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingScreen from "@/components/LoadingScreen";
 import SponsorsLogo from "@/components/Sponsors";
 import CallForSpeakers from "@/components/CallForSpeakers";
 import Gallery from "@/components/Gallery";
@@ -33,12 +33,24 @@ const criticalImages = [
   "/assets/devhack/DEVHACK.svg",
 ];
 
-function preloadImages(images: string[]) {
+function preloadImages(
+  images: string[],
+  onProgress?: (loaded: number, total: number) => void,
+) {
+  let loaded = 0;
+  const total = images.length;
+
   return Promise.all(
     images.map(
       (src) =>
         new Promise<void>((resolve) => {
           const img = new Image();
+
+          const handleDone = () => {
+            loaded++;
+            onProgress?.(loaded, total);
+            resolve();
+          };
 
           img.onload = async () => {
             try {
@@ -46,14 +58,14 @@ function preloadImages(images: string[]) {
             } catch {
               // Image loaded even if decode isn't available/fails
             }
-            resolve();
+            handleDone();
           };
 
-          img.onerror = () => resolve();
+          img.onerror = () => handleDone();
           img.src = src;
 
           if (img.complete) {
-            resolve();
+            handleDone();
           }
         }),
     ),
@@ -61,14 +73,21 @@ function preloadImages(images: string[]) {
 }
 
 export default function Home() {
-  const [ready, setReady] = useState(false);
+  const [imagesReady, setImagesReady] = useState(false);
+  const [loadingFinished, setLoadingFinished] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     let mounted = true;
 
-    preloadImages(criticalImages).then(() => {
+    preloadImages(criticalImages, (loaded, total) => {
       if (mounted) {
-        setReady(true);
+        setProgress(Math.round((loaded / total) * 100));
+      }
+    }).then(() => {
+      if (mounted) {
+        setImagesReady(true);
+        setProgress(100);
       }
     });
 
@@ -77,13 +96,13 @@ export default function Home() {
     };
   }, []);
 
-  if (!ready) {
+  if (!loadingFinished) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-black">
-        <div className="text-center">
-          <div className="border-primary mx-auto h-12 w-12 animate-spin rounded-full border-b-2"></div>
-        </div>
-      </div>
+      <LoadingScreen
+        progress={progress}
+        isReady={imagesReady}
+        onComplete={() => setLoadingFinished(true)}
+      />
     );
   }
 
@@ -91,7 +110,11 @@ export default function Home() {
     <div className="relative">
       <Hero />
       {/* <Counter /> */}
+      {/* <Final /> */}
       {/* <AboutDevhost /> */}
+      {/* <div className="relative h-[30vh]">
+          <div className="absolute top-0 h-24 w-full bg-gradient-to-b from-black/95 via-black/80 to-transparent" />
+        </div> */}
       {/* <SpeakersInfo /> */}
       <CallForSpeakers />
       <div className="relative z-10">
@@ -106,6 +129,21 @@ export default function Home() {
       <FAQ />
       <Map />
       <Footer />
+
+      {/* Background grid */}
+      {/*<div className="pointer-events-none fixed inset-0 -z-10 opacity-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(#a3ff12 2px, transparent 1px),
+              linear-gradient(90deg, #a3ff12 2px, transparent 1px)
+            `,
+            backgroundSize: "80px 80px",
+            backgroundPosition: "center",
+          }}
+        ></div>
+      </div>*/}
     </div>
   );
 }
