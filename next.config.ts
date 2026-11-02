@@ -5,8 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/hackathon/register",
-        destination:
-          "https://unstop.com/p/devhack-2026-devhost-2026-sahyadri-open-source-community-1759829",
+        destination: "/result",
         permanent: false,
       },
       {
