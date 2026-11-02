@@ -464,7 +464,7 @@ export default function DevHackSection() {
                 }}
                 draggable={false}
               >
-              Round 1 Result
+                Round 1 Result
               </Button>
             </div>
           </div>
@@ -475,7 +475,7 @@ export default function DevHackSection() {
             originY={CLASH_Y / 100}
             className="js-embers pointer-events-none absolute inset-0 z-50 h-full w-full"
           />
-          </div>
+        </div>
       </section>
     </div>
   );
