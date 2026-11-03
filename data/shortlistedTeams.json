@@ -80,7 +80,11 @@
     "college": "Sahyadri College of Engineering & Management"
   },
   {
-    "team_name": "luminova",
+    "team_name": "osco",
+    "college": "Sahyadri College of Engineering & Management (Autonomous), Adyar, Karnataka"
+  },
+  {
+    "team_name": "innovex",
     "college": "Sahyadri College of Engineering & Management (Autonomous), Adyar, Karnataka"
   },
   {
@@ -97,10 +101,6 @@
   },
   {
     "team_name": "lastmoment",
-    "college": "Canara Engineering College Bantwal"
-  },
-  {
-    "team_name": "Hackstrom Codders",
     "college": "Canara Engineering College Bantwal"
   },
   {
