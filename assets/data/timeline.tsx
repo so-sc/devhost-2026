@@ -173,15 +173,15 @@ export const markers = [
         venue: "",
       },
 
-      {
-        id: "day3-event3",
-        time: "09:30",
-        displayTime: "9:30 AM",
-        icon: <MicVocal className="h-auto sm:w-8" />,
-        title: "DevTalk starts",
-        description: "Technical talks and knowledge sessions.",
-        venue: "Ground Floor Seminar Hall",
-      },
+      // {
+      //   id: "day3-event3",
+      //   time: "09:30",
+      //   displayTime: "9:30 AM",
+      //   icon: <MicVocal className="h-auto sm:w-8" />,
+      //   title: "DevTalk starts",
+      //   description: "Technical talks and knowledge sessions.",
+      //   venue: "Ground Floor Seminar Hall",
+      // },
 
       {
         id: "day3-event3.1",
@@ -219,16 +219,16 @@ export const markers = [
         venue: "Ground Floor Seminar Hall",
       },
 
-      {
-        id: "day3-event3.4",
-        displayTime: "11:45 AM - 12:25 PM",
-        icon: <MicVocal className="h-auto sm:w-8" />,
-        title: "",
-        description: "",
-        speaker: "Basavarajeshwari (Sony) Ambi",
-        role: "Product Manager at Masai",
-        venue: "Ground Floor Seminar Hall",
-      },
+      // {
+      //   id: "day3-event3.4",
+      //   displayTime: "11:45 AM - 12:25 PM",
+      //   icon: <MicVocal className="h-auto sm:w-8" />,
+      //   title: "",
+      //   description: "",
+      //   speaker: "Basavarajeshwari (Sony) Ambi",
+      //   role: "Product Manager at Masai",
+      //   venue: "Ground Floor Seminar Hall",
+      // },
 
       {
         id: "day3-event4",
