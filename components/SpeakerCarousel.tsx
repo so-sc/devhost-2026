@@ -6,47 +6,47 @@ import { useEffect, useRef } from "react";
 const speakers = [
   {
     id: 1,
-    name: "Dr. Pruthviraj Umesh",
-    title: "Associate Professor @ NITK",
-    img: "/speakers/dr-pruthviraj-nitk.jpeg",
-    link: "https://www.linkedin.com/in/dr-pruthviraj-u",
+    name: "Shamitha Shetty",
+    title: "Cloud Support Engineer I @ AWS",
+    img: "/speakers/Shamitha shetty.jpg",
+    link: "https://www.linkedin.com/in/shamitha-shetty-86a542231",
   },
   {
     id: 2,
-    name: "N. Ananthakrishnan Potti",
-    title: "Leading Security Operations @ OLA",
-    img: "/speakers/potti.jpg",
-    link: "https://www.linkedin.com/in/ananthakrishnanpotti/",
+    name: "Muaaz Musthafa",
+    title: "Software Developer III | Full Stack Developer @ EG India",
+    img: "/speakers/Muaaz Mushthafa.jpg",
+    link: "https://www.linkedin.com/in/muaaz-musthafa",
   },
   {
     id: 3,
-    name: "Aakansha Doshi",
-    title: "Open Source Enthusiast",
-    img: "/speakers/aakansha.jpeg",
-    link: "https://www.linkedin.com/in/aa1992/",
+    name: "Adarsh Shetty",
+    title: "Software Developer @ CodeCraft Technologies",
+    img: "/speakers/Adarsh Shetty.jpg",
+    link: "https://www.linkedin.com/in/adarsh-shetty-5a3861190",
   },
   {
     id: 4,
-    name: "Charis Pinto",
-    title: "Presales Solution Architect @ Niveus Solutions",
-    img: "/speakers/charis-devhost.jpeg",
-    link: "https://www.linkedin.com/in/charispinto/",
+    name: "Basavarajeshwari (Sony) Ambi",
+    title: "Product Manager @ Masai",
+    img: "/speakers/Basavarajeshwari ambi.jpg",
+    link: "https://share.google/XMHKTHIh1dleIIfIz",
   },
   {
     id: 5,
-    name: "Raj Raorane",
-    title: "Co-Founder of Edgetributors",
-    img: "/speakers/Raj Raorane.jpeg",
-    link: "https://www.linkedin.com/in/raj-raorane-45b2b4166/",
+    name: "Vasudevan Badiadka",
+    title: "Software Engineer II @ Microsoft",
+    img: "/speakers/Vasudevan Badiadka.jpg",
+    link: "https://www.linkedin.com/in/vasudevan-badiadka",
   },
   {
     id: 6,
-    name: "Samwin Steve Pereira",
-    title: "Solution Architect @ Niveus Solutions",
-    img: "/speakers/Samwin Steve Pereira.jpg",
-    link: "https://www.linkedin.com/in/samwin-pereira-058417246/",
+    name: "Prashant Joshi",
+    title: "Senior Software Engineer @ Vinyl Equality",
+    img: "/speakers/Prashanth Joshi.jpg",
+    link: "https://www.linkedin.com/in/pj25",
   },
-  {
+  /*{
     id: 7,
     name: "Raghu Anand",
     title: "Head of Technology L&D / Training @ EG/AS",
@@ -80,7 +80,7 @@ const speakers = [
     title: "Founder of Flashmates.inc",
     img: "/speakers/amrit shenava.png",
     link: "https://www.linkedin.com/in/amritshenava/",
-  },
+  },*/
   //   {
   //   id: 10,
   //   name: "Mohit P. Tahiliani",
@@ -169,7 +169,7 @@ export default function SpeakerCarousel() {
   return (
     <div className="relative mx-auto mt-8 w-full overflow-hidden sm:mt-10 sm:py-10">
       <h2 className="font-norse text-gold-antique mb-4 text-center text-2xl font-extrabold tracking-wider uppercase sm:text-3xl">
-        Past Speakers
+        Speakers
       </h2>
 
       {/* Viewport */}

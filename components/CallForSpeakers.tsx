@@ -198,27 +198,27 @@ export default function CallForSpeakers() {
       >
         <div className="w-full px-4 md:px-20 xl:px-30 xl:pt-24">
           <h2 className="font-norse-bold from-gold via-gold-light to-gold-deep mb-2 bg-gradient-to-r bg-clip-text text-6xl font-extrabold tracking-[0.12em] text-transparent uppercase drop-shadow-[0_2px_10px_rgba(246,204,96,0.3)] md:text-8xl">
-            Call for Speakers
+            Devtalk
           </h2>
 
           <p className="font-norse text-gold-antique/80 text-lg font-semibold tracking-[0.10em] sm:tracking-[0.14em] md:text-2xl">
-            Grace the mythic stage of DevHost 2026
+            YOUR SEAT AWAITS IN THE HALLS OF INNOVATION
           </p>
 
           <p className="font-lora text-md mx-[-10] mt-8 max-w-xl px-3 leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em] md:py-10 lg:max-w-6xl lg:py-10 xl:max-w-5xl">
-            Share your knowledge, research, and technical vision with
-            developers, students, and industry leaders. Whether your focus is AI
-            and machine learning, open source infrastructure, cloud and Web3, or
-            software architecture, take the stage at DevHost 2026.
+            Join us at DevHost 2026 for insightful talks and hands-on workshops
+            led by industry professionals. Explore AI-powered development,
+            multi-agent systems, cloud security, and the future of software
+            engineering. Learn, connect, and innovate!
           </p>
 
           <div className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-18 md:mt-2">
             <Button
               onClick={() => {
-                window.location.href = "https://forms.gle/PxRYSUCY5ycXWERDA";
+                window.location.href = "https://forms.gle/oi61N98ZqJ8fDr2G9";
               }}
             >
-              Submit Proposal
+              ATTENDEE RSVP
             </Button>
           </div>
         </div>
