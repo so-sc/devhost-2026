@@ -13,7 +13,7 @@ const speakers = [
     name: "Dr. Pruthviraj Umesh",
     title: "Associate Professor @ NITK",
     bio: "Dr. Pruthviraj U, Associate Professor at National Institute of Technology Karnataka Surathkal, leads transdisciplinary R&D integrating engineering, AI, and innovation, with 17+ years of experience and major contributions in structural analysis, disaster mitigation, and sustainable technologies.",
-    img: "/speakers/dr-pruthviraj-nitk.jpeg",
+    img: "/speakers/Shamitha Shetty.jpg",
     link: "https://www.linkedin.com/in/dr-pruthviraj-u?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     presence: {
       place: "DevTalk",
