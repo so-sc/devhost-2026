@@ -257,21 +257,21 @@ const ScrollParchmentWrapper = ({
                         >
                           {event.displayTime}
                         </div>
-
                         {/* Title */}
-<h3 className="font-norse-bold text-gold mx-auto flex w-full flex-wrap items-center justify-center gap-2 text-3xl font-bold tracking-wide break-words sm:max-w-[85%] sm:text-4xl lg:max-w-none">
-  <span className="mr-2 inline-flex items-center tracking-tighter">
-    {event.icon}
-  </span>
+                        <h3 className="font-norse-bold text-gold mx-auto flex w-full flex-wrap items-center justify-center gap-2 text-3xl font-bold tracking-wide break-words sm:max-w-[85%] sm:text-4xl lg:max-w-none">
+                          <span className="mr-2 inline-flex items-center tracking-tighter">
+                            {event.icon}
+                          </span>
 
-  <span>{event.title}</span>
+                          <span>{event.title}</span>
 
-  {event.sessionType ? (
-    <span className="inline-flex font-sans items-center bg-[#745a36] px-2 py-1 text-sm font-semibold tracking-wide text-white/70">
-      {event.sessionType}
-    </span>
-  ) : null}
-</h3>                        {/* Speaker & Role */}
+                          {event.sessionType ? (
+                            <span className="inline-flex items-center bg-[#745a36] px-2 py-1 font-sans text-sm font-semibold tracking-wide text-white/70">
+                              {event.sessionType}
+                            </span>
+                          ) : null}
+                        </h3>{" "}
+                        {/* Speaker & Role */}
                         {event.speaker || event.role ? (
                           <div className="mx-auto flex w-full flex-col items-center tracking-wide text-[#a98f6d] sm:max-w-[85%] lg:max-w-none">
                             {event.speaker ? (
@@ -286,14 +286,12 @@ const ScrollParchmentWrapper = ({
                             ) : null}
                           </div>
                         ) : null}
-
                         {/* Description */}
                         {event.description ? (
                           <p className="sm:text-md font-lora mx-auto w-full text-center text-[17px] leading-relaxed font-medium break-words text-white/70 sm:max-w-[85%] lg:max-w-none">
                             {event.description}
                           </p>
                         ) : null}
-
                         {/* Venue */}
                         {event.venue ? (
                           <div className="mx-auto w-full text-center text-sm font-semibold tracking-wide break-words text-[#a98f6d] lg:max-w-none">
