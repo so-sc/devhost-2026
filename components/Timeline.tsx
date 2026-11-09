@@ -18,6 +18,7 @@ type TimelineEvent = {
   id: string;
   displayTime: string;
   title: string;
+  sessionType?: string;
   icon: React.ReactNode;
   speaker?: string;
   role?: string;
@@ -258,14 +259,19 @@ const ScrollParchmentWrapper = ({
                         </div>
 
                         {/* Title */}
-                        <h3 className="font-norse-bold text-gold mx-auto w-full text-3xl font-bold tracking-wide break-words sm:max-w-[85%] sm:text-4xl lg:max-w-none">
-                          <span className="mr-2 mb-2 inline-flex align-middle tracking-tighter">
-                            {event.icon}
-                          </span>
-                          {event.title}
-                        </h3>
+<h3 className="font-norse-bold text-gold mx-auto flex w-full flex-wrap items-center justify-center gap-2 text-3xl font-bold tracking-wide break-words sm:max-w-[85%] sm:text-4xl lg:max-w-none">
+  <span className="mr-2 inline-flex items-center tracking-tighter">
+    {event.icon}
+  </span>
 
-                        {/* Speaker & Role */}
+  <span>{event.title}</span>
+
+  {event.sessionType ? (
+    <span className="inline-flex font-sans items-center bg-[#745a36] px-2 py-1 text-sm font-semibold tracking-wide text-white/70">
+      {event.sessionType}
+    </span>
+  ) : null}
+</h3>                        {/* Speaker & Role */}
                         {event.speaker || event.role ? (
                           <div className="mx-auto flex w-full flex-col items-center tracking-wide text-[#a98f6d] sm:max-w-[85%] lg:max-w-none">
                             {event.speaker ? (
