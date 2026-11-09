@@ -23,6 +23,7 @@ export const markers = [
         description: "Opening ceremony of DevHost 2026.",
         venue: "Shashikiran Auditorium",
       },
+
       {
         id: "day1-event3",
         time: "10:15",
@@ -104,21 +105,17 @@ export const markers = [
         time: "10:00",
         displayTime: "10:00 AM - 12:30 PM",
         icon: <MicVocal className="h-auto sm:w-8" />,
-        title: "Workshop 1",
-        description: "Technical workshop session.",
-        venue: "Gallery Classroom Mech Block",
+        title:
+          "Beyond AI Agents: Building Multi-Agent Systems with Microsoft Agent Framework",
+        description:
+          "Explore Microsoft's Agent Framework to build collaborative AI agents. Learn about agent creation, tool integration, orchestration, workflows, memory, and state management using Python and .NET.",
+        speaker: "Vasudevan Badiadka",
+        role: "Software Engineer II at Microsoft",
+        venue: "Gallery Classroom",
       },
+
       {
         id: "day2-event2",
-        time: "13:30",
-        displayTime: "1:30 PM - 04:00 PM",
-        icon: <MicVocal className="h-auto sm:w-8" />,
-        title: "Workshop 2",
-        description: "Technical workshop session.",
-        venue: "Gallery Classroom Mech Block",
-      },
-      {
-        id: "day2-event3",
         time: "10:00",
         displayTime: "10:00 AM - 05:00 PM",
         icon: <Flame className="h-auto sm:w-8" />,
@@ -126,6 +123,19 @@ export const markers = [
         description:
           "A BGMI gaming tournament open to participants throughout the day.",
         venue: "CAED and CIM Lab",
+      },
+
+      {
+        id: "day2-event3",
+        time: "13:30",
+        displayTime: "1:30 PM - 4:00 PM",
+        icon: <MicVocal className="h-auto sm:w-8" />,
+        title:
+          "Engineering Foundations for the AI Era: Systems Thinking, Harness Engineering & Agentic Development",
+        description: "",
+        speaker: "Prashant Joshi",
+        role: "Senior Software Engineer at Vinyl Equality",
+        venue: "Gallery Classroom",
       },
       {
         id: "day2-event4",
@@ -162,15 +172,64 @@ export const markers = [
         description: "Teams present their projects to a panel of judges.",
         venue: "",
       },
+
+      // {
+      //   id: "day3-event3",
+      //   time: "09:30",
+      //   displayTime: "9:30 AM",
+      //   icon: <MicVocal className="h-auto sm:w-8" />,
+      //   title: "DevTalk starts",
+      //   description: "Technical talks and knowledge sessions.",
+      //   venue: "Ground Floor Seminar Hall",
+      // },
+
       {
-        id: "day3-event3",
-        time: "09:30",
-        displayTime: "9:30 AM - 12:45 PM",
+        id: "day3-event3.1",
+        displayTime: "9:30 AM - 10:10 AM",
         icon: <MicVocal className="h-auto sm:w-8" />,
-        title: "DevTalk starts",
-        description: "Technical talks and knowledge sessions.",
-        venue: "Shashikiran Auditorium",
+        title: "AWS WAF",
+        description:
+          "Explore how AWS Web Application Firewall (WAF) protects web applications from common attacks and malicious traffic. Learn about Web ACLs, managed rules, AWS integrations, and practical security best practices.",
+        speaker: "Shamitha Shetty",
+        role: "Cloud Support Engineer I at Amazon Web Services (AWS)",
+        venue: "Ground Floor Seminar Hall",
       },
+
+      {
+        id: "day3-event3.2",
+        displayTime: "10:15 AM - 10:55 AM",
+        icon: <MicVocal className="h-auto sm:w-8" />,
+        title: "From Prompts to Production: Building a Software Career with AI",
+        description: "",
+        speaker: "Muaaz Musthafa",
+        role: "Software Developer III | Full Stack Developer at EG India",
+        venue: "Ground Floor Seminar Hall",
+      },
+
+      {
+        id: "day3-event3.3",
+        displayTime: "11:00 AM - 11:40 AM",
+        icon: <MicVocal className="h-auto sm:w-8" />,
+        title:
+          "Build Your First AI-Powered Application in 60 Minutes — From LLM APIs to RAG",
+        description:
+          "Build an AI-powered application that reads documents, answers questions, and avoids making up information. Explore prompting, structured outputs, embeddings, and Retrieval-Augmented Generation (RAG) through hands-on coding.",
+        speaker: "Adarsh Shetty",
+        role: "Software Developer at CodeCraft Technologies Pvt. Ltd.",
+        venue: "Ground Floor Seminar Hall",
+      },
+
+      // {
+      //   id: "day3-event3.4",
+      //   displayTime: "11:45 AM - 12:25 PM",
+      //   icon: <MicVocal className="h-auto sm:w-8" />,
+      //   title: "",
+      //   description: "",
+      //   speaker: "Basavarajeshwari (Sony) Ambi",
+      //   role: "Product Manager at Masai",
+      //   venue: "Ground Floor Seminar Hall",
+      // },
+
       {
         id: "day3-event4",
         time: "14:30",
@@ -181,15 +240,15 @@ export const markers = [
           "Closing ceremony to celebrate the builders, honor the winners, and bring DevHost 2026 to a close.",
         venue: "",
       },
-      {
-        id: "day3-event5",
-        time: "15:30",
-        displayTime: "2:30 PM - 04:00 PM",
-        icon: <MicVocal className="h-auto sm:w-8" />,
-        title: "DevTalk ends",
-        description: "",
-        venue: "Shashikiran Auditorium",
-      },
+      //{
+      //  id: "day3-event5",
+      //  time: "15:30",
+      //  displayTime: "2:30 PM - 04:00 PM",
+      //  icon: <MicVocal className="h-auto sm:w-8" />,
+      //  title: "DevTalk ends",
+      // description: "",
+      //  venue: "Shashikiran Auditorium",
+      //},
     ],
   },
 ];
