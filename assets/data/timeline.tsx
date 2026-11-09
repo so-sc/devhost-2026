@@ -1,4 +1,4 @@
-import { Flame, MicVocal } from "lucide-react";
+import { Flame, MicVocal, Laptop } from "lucide-react";
 
 export const markers = [
   {
@@ -57,22 +57,22 @@ export const markers = [
       },
       {
         id: "day1-event5",
+        time: "13:00",
+        displayTime: "10:00 AM - 12:30 PM",
+        icon: <Flame className="h-auto sm:w-8" />,
+        title: "Siege of Troy (CTF)",
+        description:
+          "A Capture the Flag cybersecurity challenge where participants take on the roles of attackers and defenders.",
+        venue: "Ground Floor AIML Lab",
+      },
+      {
+        id: "day1-event6",
         time: "11:00",
         displayTime: "11:00 AM ",
         icon: <Flame className="h-auto sm:w-8" />,
         title: "Flagship Hackathon Begins",
         description: "Official kickoff of the flagship hackathon.",
         venue: "Skill Labs",
-      },
-      {
-        id: "day1-event6",
-        time: "13:00",
-        displayTime: "1:00 PM - 03:00 PM",
-        icon: <Flame className="h-auto sm:w-8" />,
-        title: "Siege of Troy (CTF)",
-        description:
-          "A Capture the Flag cybersecurity challenge where participants take on the roles of attackers and defenders.",
-        venue: "Ground Floor CSE Central Lab",
       },
       {
         id: "day1-event7",
@@ -104,7 +104,8 @@ export const markers = [
         id: "day2-event1",
         time: "10:00",
         displayTime: "10:00 AM - 12:30 PM",
-        icon: <MicVocal className="h-auto sm:w-8" />,
+        icon: <Laptop className="h-auto sm:w-8" />,
+        sessionType: "workshop",
         title:
           "Beyond AI Agents: Building Multi-Agent Systems with Microsoft Agent Framework",
         description:
@@ -129,7 +130,8 @@ export const markers = [
         id: "day2-event3",
         time: "13:30",
         displayTime: "1:30 PM - 4:00 PM",
-        icon: <MicVocal className="h-auto sm:w-8" />,
+        icon: <Laptop className="h-auto sm:w-8" />,
+        sessionType: "workshop",
         title:
           "Engineering Foundations for the AI Era: Systems Thinking, Harness Engineering & Agentic Development",
         description: "",
@@ -187,6 +189,7 @@ export const markers = [
         id: "day3-event3.1",
         displayTime: "9:30 AM - 10:10 AM",
         icon: <MicVocal className="h-auto sm:w-8" />,
+        sessionType: "devtalk",
         title: "AWS WAF",
         description:
           "Explore how AWS Web Application Firewall (WAF) protects web applications from common attacks and malicious traffic. Learn about Web ACLs, managed rules, AWS integrations, and practical security best practices.",
@@ -199,6 +202,7 @@ export const markers = [
         id: "day3-event3.2",
         displayTime: "10:15 AM - 10:55 AM",
         icon: <MicVocal className="h-auto sm:w-8" />,
+        sessionType: "devtalk",
         title: "From Prompts to Production: Building a Software Career with AI",
         description: "",
         speaker: "Muaaz Musthafa",
@@ -210,6 +214,7 @@ export const markers = [
         id: "day3-event3.3",
         displayTime: "11:00 AM - 11:40 AM",
         icon: <MicVocal className="h-auto sm:w-8" />,
+        sessionType: "devtalk",
         title:
           "Build Your First AI-Powered Application in 60 Minutes — From LLM APIs to RAG",
         description:
