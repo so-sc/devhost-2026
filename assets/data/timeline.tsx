@@ -134,7 +134,8 @@ export const markers = [
         sessionType: "workshop",
         title:
           "Engineering Foundations for the AI Era: Systems Thinking, Harness Engineering & Agentic Development",
-        description: "",
+        description:
+          "A practical workshop on applying foundational software engineering principles to design, build and evolve reliable AI-powered systems.",
         speaker: "Prashant Joshi",
         role: "Senior Software Engineer at Vinyl Equity",
         venue: "Gallery Classroom",
@@ -212,7 +213,7 @@ export const markers = [
 
       {
         id: "day3-event3.3",
-        displayTime: "11:00 AM - 11:40 AM",
+        displayTime: "11:15 AM - 11:55 AM",
         icon: <MicVocal className="h-auto sm:w-8" />,
         sessionType: "devtalk",
         title:
@@ -224,16 +225,19 @@ export const markers = [
         venue: "Ground Floor Seminar Hall",
       },
 
-      // {
-      //   id: "day3-event3.4",
-      //   displayTime: "11:45 AM - 12:25 PM",
-      //   icon: <MicVocal className="h-auto sm:w-8" />,
-      //   title: "",
-      //   description: "",
-      //   speaker: "Basavarajeshwari (Sony) Ambi",
-      //   role: "Product Manager at Masai",
-      //   venue: "Ground Floor Seminar Hall",
-      // },
+      {
+        id: "day3-event3.4",
+        displayTime: "1:30PM – 2:10 PM ",
+        icon: <MicVocal className="h-auto sm:w-8" />,
+        sessionType: "devtalk",
+        title:
+          "Beyond Code, Beyond Campus: Becoming a Problem Solver in the AI Era",
+        description:
+          "An overview of how the AI era is changing the way we approach technology and problem-solving, highlighting the importance of critical thinking, adaptability, creativity, and building solutions that address real-world challenges beyond academics.",
+        speaker: "Basavarajeshwari (Sony) Ambi",
+        role: "Product Manager at Masai",
+        venue: "Ground Floor Seminar Hall",
+      },
 
       {
         id: "day3-event4",
