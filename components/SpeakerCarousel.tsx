@@ -42,7 +42,7 @@ const speakers = [
   {
     id: 6,
     name: "Prashant Joshi",
-    title: "Senior Software Engineer @ Vinyl Equity",
+    title: "Senior Software Engineer",
     img: "/speakers/Prashanth Joshi.jpg",
     link: "https://www.linkedin.com/in/pj25",
   },
