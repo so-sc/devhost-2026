@@ -134,7 +134,7 @@ export const markers = [
           "Engineering Foundations for the AI Era: Systems Thinking, Harness Engineering & Agentic Development",
         description: "",
         speaker: "Prashant Joshi",
-        role: "Senior Software Engineer at Vinyl Equity",
+        role: "Senior Software Engineer",
         venue: "Gallery Classroom",
       },
       {
