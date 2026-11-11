@@ -31,7 +31,7 @@ export const markers = [
         icon: <MicVocal className="h-auto sm:w-8" />,
         title: "Pre-Hackathon Briefing",
         description: "Briefing session before the flagship hackathon begins.",
-        venue: "",
+        venue: "Ground Floor Seminar Hall",
       },
       // {
       //   id: "day1-event3",
@@ -53,7 +53,7 @@ export const markers = [
         title: "Voice of the Oracle (Tech Pitch)",
         description:
           "A tech pitch competition where teams present their ideas before a panel of judges and compete for the top spot.",
-        venue: "Ground Floor Seminar Hall",
+        venue: "Gallery Classroom",
       },
       {
         id: "day1-event5",
@@ -137,7 +137,7 @@ export const markers = [
         description:
           "A practical workshop on applying foundational software engineering principles to design, build and evolve reliable AI-powered systems.",
         speaker: "Prashant Joshi",
-        role: "Senior Software Engineer at Vinyl Equity",
+        role: "Senior Software Engineer",
         venue: "Gallery Classroom",
       },
       {

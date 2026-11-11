@@ -264,7 +264,7 @@ export default function Events() {
                           [Spot registration]
                         </p>
                       )}
-                      {event.registrationLink && (
+                      {/* {event.registrationLink && (
                         <div className="mt-4 origin-top-left scale-70">
                           <Button
                             onClick={() => {
@@ -274,7 +274,7 @@ export default function Events() {
                             Register
                           </Button>
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>
