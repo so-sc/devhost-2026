@@ -125,6 +125,19 @@ export const markers = [
           "A BGMI gaming tournament open to participants throughout the day.",
         venue: "CAED and CIM Lab",
       },
+      {
+        id: "day3-event3.3",
+        displayTime: "1:30 PM - 4:00 PM",
+        icon: <Laptop className="h-auto sm:w-8" />,
+        sessionType: "workshop",
+        title:
+          "Build Your First AI-Powered Application in 60 Minutes — From LLM APIs to RAG",
+        description:
+          "Build an AI-powered application that reads documents, answers questions, and avoids making up information. Explore prompting, structured outputs, embeddings, and Retrieval-Augmented Generation (RAG) through hands-on coding.",
+        speaker: "Adarsh Shetty",
+        role: "Software Developer at CodeCraft Technologies Pvt. Ltd.",
+        venue: "Ground Floor Seminar Hall",
+      },
 
       {
         id: "day2-event3",
@@ -161,7 +174,6 @@ export const markers = [
         description: "Teams present their projects to a panel of judges.",
         venue: "",
       },
-
       // {
       //   id: "day3-event3",
       //   time: "09:30",
@@ -199,20 +211,6 @@ export const markers = [
 
       {
         id: "day3-event3.3",
-        displayTime: "11:15 AM - 11:55 AM",
-        icon: <MicVocal className="h-auto sm:w-8" />,
-        sessionType: "devtalk",
-        title:
-          "Build Your First AI-Powered Application in 60 Minutes — From LLM APIs to RAG",
-        description:
-          "Build an AI-powered application that reads documents, answers questions, and avoids making up information. Explore prompting, structured outputs, embeddings, and Retrieval-Augmented Generation (RAG) through hands-on coding.",
-        speaker: "Adarsh Shetty",
-        role: "Software Developer at CodeCraft Technologies Pvt. Ltd.",
-        venue: "Ground Floor Seminar Hall",
-      },
-
-      {
-        id: "day3-event3.4",
         displayTime: "1:30PM – 2:10 PM ",
         icon: <MicVocal className="h-auto sm:w-8" />,
         sessionType: "devtalk",
