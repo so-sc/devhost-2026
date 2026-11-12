@@ -128,20 +128,6 @@ export const markers = [
 
       {
         id: "day2-event3",
-        time: "13:30",
-        displayTime: "1:30 PM - 4:00 PM",
-        icon: <Laptop className="h-auto sm:w-8" />,
-        sessionType: "workshop",
-        title:
-          "Engineering Foundations for the AI Era: Systems Thinking, Harness Engineering & Agentic Development",
-        description:
-          "A practical workshop on applying foundational software engineering principles to design, build and evolve reliable AI-powered systems.",
-        speaker: "Prashant Joshi",
-        role: "Senior Software Engineer",
-        venue: "Gallery Classroom",
-      },
-      {
-        id: "day2-event4",
         time: "16:00",
         displayTime: "4:00 PM",
         icon: <Flame className="h-auto sm:w-8" />,

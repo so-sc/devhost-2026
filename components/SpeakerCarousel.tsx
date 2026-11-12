@@ -39,13 +39,6 @@ const speakers = [
     img: "/speakers/Vasudevan Badiadka.jpg",
     link: "https://www.linkedin.com/in/vasudevan-badiadka",
   },
-  {
-    id: 6,
-    name: "Prashant Joshi",
-    title: "Senior Software Engineer",
-    img: "/speakers/Prashanth Joshi.jpg",
-    link: "https://www.linkedin.com/in/pj25",
-  },
   /*{
     id: 7,
     name: "Raghu Anand",
