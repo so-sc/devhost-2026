@@ -126,7 +126,7 @@ export const markers = [
         venue: "CAED and CIM Lab",
       },
       {
-        id: "day3-event3.3",
+        id: "day3-event3",
         displayTime: "1:30 PM - 4:00 PM",
         icon: <Laptop className="h-auto sm:w-8" />,
         sessionType: "workshop",
@@ -140,7 +140,7 @@ export const markers = [
       },
 
       {
-        id: "day2-event3",
+        id: "day2-event4",
         time: "16:00",
         displayTime: "4:00 PM",
         icon: <Flame className="h-auto sm:w-8" />,
@@ -211,7 +211,7 @@ export const markers = [
 
       {
         id: "day3-event3.3",
-        displayTime: "1:30PM – 2:10 PM ",
+        displayTime: "11:15 AM – 11:55 AM ",
         icon: <MicVocal className="h-auto sm:w-8" />,
         sessionType: "devtalk",
         title:
