@@ -125,7 +125,7 @@ export const markers = [
         venue: "CAED and CIM Lab",
       },
 
-      {
+      /*{
         id: "day2-event3",
         time: "13:30",
         displayTime: "1:30 PM - 4:00 PM",
@@ -136,7 +136,7 @@ export const markers = [
         speaker: "Prashant Joshi",
         role: "Senior Software Engineer",
         venue: "Gallery Classroom",
-      },
+      },*/
       {
         id: "day2-event4",
         time: "16:00",
