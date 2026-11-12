@@ -136,7 +136,7 @@ export const markers = [
           "Build an AI-powered application that reads documents, answers questions, and avoids making up information. Explore prompting, structured outputs, embeddings, and Retrieval-Augmented Generation (RAG) through hands-on coding.",
         speaker: "Adarsh Shetty",
         role: "Software Developer at CodeCraft Technologies Pvt. Ltd.",
-        venue: "Ground Floor Seminar Hall",
+        venue: "Gallery Classroom",
       },
 
       {
