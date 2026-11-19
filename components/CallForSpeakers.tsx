@@ -143,7 +143,7 @@ export default function CallForSpeakers() {
     <section
       ref={sectionRef}
       id="speakers"
-      className="bg-dark-obsidian relative min-h-svh w-full overflow-hidden py-18 pb-24 text-white sm:py-24 sm:pb-32 lg:px-8"
+      className="bg-dark-obsidian relative min-h-svh w-full overflow-hidden py-18 pb-24 text-white sm:py-12 sm:pb-20 lg:px-8"
     >
       <div
         ref={bgRef}
@@ -205,25 +205,15 @@ export default function CallForSpeakers() {
             YOUR SEAT AWAITS IN THE HALLS OF INNOVATION
           </p>
 
-          <p className="font-lora text-md mx-[-10] mt-8 max-w-xl px-3 leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em] md:py-10 lg:max-w-6xl lg:py-10 xl:max-w-5xl">
+          <p className="font-lora text-md mx-[-10] mt-8 max-w-xl px-3 leading-relaxed tracking-[0.02em] break-words text-white sm:text-lg sm:leading-[1.75] sm:tracking-[0.03em] md:pt-10 lg:max-w-6xl lg:pt-10 xl:max-w-5xl">
             Join us at DevHost 2026 for insightful talks and hands-on workshops
             led by industry professionals. Explore AI-powered development,
             multi-agent systems, cloud security, and the future of software
             engineering. Learn, connect, and innovate!
           </p>
-
-          <div className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-18 md:mt-2">
-            <Button
-              onClick={() => {
-                window.location.href = "https://forms.gle/oi61N98ZqJ8fDr2G9";
-              }}
-            >
-              ATTENDEE RSVP
-            </Button>
-          </div>
         </div>
 
-        <div className="mt-10 w-full">
+        <div className="w-full">
           <SpeakerCarousel />
         </div>
       </div>
